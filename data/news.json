@@ -842,5 +842,301 @@
     },
     "summarizedBy": "ai",
     "reviewed": false
+  },
+  {
+    "id": "1849192144187218",
+    "source": "official",
+    "title": "ROB RUN: Answering Your Most Frequently Asked Questions",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1849192144187218",
+    "publishedAt": "2026-11-13T13:17:13.000Z",
+    "gameVersion": "2026-11-05",
+    "summaryJa": {
+      "headline": "よくある質問への回答: 警察・パーティ・サーバーなど今後の方針",
+      "impact": "警察の参加しやすさ、拠点の防御、売却ミスの防止、サーバー選択の簡略化など、今後の改善予定が示されました。パーティ人数の拡大や拠点の待ち伏せ対策などは当面変更なしです。",
+      "points": [
+        {
+          "type": "change",
+          "target": "Police Officer",
+          "text": "警察の空きスロットを待つ不便さは認識しており、警察業務の改善に取り組む予定"
+        },
+        {
+          "type": "change",
+          "target": "パーティ人数",
+          "text": "3人より多いパーティは当面追加しない (ランダム遭遇が減るため)"
+        },
+        {
+          "type": "change",
+          "target": "報酬 (警察と犯罪者)",
+          "text": "現状の仕組みを維持。警察は装備無料で、逮捕や押収の割合報酬を得る"
+        },
+        {
+          "type": "change",
+          "target": "ソロプレイ",
+          "text": "ソロのバランスを監視し、必要に応じて調整する方針"
+        },
+        {
+          "type": "change",
+          "target": "Drop-off Points",
+          "text": "キャンプ可能な仕様を当面維持。安全な受け渡し場所の追加は見送り"
+        },
+        {
+          "type": "change",
+          "target": "サーバー選択",
+          "text": "サーバーの選択をよりシンプルで分かりやすくする予定"
+        },
+        {
+          "type": "change",
+          "target": "武器の修理",
+          "text": "現時点では不可。将来のアップデートで修理機能を追加予定"
+        },
+        {
+          "type": "change",
+          "target": "Property Fence",
+          "text": "車両で柵を越えられる仕様は維持。ただし拠点への徒歩・車両での侵入はより難しくする予定"
+        },
+        {
+          "type": "change",
+          "target": "重要アイテムの売却",
+          "text": "用途が分かりにくいアイテムを誤って売らないよう、表示の改善と売却防止を検討"
+        },
+        {
+          "type": "change",
+          "target": "サーバー (Asia / Oceania)",
+          "text": "他地域のサーバー開設を検討中だが、少なくとも今年末までは難しい"
+        }
+      ]
+    },
+    "tags": [
+      "警察",
+      "サーバー",
+      "拠点",
+      "武器",
+      "UI",
+      "その他"
+    ],
+    "changeTypes": [
+      "change"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": true,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1849458702693254",
+    "source": "official",
+    "title": "Patch Notes",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1849458702693254",
+    "publishedAt": "2026-11-17T11:19:45.000Z",
+    "gameVersion": "2026-11-17",
+    "summaryJa": {
+      "headline": "キャラ名フィルター追加、刑務所に上限導入など",
+      "impact": "刑務所時間に1日あたりと全体の上限が設けられます。土地を持たず刑務所時間もないプレイヤーは、刑務所とLenny's Motelでボイスチャットを使えなくなります。",
+      "points": [
+        {
+          "type": "new",
+          "target": "キャラクター名",
+          "text": "不適切な言葉を制限するフィルターを追加"
+        },
+        {
+          "type": "buff",
+          "target": "Report button (death screen)",
+          "text": "死亡画面のReportボタンを目立ちやすく変更"
+        },
+        {
+          "type": "new",
+          "target": "Lenny's context menu",
+          "text": "Shipmentsをメニューに追加"
+        },
+        {
+          "type": "buff",
+          "target": "地域変更時の引き継ぎ",
+          "text": "地域を変えてもプログレスとバトルパスポイントを引き継げるように"
+        },
+        {
+          "type": "new",
+          "target": "マウス設定",
+          "text": "マウスのY軸を反転するオプションを追加"
+        },
+        {
+          "type": "nerf",
+          "target": "Jail Time",
+          "text": "1日あたりと全体の上限を導入"
+        },
+        {
+          "type": "nerf",
+          "target": "ボイスチャット (Prison / Lenny's Motel)",
+          "text": "土地を持たず刑務所時間もないプレイヤーは利用不可に"
+        },
+        {
+          "type": "change",
+          "target": "Eviction Rights",
+          "text": "バーターから一時的に削除"
+        },
+        {
+          "type": "fix",
+          "target": "接続",
+          "text": "接続の安定性を改善"
+        }
+      ]
+    },
+    "tags": [
+      "UI",
+      "刑務所",
+      "拠点",
+      "バトルパス",
+      "サーバー",
+      "バグ修正"
+    ],
+    "changeTypes": [
+      "new",
+      "buff",
+      "nerf",
+      "change",
+      "fix"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1849827110432538",
+    "source": "official",
+    "title": "Patch Notes",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1849827110432538",
+    "publishedAt": "2026-11-20T14:59:56.000Z",
+    "gameVersion": "2026-11-20",
+    "summaryJa": {
+      "headline": "サーバーリストにフレンドのオンライン状況を表示、不正対策も強化",
+      "impact": "フレンドがどのサーバーでプレイ中かをサーバーリストで確認できます。拠点オーナーの名前はサーバー退出後に非表示になり、再入室時の混乱が減ります。",
+      "points": [
+        {
+          "type": "change",
+          "target": "不正検出 (cheaters detection)",
+          "text": "不正プレイヤーを検出する方法を追加しました"
+        },
+        {
+          "type": "new",
+          "target": "servers list",
+          "text": "オンライン中のフレンドがサーバーリストに表示されるようになりました"
+        },
+        {
+          "type": "change",
+          "target": "cop spots / Equipment selection window",
+          "text": "装備選択画面を開く前に、空いている警察のスポットを確認するようになりました"
+        },
+        {
+          "type": "change",
+          "target": "カスタマイズ",
+          "text": "カスタマイズの操作を分かりやすくしました"
+        },
+        {
+          "type": "new",
+          "target": "セット (sets)",
+          "text": "スキン1つだけのセットを含め、セットを追加しました"
+        },
+        {
+          "type": "change",
+          "target": "Settlement",
+          "text": "拠点オーナーのニックネームは、サーバー退出後に非表示になるようになりました"
+        },
+        {
+          "type": "new",
+          "target": "contraband",
+          "text": "home location を持たないプレイヤーが密輸品 (contraband) を購入しようとすると警告が表示されます"
+        },
+        {
+          "type": "change",
+          "target": "ローカライズ",
+          "text": "ローカライズを修正しました"
+        },
+        {
+          "type": "buff",
+          "target": "ネットワーク",
+          "text": "ネットワークのパフォーマンスを改善しました"
+        }
+      ]
+    },
+    "tags": [
+      "サーバー",
+      "UI",
+      "警察",
+      "拠点",
+      "その他"
+    ],
+    "changeTypes": [
+      "change",
+      "new",
+      "buff"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1849827110441426",
+    "source": "official",
+    "title": "Anti-Cheat Measures and Servers",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1849827110441426",
+    "publishedAt": "2026-11-23T11:57:54.000Z",
+    "gameVersion": "2026-11-20",
+    "summaryJa": {
+      "headline": "対策強化:ハードウェアBAN用の専用サーバーを先行導入",
+      "impact": "専用サーバーでは刑務所での最低滞在時間または課金額の合計条件を満たす必要があり、Looty Bayを含めて通常サーバーとは別にマッチングされる。チーターとの遭遇は減る見込み。",
+      "points": [
+        {
+          "type": "new",
+          "target": "Restricted servers",
+          "text": "ハードウェアBANを見据えた、参加条件付きの専用サーバーを追加"
+        },
+        {
+          "type": "new",
+          "target": "Restricted servers",
+          "text": "サーバーごとに刑務所の最低滞在時間か課金額の合計のいずれかが参加条件"
+        },
+        {
+          "type": "change",
+          "target": "Matchmaking",
+          "text": "専用サーバーの参加者は通常サーバーと別にマッチングされ、Looty Bayも対象"
+        },
+        {
+          "type": "change",
+          "target": "Upcoming mechanics",
+          "text": "対策を優先するため、一部の新要素の開発を一時的に延期"
+        },
+        {
+          "type": "fix",
+          "target": "Anti-cheat",
+          "text": "EACチーム との追加対策の協議、独自のチート検知ツールの開発、社内対策チームの拡大を実施"
+        }
+      ]
+    },
+    "tags": [
+      "サーバー",
+      "その他"
+    ],
+    "changeTypes": [
+      "new",
+      "change",
+      "fix"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": true,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
   }
 ]
