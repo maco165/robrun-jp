@@ -1,0 +1,161 @@
+[
+  {
+    "id": "fixture-p032",
+    "source": "official",
+    "title": "Patch 0.3.2",
+    "url": "https://store.steampowered.com/",
+    "publishedAt": "2026-11-20T09:00:00Z",
+    "gameVersion": "0.3.2",
+    "summaryJa": {
+      "headline": "【見本】グランドホテルの戦利品を調整、デコーダーの価格を変更",
+      "impact": "強盗で稼ぐ人は収入が少し減る。デコーダーを多く使う人は出費が減る",
+      "points": [
+        {
+          "type": "nerf",
+          "target": "Grand Hotel",
+          "text": "強盗で手に入る戦利品の量を減らした",
+          "field": "戦利品の量",
+          "before": "[変更前]",
+          "after": "[変更後]"
+        },
+        {
+          "type": "buff",
+          "target": "Uncommon Decoder",
+          "text": "店での価格を引き下げ",
+          "field": "価格",
+          "before": "[変更前]",
+          "after": "[変更後]"
+        },
+        {
+          "type": "fix",
+          "target": "Vehicles",
+          "text": "建物に埋まって動けなくなる不具合を直した"
+        }
+      ]
+    },
+    "tags": [
+      "金策",
+      "強盗",
+      "拠点"
+    ],
+    "changeTypes": [
+      "nerf",
+      "buff",
+      "fix"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "fixture-raid",
+    "source": "official",
+    "title": "Announcement",
+    "url": "https://store.steampowered.com/",
+    "publishedAt": "2026-11-17T17:00:00Z",
+    "gameVersion": "0.3.1",
+    "summaryJa": {
+      "headline": "【見本】今週の Federal Raid の時刻を告知",
+      "impact": "",
+      "points": []
+    },
+    "tags": [
+      "ワイプ",
+      "サーバー"
+    ],
+    "changeTypes": [
+      "change"
+    ],
+    "flags": {
+      "wipe": true,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "fixture-p031",
+    "source": "official",
+    "title": "Patch 0.3.1",
+    "url": "https://store.steampowered.com/",
+    "publishedAt": "2026-11-14T01:00:00Z",
+    "gameVersion": "0.3.1",
+    "summaryJa": {
+      "headline": "【見本】新しい車両 2 台と警察の追跡 AI を追加",
+      "impact": "",
+      "points": []
+    },
+    "tags": [
+      "車両",
+      "警察"
+    ],
+    "changeTypes": [
+      "new",
+      "buff"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": true
+  },
+  {
+    "id": "fixture-mnt",
+    "source": "official",
+    "title": "Maintenance",
+    "url": "https://store.steampowered.com/",
+    "publishedAt": "2026-11-11T18:00:00Z",
+    "gameVersion": "0.3.0",
+    "summaryJa": {
+      "headline": "【見本】EU サーバーの緊急メンテナンス（約 2 時間）",
+      "impact": "",
+      "points": []
+    },
+    "tags": [
+      "サーバー"
+    ],
+    "changeTypes": [
+      "fix"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": true,
+      "maintenance": true
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "fixture-dollar",
+    "source": "official",
+    "title": "Patch 0.2.9",
+    "url": "https://store.steampowered.com/",
+    "publishedAt": "2026-11-01T09:00:00Z",
+    "gameVersion": "0.2.9",
+    "summaryJa": {
+      "headline": "【見本】報酬 $$500 と $& の表示",
+      "impact": "報酬が $$500 増える",
+      "points": []
+    },
+    "tags": [
+      "金策"
+    ],
+    "changeTypes": [
+      "buff"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "human",
+    "reviewed": true
+  }
+]

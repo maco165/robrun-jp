@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import '@astryxdesign/core/reset.css';
 import '@astryxdesign/core/astryx.css';
 import './themes/robrun/robrun.css';
@@ -10,8 +10,13 @@ import '@fontsource/jetbrains-mono/400.css';
 import './styles.css';
 import App from './App';
 
-createRoot(document.getElementById('root')!).render(
+const root = document.getElementById('root')!;
+const path = location.pathname.startsWith(import.meta.env.BASE_URL) ? location.pathname.slice(import.meta.env.BASE_URL.length) : '';
+const app = (
   <StrictMode>
-    <App />
-  </StrictMode>,
+    <App path={path} />
+  </StrictMode>
 );
+// 事前描画した HTML (data-ssr) にはそのまま繋ぐ。開発中 (npm run dev) は事前描画が無いので描き直す
+if (root.dataset.ssr === '1') hydrateRoot(root, app);
+else createRoot(root).render(app);

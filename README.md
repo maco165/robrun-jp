@@ -32,6 +32,27 @@ flowchart LR
   data --> notify["RSS・Discord"]
 ```
 
+## ページ
+
+| 道 | 中身 |
+|---|---|
+| `/robrun-jp/` | 新サーバーの開放までの残り時間 (EU・East US、日本時間)、最新のお知らせ、これまでのお知らせ |
+| `/robrun-jp/news/` | 記事の一覧。タグ・変更の種類・キーワードで絞り込む |
+| `/robrun-jp/articles/<id>/` | 記事。日本語の要約・変更点・対象の版・原文へのリンク |
+
+どのページも、作るときに HTML を書き出す (事前描画) ので、JavaScript を動かさない読み手にも中身が届きます。
+道は `src/routes.tsx` の 1 か所で決め、画面の振り分けと書き出し (`scripts/prerender.mjs`) の両方がそこを読みます。
+
+## データ
+
+| ファイル | 中身 | 誰が書くか |
+|---|---|---|
+| `data/news.json` | 記事 (原文の情報・日本語の要約・タグ・変更の種類・対象の版・人が確かめたか) | 取得と要約の仕組み (準備中) |
+| `data/schedule.json` | 新サーバーの開放の時刻のきまりと、その出典・更新日 | 人 (公式のお知らせを確かめて) |
+| `tests/fixtures/news.json` | 画面の検査だけに使う見本の記事。題に【見本】が付く | 人 |
+
+見本の記事 (id が `fixture-`) が公開用の `dist` に入ると、`ROBRUN_NEWS` の有無によらず `scripts/prerender.mjs` が止めます。
+
 ## 技術
 
 | 項目 | 使うもの |
@@ -47,8 +68,12 @@ flowchart LR
 ```bash
 npm ci
 npm run dev     # http://localhost:5173/robrun-jp/
-npm run build   # dist/ に書き出す
+npm run build   # dist/ に書き出す (画面・事前描画の入口・ページごとの HTML の順)
+npm run e2e     # 見本の記事で dist-e2e/ に組み、1280px と 390px で各ページを開いて確かめる
 ```
+
+`npm run e2e` は、事前描画の HTML に見出しがあること、横にはみ出さないこと、ページのエラーが無いこと、
+記事に「AI による要約」と原文のリンクがあることを確かめます。CI (`.github/workflows/deploy.yml`) でも PR ごとに走ります。
 
 ## 方針
 

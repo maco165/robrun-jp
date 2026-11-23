@@ -12,3 +12,4 @@ vite.config.ts.timestamp-*
 themes/*/preview.html
 themes/*/*.png
 themes/*/*.pictures.json
+dist-e2e/

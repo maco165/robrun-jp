@@ -1,0 +1,10 @@
+{
+  "updatedAt": "2026-11-23",
+  "source": "サイトの計画書 (2026-11 時点の値)。公式のお知らせ・FAQ での確認はまだ",
+  "wipeCycleDays": 7,
+  "regions": [
+    { "id": "eu", "name": "EU", "dailyOpenUtc": "17:00" },
+    { "id": "use", "name": "East US", "dailyOpenLocal": "20:00", "timezone": "America/New_York" }
+  ],
+  "notes": "需要に応じて臨時のサーバーも開く。ワイプの正確な時刻は非公開"
+}

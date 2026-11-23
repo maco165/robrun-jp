@@ -7,8 +7,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "build": "tsc --noEmit && vite build && vite build --ssr src/entry-server.tsx --outDir ${ROBRUN_OUT:-dist}/.ssr --emptyOutDir && node scripts/prerender.mjs",
+    "preview": "vite preview",
+    "e2e": "node scripts/e2e.mjs"
   },
   "dependencies": {
     "@astryxdesign/core": "0.7.17",
@@ -17,6 +18,7 @@
     "@fontsource/dela-gothic-one": "5.3.0",
     "@fontsource/jetbrains-mono": "5.3.0",
     "@stylexjs/stylex": "0.19.1",
+    "lucide-react": "1.77.0",
     "react": "19.1.10",
     "react-dom": "19.1.10"
   },
@@ -26,6 +28,7 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.2.1",
+    "playwright": "1.64.1",
     "typescript": "5.9.3",
     "vite": "8.3.5"
   }

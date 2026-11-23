@@ -26,6 +26,9 @@ jobs:
 
       - run: npm ci
       - run: npm run build
+      # 見本の記事 (tests/fixtures/) で別のフォルダ (dist-e2e) に組み、1280px と 390px でページを開いて確かめる
+      - run: npx playwright install --with-deps chromium
+      - run: npm run e2e
 
       - if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
