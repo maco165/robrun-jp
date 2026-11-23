@@ -1,5 +1,7 @@
 // 攻略ページ (guide/) の形と検査。正本は data/guide.json。
 // 項目ごとに出所の種類 (kind) を持つ: official は公式のお知らせ・公式ヘルプが出典、site は攻略サイトの情報 (数字は公式に無く、サイトにより異なる)
+import { isBlocked } from './links';
+
 export type GuideRef =
   /** 公式の Steam のお知らせ。gid は記事の id と同じ。記事があればサイト内の要約にも飛ばす */
   | { news: string; title: string }
@@ -58,6 +60,7 @@ export function checkGuide(g: Guide, versionIds: Set<string>): string[] {
       if ('news' in r && !GID.test(r.news)) ng.push(`${at}: お知らせの gid ${r.news} の形が違う`);
       if ('help' in r && !r.help.startsWith(HELP)) ng.push(`${at}: 公式ヘルプの URL が ${HELP} で始まらない`);
       if ('site' in r && !/^https:\/\//.test(r.site)) ng.push(`${at}: 攻略サイトの URL が https でない`);
+      if ('site' in r && isBlocked(r.site)) ng.push(`${at}: 載せないサイト (販売・代行・チート) を出典にしている (${r.site})`);
     }
   };
   for (const s of g.sections ?? []) {

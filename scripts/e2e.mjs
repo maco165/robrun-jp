@@ -16,6 +16,7 @@ import { chromium } from 'playwright';
 import { readFileSync } from 'node:fs';
 
 const guide = JSON.parse(readFileSync('data/guide.json', 'utf8'));
+const links = JSON.parse(readFileSync('data/links.json', 'utf8'));
 const versions = JSON.parse(readFileSync('data/versions.json', 'utf8')).versions;
 const OUT = 'dist-e2e';
 const PORT = 4400 + Math.floor(Math.random() * 400);
@@ -33,6 +34,8 @@ const PAGES = [
   { path: 'news/', heading: '記事一覧' },
   // 攻略: 出典ごとに Steam の原文のリンクがあり、アップデートの履歴に版の数だけ原文のリンクがある
   { path: 'guide/', heading: 'いまわかっている ROB RUN の仕組み', guide: true },
+  // リンク集: data/links.json のサイトがすべて外部リンクで並ぶ
+  { path: 'links/', heading: 'ROB RUN の役に立つサイト', links: true },
   // 攻略のジャンルごとのページ: 図・出典の番号・末尾にまとめた出典
   ...guide.sections.map((sec) => ({ path: `guide/${sec.id}/`, heading: sec.title, genre: sec })),
   { path: 'articles/fixture-p032/', heading: '【見本】グランドホテルの戦利品を調整', article: true, version: '2026-11-20 版', old: false, ld: 'NewsArticle' },
@@ -57,7 +60,7 @@ try {
   }
   // sitemap とファビコン・画像 (6)
   const sitemap = await (await fetch(BASE + 'sitemap.xml')).text();
-  for (const loc of ['', 'news/', 'guide/', 'guide/sell/', 'guide/story/', 'articles/fixture-p032/', 'articles/fixture-dollar/']) {
+  for (const loc of ['', 'news/', 'guide/', 'links/', 'guide/sell/', 'guide/story/', 'articles/fixture-p032/', 'articles/fixture-dollar/']) {
     if (!sitemap.includes(`<loc>https://maco165.github.io/robrun-jp/${loc}</loc>`)) fails.push(`sitemap.xml に ${loc || '/'} が無い`);
   }
   if (sitemap.includes('404')) fails.push('sitemap.xml に 404 がある');
@@ -134,6 +137,11 @@ try {
         }
         const steamLinks = await page.locator('main a[href^="https://store.steampowered.com/news/app/4262460/view/"]').count();
         if (steamLinks < versions.length) fails.push(`${p.path} @${w}: 履歴の Steam の原文のリンクが ${steamLinks} 件 (版 ${versions.length} 件より少ない)`);
+      }
+      if (p.links) {
+        for (const e of links.groups.flatMap((g) => g.items)) {
+          if ((await page.locator(`main a[href="${e.url}"]`).count()) === 0) fails.push(`${p.path} @${w}: ${e.name} のリンクが無い`);
+        }
       }
       if (p.genre) {
         const sec = p.genre;

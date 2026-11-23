@@ -4,6 +4,7 @@ import { News } from './pages/News';
 import { Article } from './pages/Article';
 import { NotFound } from './pages/NotFound';
 import { GuideGenre, GuideIndex } from './pages/Guide';
+import { LinksPage } from './pages/Links';
 import { ARTICLES, GUIDE, findArticle } from './lib/data';
 import { versionLabel } from './lib/versions';
 
@@ -66,6 +67,15 @@ const GUIDE_PAGE: Page = {
   },
 };
 
+const LINKS_PAGE: Page = {
+  path: 'links/',
+  title: `ROB RUN のリンク集: 攻略 wiki・データ・YouTube | ${SITE}`,
+  description: 'ROB RUN の公式の窓口と、攻略 wiki・データサイト・YouTube を、何が強いかと更新日つきで紹介するリンク集。',
+  element: <LinksPage />,
+  ogType: 'website',
+  jsonLd: { '@context': 'https://schema.org', '@graph': [{ '@type': 'CollectionPage', name: 'ROB RUN のリンク集', url: `${SITE_URL}links/`, inLanguage: 'ja' }, crumbs([{ name: 'ホーム', path: '' }, { name: 'リンク集', path: 'links/' }])] },
+};
+
 export const NOT_FOUND: Page = {
   path: '404.html',
   title: `ページが見つかりません | ${SITE}`,
@@ -80,6 +90,7 @@ export function sitePages(): Page[] {
     TOP,
     NEWS,
     GUIDE_PAGE,
+    LINKS_PAGE,
     ...GUIDE.sections.map((g) => ({
       path: `guide/${g.id}/`,
       title: `ROB RUN 攻略: ${g.title} | ${SITE}`,
@@ -137,6 +148,7 @@ export function resolve(path: string): Page {
   if (p === '' || p === 'index.html') return TOP;
   if (p === 'news/' || p === 'news') return NEWS;
   if (p === 'guide/' || p === 'guide') return GUIDE_PAGE;
+  if (p === 'links/' || p === 'links') return LINKS_PAGE;
   const gm = /^guide\/([a-z0-9-]+)\/?$/.exec(p);
   if (gm && GUIDE.sections.some((g) => g.id === gm[1])) return sitePages().find((x) => x.path === `guide/${gm[1]}/`)!;
   const m = /^articles\/([A-Za-z0-9_-]+)\/?$/.exec(p);

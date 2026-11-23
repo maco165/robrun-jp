@@ -95,7 +95,9 @@ function Bars({ bars, unit, plus }: { bars: { label: string; value: number; note
 function MapFig({ cols, rows, zones }: { cols: number; rows: number; zones: { label: string; note?: string; col: number; row: number; colSpan?: number; rowSpan?: number; tone?: 'center' | 'normal' | 'muted' }[] }) {
   return (
     <VStack gap={1}>
-      <span role="img" aria-label={`模式図: ${zones.map((z) => z.label).join('、')}`} style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, gridTemplateRows: `repeat(${rows}, minmax(56px, auto))`, gap: 4 }}>
+      {/* 狭い幅では区域の名前が詰まるので、升目 1 つを 88px 以上に保ち、図の中だけ横にスクロールさせる */}
+      <span style={{ display: 'block', overflowX: 'auto', maxWidth: '100%' }}>
+      <span role="img" aria-label={`模式図: ${zones.map((z) => z.label).join('、')}`} style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, minmax(88px, 1fr))`, gridTemplateRows: `repeat(${rows}, minmax(56px, auto))`, gap: 4 }}>
         {zones.map((z) => (
           <span
             key={z.label}
@@ -118,6 +120,7 @@ function MapFig({ cols, rows, zones }: { cols: number; rows: number; zones: { la
             {z.note ? <Text type="supporting" size="2xs" color="secondary">{z.note}</Text> : null}
           </span>
         ))}
+      </span>
       </span>
       <Text type="supporting" size="2xs" color="placeholder">模式図です。縮尺と形は正確ではありません</Text>
     </VStack>
