@@ -36,6 +36,8 @@ const PAGES = [
   { path: 'guide/', heading: 'いまわかっている ROB RUN の仕組み', guide: true },
   // リンク集: data/links.json のサイトがすべて外部リンクで並ぶ
   { path: 'links/', heading: 'ROB RUN の役に立つサイト', links: true },
+  // 感度変換: 既定 (CS2 1・800 DPI) で 0.213 が出て、感度を 2 にすると 0.427 になる
+  { path: 'tools/sensitivity/', heading: 'ROB RUN 感度変換', sens: true },
   // 攻略のジャンルごとのページ: 図・出典の番号・末尾にまとめた出典
   ...guide.sections.map((sec) => ({ path: `guide/${sec.id}/`, heading: sec.title, genre: sec })),
   { path: 'articles/fixture-p032/', heading: '【見本】グランドホテルの戦利品を調整', article: true, version: '2026-11-20 版', old: false, ld: 'NewsArticle' },
@@ -60,7 +62,7 @@ try {
   }
   // sitemap とファビコン・画像 (6)
   const sitemap = await (await fetch(BASE + 'sitemap.xml')).text();
-  for (const loc of ['', 'news/', 'guide/', 'links/', 'guide/sell/', 'guide/story/', 'articles/fixture-p032/', 'articles/fixture-dollar/']) {
+  for (const loc of ['', 'news/', 'guide/', 'links/', 'tools/sensitivity/', 'guide/sell/', 'guide/story/', 'articles/fixture-p032/', 'articles/fixture-dollar/']) {
     if (!sitemap.includes(`<loc>https://maco165.github.io/robrun-jp/${loc}</loc>`)) fails.push(`sitemap.xml に ${loc || '/'} が無い`);
   }
   if (sitemap.includes('404')) fails.push('sitemap.xml に 404 がある');
@@ -137,6 +139,15 @@ try {
         }
         const steamLinks = await page.locator('main a[href^="https://store.steampowered.com/news/app/4262460/view/"]').count();
         if (steamLinks < versions.length) fails.push(`${p.path} @${w}: 履歴の Steam の原文のリンクが ${steamLinks} 件 (版 ${versions.length} 件より少ない)`);
+      }
+      if (p.sens) {
+        const main = page.locator('main');
+        if (!((await main.textContent()) ?? '').includes('0.213')) fails.push(`${p.path} @${w}: 既定の変換結果 0.213 が無い`);
+        const input = page.getByLabel('Counter-Strike 2 / CS:GO の感度');
+        await input.fill('2');
+        await input.press('Enter');
+        await page.waitForTimeout(200);
+        if (!((await main.textContent()) ?? '').includes('0.427')) fails.push(`${p.path} @${w}: 感度 2 の変換結果 0.427 が無い`);
       }
       if (p.links) {
         for (const e of links.groups.flatMap((g) => g.items)) {

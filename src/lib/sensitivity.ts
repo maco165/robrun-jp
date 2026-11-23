@@ -30,3 +30,31 @@ export function yawFromMeasure(sens: number, dpi: number, cm: number): number {
 export function positive(...xs: (number | null | undefined)[]): boolean {
   return xs.every((x) => typeof x === 'number' && Number.isFinite(x) && x > 0);
 }
+
+type Src = { url: string; title: string };
+/** data/sensitivity.json の形 */
+export type SensData = {
+  checkedAt: string;
+  robrun: { yaw: number; default: number; min: number; max: number; note: string; settings: string; sources: Src[] };
+  formula: { text: string; sources: Src[] };
+  games: { id: string; name: string; yaw: number; note?: string; sources: Src[] }[];
+  unsupported: { name: string; reason: string }[];
+  measure: string[];
+};
+
+/** 係数の表の検査: どのゲームも正の yaw と https の出典を持ち、id が重ならない */
+export function checkSens(d: SensData): string[] {
+  const ng: string[] = [];
+  if (!positive(d.robrun?.yaw, d.robrun?.max)) ng.push('sensitivity: ROB RUN の yaw か上限が正の数でない');
+  const ids = new Set<string>();
+  for (const g of d.games ?? []) {
+    if (!g.id || ids.has(g.id)) ng.push(`sensitivity の ${g.name}: id が無いか重複`);
+    ids.add(g.id);
+    if (!positive(g.yaw)) ng.push(`sensitivity の ${g.name}: yaw が正の数でない`);
+    if (!g.sources?.length) ng.push(`sensitivity の ${g.name}: 出典が無い`);
+  }
+  for (const s of [...(d.robrun?.sources ?? []), ...(d.formula?.sources ?? []), ...(d.games ?? []).flatMap((g) => g.sources ?? [])]) {
+    if (!/^https:\/\//.test(s.url) || !s.title) ng.push(`sensitivity: 出典の URL が https でないか題が無い (${s.url})`);
+  }
+  return ng;
+}

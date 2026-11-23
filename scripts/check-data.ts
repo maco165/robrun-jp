@@ -8,6 +8,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { checkGuide, type Guide } from '../src/lib/guide.ts';
 import { checkLinks, type Links } from '../src/lib/links.ts';
+import { checkSens, type SensData } from '../src/lib/sensitivity.ts';
 import { PLAYTEST, newVersionId, sortVersions, versionAt, type Version } from '../src/lib/versions.ts';
 
 type NewsItem = { id?: string; source?: string; publishedAt?: string; gameVersion?: string; versionNote?: string };
@@ -74,6 +75,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const versions = (JSON.parse(readFileSync('data/versions.json', 'utf8')) as { versions: Version[] }).versions;
   const guide = JSON.parse(readFileSync('data/guide.json', 'utf8')) as Guide;
   const ng = [...checkData(news, versions), ...checkGuide(guide, new Set([PLAYTEST, ...versions.map((v) => v.id)]))];
+  ng.push(...checkSens(JSON.parse(readFileSync('data/sensitivity.json', 'utf8')) as SensData));
   ng.push(...checkLinks(JSON.parse(readFileSync('data/links.json', 'utf8')) as Links));
   // 攻略のジャンルごとのイメージ画像 (npm run images:guide で描いてコミットする)。ジャンルを足して描き忘れると落とす
   for (const sec of guide.sections) {

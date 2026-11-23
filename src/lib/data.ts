@@ -4,6 +4,8 @@ import schedule from '../../data/schedule.json';
 import versions from '../../data/versions.json';
 import guide from '../../data/guide.json';
 import links from '../../data/links.json';
+import sensitivity from '../../data/sensitivity.json';
+import type { SensData } from './sensitivity';
 import type { Links } from './links';
 import type { Guide } from './guide';
 import { isOlder, latestVersion, type Version } from './versions';
@@ -17,6 +19,8 @@ export const VERSIONS = versions.versions as Version[];
 export const GUIDE = guide as Guide;
 /** リンク集 (正本は data/links.json) */
 export const LINKS = links as Links;
+/** 感度変換の係数 (正本は data/sensitivity.json) */
+export const SENS = sensitivity as SensData;
 /** いまの (最新の) 版 */
 export const LATEST_VERSION = latestVersion(VERSIONS);
 

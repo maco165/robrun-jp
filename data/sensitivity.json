@@ -1,0 +1,217 @@
+{
+  "checkedAt": "2026-11-24",
+  "robrun": {
+    "yaw": 0.1031,
+    "default": 0.37,
+    "min": 0.1,
+    "max": 1,
+    "note": "感度 1 のとき 1 カウントで約 0.1031 度。ファンサイトがゲームのファイルから読んだと書く値で、公式の値でも実測でもない。下の「自分で測る」で確かめた値に差し替えられる",
+    "settings": "操作 (Controls) のタブの General Sensitivity (通常) と ADS Sensitivity (照準時)。General の既定は 0.37、上限は 1。下限は 0 と 0.1 で出典が分かれる。FOV の項目は無いとする出典と、ある (Display) とする出典がある",
+    "sources": [
+      {
+        "url": "https://robrunstash.vercel.app/sensitivity/",
+        "title": "Rob Run sensitivity converter（robrunstash・ファンサイト・11/17。ゲームのファイル由来の値）"
+      },
+      {
+        "url": "https://www.mouse-sensitivity.com/n/rob-run/",
+        "title": "ROB RUN Sensitivity Converter（mouse-sensitivity.com。本文は読めず検索結果の要約で確認）"
+      },
+      {
+        "url": "https://xboosty.com/blog/rob-run/rob-run-best-settings-for-gunfights-chases-and-heists-60",
+        "title": "ROB RUN Best Settings（xboosty・11/19）"
+      },
+      {
+        "url": "https://xpjournal.com/rob-run-best-settings/",
+        "title": "Best ROB RUN PC Settings（xpjournal・11/20）"
+      }
+    ]
+  },
+  "formula": {
+    "text": "振り向き (cm/360) = 914.4 ÷ (DPI × 感度 × yaw)。yaw は感度 1 のとき 1 カウントで回る角度 (度)",
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/ValveSoftware/source-sdk-2013/master/src/game/client/in_mouse.cpp",
+        "title": "Source SDK 2013 in_mouse.cpp（Valve の公開コード。m_yaw の既定 0.022）"
+      },
+      {
+        "url": "https://csdb.gg/cm360-calculator/",
+        "title": "CS2 cm/360 Calculator（csdb.gg）"
+      }
+    ]
+  },
+  "games": [
+    {
+      "id": "cs2",
+      "name": "Counter-Strike 2 / CS:GO",
+      "yaw": 0.022,
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/ValveSoftware/source-sdk-2013/master/src/game/client/in_mouse.cpp",
+          "title": "Source SDK 2013 in_mouse.cpp（Valve）"
+        },
+        {
+          "url": "https://csdb.gg/sensitivity-converter/",
+          "title": "CS2 Sensitivity Converter（csdb.gg）"
+        }
+      ]
+    },
+    {
+      "id": "valorant",
+      "name": "VALORANT",
+      "yaw": 0.07,
+      "sources": [
+        {
+          "url": "https://csdb.gg/sensitivity-converter/cs2-to-valorant/",
+          "title": "CS2 to Valorant（csdb.gg）"
+        },
+        {
+          "url": "https://www.recharge.com/blog/en-gb/mouse-sensitivity-converter-calculator-for-23-fps-games",
+          "title": "Mouse sensitivity converter calculator for 23 FPS games（Recharge・2026-02-27）"
+        }
+      ]
+    },
+    {
+      "id": "apex",
+      "name": "Apex Legends",
+      "yaw": 0.022,
+      "note": "腰だめ",
+      "sources": [
+        {
+          "url": "https://csdb.gg/sensitivity-converter/",
+          "title": "CS2 Sensitivity Converter（csdb.gg）"
+        },
+        {
+          "url": "https://www.recharge.com/blog/en-gb/mouse-sensitivity-converter-calculator-for-23-fps-games",
+          "title": "Mouse sensitivity converter calculator for 23 FPS games（Recharge・2026-02-27）"
+        }
+      ]
+    },
+    {
+      "id": "ow2",
+      "name": "Overwatch 2",
+      "yaw": 0.0066,
+      "sources": [
+        {
+          "url": "https://csdb.gg/sensitivity-converter/",
+          "title": "CS2 Sensitivity Converter（csdb.gg）"
+        },
+        {
+          "url": "https://www.recharge.com/blog/en-gb/mouse-sensitivity-converter-calculator-for-23-fps-games",
+          "title": "Mouse sensitivity converter calculator for 23 FPS games（Recharge・2026-02-27）"
+        }
+      ]
+    },
+    {
+      "id": "cod",
+      "name": "Call of Duty (MW3・Warzone・BO6)",
+      "yaw": 0.0066,
+      "note": "腰だめ。ADS は FOV と設定で変わる",
+      "sources": [
+        {
+          "url": "https://csdb.gg/sensitivity-converter/",
+          "title": "CS2 Sensitivity Converter（csdb.gg）"
+        },
+        {
+          "url": "https://www.recharge.com/blog/en-gb/mouse-sensitivity-converter-calculator-for-23-fps-games",
+          "title": "Mouse sensitivity converter calculator for 23 FPS games（Recharge・2026-02-27）"
+        }
+      ]
+    },
+    {
+      "id": "fortnite",
+      "name": "Fortnite",
+      "yaw": 0.005555,
+      "note": "感度は % の値をそのまま入れる (例 8.0)。100% で 0.5515 度とする出典もある",
+      "sources": [
+        {
+          "url": "https://csdb.gg/sensitivity-converter/",
+          "title": "CS2 Sensitivity Converter（csdb.gg）"
+        },
+        {
+          "url": "https://www.recharge.com/blog/en-gb/mouse-sensitivity-converter-calculator-for-23-fps-games",
+          "title": "Mouse sensitivity converter calculator for 23 FPS games（Recharge・2026-02-27）"
+        },
+        {
+          "url": "https://west-games.com/fortnite-sensitivity-converter/",
+          "title": "Fortnite Sensitivity Converter（West Games）"
+        }
+      ]
+    },
+    {
+      "id": "r6",
+      "name": "Rainbow Six Siege",
+      "yaw": 0.00572957795,
+      "note": "横感度。設定ファイルの MouseSensitivityMultiplierUnit が既定 (0.02) の場合",
+      "sources": [
+        {
+          "url": "https://www.ubisoft.com/en-us/game/rainbow-six/siege/news-updates/6kY6b5JByBY3P6vQWWinla/fov-and-input-sensitivity",
+          "title": "FOV and Input Sensitivity（Ubisoft 公式・2019）"
+        },
+        {
+          "url": "https://csdb.gg/sensitivity-converter/siege-to-cs2/",
+          "title": "Siege to CS2（csdb.gg）"
+        }
+      ]
+    },
+    {
+      "id": "tarkov",
+      "name": "Escape from Tarkov",
+      "yaw": 0.125,
+      "note": "装備による減速は含まない",
+      "sources": [
+        {
+          "url": "https://csdb.gg/sensitivity-converter/",
+          "title": "CS2 Sensitivity Converter（csdb.gg）"
+        },
+        {
+          "url": "https://www.recharge.com/blog/en-gb/mouse-sensitivity-converter-calculator-for-23-fps-games",
+          "title": "Mouse sensitivity converter calculator for 23 FPS games（Recharge・2026-02-27）"
+        }
+      ]
+    },
+    {
+      "id": "arc",
+      "name": "ARC Raiders",
+      "yaw": 0.001361,
+      "note": "FOV 70 (既定) のときの値。出典 1 つ",
+      "sources": [
+        {
+          "url": "https://www.gamebrief.net/arc-raiders/arc-raiders-sensitivity-converter-guide-2026",
+          "title": "ARC Raiders Sensitivity Converter Guide（GameBrief）"
+        }
+      ]
+    }
+  ],
+  "unsupported": [
+    {
+      "name": "PUBG: BATTLEGROUNDS",
+      "reason": "スライダーの値と実際の感度が比例せず、式を確かめられない"
+    },
+    {
+      "name": "Rust",
+      "reason": "出典ごとに値が大きく違い、FOV でも変わる"
+    },
+    {
+      "name": "Marvel Rivals",
+      "reason": "出典ごとに値が違う"
+    },
+    {
+      "name": "THE FINALS",
+      "reason": "出典の値どうしが合わない"
+    },
+    {
+      "name": "Deadlock",
+      "reason": "0.044 と 0.022 で出典が分かれる"
+    },
+    {
+      "name": "Delta Force・Arena Breakout: Infinite",
+      "reason": "読める出典が無い"
+    }
+  ],
+  "measure": [
+    "マウスの DPI を確かめる (メーカーのソフト)。Windows の「ポインターの精度を高める」はオフ",
+    "ROB RUN の General Sensitivity を決まった値 (既定の 0.37 か 1) にする",
+    "机に印を付け、照準を目印に合わせて、ゆっくり水平に 1 周回るまでの距離を測る (数回の平均)",
+    "下の「自分で測る」に感度・DPI・測った cm を入れる"
+  ]
+}

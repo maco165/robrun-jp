@@ -32,3 +32,27 @@ test('positive は 0・負・NaN・null を弾く', () => {
   assert.equal(positive(Number.NaN), false);
   assert.equal(positive(null), false);
 });
+
+import { readFileSync } from 'node:fs';
+import { checkSens, type SensData } from '../src/lib/sensitivity.ts';
+
+const DATA: SensData = JSON.parse(readFileSync(new URL('../data/sensitivity.json', import.meta.url), 'utf8'));
+
+test('本番の data/sensitivity.json は NG が無く、画面と同じ式で CS2 1・800 DPI は ROB RUN の約 0.213', () => {
+  assert.deepEqual(checkSens(DATA), []);
+  const cs = DATA.games.find((g) => g.id === 'cs2')!;
+  const target = cm360(cs.yaw, 1, 800);
+  close(914.4 / (800 * DATA.robrun.yaw * target), 0.022 / 0.1031, 1e-12);
+  close(convertSens({ yaw: cs.yaw, sens: 1, dpi: 800 }, DATA.robrun.yaw, 800), 0.022 / 0.1031);
+});
+
+test('係数の表の検査: yaw の欠け・id の重複・http の出典を落とす', () => {
+  const bad: SensData = JSON.parse(JSON.stringify(DATA));
+  bad.games[0].yaw = 0;
+  bad.games.push({ ...bad.games[1] });
+  bad.games[2].sources = [{ url: 'http://example.com', title: 'x' }];
+  const ng = checkSens(bad).join();
+  assert.match(ng, /yaw が正の数でない/);
+  assert.match(ng, /重複/);
+  assert.match(ng, /https でない/);
+});
