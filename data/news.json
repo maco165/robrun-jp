@@ -253,5 +253,307 @@
     },
     "summarizedBy": "ai",
     "reviewed": false
+  },
+  {
+    "id": "1845383656385404",
+    "source": "official",
+    "title": "Frequently Asked Questions",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1845383656385404",
+    "publishedAt": "2026-10-02T08:29:29.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "よくある質問まとめ：ワイプ周期・クラン・拠点防衛・警察など",
+      "impact": "新しい変更はなく、現在の仕様の確認です。ワイプは1周期7日、クランは最大100人、販売中の課金要素は見た目のアイテムのみです。",
+      "points": [
+        {
+          "type": "change",
+          "target": "Clan switching",
+          "text": "ワイプ周期中のみクランを変更可能。警察と強盗の選択はLooty Bayに入るたびに行える"
+        },
+        {
+          "type": "change",
+          "target": "Server wipe",
+          "text": "現在の1周期は7日。今後調整される可能性がある"
+        },
+        {
+          "type": "change",
+          "target": "Custom servers",
+          "text": "ローンチ時点ではカスタムのコミュニティサーバーは非対応で、公式サーバーのみ"
+        },
+        {
+          "type": "change",
+          "target": "Clan",
+          "text": "最大100人。現時点ではプレイヤーが選んだサーバー内にのみ存在する"
+        },
+        {
+          "type": "change",
+          "target": "Territory",
+          "text": "クランは物件や領地を支配できるが、確保・維持には敵対勢力との戦いが必要"
+        },
+        {
+          "type": "change",
+          "target": "Base defense",
+          "text": "主な防御は拠点の強化。セキュリティモジュールで侵入者を防ぐ"
+        },
+        {
+          "type": "change",
+          "target": "Base wipe",
+          "text": "拠点を完全に消去するには極めて希少な戦利品アイテムが必要。ロンダリング済みの資金は盗まれない"
+        },
+        {
+          "type": "change",
+          "target": "Cops",
+          "text": "非対称な役割。序盤は脅威が大きいが、報酬は明らかに低め"
+        },
+        {
+          "type": "change",
+          "target": "Vehicles",
+          "text": "車を奪えるのは拠点ごと完全消去した場合のみ。トランクは誰でもどこでもピッキング可能"
+        },
+        {
+          "type": "change",
+          "target": "Monetization",
+          "text": "販売中なのは見た目のアイテムのみで、ゲームプレイ上の優位性はない"
+        },
+        {
+          "type": "change",
+          "target": "Core gameplay",
+          "text": "サンドボックス型。稼いだ資金が進行を解放し、ワイプ時の資産が多いほど刑期が長くなる"
+        },
+        {
+          "type": "change",
+          "target": "Looty Bay",
+          "text": "ソロは集団との直接戦闘で不利になりやすいが、ソロ専用の利点もある"
+        }
+      ]
+    },
+    "tags": [
+      "ワイプ",
+      "サーバー",
+      "拠点",
+      "警察",
+      "車両",
+      "強盗",
+      "金策",
+      "その他"
+    ],
+    "changeTypes": [
+      "change"
+    ],
+    "flags": {
+      "wipe": true,
+      "server": true,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1846018067932994",
+    "source": "official",
+    "title": "Choose Your Vehicle",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1846018067932994",
+    "publishedAt": "2026-10-09T11:28:24.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "Looty Bayにレトロカー・スポーツカー・ヘリを登場予定",
+      "impact": "レトロ系からスポーツカーまで好みに合う車両を選べるほか、ヘリコプターにも乗れるようになる予定です。",
+      "points": [
+        {
+          "type": "new",
+          "target": "Vehicles (Looty Bay)",
+          "text": "レトロカーやスポーツカーなど、Looty Bay で乗れる車両を紹介"
+        },
+        {
+          "type": "new",
+          "target": "Helicopter",
+          "text": "ROB RUN に HELICOPTER が登場予定"
+        }
+      ]
+    },
+    "tags": [
+      "車両"
+    ],
+    "changeTypes": [
+      "new"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1846651706680688",
+    "source": "official",
+    "title": "ROB RUN: Base Management",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1846651706680688",
+    "publishedAt": "2026-10-16T09:09:24.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "拠点システムの概要：建築はアイテム制で、拠点は丸ごと移動可能",
+      "impact": "拠点で物資の保管や生産管理ができ、死亡時はリスポーン地点にもなります。拠点は中身ごと移動でき、拠点のある領域のレベルによって利用できる犯罪の連絡先と商品が変わります。",
+      "points": [
+        {
+          "type": "new",
+          "target": "Base (拠点)",
+          "text": "金銭・貨物などを保管し、生産を管理できる比較的安全な拠点。死亡時はリスポーン地点になる。"
+        },
+        {
+          "type": "new",
+          "target": "Base structures",
+          "text": "農場・倉庫・研究所・ガレージなどを建設可能。建築物はすべてインベントリのアイテムから設置する。"
+        },
+        {
+          "type": "new",
+          "target": "Helipad / Lift",
+          "text": "ヘリポートを設置でき、リフトで拠点内の車両モジュールを交換できる。大きな岩もリフトとして使える。"
+        },
+        {
+          "type": "new",
+          "target": "Main building",
+          "text": "本館には初期状態でラップトップ、救急箱、いくつかのキャビネットがあり、他の家具や作業台は自分で設置する。"
+        },
+        {
+          "type": "new",
+          "target": "Workbench upgrades",
+          "text": "作業台はモジュールでアップグレードでき、機能を拡張できる。"
+        },
+        {
+          "type": "change",
+          "target": "Raid defense",
+          "text": "防御モジュール、レイドアラート、クラン（味方）で拠点を守る。防具として目立たない見せかけも可能。"
+        },
+        {
+          "type": "change",
+          "target": "Territory level",
+          "text": "拠点のある領域のレベルが高いほど、利用できる犯罪の連絡先と購入できる商品が増える。"
+        },
+        {
+          "type": "new",
+          "target": "Base relocation",
+          "text": "拠点と中身をまるごとマップ上の別の場所へ移動できる。"
+        }
+      ]
+    },
+    "tags": [
+      "拠点",
+      "強盗",
+      "車両"
+    ],
+    "changeTypes": [
+      "new",
+      "change"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1846651706694418",
+    "source": "official",
+    "title": "ROB RUN Playtest Starts October 30!",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1846651706694418",
+    "publishedAt": "2026-10-20T09:21:35.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "ROB RUN テストプレイが10月30日に開始、Steamから申し込み",
+      "impact": "テストプレイへの参加は、Steamで申し込んだ人の中から抽選で決まる。パートナープログラムの承認メンバーは参加が保証される。",
+      "points": [
+        {
+          "type": "new",
+          "target": "ROB RUN Playtest",
+          "text": "10月30日からテストプレイが開始され、Looty Bay の街を先行して遊べる"
+        },
+        {
+          "type": "change",
+          "target": "Playtest参加申込",
+          "text": "Steamページの「Join the ROB RUN Playtest」から Request Access で申し込む。参加者は抽選"
+        },
+        {
+          "type": "new",
+          "target": "ROB RUN Partner Program",
+          "text": "YouTube、Twitch、TikTok、Instagramで発信し100人以上のフォロワー等がいれば申請可能。承認は手動審査で、申請しても承認は保証されない"
+        }
+      ]
+    },
+    "tags": [
+      "その他"
+    ],
+    "changeTypes": [
+      "new",
+      "change"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1847920302231404",
+    "source": "official",
+    "title": "ROB RUN's Power Pyramid: From a Hobo to the Shadow Governor",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1847920302231404",
+    "publishedAt": "2026-10-28T15:16:49.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "ROB RUNの権力ピラミッドを解説：ホーボーから影の総督まで5段階",
+      "impact": "土地の所有から始まり、上位になるほど他プレイヤーから税を取れるようになる。最上位の「Shadow Governor」は全サーバーで1人だけ。",
+      "points": [
+        {
+          "type": "new",
+          "target": "Power Pyramid（権力ピラミッド）",
+          "text": "ホーボー・入居者・集落オーナー・地区オーナー・Shadow Governorの5段階"
+        },
+        {
+          "type": "change",
+          "target": "Hobo",
+          "text": "最初はLenny's motelに泊まり、まず土地を買う資金を貯める"
+        },
+        {
+          "type": "new",
+          "target": "Settlement Resident",
+          "text": "土地を借りて拠点や事業を作れ、Sales Centerで売却や割引の密輸品購入が可能"
+        },
+        {
+          "type": "new",
+          "target": "Settlement Owner",
+          "text": "集落を丸ごと買い、居住者のマネーロンダリングと闇市場の購入から税を得る"
+        },
+        {
+          "type": "new",
+          "target": "District Owner",
+          "text": "クランで地区を支配し、集落オーナーが払う税の一部とマネーロンダリング速度の上昇を得る"
+        },
+        {
+          "type": "new",
+          "target": "Shadow Governor",
+          "text": "中央Highlands地区を支配するクランのリーダーで、マネーロンダリング率が高く全クランから税を取る"
+        }
+      ]
+    },
+    "tags": [
+      "その他"
+    ],
+    "changeTypes": [
+      "new",
+      "change"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
   }
 ]
