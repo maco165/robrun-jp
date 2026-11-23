@@ -9,7 +9,19 @@ export type GuideRef =
   | { site: string; title: string };
 
 export type GuideItem = { text: string; kind: 'official' | 'site'; refs: GuideRef[] };
-export type GuideSection = { id: string; title: string; items: GuideItem[] };
+
+/** 図。どれも出所の種類と出典を持つ (本文の項目と同じきまり) */
+type FigureBase = { title: string; kind: 'official' | 'site'; refs: GuideRef[]; note?: string };
+export type GuideFigure = FigureBase &
+  (
+    | { type: 'flow'; steps: { title: string; note: string }[] }
+    | { type: 'pyramid'; tiers: { title: string; note: string }[] }
+    | { type: 'table'; columns: string[]; rows: string[][] }
+    | { type: 'bars'; unit: string; bars: { label: string; value: number }[] }
+    | { type: 'split'; columns: { title: string; tone: 'lose' | 'keep'; items: string[] }[] }
+  );
+
+export type GuideSection = { id: string; title: string; summary: string; figures: GuideFigure[]; items: GuideItem[] };
 export type Guide = {
   /** 内容を確かめた日 (日本時間) */
   updatedAt: string;
@@ -20,6 +32,9 @@ export type Guide = {
 
 /** 1 項目の上限。原文の訳にならず、1〜2 文で言い切る長さ */
 export const GUIDE_TEXT_MAX = 140;
+/** 入口のカードの一行と、図の中の文字の上限。図は短く言い切る */
+export const GUIDE_SUMMARY_MAX = 50;
+export const GUIDE_CELL_MAX = 40;
 const GID = /^\d{15,20}$/;
 const HELP = 'https://kefirgames.helpshift.com/hc/';
 const SECTION_ID = /^[a-z][a-z0-9-]*$/;
@@ -29,27 +44,57 @@ export function checkGuide(g: Guide, versionIds: Set<string>): string[] {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(g.updatedAt ?? '')) ng.push('guide: updatedAt は YYYY-MM-DD');
   if (!versionIds.has(g.basedOn)) ng.push(`guide: basedOn ${g.basedOn} が versions.json に無い`);
   const ids = new Set<string>();
+  const checkRefs = (at: string, kind: string, refs: GuideRef[] | undefined) => {
+    if (!refs?.length) ng.push(`${at}: 出典が無い`);
+    const official = (refs ?? []).filter((r) => 'news' in r || 'help' in r).length;
+    const site = (refs ?? []).filter((r) => 'site' in r).length;
+    if (kind === 'official' && (official === 0 || site > 0)) ng.push(`${at}: 公式の項目 (official) の出典は公式のお知らせか公式ヘルプだけ`);
+    if (kind === 'site' && site === 0) ng.push(`${at}: 攻略サイトの項目 (site) に攻略サイトの出典が無い`);
+    if (kind !== 'official' && kind !== 'site') ng.push(`${at}: kind は official か site`);
+    for (const r of refs ?? []) {
+      if (!r.title) ng.push(`${at}: 出典の題が無い`);
+      if ('news' in r && !GID.test(r.news)) ng.push(`${at}: お知らせの gid ${r.news} の形が違う`);
+      if ('help' in r && !r.help.startsWith(HELP)) ng.push(`${at}: 公式ヘルプの URL が ${HELP} で始まらない`);
+      if ('site' in r && !/^https:\/\//.test(r.site)) ng.push(`${at}: 攻略サイトの URL が https でない`);
+    }
+  };
   for (const s of g.sections ?? []) {
     const at = `guide の ${s.id}`;
     if (!SECTION_ID.test(s.id ?? '') || ids.has(s.id)) ng.push(`${at}: 節の id が無いか重複か形が違う (小文字の kebab-case)`);
     ids.add(s.id);
     if (!s.title) ng.push(`${at}: 題が無い`);
     if (!s.items?.length) ng.push(`${at}: 項目が無い`);
+    if (!s.summary || s.summary.length > GUIDE_SUMMARY_MAX) ng.push(`${at}: 入口の一行 (summary) が無いか ${GUIDE_SUMMARY_MAX} 字を超える`);
+    (s.figures ?? []).forEach((f, i) => {
+      const fat = `${at} の図 ${i + 1}`;
+      if (!f.title) ng.push(`${fat}: 題が無い`);
+      checkRefs(fat, f.kind, f.refs);
+      const cells: string[] = [];
+      if (f.type === 'flow') {
+        if ((f.steps?.length ?? 0) < 2) ng.push(`${fat}: 流れ図の段が 2 つ未満`);
+        for (const x of f.steps ?? []) cells.push(x.title, x.note);
+      } else if (f.type === 'pyramid') {
+        if ((f.tiers?.length ?? 0) < 2) ng.push(`${fat}: ピラミッドの段が 2 つ未満`);
+        for (const x of f.tiers ?? []) cells.push(x.title, x.note);
+      } else if (f.type === 'table') {
+        if (!f.columns?.length || !f.rows?.length) ng.push(`${fat}: 表の列か行が無い`);
+        for (const r of f.rows ?? []) {
+          if (r.length !== f.columns.length) ng.push(`${fat}: 行の列の数が見出しと違う`);
+          cells.push(...r);
+        }
+      } else if (f.type === 'bars') {
+        if (!f.bars?.length) ng.push(`${fat}: 棒が無い`);
+        for (const b of f.bars ?? []) if (!Number.isFinite(b.value) || b.value < 0) ng.push(`${fat}: 棒の値 ${b.label} が 0 以上の数でない`);
+      } else if (f.type === 'split') {
+        if ((f.columns?.length ?? 0) < 2) ng.push(`${fat}: 比べる列が 2 つ未満`);
+        for (const c of f.columns ?? []) cells.push(...c.items);
+      } else ng.push(`${fat}: 図の種類 ${(f as { type: string }).type} を知らない`);
+      for (const c of cells) if (!c || c.length > GUIDE_CELL_MAX) ng.push(`${fat}: 図の文字「${(c ?? '').slice(0, 20)}」が空か ${GUIDE_CELL_MAX} 字を超える`);
+    });
     (s.items ?? []).forEach((it, i) => {
       const iat = `${at} の ${i + 1} 番目`;
       if (!it.text || it.text.length > GUIDE_TEXT_MAX) ng.push(`${iat}: 本文が無いか ${GUIDE_TEXT_MAX} 字を超える`);
-      if (!it.refs?.length) ng.push(`${iat}: 出典が無い`);
-      const official = (it.refs ?? []).filter((r) => 'news' in r || 'help' in r).length;
-      const site = (it.refs ?? []).filter((r) => 'site' in r).length;
-      if (it.kind === 'official' && (official === 0 || site > 0)) ng.push(`${iat}: 公式の項目 (official) の出典は公式のお知らせか公式ヘルプだけ`);
-      if (it.kind === 'site' && site === 0) ng.push(`${iat}: 攻略サイトの項目 (site) に攻略サイトの出典が無い`);
-      if (it.kind !== 'official' && it.kind !== 'site') ng.push(`${iat}: kind は official か site`);
-      for (const r of it.refs ?? []) {
-        if (!r.title) ng.push(`${iat}: 出典の題が無い`);
-        if ('news' in r && !GID.test(r.news)) ng.push(`${iat}: お知らせの gid ${r.news} の形が違う`);
-        if ('help' in r && !r.help.startsWith(HELP)) ng.push(`${iat}: 公式ヘルプの URL が ${HELP} で始まらない`);
-        if ('site' in r && !/^https:\/\//.test(r.site)) ng.push(`${iat}: 攻略サイトの URL が https でない`);
-      }
+      checkRefs(iat, it.kind, it.refs);
     });
   }
   return ng;
@@ -76,4 +121,25 @@ export function refLinks(
   }
   if ('help' in r) return [{ href: r.help, label: `${r.title}（公式ヘルプ・英語）`, external: true }];
   return [{ href: r.site, label: r.title, external: true }];
+}
+
+/** 出典の重なりを見分ける鍵 */
+export function refKey(r: GuideRef): string {
+  return 'news' in r ? `news:${r.news}` : 'help' in r ? r.help : r.site;
+}
+
+/**
+ * ジャンルの出典を 1 か所にまとめるための通し番号。図・本文の順に初めて出た順で 1 から振る。
+ * 本文と図には番号だけを付け、リンクはページの末尾の出典の一覧に 1 回だけ置く
+ */
+export function sourceList(s: Pick<GuideSection, 'figures' | 'items'>): { refs: GuideRef[]; numberOf: (r: GuideRef) => number } {
+  const refs: GuideRef[] = [];
+  const index = new Map<string, number>();
+  for (const r of [...s.figures.flatMap((f) => f.refs), ...s.items.flatMap((it) => it.refs)]) {
+    if (!index.has(refKey(r))) {
+      refs.push(r);
+      index.set(refKey(r), refs.length);
+    }
+  }
+  return { refs, numberOf: (r) => index.get(refKey(r)) ?? 0 };
 }
