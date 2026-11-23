@@ -27,6 +27,14 @@ test('出典の無い項目・長すぎる本文・知らない版・形の違�
   assert.match(checkGuide(one({ text: 'a', kind: 'official', refs: [{ ...NEWS, news: 'abc' }] }), VERSION_IDS).join(), /gid abc/);
 });
 
+test('節の id の重複・kind の値・公式ヘルプの URL・攻略サイトの https を検査する', () => {
+  const base = one({ text: 'a', kind: 'official', refs: [NEWS] });
+  assert.match(checkGuide({ ...base, sections: [base.sections[0], base.sections[0]] }, VERSION_IDS).join(), /重複/);
+  assert.match(checkGuide(one({ text: 'a', kind: 'other' as 'site', refs: [SITE] }), VERSION_IDS).join(), /kind は official か site/);
+  assert.match(checkGuide(one({ text: 'a', kind: 'official', refs: [{ ...HELP, help: 'https://example.com/faq' }] }), VERSION_IDS).join(), /公式ヘルプの URL/);
+  assert.match(checkGuide(one({ text: 'a', kind: 'site', refs: [{ ...SITE, site: 'http://example.com' }] }), VERSION_IDS).join(), /https でない/);
+});
+
 test('公式のお知らせは、記事があればサイト内の要約と原文の両方、無ければ原文だけに飛ぶ', () => {
   const path = (id: string) => `/robrun-jp/articles/${id}/`;
   const steam = (gid: string) => `https://store.steampowered.com/news/app/4262460/view/${gid}`;

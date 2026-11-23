@@ -60,7 +60,7 @@ export function Guide() {
           <Text type="supporting" color="placeholder" hasTabularNumbers>{g.updatedAt} 時点</Text>
         </HStack>
         <Heading level={1} style={{ ...DISPLAY, fontSize: 'clamp(28px, 5vw, 44px)', lineHeight: 1.3 }}>いまわかっている ROB RUN の仕組み</Heading>
-        <Text type="large" color="secondary">公式のお知らせと公式ヘルプから、遊ぶうえで知っておきたいことを集めました。アーリーアクセスなので、アップデートで変わります</Text>
+        <Text type="large" color="secondary">公式のお知らせと公式ヘルプを中心に、遊ぶうえで知っておきたいことを集めました。攻略サイトの情報は欄を分けています。アーリーアクセスなので、アップデートで変わります</Text>
         <HStack gap={3} wrap="wrap">
           {g.sections.map((s) => (
             <Link key={s.id} href={`#${s.id}`} color="secondary">{s.title}</Link>

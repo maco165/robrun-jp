@@ -6,7 +6,8 @@
 //   3. ページのエラーと、描画の食い違い (hydration) の警告が無い
 //   4. 記事の画面に情報欄の要約に「AI が作成」(人が要約した記事は「人が作成」) が出て、「人は未確認」の注釈は無い と原文のリンクがある
 //   5. <道>/index.html でも描いたあとの見出しが同じページのもの。題・説明に $& や $$ があっても書き込みが壊れない
-//   7. 攻略 (guide/): 節がすべて出て、公式のお知らせの出典ごとと版ごとに Steam の原文のリンクがある
+//   7. 攻略 (guide/): 節がすべて出て、公式のお知らせの出典ごとと版ごとに Steam の原文のリンクがある。
+//      記事がある出典はサイト内の要約にも飛ぶ。攻略サイトの情報は欄を分け、出典ごとにリンクがある
 //   6. SEO: og:title が題と同じ、canonical と og:url がある (404 は無く noindex)、JSON-LD が読めて種類が合う、
 //      sitemap.xml に全ページがあり 404 は無い、ファビコン・ホーム画面用の画像・共有の画像が 200
 import { spawn, spawnSync } from 'node:child_process';
@@ -115,6 +116,12 @@ try {
         if (steamLinks < refs + versions.length) fails.push(`${p.path} @${w}: Steam の原文のリンクが ${steamLinks} 件 (出典 ${refs} 件 + 履歴 ${versions.length} 件より少ない)`);
         const text = (await page.textContent('main')) ?? '';
         for (const sec of guide.sections) if (!text.includes(sec.title)) fails.push(`${p.path} @${w}: 節「${sec.title}」が無い`);
+        // 見本に記事がある公式のお知らせ (1848557880479055) は、サイト内の要約にも飛ぶ
+        if ((await page.locator('main a[href$="/articles/1848557880479055/"]').count()) === 0) fails.push(`${p.path} @${w}: 記事がある出典からサイト内の要約へのリンクが無い`);
+        // 攻略サイトの情報は欄を分けて出し、出典ごとにリンクがある
+        const siteRefs = guide.sections.flatMap((sec) => sec.items.filter((it) => it.kind === 'site').flatMap((it) => it.refs)).filter((r) => r.site);
+        if (siteRefs.length && !text.includes('攻略サイトの情報')) fails.push(`${p.path} @${w}: 「攻略サイトの情報」の欄が無い`);
+        for (const r of siteRefs) if ((await page.locator(`main a[href="${r.site}"]`).count()) === 0) fails.push(`${p.path} @${w}: 攻略サイトのリンク ${r.site} が無い`);
       }
       await page.close();
     }

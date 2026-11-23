@@ -45,7 +45,7 @@ const NEWS: Page = {
 const GUIDE_PAGE: Page = {
   path: 'guide/',
   title: `攻略: いまわかっている仕組み | ${SITE}`,
-  description: 'ROB RUN の換金・悪名・拠点・地区・警察・ワイプなど、いまわかっている仕組みを公式のお知らせと公式ヘルプからまとめた攻略ページ。元のアップデート情報へのリンクつき。',
+  description: 'ROB RUN の換金・悪名・拠点・地区・警察・ワイプなど、いまわかっている仕組みを公式のお知らせと公式ヘルプを中心にまとめた攻略ページ。元のアップデート情報へのリンクつき。',
   element: <Guide />,
   ogType: 'website',
 };
