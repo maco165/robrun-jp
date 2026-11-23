@@ -1,6 +1,8 @@
 // 感度の変換 (tools/sensitivity/)。どのゲームも「感度 1 のとき、マウスの 1 カウントで何度回るか」(yaw、度/カウント) を持ち、
 // 回る角度 = yaw × 感度 × カウント数 で比べる。1 インチは 2.54 cm、DPI はマウスが 1 インチで出すカウント数。
 // 係数の正本は data/sensitivity.json (出典つき)。FOV で係数が変わるゲームは、その条件を note に書く
+import { isBlocked } from './links';
+
 export type SensGame = {
   id: string;
   name: string;
@@ -24,6 +26,11 @@ export function convertSens(from: { yaw: number; sens: number; dpi: number }, to
 /** 自分で測った振り向きから、そのゲームの yaw を逆算する (感度 sens・DPI dpi で 360 度に cm だった) */
 export function yawFromMeasure(sens: number, dpi: number, cm: number): number {
   return (360 * 2.54) / (sens * dpi * cm);
+}
+
+/** 振り向き (cm/360) を、係数 yaw のゲームで DPI dpi のときの感度に直す (画面の変換はこれを通す) */
+export function sensForCm(cm: number, yaw: number, dpi: number): number {
+  return (360 * 2.54) / (yaw * dpi * cm);
 }
 
 /** 入力が計算に使える正の有限の数か */
@@ -55,6 +62,7 @@ export function checkSens(d: SensData): string[] {
   }
   for (const s of [...(d.robrun?.sources ?? []), ...(d.formula?.sources ?? []), ...(d.games ?? []).flatMap((g) => g.sources ?? [])]) {
     if (!/^https:\/\//.test(s.url) || !s.title) ng.push(`sensitivity: 出典の URL が https でないか題が無い (${s.url})`);
+    if (isBlocked(s.url)) ng.push(`sensitivity: 載せないサイト (販売・代行・チート) を出典にしている (${s.url})`);
   }
   return ng;
 }

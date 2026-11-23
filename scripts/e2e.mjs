@@ -53,7 +53,8 @@ const PAGES = [
 ];
 const WIDTHS = [1280, 390];
 
-const server = spawn('npx', ['vite', 'preview', '--outDir', OUT, '--port', String(PORT), '--strictPort'], { env, stdio: 'ignore' });
+// detached で別のプロセスグループにし、終わりにグループごと止める (npx だけ止めると vite preview が残る)
+const server = spawn('npx', ['vite', 'preview', '--outDir', OUT, '--port', String(PORT), '--strictPort'], { env, stdio: 'ignore', detached: true });
 const fails = [];
 try {
   for (let i = 0; i < 50; i++) {
@@ -148,6 +149,13 @@ try {
         await input.press('Enter');
         await page.waitForTimeout(200);
         if (!((await main.textContent()) ?? '').includes('0.427')) fails.push(`${p.path} @${w}: 感度 2 の変換結果 0.427 が無い`);
+        // ROB RUN で使う DPI だけを 1600 にすると半分 (0.427 → 0.213)。元の DPI と取り違えると変わらない
+        const rrDpi = page.getByLabel('ROB RUN で使う DPI');
+        await rrDpi.fill('1600');
+        await rrDpi.press('Enter');
+        await page.waitForTimeout(200);
+        const after = (await main.textContent()) ?? '';
+        if (!after.includes('0.213') || after.includes('0.427')) fails.push(`${p.path} @${w}: ROB RUN の DPI 1600 で 0.213 にならない`);
       }
       if (p.links) {
         for (const e of links.groups.flatMap((g) => g.items)) {
@@ -195,7 +203,7 @@ try {
   }
   await browser.close();
 } finally {
-  server.kill();
+  try { process.kill(-server.pid); } catch { server.kill(); }
 }
 
 if (fails.length) {

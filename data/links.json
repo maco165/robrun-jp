@@ -37,14 +37,6 @@
           "url": "https://x.com/ROBRUNGame",
           "lang": "英語",
           "about": "告知"
-        },
-        {
-          "name": "公式 YouTube",
-          "url": "https://www.youtube.com/channel/UCULBCVt-bnrrLl-mCXAi86Q",
-          "lang": "英語",
-          "about": "トレーラーと告知だけ",
-          "updated": "2026-11-06",
-          "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCULBCVt-bnrrLl-mCXAi86Q"
         }
       ]
     },
@@ -159,6 +151,14 @@
       "id": "youtube",
       "title": "YouTube",
       "items": [
+        {
+          "name": "ROB RUN (YouTube)",
+          "url": "https://www.youtube.com/channel/UCULBCVt-bnrrLl-mCXAi86Q",
+          "lang": "英語",
+          "about": "トレーラーと告知だけ。作者名と動画から公式とみられるが、公式ページからのリンクは未確認",
+          "updated": "2026-11-06",
+          "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCULBCVt-bnrrLl-mCXAi86Q"
+        },
         {
           "name": "サバクラを愛すずんだもん",
           "url": "https://www.youtube.com/channel/UCy9NYLDbd_ccj8VEoYDaWWw",

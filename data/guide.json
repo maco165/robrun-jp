@@ -494,7 +494,7 @@
               "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
             }
           ],
-          "note": "Wikily と KeenGamer (11/17 時点) の値。どれも成功や作業中にサーバー全体へ通知が出る",
+          "note": "Wikily と KeenGamer (11/17 時点) の値。銀行・警察署・Buletti は、作業中や成功のときにサーバー全体へ通知が出る",
           "columns": [
             "場所",
             "必要な道具",
@@ -609,7 +609,7 @@
         },
         {
           "kind": "official",
-          "text": "どの地区にも中央ハブがあり、住人が盗品を売れる。地区の近くには守り・商売のボーナス・割引をくれる特別な建造物がある",
+          "text": "どの地区にも中央ハブがあり、住人が盗品を売れる。周りの集落に守り・商売のボーナス・割引などを与える特別な建造物もある",
           "refs": [
             {
               "news": "1844751498222037",
@@ -1214,7 +1214,7 @@
         {
           "kind": "site",
           "type": "bars",
-          "title": "フェンスの基準売値の上位 (悪名 1)",
+          "title": "フェンスの基準売値が高い品 (悪名 1)",
           "unit": "",
           "refs": [
             {
@@ -1230,7 +1230,7 @@
               "title": "ROB RUN Lottery Ticket（gamerblurb・英語・11/13）"
             }
           ],
-          "note": "基準の値 ($)。悪名で上乗せが付く。値はほぼ robrun.info の 1 系統で、ゲーム内での実額は確かめられていない。ヨットの鍵と宝くじの大当たりは robrun.info だけの値",
+          "note": "基準の値 ($)。robrun.info の品のページで値を確かめられた品だけを並べた (代行業者の一覧だけに載る品は除いた)。ゲーム内での実額は確かめられていない。ヨットの鍵と宝くじの大当たりは robrun.info だけの値",
           "bars": [
             {
               "label": "Yacht Key",
@@ -1258,6 +1258,10 @@
             },
             {
               "label": "Diamond in Case",
+              "value": 200000
+            },
+            {
+              "label": "King's Reserve Bottle",
               "value": 200000
             },
             {
@@ -1638,6 +1642,10 @@
             {
               "site": "https://gamerch.com/rubrun/1031392",
               "title": "【ROB RUN】最強武器ランキング（Gamerch・日本語・11/11）"
+            },
+            {
+              "site": "https://grindnstrat.com/?p=9899",
+              "title": "ROB RUN Weapons Guide（grindnstrat・英語・11/06）"
             }
           ],
           "note": "ダメージは胴 1 発 (ショットガンは 1 粒 × 粒数)、頭は 1.5 倍。装弾数は Mk1 / Mk3。射程は全ダメージが出る距離。値段は闇市。* は出典で食い違い (値段を載せるサイトもある)。2026-11-05 版の値で、11/17・11/20 のパッチで武器の変更は無い",
@@ -1843,7 +1851,7 @@
               "title": "【ROB RUN】最強武器ランキング（Gamerch・日本語・11/11）"
             }
           ],
-          "note": "ダメージ × 粒数 × 連射 ÷ 60 で計算した理論値。命中率・距離による減衰・リロードを含まない。ショットガンは全粒が当たった場合",
+          "note": "ダメージ × 粒数 × 連射 ÷ 60 で計算した理論値 (小数は四捨五入)。命中率・距離による減衰・リロードを含まない。ショットガンは全粒が当たった場合",
           "bars": [
             {
               "label": "TAG-12K",
@@ -1855,7 +1863,7 @@
             },
             {
               "label": "SR Reaper",
-              "value": 212
+              "value": 213
             },
             {
               "label": "LM 249 Mk2",
@@ -1933,7 +1941,7 @@
               "title": "ROB RUN Weapons Guide（grindnstrat・英語・11/06）"
             }
           ],
-          "note": "闇市で買うには先に Shipments で解放が要る (解放しても銃はもらえない)。各 Mk は 1 つ前の Mk の解放が前提。地区レベルは Gamerch だけ、DRM-14 の刑期は grindnstrat だけの値",
+          "note": "闇市で買うには先に Shipments で解放が要る。地区レベルは Gamerch だけ、DRM-14 の刑期は grindnstrat だけの値",
           "columns": [
             "武器",
             "Mk1 の解放費",
@@ -1963,7 +1971,7 @@
               "STAR-H",
               "100,000",
               "KL-545 Mk1",
-              "刑期 180 年 (Mk3 200 年)"
+              "刑期 (Mk3 は 200 年)"
             ],
             [
               "RC 5.56",

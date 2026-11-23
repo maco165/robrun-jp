@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { cm360, convertSens, positive, yawFromMeasure } from '../src/lib/sensitivity.ts';
+import { cm360, convertSens, positive, sensForCm, yawFromMeasure } from '../src/lib/sensitivity.ts';
 
 const close = (a: number, b: number, eps = 1e-9) => assert.ok(Math.abs(a - b) < eps, `${a} ≈ ${b}`);
 
@@ -42,7 +42,9 @@ test('本番の data/sensitivity.json は NG が無く、画面と同じ式で C
   assert.deepEqual(checkSens(DATA), []);
   const cs = DATA.games.find((g) => g.id === 'cs2')!;
   const target = cm360(cs.yaw, 1, 800);
-  close(914.4 / (800 * DATA.robrun.yaw * target), 0.022 / 0.1031, 1e-12);
+  close(sensForCm(target, DATA.robrun.yaw, 800), 0.022 / 0.1031, 1e-12);
+  // ROB RUN の DPI だけ倍にすると感度は半分
+  close(sensForCm(target, DATA.robrun.yaw, 1600), 0.022 / 0.1031 / 2, 1e-12);
   close(convertSens({ yaw: cs.yaw, sens: 1, dpi: 800 }, DATA.robrun.yaw, 800), 0.022 / 0.1031);
 });
 
@@ -55,4 +57,10 @@ test('係数の表の検査: yaw の欠け・id の重複・http の出典を落
   assert.match(ng, /yaw が正の数でない/);
   assert.match(ng, /重複/);
   assert.match(ng, /https でない/);
+});
+
+test('係数の表の検査: 載せないサイト (代行など) の出典を落とす', () => {
+  const bad: SensData = JSON.parse(JSON.stringify(DATA));
+  bad.robrun.sources.push({ url: 'https://xboosty.com/blog/x', title: 'x' });
+  assert.match(checkSens(bad).join(), /載せないサイト/);
 });

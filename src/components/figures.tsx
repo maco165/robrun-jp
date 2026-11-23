@@ -149,7 +149,10 @@ function Split({ columns }: { columns: { title: string; tone: 'lose' | 'keep'; i
 
 function FigTable({ columns, rows }: { columns: string[]; rows: string[][] }) {
   const data = rows.map((r, i) => ({ id: String(i), ...Object.fromEntries(r.map((c, j) => [`c${j}`, c])) }));
+  // 狭い幅で列が詰まって語の途中で折れないよう、列 1 つを 104px 以上に保ち、表の中だけ横にスクロールさせる
   return (
+    <span style={{ display: 'block', overflowX: 'auto', maxWidth: '100%' }}>
+    <span style={{ display: 'block', minWidth: columns.length * 104 }}>
     <Table
       data={data}
       idKey="id"
@@ -159,6 +162,8 @@ function FigTable({ columns, rows }: { columns: string[]; rows: string[][] }) {
         renderCell: (row: Record<string, string>) => <Text type="body" weight={j === 0 ? 'medium' : 'normal'}>{row[`c${j}`]}</Text>,
       }))}
     />
+    </span>
+    </span>
   );
 }
 

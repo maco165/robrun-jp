@@ -4,7 +4,7 @@ export type LinkGroup = { id: string; title: string; items: LinkEntry[] };
 export type Links = { checkedAt: string; note: string; groups: LinkGroup[] };
 
 /** 載せないサイト (ゲーム内通貨・アイテムの販売、代行、チートの販売)。公式の規約が禁じる取引や不正につながる */
-export const BLOCKED_HOSTS = ['u4n.com', 'u4gm.com', 'ezg.com', 'aoeah.com', 'iggm.com', 'boostroom.com', 'timesaver.gg', 'neonsect.com', 'surchcheats.com', 'skycoach.gg', 'lfcarry.com'];
+export const BLOCKED_HOSTS = ['u4n.com', 'u4gm.com', 'ezg.com', 'aoeah.com', 'iggm.com', 'boostroom.com', 'timesaver.gg', 'neonsect.com', 'surchcheats.com', 'skycoach.gg', 'lfcarry.com', 'xboosty.com'];
 
 const host = (u: string) => {
   try {

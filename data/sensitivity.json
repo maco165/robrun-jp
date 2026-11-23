@@ -6,7 +6,7 @@
     "min": 0.1,
     "max": 1,
     "note": "感度 1 のとき 1 カウントで約 0.1031 度。ファンサイトがゲームのファイルから読んだと書く値で、公式の値でも実測でもない。下の「自分で測る」で確かめた値に差し替えられる",
-    "settings": "操作 (Controls) のタブの General Sensitivity (通常) と ADS Sensitivity (照準時)。General の既定は 0.37、上限は 1。下限は 0 と 0.1 で出典が分かれる。FOV の項目は無いとする出典と、ある (Display) とする出典がある",
+    "settings": "操作 (Controls) のタブの General Sensitivity (通常) と ADS Sensitivity (照準時)。General の既定は 0.37、上限は 1。下限は 0 と 0.1 で出典が分かれる。FOV の設定の有無は出典で食い違っていて確かめられていない",
     "sources": [
       {
         "url": "https://robrunstash.vercel.app/sensitivity/",
@@ -15,10 +15,6 @@
       {
         "url": "https://www.mouse-sensitivity.com/n/rob-run/",
         "title": "ROB RUN Sensitivity Converter（mouse-sensitivity.com。本文は読めず検索結果の要約で確認）"
-      },
-      {
-        "url": "https://xboosty.com/blog/rob-run/rob-run-best-settings-for-gunfights-chases-and-heists-60",
-        "title": "ROB RUN Best Settings（xboosty・11/19）"
       },
       {
         "url": "https://xpjournal.com/rob-run-best-settings/",

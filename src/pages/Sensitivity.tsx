@@ -14,7 +14,7 @@ import { NumberInput } from '@astryxdesign/core/NumberInput';
 import { Shell } from '../components/Shell';
 import { DISPLAY, Kicker } from '../components/parts';
 import { SENS } from '../lib/data';
-import { cm360, positive, yawFromMeasure } from '../lib/sensitivity';
+import { cm360, positive, sensForCm, yawFromMeasure } from '../lib/sensitivity';
 
 const CM = 'cm360';
 const EDGE = { border: '1px solid var(--color-border-emphasized)' } as const;
@@ -36,7 +36,7 @@ export function Sensitivity() {
   const src = SENS.games.find((g) => g.id === game);
   // 元の振り向き (cm/360)。cm/360 を直接入れた場合はそのまま
   const target = game === CM ? (positive(cmIn) ? cmIn! : Number.NaN) : src && positive(sens, dpi) ? cm360(src.yaw, sens!, dpi!) : Number.NaN;
-  const out = positive(target, rrDpi) ? 914.4 / (rrDpi! * yaw * target) : Number.NaN;
+  const out = positive(target, rrDpi) ? sensForCm(target, yaw, rrDpi!) : Number.NaN;
   const measured = positive(mSens, mDpi, mCm) ? yawFromMeasure(mSens!, mDpi!, mCm!) : Number.NaN;
   // 同じ DPI で上限 1 にしたときの最速の振り向き
   const fastest = positive(rrDpi) ? cm360(yaw, rr.max, rrDpi!) : Number.NaN;
