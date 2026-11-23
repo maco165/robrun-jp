@@ -1,14 +1,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { checkGuide, refLinks, GUIDE_TEXT_MAX, type Guide } from '../src/lib/guide.ts';
+import { checkGuide, refLinks, sourceList, GUIDE_CELL_MAX, GUIDE_TEXT_MAX, type Guide } from '../src/lib/guide.ts';
 
 const VERSION_IDS = new Set(['playtest', ...JSON.parse(readFileSync(new URL('../data/versions.json', import.meta.url), 'utf8')).versions.map((v: { id: string }) => v.id)]);
 const GUIDE: Guide = JSON.parse(readFileSync(new URL('../data/guide.json', import.meta.url), 'utf8'));
 const NEWS = { news: '1848557880479055', title: 'First Changes & Server Schedule' };
 const HELP = { help: 'https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1349-how-do-i-sell-my-loot/?l=en', title: 'How do I sell my loot?' };
 const SITE = { site: 'https://example.com/guide', title: '攻略サイト' };
-const one = (item: Guide['sections'][0]['items'][0]): Guide => ({ updatedAt: '2026-11-24', basedOn: '2026-11-20', sections: [{ id: 'sell', title: '換金', items: [item] }] });
+const one = (item: Guide['sections'][0]['items'][0]): Guide => ({ updatedAt: '2026-11-24', basedOn: '2026-11-20', sections: [{ id: 'sell', title: '換金', summary: '売り方', figures: [], items: [item] }] });
 
 test('本番の data/guide.json は NG が無い', () => {
   assert.deepEqual(checkGuide(GUIDE, VERSION_IDS), []);
@@ -44,4 +44,52 @@ test('公式のお知らせは、記事があればサイト内の要約と原�
   const missing = refLinks(NEWS, () => undefined, path, steam);
   assert.deepEqual(missing.map((l) => l.href), [steam(NEWS.news)]);
   assert.match(missing[0].label, /First Changes/);
+});
+
+test('出典は図・本文の順に初めて出た順で番号を振り、同じ出典は 1 つにまとめる', () => {
+  const { refs, numberOf } = sourceList({
+    figures: [{ type: 'flow', title: '流れ', kind: 'official', refs: [HELP, NEWS], steps: [] }],
+    items: [{ text: 'a', kind: 'official', refs: [NEWS] }, { text: 'b', kind: 'site', refs: [SITE, HELP] }],
+  });
+  assert.deepEqual(refs, [HELP, NEWS, SITE]);
+  assert.deepEqual([HELP, NEWS, SITE].map(numberOf), [1, 2, 3]);
+  assert.equal(numberOf({ ...NEWS, title: '題が違っても同じお知らせ' }), 2);
+});
+
+test('図の検査: 種類ごとの中身・文字の長さ・出典のきまり', () => {
+  const withFig = (f: unknown): Guide => ({ ...one({ text: 'a', kind: 'official', refs: [NEWS] }), sections: [{ ...one({ text: 'a', kind: 'official', refs: [NEWS] }).sections[0], figures: [f as Guide['sections'][0]['figures'][0]] }] });
+  const flow = { type: 'flow', title: '流れ', kind: 'official', refs: [NEWS], steps: [{ title: 'a', note: 'b' }, { title: 'c', note: 'd' }] };
+  assert.deepEqual(checkGuide(withFig(flow), VERSION_IDS), []);
+  assert.match(checkGuide(withFig({ ...flow, steps: [{ title: 'a', note: 'b' }] }), VERSION_IDS).join(), /2 つ未満/);
+  assert.match(checkGuide(withFig({ ...flow, steps: [{ title: 'あ'.repeat(GUIDE_CELL_MAX + 1), note: 'b' }, { title: 'c', note: 'd' }] }), VERSION_IDS).join(), /字を超える/);
+  assert.match(checkGuide(withFig({ ...flow, refs: [SITE] }), VERSION_IDS).join(), /公式の項目/);
+  assert.match(checkGuide(withFig({ type: 'table', title: '表', kind: 'official', refs: [NEWS], columns: ['a', 'b'], rows: [['x']] }), VERSION_IDS).join(), /列の数/);
+  assert.match(checkGuide(withFig({ type: 'bars', title: '棒', kind: 'site', refs: [SITE], unit: '%', bars: [{ label: 'a', value: -1 }] }), VERSION_IDS).join(), /0 以上/);
+  assert.match(checkGuide(withFig({ type: 'chart', title: '?', kind: 'official', refs: [NEWS] }), VERSION_IDS).join(), /図の種類 chart/);
+});
+
+test('図の形の崩れは例外ではなく NG にする (figures の欠け・表の列・split の中身・tone・見出し・棒の名前と単位)', () => {
+  const base = one({ text: 'a', kind: 'official', refs: [NEWS] });
+  const sec = base.sections[0];
+  const withFig = (f: unknown): Guide => ({ ...base, sections: [{ ...sec, figures: [f as Guide['sections'][0]['figures'][0]] }] });
+  const noFigures = { ...base, sections: [{ ...sec, figures: undefined as unknown as [] }] };
+  assert.match(checkGuide(noFigures, VERSION_IDS).join(), /figures/);
+  const table = { type: 'table', title: '表', kind: 'official', refs: [NEWS], columns: ['a'], rows: [['x']] };
+  assert.match(checkGuide(withFig({ ...table, columns: undefined }), VERSION_IDS).join(), /列か行が無い/);
+  assert.match(checkGuide(withFig({ ...table, columns: [''] }), VERSION_IDS).join(), /空か/);
+  assert.match(checkGuide(withFig({ ...table, rows: [] }), VERSION_IDS).join(), /列か行が無い/);
+  const split = { type: 'split', title: '比べる', kind: 'official', refs: [NEWS], columns: [{ title: '消える', tone: 'lose', items: ['a'] }, { title: '残る', tone: 'keep', items: ['b'] }] };
+  assert.deepEqual(checkGuide(withFig(split), VERSION_IDS), []);
+  assert.match(checkGuide(withFig({ ...split, columns: [split.columns[0], { title: '残る', tone: 'keep' }] }), VERSION_IDS).join(), /中身が無い/);
+  assert.match(checkGuide(withFig({ ...split, columns: [split.columns[0], { ...split.columns[1], tone: 'good' }] }), VERSION_IDS).join(), /lose か keep/);
+  assert.match(checkGuide(withFig({ ...split, columns: [split.columns[0]] }), VERSION_IDS).join(), /2 つ未満/);
+  const bars = { type: 'bars', title: '棒', kind: 'site', refs: [SITE], unit: '%', bars: [{ label: 'a', value: 1 }] };
+  assert.deepEqual(checkGuide(withFig(bars), VERSION_IDS), []);
+  assert.match(checkGuide(withFig({ ...bars, unit: undefined }), VERSION_IDS).join(), /単位/);
+  assert.match(checkGuide(withFig({ ...bars, bars: [{ label: 'a', value: 1 }, { label: 'a', value: 2 }] }), VERSION_IDS).join(), /重複/);
+  assert.match(checkGuide(withFig({ ...bars, bars: [] }), VERSION_IDS).join(), /棒が無い/);
+  assert.match(checkGuide(withFig({ type: 'pyramid', title: 'ピ', kind: 'official', refs: [NEWS], tiers: [{ title: 'a', note: 'b' }] }), VERSION_IDS).join(), /2 つ未満/);
+  assert.match(checkGuide(withFig({ type: 'flow', title: '', kind: 'official', refs: [NEWS], steps: [{ title: 'a', note: 'b' }, { title: 'c', note: 'd' }] }), VERSION_IDS).join(), /題が無い/);
+  assert.match(checkGuide({ ...base, sections: [{ ...sec, summary: '' }] }, VERSION_IDS).join(), /summary/);
+  assert.match(checkGuide({ ...base, sections: [{ ...sec, summary: 'あ'.repeat(51) }] }, VERSION_IDS).join(), /summary/);
 });

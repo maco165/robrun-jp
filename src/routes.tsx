@@ -3,8 +3,8 @@ import { Home } from './pages/Home';
 import { News } from './pages/News';
 import { Article } from './pages/Article';
 import { NotFound } from './pages/NotFound';
-import { Guide } from './pages/Guide';
-import { ARTICLES, findArticle } from './lib/data';
+import { GuideGenre, GuideIndex } from './pages/Guide';
+import { ARTICLES, GUIDE, findArticle } from './lib/data';
 import { versionLabel } from './lib/versions';
 
 export const SITE = 'ROB RUN 日本語アップデート';
@@ -45,8 +45,8 @@ const NEWS: Page = {
 const GUIDE_PAGE: Page = {
   path: 'guide/',
   title: `攻略: いまわかっている仕組み | ${SITE}`,
-  description: 'ROB RUN の換金・悪名・拠点・地区・警察・ワイプなど、いまわかっている仕組みを公式のお知らせと公式ヘルプを中心にまとめた攻略ページ。元のアップデート情報へのリンクつき。',
-  element: <Guide />,
+  description: 'ROB RUN の換金・悪名・拠点・地区・警察・ワイプなど、いまわかっている仕組みを公式のお知らせと公式ヘルプを中心に、ジャンルごとに図と表でまとめた攻略ページ。元のアップデート情報へのリンクつき。',
+  element: <GuideIndex />,
   ogType: 'website',
 };
 
@@ -64,6 +64,13 @@ export function sitePages(): Page[] {
     TOP,
     NEWS,
     GUIDE_PAGE,
+    ...GUIDE.sections.map((g) => ({
+      path: `guide/${g.id}/`,
+      title: `${g.title} | 攻略 | ${SITE}`,
+      description: `ROB RUN の攻略: ${g.title}。${g.summary}。公式のお知らせと公式ヘルプを中心に、図と表でまとめています。`,
+      element: <GuideGenre section={g} />,
+      ogType: 'website' as const,
+    })),
     ...ARTICLES.map((a) => ({
       path: `articles/${a.id}/`,
       title: `${a.summaryJa.headline} | ${SITE}`,
@@ -95,6 +102,8 @@ export function resolve(path: string): Page {
   if (p === '' || p === 'index.html') return TOP;
   if (p === 'news/' || p === 'news') return NEWS;
   if (p === 'guide/' || p === 'guide') return GUIDE_PAGE;
+  const gm = /^guide\/([a-z0-9-]+)\/?$/.exec(p);
+  if (gm && GUIDE.sections.some((g) => g.id === gm[1])) return sitePages().find((x) => x.path === `guide/${gm[1]}/`)!;
   const m = /^articles\/([A-Za-z0-9_-]+)\/?$/.exec(p);
   if (m) {
     const a = findArticle(m[1]);
