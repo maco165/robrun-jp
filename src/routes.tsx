@@ -15,13 +15,22 @@ export type Page = {
   title: string;
   description: string;
   element: ReactElement;
+  /** OGP の og:type */
+  ogType: 'website' | 'article';
+  /** 構造化データ (JSON-LD)。無ければ書かない */
+  jsonLd?: Record<string, unknown>;
 };
+
+const SITE_URL = `${ORIGIN}/robrun-jp/`;
+const PUBLISHER = { '@type': 'Organization', name: SITE, url: SITE_URL };
 
 const TOP: Page = {
   path: '',
   title: SITE,
   description: 'ROB RUN の公式アップデートを日本語と日本時間でまとめる非公式のファンサイト。パッチノートの要約と新サーバーの開放時刻を、対象の版つきで整理します。',
   element: <Home />,
+  ogType: 'website',
+  jsonLd: { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE, url: SITE_URL, inLanguage: 'ja', description: 'ROB RUN の公式アップデートを日本語と日本時間でまとめる非公式のファンサイト' },
 };
 
 const NEWS: Page = {
@@ -29,6 +38,7 @@ const NEWS: Page = {
   title: `記事一覧 | ${SITE}`,
   description: 'ROB RUN の公式ニュースの日本語の要約の一覧。タグ・変更の種類・キーワードで絞り込めます。',
   element: <News />,
+  ogType: 'website',
 };
 
 export const NOT_FOUND: Page = {
@@ -36,6 +46,7 @@ export const NOT_FOUND: Page = {
   title: `ページが見つかりません | ${SITE}`,
   description: 'ページが見つかりません。',
   element: <NotFound />,
+  ogType: 'website',
 };
 
 /** 事前描画するページの一覧 (scripts/prerender.mjs が読む) */
@@ -48,6 +59,21 @@ export function sitePages(): Page[] {
       title: `${a.summaryJa.headline} | ${SITE}`,
       description: `${a.title} (${versionLabel(a.gameVersion)}) の日本語の要約。${a.summaryJa.impact}`.trim(),
       element: <Article article={a} />,
+      ogType: 'article' as const,
+      // 要約の記事。元の記事 (原文) を isBasedOn で指す
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'NewsArticle',
+        headline: a.summaryJa.headline,
+        description: a.summaryJa.impact || undefined,
+        datePublished: a.publishedAt,
+        inLanguage: 'ja',
+        mainEntityOfPage: `${SITE_URL}articles/${a.id}/`,
+        isBasedOn: a.url,
+        image: `${SITE_URL}og.png`,
+        author: PUBLISHER,
+        publisher: PUBLISHER,
+      },
     })),
   ];
 }

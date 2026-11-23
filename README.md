@@ -43,6 +43,14 @@ flowchart LR
 どのページも、作るときに HTML を書き出す (事前描画) ので、JavaScript を動かさない読み手にも中身が届きます。
 道は `src/routes.tsx` の 1 か所で決め、画面の振り分けと書き出し (`scripts/prerender.mjs`) の両方がそこを読みます。
 
+## 検索と共有
+
+- ページごとに題・説明・canonical・OGP (共有したときのカード)・Twitter のカードを書き出します。共有の画像は `public/og.png` (1200×630) です
+- 構造化データ (JSON-LD): トップは WebSite、記事は NewsArticle (公開日・原文を `isBasedOn` で指す)
+- `sitemap.xml` は検索に載せるページだけを載せ、作るたびの日付は付けません。404 は検索に載せません (noindex)
+- 検索エンジンが読む `robots.txt` はドメインの直下 (`maco165.github.io` のリポジトリ) にあり、そこに robrun-jp の Sitemap の行を置きます。`public/robots.txt` はその写しです
+- ファビコンは日本時間のカウントダウンを表すストップウォッチの印で、公式のロゴは使いません。`npm run images` で `public/apple-touch-icon.png` と `public/og.png` を描き直せます
+
 ## データ
 
 | ファイル | 中身 | 誰が書くか |

@@ -15,7 +15,8 @@
     "fetch:news": "tsx scripts/fetch-news.ts",
     "check:repo": "node scripts/check-repo.mjs",
     "summarize": "tsx scripts/summarize.ts",
-    "check:news": "tsx scripts/check-news.ts"
+    "check:news": "tsx scripts/check-news.ts",
+    "images": "node scripts/make-images.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "1.12.0",

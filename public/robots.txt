@@ -1,0 +1,6 @@
+# 検索エンジンが読む robots.txt はドメインの直下 (https://maco165.github.io/robots.txt、maco165.github.io のリポジトリ) だけ。
+# この写しは /robrun-jp/robots.txt に置かれ、検索エンジンは読まない。直下の robots.txt にも同じ Sitemap の行を置く。
+User-agent: *
+Allow: /
+
+Sitemap: https://maco165.github.io/robrun-jp/sitemap.xml
