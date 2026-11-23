@@ -1,1 +1,257 @@
-[]
+[
+  {
+    "id": "1842212951313519",
+    "source": "official",
+    "title": "First Playtest, First Look: This Is ROB RUN Right Now",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1842212951313519",
+    "publishedAt": "2026-09-01T14:08:27.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "プレイテストを実施、フィードバックを受けて改善を進行中",
+      "impact": "",
+      "points": [
+        {
+          "type": "change",
+          "target": "プレイテスト フィードバック",
+          "text": "受けたフィードバックをもとに改善を進めている"
+        }
+      ]
+    },
+    "tags": [
+      "その他"
+    ],
+    "changeTypes": [
+      "change"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1843481262692060",
+    "source": "official",
+    "title": "ROB RUN: Your First Look at Looty Bay",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1843481262692060",
+    "publishedAt": "2026-09-10T12:23:53.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "Looty Bayの概要と拠点・車両の仕組みを公開（開発紹介）",
+      "impact": "今回は開発の紹介で、既存のプレイに変更はありません。テストプレイは今秋を予定しており、詳細は今後の投稿で案内されます。",
+      "points": [
+        {
+          "type": "new",
+          "target": "Looty Bay",
+          "text": "犯罪が絶えない都市。強盗・取引・装甲車襲撃などが起き、戦利品を集めて無事に脱出するのが基本"
+        },
+        {
+          "type": "new",
+          "target": "車両",
+          "text": "最初はレンタカーに乗り、後に購入・強化が可能。ヘリコプターも入手対象になる予定"
+        },
+        {
+          "type": "new",
+          "target": "警察",
+          "text": "警察も実際のプレイヤーが担当する。強盗側はマスクを付けるだけでなれる"
+        },
+        {
+          "type": "new",
+          "target": "Bar",
+          "text": "中立の拠点。他のプレイヤーと交流や取引ができるが、戦利品はあまり保管できない"
+        },
+        {
+          "type": "new",
+          "target": "Settlement",
+          "text": "購入された地域に土地を借りて自宅を建てられる。戦利品の保管、拠点強化、マネーロンダリング、違法ビジネスが可能"
+        },
+        {
+          "type": "change",
+          "target": "Settlement",
+          "text": "他のプレイヤーやクランに実績を奪われる可能性がある。襲撃で戦利品を失う仕組みは今後説明予定"
+        }
+      ]
+    },
+    "tags": [
+      "強盗",
+      "車両",
+      "警察",
+      "拠点"
+    ],
+    "changeTypes": [
+      "new",
+      "change"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1844115010491502",
+    "source": "official",
+    "title": "ROB RUN: Gameplay Overview",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1844115010491502",
+    "publishedAt": "2026-09-17T09:52:30.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "ROB RUN、ゲーム概要を公開　プレイテスト前に全体像が判明",
+      "impact": "数値の変更はなく、ゲームの仕組みの紹介です。お金を稼ぐ方法、警察の役割、ノトリエティ（悪名）の上昇によるリスクなどが示されました。",
+      "points": [
+        {
+          "type": "new",
+          "target": "Looty Bay",
+          "text": "強盗の主な舞台となる街。小規模店から銀行の金庫まで多様な標的がある"
+        },
+        {
+          "type": "new",
+          "target": "Notoriety",
+          "text": "犯行を重ねるほど上昇。報酬は増えるがリスクも比例して高まる"
+        },
+        {
+          "type": "new",
+          "target": "Police",
+          "text": "プレイヤーが操作する警察。逮捕や押収品の取り分で稼ぎ、Police Badgeで上位装備を解放できる"
+        },
+        {
+          "type": "new",
+          "target": "Surrender",
+          "text": "警察に捕まったら自首可能。バッグの中身のみ没収され、装備は残る"
+        },
+        {
+          "type": "new",
+          "target": "Vehicles",
+          "text": "盗品の運搬や密売に使う。金庫を持ち帰って拠点で開ける戦術もある"
+        }
+      ]
+    },
+    "tags": [
+      "強盗",
+      "警察",
+      "車両",
+      "その他"
+    ],
+    "changeTypes": [
+      "new"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1844751498218037",
+    "source": "official",
+    "title": "Creators Wanted to Become ROB RUN Partners",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1844751498218037",
+    "publishedAt": "2026-09-23T10:33:45.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "ROB RUNのメディアパートナーを募集、応募条件はSNSの登録者100人以上",
+      "impact": "ゲーム内の内容が変わる告知ではありません。SNSで発信しているクリエイターは、公式サイトから応募できます。応募しても参加が確約されるわけではなく、運営が一件ずつ審査します。",
+      "points": [
+        {
+          "type": "new",
+          "target": "ROB RUN media partner program",
+          "text": "TikTok・YouTube・Instagramのいずれかで活動するクリエイターを対象に募集"
+        },
+        {
+          "type": "change",
+          "target": "応募条件",
+          "text": "登録者100人以上で、ベータテスト終了後にコンテンツを作成・発信できること"
+        },
+        {
+          "type": "change",
+          "target": "選考",
+          "text": "応募しても参加は保証されず、運営が手動で審査し、条件を満たすクリエイターに連絡"
+        }
+      ]
+    },
+    "tags": [
+      "その他"
+    ],
+    "changeTypes": [
+      "new",
+      "change"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1844751498222037",
+    "source": "official",
+    "title": "ROB RUN: Global Map",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1844751498222037",
+    "publishedAt": "2026-09-24T16:11:17.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "グローバルマップを公開、砂漠の拠点と地区支配の仕組み",
+      "impact": "拠点の土地取得、税収、盗品の売却先がマップ全体でつながる。数値や詳細は原文に記載がない。",
+      "points": [
+        {
+          "type": "new",
+          "target": "Global Map",
+          "text": "サーバー内のプレイヤー拠点は、1つのグローバルマップを共有する"
+        },
+        {
+          "type": "new",
+          "target": "Settlement / District",
+          "text": "地区は集落に分かれ、所有者がいる集落にのみ拠点用の土地を借りられる"
+        },
+        {
+          "type": "new",
+          "target": "Taxes",
+          "text": "集落の所有者は住人の金融取引から税を得られるが、現金の持ち出しは危険"
+        },
+        {
+          "type": "new",
+          "target": "District level",
+          "text": "地区のレベルで使える機能と、購入できるアイテムの種類が変わる"
+        },
+        {
+          "type": "new",
+          "target": "Special structures",
+          "text": "特殊構造物が周辺の集落に防衛・商売ボーナス・割引などの効果を与える"
+        },
+        {
+          "type": "new",
+          "target": "Central hub",
+          "text": "各地区の中央ハブで盗品を売却できる。価格はLooty Bayより高いが危険も多い"
+        },
+        {
+          "type": "new",
+          "target": "Clans",
+          "text": "クランは地区や集落を支配して住人から税を取れ、中央地区を押さえると全マップから税を得られる"
+        }
+      ]
+    },
+    "tags": [
+      "拠点",
+      "金策",
+      "強盗"
+    ],
+    "changeTypes": [
+      "new"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  }
+]
