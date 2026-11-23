@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
+import { createServer } from 'node:http';
 import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -23,7 +24,10 @@ test('応答の形が違えば投げる', () => {
 });
 
 function run(args: string[]) {
-  return spawnSync('npx', ['tsx', 'scripts/fetch-news.ts', ...args], { encoding: 'utf8' });
+  // 本物の data/skipped.json を読まないよう、空の一時ファイルを渡す
+  const skipped = path.join(mkdtempSync(path.join(tmpdir(), 'robrun-skip-')), 'skipped.json');
+  writeFileSync(skipped, '[]');
+  return spawnSync('npx', ['tsx', 'scripts/fetch-news.ts', '--skipped', skipped, ...args], { encoding: 'utf8' });
 }
 
 test('CLI: 1 回目は新しい記事を足し、2 回目は 0 件で inbox が変わらない', () => {
@@ -56,4 +60,22 @@ test('CLI: 取得に失敗すると終了コード 1', () => {
   const r = run(['--fixture', 'tests/fixtures/steam-news-broken.json', '--news', news, '--inbox', path.join(dir, 'inbox.json')]);
   assert.equal(r.status, 1);
   assert.match(r.stderr, /取得に失敗しました/);
+});
+
+test('CLI: Steam が応答を返さなければ時間切れで終了コード 1', async () => {
+  // 受け付けるが何も返さないサーバー
+  const server = createServer(() => {});
+  await new Promise<void>((r) => server.listen(0, '127.0.0.1', () => r()));
+  const port = (server.address() as { port: number }).port;
+  const dir = mkdtempSync(path.join(tmpdir(), 'robrun-fetch-'));
+  const news = path.join(dir, 'news.json');
+  writeFileSync(news, '[]');
+  const child = spawn('npx', ['tsx', 'scripts/fetch-news.ts', '--api-url', `http://127.0.0.1:${port}/`, '--timeout-ms', '500', '--news', news, '--inbox', path.join(dir, 'inbox.json')]);
+  let stderr = '';
+  child.stderr.on('data', (d) => { stderr += d; });
+  const code = await new Promise<number | null>((r) => child.on('close', r));
+  server.closeAllConnections();
+  server.close();
+  assert.equal(code, 1);
+  assert.match(stderr, /時間切れ/);
 });

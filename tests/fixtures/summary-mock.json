@@ -1,0 +1,23 @@
+{
+  "1849458702693254": {
+    "headline": "【見本】刑務所のきまりを変え、便利な設定を足した",
+    "impact": "見本の影響",
+    "points": [{ "type": "change", "target": "Prison", "text": "見本の要点" }],
+    "tags": ["刑務所"],
+    "flags": { "wipe": false, "server": false, "maintenance": false }
+  },
+  "1849827110432538": {
+    "headline": "【見本】不正の検出を強め、通信の重さを直した",
+    "impact": "",
+    "points": [{ "type": "fix", "target": "Network", "text": "見本の要点" }, { "type": "new", "target": "Server list", "text": "見本の要点" }],
+    "tags": ["サーバー", "UI"],
+    "flags": { "wipe": false, "server": false, "maintenance": false }
+  },
+  "1850000000000001": {
+    "headline": "【見本】新しいパッチ",
+    "impact": "",
+    "points": [{ "type": "buff", "target": "Decoder", "text": "見本の要点", "field": "価格", "before": "100", "after": "80" }],
+    "tags": ["金策"],
+    "flags": { "wipe": false, "server": false, "maintenance": false }
+  }
+}

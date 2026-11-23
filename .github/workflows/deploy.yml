@@ -9,9 +9,10 @@ on:
 permissions:
   contents: read
 
+# main の回は update.yml (毎時の記事の更新) と同じ並び (pages-refs/heads/main) で、走っている回を止めない。PR の回だけ古い回を止める
 concurrency:
   group: pages-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -25,7 +26,10 @@ jobs:
           cache: npm
 
       - run: npm ci
+      # 取得した公式の本文 (.cache/) が追跡されていたら止める
+      - run: npm run check:repo
       - run: npm run check:data
+      - run: npm run check:news
       - run: npm test
       - run: npm run build
       # 見本の記事 (tests/fixtures/) で別のフォルダ (dist-e2e) に組み、1280px と 390px でページを開いて確かめる

@@ -29,4 +29,4 @@ export function flagLabel(a: Article): string | null {
   return null;
 }
 
-export const TAGS = ['金策', '強盗', '武器', '車両', '拠点', '警察', '刑務所', 'サーバー', 'ワイプ', 'UI', 'バグ修正', 'イベント', 'バトルパス', 'その他'];
+export { TAGS } from './tags';
