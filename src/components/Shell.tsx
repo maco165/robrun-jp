@@ -53,7 +53,6 @@ export function Shell({ current, children }: { current: NavKey; children: ReactN
         <Divider />
         <VStack as="footer" gap={1} paddingBlock={6} paddingInline={6} maxWidth={1200} width="100%" style={FRAME}>
           <Text type="supporting" color="placeholder">非公式のファンサイトです。開発元・販売元とは関係ありません</Text>
-          <Text type="supporting" color="placeholder">要約は AI が作っています。正確な内容は原文で確かめてください</Text>
           <Link href="https://github.com/maco165/robrun-jp" target="_blank" color="secondary">GitHub のリポジトリ</Link>
         </VStack>
       </VStack>
