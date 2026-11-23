@@ -45,7 +45,7 @@ flowchart LR
 
 ## 検索と共有
 
-- ページごとに題・説明・canonical・OGP (共有したときのカード)・Twitter のカードを書き出します。共有の画像は `public/og.png` (1200×630) です
+- ページごとに題・説明・canonical・OGP (共有したときのカード) を書き出します。Twitter (X) のカードの形 (summary_large_image) は全ページ共通で、題・説明・画像は OGP から読まれます。共有の画像は `public/og.png` (1200×630) です
 - 構造化データ (JSON-LD): トップは WebSite、記事は NewsArticle (公開日・原文を `isBasedOn` で指す)
 - `sitemap.xml` は検索に載せるページだけを載せ、作るたびの日付は付けません。404 は検索に載せません (noindex)
 - 検索エンジンが読む `robots.txt` はドメインの直下 (`maco165.github.io` のリポジトリ) にあり、そこに robrun-jp の Sitemap の行を置きます。`public/robots.txt` はその写しです
