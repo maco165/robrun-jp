@@ -48,6 +48,7 @@ flowchart LR
 | ファイル | 中身 | 誰が書くか |
 |---|---|---|
 | `data/news.json` | 記事 (原文の情報・日本語の要約・タグ・変更の種類・対象の版・人が確かめたか) | 取得と要約の仕組み (準備中) |
+| `data/steam.json` | ROB RUN の Steam の appid (4262460) と、確かめた日と方法 | 人 |
 | `data/versions.json` | 版の一覧 (発売とパッチノート。日時と元のお知らせ) | 人、のちに取得の仕組み |
 | `data/schedule.json` | 新サーバーの開放の時刻のきまりと、その出典・更新日 | 人 (公式のお知らせを確かめて) |
 | `tests/fixtures/news.json` | 画面の検査だけに使う見本の記事。題に【見本】が付く | 人 |
@@ -79,6 +80,7 @@ npm run dev     # http://localhost:5173/robrun-jp/
 npm run build   # dist/ に書き出す (画面・事前描画の入口・ページごとの HTML の順)
 npm test        # 単体テスト (版の決め方・データの検査)
 npm run check:data  # data/ の検査 (版の一覧と記事の版)
+npm run fetch:news  # Steam の公式ニュースを取り、まだ要約していない記事を .cache/inbox.json に足す (本文はコミットしない)
 npm run e2e     # 見本の記事で dist-e2e/ に組み、1280px と 390px で各ページを開いて確かめる
 ```
 

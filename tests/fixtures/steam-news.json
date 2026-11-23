@@ -1,0 +1,36 @@
+{
+  "appnews": {
+    "appid": 4262460,
+    "newsitems": [
+      {
+        "gid": "1849827110432538",
+        "title": "Patch Notes",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1849827110432538",
+        "author": "Charlie",
+        "contents": "[p]見本の本文 (公式の本文は写さない)[/p]",
+        "feedname": "steam_community_announcements",
+        "date": 1795186796,
+        "tags": ["patchnotes"]
+      },
+      {
+        "gid": "1849458702693481",
+        "title": "見本: 他サイトの記事 (公式でない配信)",
+        "url": "https://example.com/",
+        "author": "",
+        "contents": "見本",
+        "feedname": "PlayGround.ru - официальная группа",
+        "date": 1794918177
+      },
+      {
+        "gid": "1849458702693254",
+        "title": "Patch Notes",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1849458702693254",
+        "author": "Charlie",
+        "contents": "[p]見本の本文 (公式の本文は写さない)[/p]",
+        "feedname": "steam_community_announcements",
+        "date": 1794914385
+      }
+    ],
+    "count": 3
+  }
+}

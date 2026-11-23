@@ -13,3 +13,6 @@ themes/*/preview.html
 themes/*/*.png
 themes/*/*.pictures.json
 dist-e2e/
+
+# 取得した公式ニュースの本文 (要約の入力)。英語の全文をリポジトリに残さない
+.cache/

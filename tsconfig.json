@@ -27,6 +27,7 @@
     "src",
     "tests",
     "scripts/check-data.ts",
+    "scripts/fetch-news.ts",
     "vite.config.ts"
   ]
 }
