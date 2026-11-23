@@ -86,7 +86,6 @@ export function Home() {
               <HStack gap={4} wrap="wrap" vAlign="center">
                 <Link href={url(`articles/${latest.id}/`)} weight="bold">記事を読む</Link>
                 <Link href={latest.url} isExternalLink color="secondary">原文（英語）</Link>
-                <Text type="supporting" color="placeholder">{latest.summarizedBy === 'ai' ? 'AI による要約' : '人による要約'}{latest.reviewed ? '' : '・人は未確認'}</Text>
               </HStack>
             </VStack>
           ) : (
