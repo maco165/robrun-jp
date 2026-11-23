@@ -4,6 +4,7 @@ import { News } from './pages/News';
 import { Article } from './pages/Article';
 import { NotFound } from './pages/NotFound';
 import { ARTICLES, findArticle } from './lib/data';
+import { versionLabel } from './lib/versions';
 
 export const SITE = 'ROB RUN 日本語アップデート';
 export const ORIGIN = 'https://maco165.github.io';
@@ -45,7 +46,7 @@ export function sitePages(): Page[] {
     ...ARTICLES.map((a) => ({
       path: `articles/${a.id}/`,
       title: `${a.summaryJa.headline} | ${SITE}`,
-      description: `${a.title} (v${a.gameVersion}) の日本語の要約。${a.summaryJa.impact}`.trim(),
+      description: `${a.title} (${versionLabel(a.gameVersion)}) の日本語の要約。${a.summaryJa.impact}`.trim(),
       element: <Article article={a} />,
     })),
   ];

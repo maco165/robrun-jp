@@ -2,10 +2,10 @@
   {
     "id": "fixture-p032",
     "source": "official",
-    "title": "Patch 0.3.2",
+    "title": "Patch Notes",
     "url": "https://store.steampowered.com/",
-    "publishedAt": "2026-11-20T09:00:00Z",
-    "gameVersion": "0.3.2",
+    "publishedAt": "2026-11-21T09:00:00Z",
+    "gameVersion": "2026-11-20",
     "summaryJa": {
       "headline": "【見本】グランドホテルの戦利品を調整、デコーダーの価格を変更",
       "impact": "強盗で稼ぐ人は収入が少し減る。デコーダーを多く使う人は出費が減る",
@@ -57,7 +57,7 @@
     "title": "Announcement",
     "url": "https://store.steampowered.com/",
     "publishedAt": "2026-11-17T17:00:00Z",
-    "gameVersion": "0.3.1",
+    "gameVersion": "2026-11-17",
     "summaryJa": {
       "headline": "【見本】今週の Federal Raid の時刻を告知",
       "impact": "",
@@ -81,10 +81,10 @@
   {
     "id": "fixture-p031",
     "source": "official",
-    "title": "Patch 0.3.1",
+    "title": "Patch Notes",
     "url": "https://store.steampowered.com/",
     "publishedAt": "2026-11-14T01:00:00Z",
-    "gameVersion": "0.3.1",
+    "gameVersion": "2026-11-05",
     "summaryJa": {
       "headline": "【見本】新しい車両 2 台と警察の追跡 AI を追加",
       "impact": "",
@@ -112,7 +112,7 @@
     "title": "Maintenance",
     "url": "https://store.steampowered.com/",
     "publishedAt": "2026-11-11T18:00:00Z",
-    "gameVersion": "0.3.0",
+    "gameVersion": "2026-11-05",
     "summaryJa": {
       "headline": "【見本】EU サーバーの緊急メンテナンス（約 2 時間）",
       "impact": "",
@@ -135,10 +135,10 @@
   {
     "id": "fixture-dollar",
     "source": "official",
-    "title": "Patch 0.2.9",
+    "title": "Playtest News",
     "url": "https://store.steampowered.com/",
     "publishedAt": "2026-11-01T09:00:00Z",
-    "gameVersion": "0.2.9",
+    "gameVersion": "playtest",
     "summaryJa": {
       "headline": "【見本】報酬 $$500 と $& の表示",
       "impact": "報酬が $$500 増える",

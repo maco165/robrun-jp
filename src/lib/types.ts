@@ -21,6 +21,8 @@ export type Article = {
   /** UTC の ISO 8601 */
   publishedAt: string;
   gameVersion: string;
+  /** 公開の時点の版と違う版を付けた理由 (公式の記事が次の版に向けた変更を告げるとき) */
+  versionNote?: string;
   summaryJa: { headline: string; impact: string; points: ChangePoint[] };
   tags: string[];
   changeTypes: ChangeType[];

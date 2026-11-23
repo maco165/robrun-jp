@@ -9,7 +9,9 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build && vite build --ssr src/entry-server.tsx --outDir ${ROBRUN_OUT:-dist}/.ssr --emptyOutDir && node scripts/prerender.mjs",
     "preview": "vite preview",
-    "e2e": "node scripts/e2e.mjs"
+    "e2e": "node scripts/e2e.mjs",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "check:data": "tsx scripts/check-data.ts"
   },
   "dependencies": {
     "@astryxdesign/core": "0.7.17",
@@ -29,6 +31,7 @@
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.2.1",
     "playwright": "1.64.1",
+    "tsx": "4.23.15",
     "typescript": "5.9.3",
     "vite": "8.3.5"
   }

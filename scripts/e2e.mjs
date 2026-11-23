@@ -23,8 +23,8 @@ if (built.status !== 0) {
 const PAGES = [
   { path: '', heading: '【見本】グランドホテルの戦利品を調整' },
   { path: 'news/', heading: '記事一覧' },
-  { path: 'articles/fixture-p032/', heading: '【見本】グランドホテルの戦利品を調整', article: true },
-  { path: 'articles/fixture-raid/', heading: '【見本】今週の Federal Raid の時刻を告知', article: true },
+  { path: 'articles/fixture-p032/', heading: '【見本】グランドホテルの戦利品を調整', article: true, version: '2026-11-20 版', old: false },
+  { path: 'articles/fixture-raid/', heading: '【見本】今週の Federal Raid の時刻を告知', article: true, version: '2026-11-17 版', old: true },
   // GitHub Pages は <道>/index.html にも同じ HTML を返す。描いたあとに 404 に変わらないこと
   { path: 'news/index.html', heading: '記事一覧' },
   { path: 'articles/fixture-p032/index.html', heading: '【見本】グランドホテルの戦利品を調整', article: true },
@@ -65,6 +65,9 @@ try {
         const text = await page.textContent('main');
         const summary = p.summary ?? 'AI による要約';
         if (!text?.includes(summary)) fails.push(`${p.path} @${w}: 「${summary}」が無い`);
+        // 版 (R-14): 対象の版が出て、いまの版より古い記事にだけ【古い版の情報】が出る
+        if (p.version && !text?.includes(p.version)) fails.push(`${p.path} @${w}: 版「${p.version}」が無い`);
+        if (p.old !== undefined && (text?.includes('古い版の情報') ?? false) !== p.old) fails.push(`${p.path} @${w}: 【古い版の情報】が${p.old ? '無い' : '出ている'}`);
         const src = await page.locator('a[href^="https://store.steampowered.com/"]').count();
         if (src === 0) fails.push(`${p.path} @${w}: 原文のリンクが無い`);
       }

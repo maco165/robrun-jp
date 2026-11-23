@@ -1,0 +1,29 @@
+{
+  "note": "ROB RUN の公式はパッチに版の番号を付けないので、公式のお知らせ (発売・パッチノート) が出た日 (日本時間) を版の名前にする。発売より前は playtest",
+  "versions": [
+    {
+      "id": "2026-11-05",
+      "kind": "launch",
+      "releasedAt": "2026-11-05T02:04:00+09:00",
+      "title": "ROB RUN IS OUT NOW ON STEAM!",
+      "sourceId": "1848557880480061",
+      "sourceUrl": "https://store.steampowered.com/news/app/4262460/view/1848557880480061"
+    },
+    {
+      "id": "2026-11-17",
+      "kind": "patch",
+      "releasedAt": "2026-11-17T20:19:45+09:00",
+      "title": "Patch Notes",
+      "sourceId": "1849458702693254",
+      "sourceUrl": "https://store.steampowered.com/news/app/4262460/view/1849458702693254"
+    },
+    {
+      "id": "2026-11-20",
+      "kind": "patch",
+      "releasedAt": "2026-11-20T23:59:56+09:00",
+      "title": "Patch Notes",
+      "sourceId": "1849827110432538",
+      "sourceUrl": "https://store.steampowered.com/news/app/4262460/view/1849827110432538"
+    }
+  ]
+}

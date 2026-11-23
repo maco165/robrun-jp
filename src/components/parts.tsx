@@ -4,6 +4,8 @@ import { Text } from '@astryxdesign/core/Text';
 import { Icon } from '@astryxdesign/core/Icon';
 import { Plus, ArrowLeftRight } from 'lucide-react';
 import type { ChangeType } from '../lib/types';
+import { versionLabel } from '../lib/versions';
+import { isOldVersion } from '../lib/data';
 
 /** 紙面の見出し用の太い書体。サイト名と特集の見出しだけに使う */
 export const DISPLAY = { fontFamily: '"Dela Gothic One", "Noto Sans JP Variable", "Noto Sans JP", sans-serif', fontWeight: 400 } as const;
@@ -47,7 +49,12 @@ export function Jst({ children }: { children: ReactNode }) {
   );
 }
 
-/** 版。アーリーアクセスなので、どの版の情報かをどこにでも添える (PJ-030 の Q-9) */
+/** 版。アーリーアクセスなので、どの版の情報かをどこにでも添える (PJ-030 の Q-9)。いまの版より古ければ【古い版の情報】を並べる */
 export function Version({ v }: { v: string }) {
-  return <Text type="supporting" color="secondary" hasTabularNumbers>v{v}</Text>;
+  return (
+    <HStack gap={2} vAlign="center" wrap="wrap">
+      <Text type="supporting" color="secondary" hasTabularNumbers>{versionLabel(v)}</Text>
+      {isOldVersion(v) ? <Kicker>古い版の情報</Kicker> : null}
+    </HStack>
+  );
 }
