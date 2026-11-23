@@ -67,3 +67,29 @@ test('図の検査: 種類ごとの中身・文字の長さ・出典のきまり
   assert.match(checkGuide(withFig({ type: 'bars', title: '棒', kind: 'site', refs: [SITE], unit: '%', bars: [{ label: 'a', value: -1 }] }), VERSION_IDS).join(), /0 以上/);
   assert.match(checkGuide(withFig({ type: 'chart', title: '?', kind: 'official', refs: [NEWS] }), VERSION_IDS).join(), /図の種類 chart/);
 });
+
+test('図の形の崩れは例外ではなく NG にする (figures の欠け・表の列・split の中身・tone・見出し・棒の名前と単位)', () => {
+  const base = one({ text: 'a', kind: 'official', refs: [NEWS] });
+  const sec = base.sections[0];
+  const withFig = (f: unknown): Guide => ({ ...base, sections: [{ ...sec, figures: [f as Guide['sections'][0]['figures'][0]] }] });
+  const noFigures = { ...base, sections: [{ ...sec, figures: undefined as unknown as [] }] };
+  assert.match(checkGuide(noFigures, VERSION_IDS).join(), /figures/);
+  const table = { type: 'table', title: '表', kind: 'official', refs: [NEWS], columns: ['a'], rows: [['x']] };
+  assert.match(checkGuide(withFig({ ...table, columns: undefined }), VERSION_IDS).join(), /列か行が無い/);
+  assert.match(checkGuide(withFig({ ...table, columns: [''] }), VERSION_IDS).join(), /空か/);
+  assert.match(checkGuide(withFig({ ...table, rows: [] }), VERSION_IDS).join(), /列か行が無い/);
+  const split = { type: 'split', title: '比べる', kind: 'official', refs: [NEWS], columns: [{ title: '消える', tone: 'lose', items: ['a'] }, { title: '残る', tone: 'keep', items: ['b'] }] };
+  assert.deepEqual(checkGuide(withFig(split), VERSION_IDS), []);
+  assert.match(checkGuide(withFig({ ...split, columns: [split.columns[0], { title: '残る', tone: 'keep' }] }), VERSION_IDS).join(), /中身が無い/);
+  assert.match(checkGuide(withFig({ ...split, columns: [split.columns[0], { ...split.columns[1], tone: 'good' }] }), VERSION_IDS).join(), /lose か keep/);
+  assert.match(checkGuide(withFig({ ...split, columns: [split.columns[0]] }), VERSION_IDS).join(), /2 つ未満/);
+  const bars = { type: 'bars', title: '棒', kind: 'site', refs: [SITE], unit: '%', bars: [{ label: 'a', value: 1 }] };
+  assert.deepEqual(checkGuide(withFig(bars), VERSION_IDS), []);
+  assert.match(checkGuide(withFig({ ...bars, unit: undefined }), VERSION_IDS).join(), /単位/);
+  assert.match(checkGuide(withFig({ ...bars, bars: [{ label: 'a', value: 1 }, { label: 'a', value: 2 }] }), VERSION_IDS).join(), /重複/);
+  assert.match(checkGuide(withFig({ ...bars, bars: [] }), VERSION_IDS).join(), /棒が無い/);
+  assert.match(checkGuide(withFig({ type: 'pyramid', title: 'ピ', kind: 'official', refs: [NEWS], tiers: [{ title: 'a', note: 'b' }] }), VERSION_IDS).join(), /2 つ未満/);
+  assert.match(checkGuide(withFig({ type: 'flow', title: '', kind: 'official', refs: [NEWS], steps: [{ title: 'a', note: 'b' }, { title: 'c', note: 'd' }] }), VERSION_IDS).join(), /題が無い/);
+  assert.match(checkGuide({ ...base, sections: [{ ...sec, summary: '' }] }, VERSION_IDS).join(), /summary/);
+  assert.match(checkGuide({ ...base, sections: [{ ...sec, summary: 'あ'.repeat(51) }] }, VERSION_IDS).join(), /summary/);
+});

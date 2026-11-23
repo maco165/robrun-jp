@@ -65,6 +65,7 @@ export function checkGuide(g: Guide, versionIds: Set<string>): string[] {
     if (!s.title) ng.push(`${at}: 題が無い`);
     if (!s.items?.length) ng.push(`${at}: 項目が無い`);
     if (!s.summary || s.summary.length > GUIDE_SUMMARY_MAX) ng.push(`${at}: 入口の一行 (summary) が無いか ${GUIDE_SUMMARY_MAX} 字を超える`);
+    if (!Array.isArray(s.figures)) ng.push(`${at}: figures (図の一覧) が無い。図が無い節は [] と書く`);
     (s.figures ?? []).forEach((f, i) => {
       const fat = `${at} の図 ${i + 1}`;
       if (!f.title) ng.push(`${fat}: 題が無い`);
@@ -78,16 +79,28 @@ export function checkGuide(g: Guide, versionIds: Set<string>): string[] {
         for (const x of f.tiers ?? []) cells.push(x.title, x.note);
       } else if (f.type === 'table') {
         if (!f.columns?.length || !f.rows?.length) ng.push(`${fat}: 表の列か行が無い`);
+        cells.push(...(f.columns ?? []));
         for (const r of f.rows ?? []) {
-          if (r.length !== f.columns.length) ng.push(`${fat}: 行の列の数が見出しと違う`);
-          cells.push(...r);
+          if (!Array.isArray(r) || r.length !== (f.columns?.length ?? 0)) ng.push(`${fat}: 行の列の数が見出しと違う`);
+          cells.push(...(Array.isArray(r) ? r : []));
         }
       } else if (f.type === 'bars') {
         if (!f.bars?.length) ng.push(`${fat}: 棒が無い`);
-        for (const b of f.bars ?? []) if (!Number.isFinite(b.value) || b.value < 0) ng.push(`${fat}: 棒の値 ${b.label} が 0 以上の数でない`);
+        if (typeof f.unit !== 'string') ng.push(`${fat}: 棒の単位 (unit) が無い`);
+        const labels = new Set<string>();
+        for (const b of f.bars ?? []) {
+          if (!Number.isFinite(b.value) || b.value < 0) ng.push(`${fat}: 棒の値 ${b.label} が 0 以上の数でない`);
+          if (labels.has(b.label)) ng.push(`${fat}: 棒の名前 ${b.label} が重複`);
+          labels.add(b.label);
+          cells.push(b.label);
+        }
       } else if (f.type === 'split') {
         if ((f.columns?.length ?? 0) < 2) ng.push(`${fat}: 比べる列が 2 つ未満`);
-        for (const c of f.columns ?? []) cells.push(...c.items);
+        for (const c of f.columns ?? []) {
+          if (c.tone !== 'lose' && c.tone !== 'keep') ng.push(`${fat}: 列「${c.title}」の tone は lose か keep`);
+          if (!c.items?.length) ng.push(`${fat}: 列「${c.title}」に中身が無い`);
+          cells.push(c.title, ...(c.items ?? []));
+        }
       } else ng.push(`${fat}: 図の種類 ${(f as { type: string }).type} を知らない`);
       for (const c of cells) if (!c || c.length > GUIDE_CELL_MAX) ng.push(`${fat}: 図の文字「${(c ?? '').slice(0, 20)}」が空か ${GUIDE_CELL_MAX} 字を超える`);
     });

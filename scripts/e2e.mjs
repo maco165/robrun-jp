@@ -125,7 +125,18 @@ try {
       if (p.genre) {
         const sec = p.genre;
         const text = (await page.textContent('main')) ?? '';
-        for (const f of sec.figures) if (!text.includes(f.title)) fails.push(`${p.path} @${w}: 図「${f.title}」が無い`);
+        // 図: 数が合い、図ごとに題・中身の文字・出典の番号がその図の中にあり、攻略サイトの図には印がある
+        const figs = page.locator('main figure');
+        if ((await figs.count()) !== sec.figures.length) fails.push(`${p.path} @${w}: 図が ${await figs.count()} 個 (${sec.figures.length} 個のはず)`);
+        for (const [k, f] of sec.figures.entries()) {
+          const fig = figs.nth(k);
+          const ft = (await fig.textContent()) ?? '';
+          const words = f.type === 'flow' ? f.steps.map((x) => x.title) : f.type === 'pyramid' ? f.tiers.map((x) => x.title)
+            : f.type === 'table' ? f.rows.map((r) => r[0]) : f.type === 'bars' ? f.bars.map((b) => b.label) : f.columns.flatMap((c) => c.items);
+          for (const x of [f.title, ...words]) if (!ft.includes(x)) fails.push(`${p.path} @${w}: 図「${f.title}」に「${x}」が無い`);
+          if ((await fig.locator('a[href^="#src-"]').count()) === 0) fails.push(`${p.path} @${w}: 図「${f.title}」に出典の番号が無い`);
+          if (f.kind === 'site' && !ft.includes('攻略サイトの情報')) fails.push(`${p.path} @${w}: 図「${f.title}」に攻略サイトの印が無い`);
+        }
         // 出典はページの末尾に 1 回ずつまとめる: 出典の数だけ番号の行があり、公式のお知らせの原文は 1 件に 1 本だけ
         const all = [...sec.figures.flatMap((f) => f.refs), ...sec.items.flatMap((it) => it.refs)];
         const keys = [...new Set(all.map((r) => r.news ? `news:${r.news}` : r.help ?? r.site))];

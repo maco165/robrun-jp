@@ -8,7 +8,7 @@ import { Heading } from '@astryxdesign/core/Heading';
 import { Text } from '@astryxdesign/core/Text';
 import { Icon } from '@astryxdesign/core/Icon';
 import { Table } from '@astryxdesign/core/Table';
-import { ArrowRight, X, Check } from 'lucide-react';
+import { X, Check } from 'lucide-react';
 import { DISPLAY, Kicker } from './parts';
 import type { GuideFigure, GuideRef } from '../lib/guide';
 
@@ -35,10 +35,8 @@ function Flow({ steps }: { steps: { title: string; note: string }[] }) {
       {steps.map((s, i) => (
         <Card key={i} variant="default" padding={3} style={EDGE}>
           <VStack gap={1}>
-            <HStack gap={2} vAlign="center">
-              <Text type="label" color="accent" hasTabularNumbers style={{ ...DISPLAY, fontSize: 20 }}>{i + 1}</Text>
-              {i < steps.length - 1 ? <Icon icon={ArrowRight} size="sm" color="secondary" /> : null}
-            </HStack>
+            {/* 順は番号で示す。狭い幅では折り返すので、右向きの矢印は付けない */}
+            <Text type="label" color="accent" hasTabularNumbers style={{ ...DISPLAY, fontSize: 20 }}>{i + 1}</Text>
             <Text type="body" weight="bold">{s.title}</Text>
             <Text type="supporting" color="secondary">{s.note}</Text>
           </VStack>

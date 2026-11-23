@@ -90,7 +90,7 @@
           ]
         },
         {
-          "text": "街の中にはバーがあり、地元の顔役が仕切る中立の場所なので撃たれない。取引をしたり、ルーレットで遊んだりできる",
+          "text": "拠点を持つまでの戦利品の置き場として、中立の場所「バー」がある。地元の顔役が仕切るので撃たれない。取引をしたり、ルーレットで遊んだりできる",
           "kind": "official",
           "refs": [
             {
@@ -106,6 +106,10 @@
             {
               "news": "1844751498222037",
               "title": "ROB RUN: Global Map"
+            },
+            {
+              "news": "1847920302231404",
+              "title": "ROB RUN's Power Pyramid"
             }
           ]
         },
@@ -120,7 +124,7 @@
           ]
         },
         {
-          "text": "7 日ごとに連邦の一斉摘発 (Federal Raid) が来て、すべてがリセットされる。稼いだお金が多いほど刑期が長くなる",
+          "text": "7 日ごとに連邦の一斉摘発 (Federal Raid) が来て、拠点・区画・武器・現金がリセットされる。稼いだお金が多いほど刑期が長くなる",
           "kind": "official",
           "refs": [
             {
@@ -207,6 +211,10 @@
             {
               "news": "1849192144187218",
               "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+            },
+            {
+              "news": "1844115010491502",
+              "title": "ROB RUN: Gameplay Overview"
             }
           ],
           "columns": [
@@ -228,7 +236,7 @@
             [
               "砂漠で死ぬ",
               "戦利品のすべて",
-              "—"
+              "公式の記載なし"
             ],
             [
               "街の民間人が死ぬ",
@@ -721,6 +729,10 @@
             {
               "news": "1849192144187218",
               "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+            },
+            {
+              "news": "1844115010491502",
+              "title": "ROB RUN: Gameplay Overview"
             }
           ],
           "columns": [
