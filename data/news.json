@@ -555,5 +555,292 @@
     },
     "summarizedBy": "ai",
     "reviewed": false
+  },
+  {
+    "id": "1847920302237725",
+    "source": "official",
+    "title": "ROB RUN Playtest Video Challenge!",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1847920302237725",
+    "publishedAt": "2026-10-30T09:00:20.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "プレイ動画コンテスト開催、入賞者に限定スキン POWER",
+      "impact": "面白い・派手な場面を撮った動画を投稿して入賞すると、限定スキン POWER がもらえます。応募期間は 10/30 20:00〜11/3 23:00 (GMT+3) で、すでに締め切られています。",
+      "points": [
+        {
+          "type": "new",
+          "target": "Playtest Video Challenge",
+          "text": "ROB RUN のプレイ動画を募集するコンテストを開催。強盗、銃撃戦、間抜けな死に方など、最高の瞬間が対象"
+        },
+        {
+          "type": "new",
+          "target": "応募方法",
+          "text": "1分以内の動画を撮影し、#robrun を付けて YouTube / TikTok / Instagram に公開投稿。応募フォームも提出"
+        },
+        {
+          "type": "new",
+          "target": "応募数",
+          "text": "応募件数に上限はなし。審査が終わるまで投稿は公開のままにする必要あり"
+        },
+        {
+          "type": "new",
+          "target": "選考",
+          "text": "運営チームが印象的なクリップを選出。笑わせる、驚かせる、感動させる動画が選ばれる"
+        },
+        {
+          "type": "new",
+          "target": "賞品 POWER スキン",
+          "text": "入賞者には POWER スキンを、リリース後 5 日以内に付与"
+        },
+        {
+          "type": "new",
+          "target": "スケジュール",
+          "text": "11/5 に入賞者へ連絡、11/6 に入賞クリップのまとめ動画を公開"
+        }
+      ]
+    },
+    "tags": [
+      "イベント"
+    ],
+    "changeTypes": [
+      "new"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1847920302245290",
+    "source": "official",
+    "title": "Playtest News",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1847920302245290",
+    "publishedAt": "2026-11-01T16:03:12.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "プレイテスト終了、修正を経て11月上旬の早期アクセス開始を目指す",
+      "impact": "初期武器のピストル支給や、プレイヤー拠点ビジネスの収益増加など、プレイ体験に関わる変更が順次入る予定です。警察側も復活時間の延長や装備の段階的な解放が計画されています。",
+      "points": [
+        {
+          "type": "fix",
+          "target": "Servers",
+          "text": "ストレステストで見つかった重大な技術的問題を修正済み"
+        },
+        {
+          "type": "buff",
+          "target": "Pistol",
+          "text": "参加時とリスポーンごとにピストルを支給 (従来は素手で開始)"
+        },
+        {
+          "type": "buff",
+          "target": "Player-base businesses",
+          "text": "農場・ラボ・密輸・貨物クラッキングなどの収益が数倍に"
+        },
+        {
+          "type": "change",
+          "target": "Buying and renting land",
+          "text": "土地の購入・賃借の仕組みをわかりやすくする"
+        },
+        {
+          "type": "nerf",
+          "target": "Cops respawn",
+          "text": "警察は死亡後の復活までの時間が延びる"
+        },
+        {
+          "type": "nerf",
+          "target": "Cops gear",
+          "text": "サーバー開始時は警察がピストルのみ。より良い装備は時間経過で解放"
+        },
+        {
+          "type": "new",
+          "target": "Cop badges",
+          "text": "警察がバッジを購入可能に。レア度は居住地区で変わる"
+        },
+        {
+          "type": "change",
+          "target": "Technical and game design tweaks",
+          "text": "技術面・ゲームデザイン面の調整を順次実施"
+        }
+      ]
+    },
+    "tags": [
+      "金策",
+      "武器",
+      "拠点",
+      "警察",
+      "バグ修正",
+      "その他"
+    ],
+    "changeTypes": [
+      "fix",
+      "buff",
+      "change",
+      "nerf",
+      "new"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1847920302252713",
+    "source": "official",
+    "title": "ROB RUN is Out on November 4!",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1847920302252713",
+    "publishedAt": "2026-11-03T16:32:11.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "ROB RUNが11月4日に正式リリース、UTC 17時にサーバー開放",
+      "impact": "11月4日 UTC 17:00 (日本時間 11月5日 2:00) にサーバーが開放され、ゲームで遊べるようになります。",
+      "points": []
+    },
+    "tags": [
+      "サーバー"
+    ],
+    "changeTypes": [
+      "change"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": true,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1848557880479055",
+    "source": "official",
+    "title": "ROB RUN: First Changes & Server Schedule",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1848557880479055",
+    "publishedAt": "2026-11-04T13:04:49.000Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "ROB RUN 初回調整：警察の再出現延長・経済の見直しと新サーバー時刻を発表",
+      "impact": "序盤は武器やお金を見つけやすくなり、拠点の解放にはdocumentsが必要になります。警察は再出現までの時間が延び、新サーバーは毎日EUとEast USで開きます。",
+      "points": [
+        {
+          "type": "nerf",
+          "target": "Cops (respawn)",
+          "text": "警察の再出現時間を延長。連続で死ぬほど待ち時間が長くなる"
+        },
+        {
+          "type": "change",
+          "target": "Police badges",
+          "text": "居住地区に応じたバッジを購入可能に。強盗やサラリーで得られるバッジは大幅減"
+        },
+        {
+          "type": "change",
+          "target": "Patrol cops (new server)",
+          "text": "新サーバーでは巡回警官はピストルのみ。サーバーが古くなるとより良い装備が解放"
+        },
+        {
+          "type": "change",
+          "target": "Tier 1 settlements / land rentals",
+          "text": "費用を現金からdocumentsに変更。Tier 2・3の一部アイテムは解放・購入費用を増加"
+        },
+        {
+          "type": "buff",
+          "target": "Base businesses",
+          "text": "農場・研究所・密輸などの拠点事業の利益を大幅に増加"
+        },
+        {
+          "type": "buff",
+          "target": "Dumpsters / Laundering desk",
+          "text": "ゴミ箱で見つかる現金を増加。洗浄デスクが保持できる現金も大幅に増加"
+        },
+        {
+          "type": "change",
+          "target": "Shipments (dismantling & selling)",
+          "text": "解体・売却の利益を増加。その一方でドロップ率を下げ、解体時間を延長"
+        },
+        {
+          "type": "buff",
+          "target": "Basic pistol / Starter weapon spawns",
+          "text": "基本ピストルの価格を下げ、街中のスタート武器のスポーン地点を追加"
+        },
+        {
+          "type": "nerf",
+          "target": "Buletti",
+          "text": "輸送品（shipments）を運べなくなる"
+        },
+        {
+          "type": "change",
+          "target": "Fabergé Egg",
+          "text": "解読にかかる時間を短縮。その代わりガラスカッターと交換するためのタブレット数を増加"
+        },
+        {
+          "type": "buff",
+          "target": "Decoders / Gold bars",
+          "text": "デコーダーや金の延べ棒などのスタック上限を増加"
+        },
+        {
+          "type": "new",
+          "target": "Server schedule",
+          "text": "各地域で毎日少なくとも1つの新規サーバーを開放。EUは17:00 UTC、East USは20:00 ETに開く"
+        }
+      ]
+    },
+    "tags": [
+      "警察",
+      "金策",
+      "拠点",
+      "武器",
+      "車両",
+      "サーバー",
+      "その他"
+    ],
+    "changeTypes": [
+      "nerf",
+      "change",
+      "buff",
+      "new"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": true,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
+  },
+  {
+    "id": "1848557880480061",
+    "source": "official",
+    "title": "ROB RUN IS OUT NOW ON STEAM!",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1848557880480061",
+    "publishedAt": "2026-11-04T17:04:00.000Z",
+    "gameVersion": "2026-11-05",
+    "summaryJa": {
+      "headline": "ROB RUN が Steam で正式リリース、犯罪の街 Looty Bay へ",
+      "impact": "Steam で今すぐプレイできるようになった。ギャングを集めて大胆な強盗を成功させ、犯罪帝国を築くことも、賭けで分け前を一瞬で失うこともある。",
+      "points": [
+        {
+          "type": "new",
+          "target": "ROB RUN (Steam)",
+          "text": "正式リリースされ、Steam で配信開始"
+        }
+      ]
+    },
+    "tags": [
+      "その他"
+    ],
+    "changeTypes": [
+      "new"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
   }
 ]
