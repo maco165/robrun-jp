@@ -8,7 +8,10 @@ import { Divider } from '@astryxdesign/core/Divider';
 import { List, ListItem } from '@astryxdesign/core/List';
 import { Shell } from '../components/Shell';
 import { ChangeLabel, DISPLAY, Jst, Kicker, Tags, Version } from '../components/parts';
-import { ARTICLES, SCHEDULE, flagLabel } from '../lib/data';
+import { ARTICLES, GUIDE, SCHEDULE, flagLabel } from '../lib/data';
+import { Grid } from '@astryxdesign/core/Grid';
+import { Icon } from '@astryxdesign/core/Icon';
+import { guideIcon } from '../components/guideIcons';
 import { jstDate, jstShort, nextOpen, remaining } from '../lib/time';
 import { url } from '../lib/url';
 import { useNow } from '../lib/useNow';
@@ -132,6 +135,23 @@ export function Home() {
           </VStack>
         </StackItem>
       </HStack>
+
+      {/* 攻略の入口。トップから各ジャンルへ直接たどれるようにする */}
+      <VStack as="section" gap={2}>
+        <HStack vAlign="center">
+          <StackItem size="fill"><Heading level={2}>攻略</Heading></StackItem>
+          <Link href={url('guide/')}>すべて見る</Link>
+        </HStack>
+        <Divider variant="strong" />
+        <Grid columns={{ minWidth: 200, max: 4 }} gap={2}>
+          {GUIDE.sections.map((g) => (
+            <HStack key={g.id} gap={2} vAlign="center">
+              <Icon icon={guideIcon(g.id)} color="accent" size="sm" />
+              <Link href={url(`guide/${g.id}/`)}>{g.title}</Link>
+            </HStack>
+          ))}
+        </Grid>
+      </VStack>
     </Shell>
   );
 }

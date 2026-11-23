@@ -1,5 +1,7 @@
 // 攻略ページ (guide/) の形と検査。正本は data/guide.json。
 // 項目ごとに出所の種類 (kind) を持つ: official は公式のお知らせ・公式ヘルプが出典、site は攻略サイトの情報 (数字は公式に無く、サイトにより異なる)
+import { isBlocked } from './links';
+
 export type GuideRef =
   /** 公式の Steam のお知らせ。gid は記事の id と同じ。記事があればサイト内の要約にも飛ばす */
   | { news: string; title: string }
@@ -17,7 +19,9 @@ export type GuideFigure = FigureBase &
     | { type: 'flow'; steps: { title: string; note: string }[] }
     | { type: 'pyramid'; tiers: { title: string; note: string }[] }
     | { type: 'table'; columns: string[]; rows: string[][] }
-    | { type: 'bars'; unit: string; bars: { label: string; value: number }[] }
+    | { type: 'bars'; unit: string; /** 値の前に + を付ける (上乗せの割合など) */ plus?: boolean; bars: { label: string; value: number; note?: string }[] }
+    /** 自前の模式図の地図。cols × rows の升目に区域を置く。位置は出典の相対位置 (北・中心など) から決め、縮尺は無い */
+    | { type: 'map'; cols: number; rows: number; zones: { label: string; note?: string; col: number; row: number; colSpan?: number; rowSpan?: number; tone?: 'center' | 'normal' | 'muted' }[] }
     | { type: 'split'; columns: { title: string; tone: 'lose' | 'keep'; items: string[] }[] }
   );
 
@@ -56,6 +60,7 @@ export function checkGuide(g: Guide, versionIds: Set<string>): string[] {
       if ('news' in r && !GID.test(r.news)) ng.push(`${at}: お知らせの gid ${r.news} の形が違う`);
       if ('help' in r && !r.help.startsWith(HELP)) ng.push(`${at}: 公式ヘルプの URL が ${HELP} で始まらない`);
       if ('site' in r && !/^https:\/\//.test(r.site)) ng.push(`${at}: 攻略サイトの URL が https でない`);
+      if ('site' in r && isBlocked(r.site)) ng.push(`${at}: 載せないサイト (販売・代行・チート) を出典にしている (${r.site})`);
     }
   };
   for (const s of g.sections ?? []) {
@@ -100,6 +105,16 @@ export function checkGuide(g: Guide, versionIds: Set<string>): string[] {
           if (c.tone !== 'lose' && c.tone !== 'keep') ng.push(`${fat}: 列「${c.title}」の tone は lose か keep`);
           if (!c.items?.length) ng.push(`${fat}: 列「${c.title}」に中身が無い`);
           cells.push(c.title, ...(c.items ?? []));
+        }
+      } else if (f.type === 'map') {
+        const cols = f.cols, rows = f.rows;
+        if (!Number.isInteger(cols) || !Number.isInteger(rows) || cols < 1 || rows < 1 || cols > 12 || rows > 12) ng.push(`${fat}: 地図の升目 (cols・rows) は 1〜12 の整数`);
+        if (!f.zones?.length) ng.push(`${fat}: 地図に区域が無い`);
+        for (const z of f.zones ?? []) {
+          const cs = z.colSpan ?? 1, rs = z.rowSpan ?? 1;
+          if (!(z.col >= 1 && z.row >= 1 && z.col + cs - 1 <= cols && z.row + rs - 1 <= rows)) ng.push(`${fat}: 区域「${z.label}」が升目の外にはみ出す`);
+          cells.push(z.label);
+          if (z.note) cells.push(z.note);
         }
       } else ng.push(`${fat}: 図の種類 ${(f as { type: string }).type} を知らない`);
       for (const c of cells) if (!c || c.length > GUIDE_CELL_MAX) ng.push(`${fat}: 図の文字「${(c ?? '').slice(0, 20)}」が空か ${GUIDE_CELL_MAX} 字を超える`);

@@ -16,6 +16,7 @@ import { chromium } from 'playwright';
 import { readFileSync } from 'node:fs';
 
 const guide = JSON.parse(readFileSync('data/guide.json', 'utf8'));
+const links = JSON.parse(readFileSync('data/links.json', 'utf8'));
 const versions = JSON.parse(readFileSync('data/versions.json', 'utf8')).versions;
 const OUT = 'dist-e2e';
 const PORT = 4400 + Math.floor(Math.random() * 400);
@@ -33,6 +34,10 @@ const PAGES = [
   { path: 'news/', heading: '記事一覧' },
   // 攻略: 出典ごとに Steam の原文のリンクがあり、アップデートの履歴に版の数だけ原文のリンクがある
   { path: 'guide/', heading: 'いまわかっている ROB RUN の仕組み', guide: true },
+  // リンク集: data/links.json のサイトがすべて外部リンクで並ぶ
+  { path: 'links/', heading: 'ROB RUN の役に立つサイト', links: true },
+  // 感度変換: 既定 (CS2 1・800 DPI) で 0.213 が出て、感度を 2 にすると 0.427 になる
+  { path: 'tools/sensitivity/', heading: 'ROB RUN 感度変換', sens: true },
   // 攻略のジャンルごとのページ: 図・出典の番号・末尾にまとめた出典
   ...guide.sections.map((sec) => ({ path: `guide/${sec.id}/`, heading: sec.title, genre: sec })),
   { path: 'articles/fixture-p032/', heading: '【見本】グランドホテルの戦利品を調整', article: true, version: '2026-11-20 版', old: false, ld: 'NewsArticle' },
@@ -48,7 +53,8 @@ const PAGES = [
 ];
 const WIDTHS = [1280, 390];
 
-const server = spawn('npx', ['vite', 'preview', '--outDir', OUT, '--port', String(PORT), '--strictPort'], { env, stdio: 'ignore' });
+// detached で別のプロセスグループにし、終わりにグループごと止める (npx だけ止めると vite preview が残る)
+const server = spawn('npx', ['vite', 'preview', '--outDir', OUT, '--port', String(PORT), '--strictPort'], { env, stdio: 'ignore', detached: true });
 const fails = [];
 try {
   for (let i = 0; i < 50; i++) {
@@ -57,7 +63,7 @@ try {
   }
   // sitemap とファビコン・画像 (6)
   const sitemap = await (await fetch(BASE + 'sitemap.xml')).text();
-  for (const loc of ['', 'news/', 'guide/', 'guide/sell/', 'guide/story/', 'articles/fixture-p032/', 'articles/fixture-dollar/']) {
+  for (const loc of ['', 'news/', 'guide/', 'links/', 'tools/sensitivity/', 'guide/sell/', 'guide/story/', 'articles/fixture-p032/', 'articles/fixture-dollar/']) {
     if (!sitemap.includes(`<loc>https://maco165.github.io/robrun-jp/${loc}</loc>`)) fails.push(`sitemap.xml に ${loc || '/'} が無い`);
   }
   if (sitemap.includes('404')) fails.push('sitemap.xml に 404 がある');
@@ -84,6 +90,18 @@ try {
       if (canonical !== want || ogUrl !== want) fails.push(`${p.path || '/'}: canonical/og:url が ${want} でない (${canonical} / ${ogUrl})`);
     }
     const ld = /<script type="application\/ld\+json">([^<]*)<\/script>/.exec(raw)?.[1];
+    // 攻略のジャンル: 共有の画像がジャンルのもので開け、構造化データに記事とパンくずがある
+    if (p.genre) {
+      const og = /<meta property="og:image" content="([^"]*)"/.exec(raw)?.[1] ?? '';
+      if (!og.endsWith(`/img/og-guide-${p.genre.id}.png`)) fails.push(`${p.path}: og:image がジャンルの画像でない (${og})`);
+      for (const img of [`img/og-guide-${p.genre.id}.png`, `img/guide-${p.genre.id}.png`]) {
+        const res = await fetch(BASE + img);
+        if (!res.ok) fails.push(`${p.path}: ${img} が ${res.status}`);
+      }
+      let types = [];
+      try { types = JSON.parse(ld ?? '')['@graph'].map((x) => x['@type']); } catch { /* 読めない */ }
+      if (!types.includes('Article') || !types.includes('BreadcrumbList')) fails.push(`${p.path}: JSON-LD に Article と BreadcrumbList が無い (${types.join(',') || '読めない'})`);
+    }
     if (p.ld) {
       let type = '';
       try { type = JSON.parse(ld ?? '')['@type']; } catch { /* 読めない */ }
@@ -123,6 +141,27 @@ try {
         const steamLinks = await page.locator('main a[href^="https://store.steampowered.com/news/app/4262460/view/"]').count();
         if (steamLinks < versions.length) fails.push(`${p.path} @${w}: 履歴の Steam の原文のリンクが ${steamLinks} 件 (版 ${versions.length} 件より少ない)`);
       }
+      if (p.sens) {
+        const main = page.locator('main');
+        if (!((await main.textContent()) ?? '').includes('0.213')) fails.push(`${p.path} @${w}: 既定の変換結果 0.213 が無い`);
+        const input = page.getByLabel('Counter-Strike 2 / CS:GO の感度');
+        await input.fill('2');
+        await input.press('Enter');
+        await page.waitForTimeout(200);
+        if (!((await main.textContent()) ?? '').includes('0.427')) fails.push(`${p.path} @${w}: 感度 2 の変換結果 0.427 が無い`);
+        // ROB RUN で使う DPI だけを 1600 にすると半分 (0.427 → 0.213)。元の DPI と取り違えると変わらない
+        const rrDpi = page.getByLabel('ROB RUN で使う DPI');
+        await rrDpi.fill('1600');
+        await rrDpi.press('Enter');
+        await page.waitForTimeout(200);
+        const after = (await main.textContent()) ?? '';
+        if (!after.includes('0.213') || after.includes('0.427')) fails.push(`${p.path} @${w}: ROB RUN の DPI 1600 で 0.213 にならない`);
+      }
+      if (p.links) {
+        for (const e of links.groups.flatMap((g) => g.items)) {
+          if ((await page.locator(`main a[href="${e.url}"]`).count()) === 0) fails.push(`${p.path} @${w}: ${e.name} のリンクが無い`);
+        }
+      }
       if (p.genre) {
         const sec = p.genre;
         const text = (await page.textContent('main')) ?? '';
@@ -133,7 +172,7 @@ try {
           const fig = figs.nth(k);
           const ft = (await fig.textContent()) ?? '';
           const words = f.type === 'flow' ? f.steps.map((x) => x.title) : f.type === 'pyramid' ? f.tiers.map((x) => x.title)
-            : f.type === 'table' ? f.rows.map((r) => r[0]) : f.type === 'bars' ? f.bars.map((b) => b.label) : f.columns.flatMap((c) => c.items);
+            : f.type === 'table' ? f.rows.map((r) => r[0]) : f.type === 'bars' ? f.bars.map((b) => b.label) : f.type === 'map' ? f.zones.map((z) => z.label) : f.columns.flatMap((c) => c.items);
           for (const x of [f.title, ...words]) if (!ft.includes(x)) fails.push(`${p.path} @${w}: 図「${f.title}」に「${x}」が無い`);
           if ((await fig.locator('a[href^="#src-"]').count()) === 0) fails.push(`${p.path} @${w}: 図「${f.title}」に出典の番号が無い`);
           if (f.kind === 'site' && !ft.includes('攻略サイトの情報')) fails.push(`${p.path} @${w}: 図「${f.title}」に攻略サイトの印が無い`);
@@ -164,7 +203,7 @@ try {
   }
   await browser.close();
 } finally {
-  server.kill();
+  try { process.kill(-server.pid); } catch { server.kill(); }
 }
 
 if (fails.length) {

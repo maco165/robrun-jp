@@ -10,12 +10,14 @@ import { robrunTheme } from '../themes/robrun/robrun.js';
 import { DISPLAY } from './parts';
 import { url } from '../lib/url';
 
-export type NavKey = 'top' | 'news' | 'guide' | null;
+export type NavKey = 'top' | 'news' | 'guide' | 'tools' | 'links' | null;
 
 const NAV: { key: Exclude<NavKey, null>; label: string; path: string }[] = [
   { key: 'top', label: '最新', path: '' },
   { key: 'news', label: '記事一覧', path: 'news/' },
   { key: 'guide', label: '攻略', path: 'guide/' },
+  { key: 'tools', label: '感度変換', path: 'tools/sensitivity/' },
+  { key: 'links', label: 'リンク集', path: 'links/' },
 ];
 
 const FRAME = { marginInline: 'auto', boxSizing: 'border-box' } as const;

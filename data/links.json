@@ -1,0 +1,221 @@
+{
+  "checkedAt": "2026-11-24",
+  "note": "ゲーム内通貨・アイテムの販売、代行 (ブースト)、チートの販売をしているサイトは載せない。公式の規約が禁じる取引や不正につながるため",
+  "groups": [
+    {
+      "id": "official",
+      "title": "公式",
+      "items": [
+        {
+          "name": "Steam のストアページ",
+          "url": "https://store.steampowered.com/app/4262460/ROB_RUN/",
+          "lang": "英語",
+          "about": "ダウンロード・公式の窓口 (Discord・X・Facebook) の一覧"
+        },
+        {
+          "name": "Steam のお知らせ",
+          "url": "https://store.steampowered.com/news/app/4262460",
+          "lang": "英語",
+          "about": "パッチノートと告知。このサイトの記事の元",
+          "updated": "2026-11-23",
+          "feed": "https://store.steampowered.com/feeds/news/app/4262460/"
+        },
+        {
+          "name": "公式ヘルプ (Kefir Support)",
+          "url": "https://kefirgames.helpshift.com/hc/en/14-rob-run/",
+          "lang": "英語",
+          "about": "仕組みの FAQ・不具合・BAN の方針・エラーコード"
+        },
+        {
+          "name": "公式 Discord",
+          "url": "https://discord.gg/robrun",
+          "lang": "英語ほか",
+          "about": "告知と交流。読むには Discord のアカウントが要る"
+        },
+        {
+          "name": "公式 X",
+          "url": "https://x.com/ROBRUNGame",
+          "lang": "英語",
+          "about": "告知"
+        }
+      ]
+    },
+    {
+      "id": "ja",
+      "title": "日本語の攻略",
+      "items": [
+        {
+          "name": "ROB RUN攻略Wiki (Gamerch)",
+          "url": "https://gamerch.com/rubrun/",
+          "lang": "日本語",
+          "about": "日本語の攻略の中心。金策・警察・拠点・武器のランキング・掲示板",
+          "updated": "2026-11-22",
+          "note": "RSS は無い。更新は sitemap で分かる"
+        },
+        {
+          "name": "robrun.rest (日本語の版)",
+          "url": "https://robrun.rest/ja/guides/",
+          "lang": "日本語",
+          "about": "強盗・金策・拠点・警察の攻略",
+          "note": "運営者と出典の書き方は未確認"
+        }
+      ]
+    },
+    {
+      "id": "en",
+      "title": "英語の攻略・データ",
+      "items": [
+        {
+          "name": "RobRun Guide (robrun.gitlab.io)",
+          "url": "https://robrun.gitlab.io/",
+          "lang": "英語",
+          "about": "項目ごとに公式・目撃・報告の 3 段で確かさを示し、データマイニングを使わないと明記",
+          "updated": "2026-11-17",
+          "feed": "https://robrun.gitlab.io/feed.xml"
+        },
+        {
+          "name": "Wikily",
+          "url": "https://wikily.gg/rob-run",
+          "lang": "英語",
+          "about": "武器・車・場所・積荷の参照ページと対話地図。項目に出典は無い",
+          "updated": "2026-11-23"
+        },
+        {
+          "name": "games.gg",
+          "url": "https://games.gg/rob-run/",
+          "lang": "英語",
+          "about": "悪名・ソロ・武器のティア・バッジなどのガイド",
+          "updated": "2026-11-16"
+        },
+        {
+          "name": "KeenGamer",
+          "url": "https://www.keengamer.com/articles/guides/rob-run-beginners-guide-best-tips-for-a-perfect-start/",
+          "lang": "英語",
+          "about": "初心者・銀行・積荷・資金洗浄の詳しい手順",
+          "updated": "2026-11-17"
+        },
+        {
+          "name": "TPose Gaming",
+          "url": "https://tposegaming.com/tag/rob-run/",
+          "lang": "英語",
+          "about": "更新がいちばん頻繁。武器の性能表と困りごとの対処",
+          "updated": "2026-11-23",
+          "feed": "https://tposegaming.com/tag/rob-run/feed/"
+        },
+        {
+          "name": "Gaming ProMax",
+          "url": "https://gamingpromax.com/tag/rob-run/",
+          "lang": "英語",
+          "about": "武器・装備の一覧と、ヒューズ・ドリル・集落の買い方",
+          "updated": "2026-11-17",
+          "feed": "https://gamingpromax.com/tag/rob-run/feed/"
+        },
+        {
+          "name": "ROB RUN Wiki (robrungame.net)",
+          "url": "https://robrungame.net/",
+          "lang": "英語",
+          "about": "公式の窓口の一覧・FAQ とパッチノートの要約",
+          "updated": "2026-11-17",
+          "feed": "https://robrungame.net/rss.xml"
+        },
+        {
+          "name": "Power Up Gaming",
+          "url": "https://powerupgaming.co.uk/tag/rob-run/",
+          "lang": "英語",
+          "about": "最初の 1 時間・金策・デコーダーの手順",
+          "updated": "2026-11-10",
+          "feed": "https://powerupgaming.co.uk/tag/rob-run/feed/"
+        },
+        {
+          "name": "robrun.info",
+          "url": "https://robrun.info/",
+          "lang": "ロシア語",
+          "about": "品物と売値の一覧が細かい。値はゲームのファイルから集めた可能性があり、ゲーム内では確かめられていない"
+        }
+      ]
+    },
+    {
+      "id": "news",
+      "title": "ニュース",
+      "items": [
+        {
+          "name": "Game*Spark の紹介記事",
+          "url": "https://www.gamespark.jp/article/2026/11/09/174657.html",
+          "lang": "日本語",
+          "about": "発売直後の人気と遊び方の紹介",
+          "updated": "2026-11-09"
+        }
+      ]
+    },
+    {
+      "id": "youtube",
+      "title": "YouTube",
+      "items": [
+        {
+          "name": "ROB RUN (YouTube)",
+          "url": "https://www.youtube.com/channel/UCULBCVt-bnrrLl-mCXAi86Q",
+          "lang": "英語",
+          "about": "トレーラーと告知だけ。作者名と動画から公式とみられるが、公式ページからのリンクは未確認",
+          "updated": "2026-11-06",
+          "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCULBCVt-bnrrLl-mCXAi86Q"
+        },
+        {
+          "name": "サバクラを愛すずんだもん",
+          "url": "https://www.youtube.com/channel/UCy9NYLDbd_ccj8VEoYDaWWw",
+          "lang": "日本語",
+          "about": "金策とワイプの仕組みの解説",
+          "updated": "2026-11-22",
+          "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCy9NYLDbd_ccj8VEoYDaWWw"
+        },
+        {
+          "name": "ぽんずまん",
+          "url": "https://www.youtube.com/channel/UCBgRhDm1G54d6SbfsD33qOg",
+          "lang": "日本語",
+          "about": "ソロの金策 (ゆっくり実況)",
+          "updated": "2026-11-20",
+          "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCBgRhDm1G54d6SbfsD33qOg"
+        },
+        {
+          "name": "BradQuackson",
+          "url": "https://www.youtube.com/channel/UC8WB5V8NVcLOjHsxw-PY5IA",
+          "lang": "英語",
+          "about": "ソロの稼ぎを時給で検証",
+          "updated": "2026-11-22",
+          "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UC8WB5V8NVcLOjHsxw-PY5IA"
+        },
+        {
+          "name": "SwoleBenji",
+          "url": "https://www.youtube.com/channel/UCxa1v9wVMmjYUhUfQOJxbzw",
+          "lang": "英語",
+          "about": "ソロの立ち回り",
+          "updated": "2026-11-17",
+          "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCxa1v9wVMmjYUhUfQOJxbzw"
+        },
+        {
+          "name": "Melroi",
+          "url": "https://www.youtube.com/channel/UCTHlZK00U1Whj2e9bL5cYUw",
+          "lang": "ロシア語",
+          "about": "金策・強盗・ワイプ・車のガイド",
+          "updated": "2026-11-23",
+          "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCTHlZK00U1Whj2e9bL5cYUw"
+        },
+        {
+          "name": "Drivehilik",
+          "url": "https://www.youtube.com/channel/UCH5OnVpkVAAQaR9z9OowK3w",
+          "lang": "ロシア語",
+          "about": "初心者・警官・拠点",
+          "updated": "2026-11-23",
+          "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCH5OnVpkVAAQaR9z9OowK3w"
+        },
+        {
+          "name": "Mosquer Review",
+          "url": "https://www.youtube.com/channel/UCYXikAZEJkbyfMWrabqWH7w",
+          "lang": "スペイン語",
+          "about": "パッチとニュースの紹介",
+          "updated": "2026-11-23",
+          "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYXikAZEJkbyfMWrabqWH7w"
+        }
+      ]
+    }
+  ]
+}

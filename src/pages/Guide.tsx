@@ -11,6 +11,8 @@ import { List, ListItem } from '@astryxdesign/core/List';
 import { Shell } from '../components/Shell';
 import { DISPLAY, Kicker, Version } from '../components/parts';
 import { Figure, RefMarks } from '../components/figures';
+import { guideIcon } from '../components/guideIcons';
+import { Icon } from '@astryxdesign/core/Icon';
 import { GUIDE, VERSIONS, findArticle } from '../lib/data';
 import { refLinks, sourceList, type GuideItem, type GuideRef, type GuideSection } from '../lib/guide';
 import { newsUrl } from '../lib/steamNews';
@@ -87,7 +89,10 @@ export function GuideIndex() {
         {GUIDE.sections.map((s, i) => (
           <ClickableCard key={s.id} label={s.title} href={url(`guide/${s.id}/`)} padding={4} style={{ border: '1px solid var(--color-border-emphasized)' }}>
             <VStack gap={2}>
-              <Text type="label" color="accent" hasTabularNumbers style={{ ...DISPLAY, fontSize: 18 }}>{String(i + 1).padStart(2, '0')}</Text>
+              <HStack gap={2} vAlign="center">
+                <Icon icon={guideIcon(s.id)} color="accent" />
+                <Text type="label" color="accent" hasTabularNumbers style={{ ...DISPLAY, fontSize: 18 }}>{String(i + 1).padStart(2, '0')}</Text>
+              </HStack>
               <Heading level={2}>{s.title}</Heading>
               <Text type="supporting" color="secondary">{s.summary}</Text>
               <Text type="supporting" color="placeholder" hasTabularNumbers>図 {s.figures.length}・項目 {s.items.length}</Text>
@@ -136,6 +141,15 @@ export function GuideGenre({ section: s }: { section: GuideSection }) {
         <Link href={url('guide/')} color="secondary">攻略の一覧へ戻る</Link>
       </StackItem>
       <Header kicker={`攻略 ${String(i + 1).padStart(2, '0')}`} title={s.title} lead={s.summary} />
+      {/* イメージ画像 (scripts/make-guide-images.tsx が描く。公式の画像は使わない) */}
+      <img
+        src={url(`img/guide-${s.id}.png`)}
+        alt={`ROB RUN 攻略「${s.title}」のイメージ`}
+        width={1600}
+        height={400}
+        loading="eager"
+        style={{ width: '100%', height: 'auto', borderRadius: 8, display: 'block' }}
+      />
 
       {s.figures.map((f, k) => (
         <Figure key={k} f={f} numberOf={numberOf} />
