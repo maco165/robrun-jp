@@ -6,6 +6,8 @@
 //   3. ページのエラーと、描画の食い違い (hydration) の警告が無い
 //   4. 記事の画面に「AI による要約」(人が要約した記事は「人による要約」) と原文のリンクがある
 //   5. <道>/index.html でも描いたあとの見出しが同じページのもの。題・説明に $& や $$ があっても書き込みが壊れない
+//   6. SEO: og:title が題と同じ、canonical と og:url がある (404 は無く noindex)、JSON-LD が読めて種類が合う、
+//      sitemap.xml に全ページがあり 404 は無い、ファビコン・ホーム画面用の画像・共有の画像が 200
 import { spawn, spawnSync } from 'node:child_process';
 import { chromium } from 'playwright';
 
@@ -21,9 +23,9 @@ if (built.status !== 0) {
 }
 
 const PAGES = [
-  { path: '', heading: '【見本】グランドホテルの戦利品を調整' },
+  { path: '', heading: '【見本】グランドホテルの戦利品を調整', ld: 'WebSite' },
   { path: 'news/', heading: '記事一覧' },
-  { path: 'articles/fixture-p032/', heading: '【見本】グランドホテルの戦利品を調整', article: true, version: '2026-11-20 版', old: false },
+  { path: 'articles/fixture-p032/', heading: '【見本】グランドホテルの戦利品を調整', article: true, version: '2026-11-20 版', old: false, ld: 'NewsArticle' },
   { path: 'articles/fixture-raid/', heading: '【見本】今週の Federal Raid の時刻を告知', article: true, version: '2026-11-17 版', old: true },
   // GitHub Pages は <道>/index.html にも同じ HTML を返す。描いたあとに 404 に変わらないこと
   { path: 'news/index.html', heading: '記事一覧' },
@@ -43,12 +45,40 @@ try {
     try { if ((await fetch(BASE)).ok) break; } catch { /* まだ立ち上がっていない */ }
     await new Promise((r) => setTimeout(r, 200));
   }
+  // sitemap とファビコン・画像 (6)
+  const sitemap = await (await fetch(BASE + 'sitemap.xml')).text();
+  for (const loc of ['', 'news/', 'articles/fixture-p032/', 'articles/fixture-dollar/']) {
+    if (!sitemap.includes(`<loc>https://maco165.github.io/robrun-jp/${loc}</loc>`)) fails.push(`sitemap.xml に ${loc || '/'} が無い`);
+  }
+  if (sitemap.includes('404')) fails.push('sitemap.xml に 404 がある');
+  for (const f of ['favicon.svg', 'apple-touch-icon.png', 'og.png']) {
+    const res = await fetch(BASE + f);
+    if (!res.ok) fails.push(`${f} が ${res.status}`);
+  }
   const browser = await chromium.launch();
   for (const p of PAGES) {
     const raw = await (await fetch(BASE + p.path)).text();
     // HTML では & が &amp; に逃がされる
     if (!raw.includes(p.heading.replace(/&/g, '&amp;'))) fails.push(`${p.path || '/'}: 事前描画の HTML に見出し「${p.heading}」が無い`);
     if (p.description && !/<meta name="description" content="[^"]*/.exec(raw)?.[0].includes(p.description)) fails.push(`${p.path}: meta description に「${p.description}」が無い`);
+    // SEO (6)
+    const title = /<title>([^<]*)<\/title>/.exec(raw)?.[1];
+    if (!raw.includes(`<meta property="og:title" content="${title}" />`)) fails.push(`${p.path || '/'}: og:title が題と違う`);
+    const is404 = p.path === '404.html';
+    const canonical = /<link rel="canonical" href="([^"]*)"/.exec(raw)?.[1];
+    const ogUrl = /<meta property="og:url" content="([^"]*)"/.exec(raw)?.[1];
+    if (is404) {
+      if (canonical || ogUrl || !raw.includes('<meta name="robots" content="noindex" />')) fails.push('404.html: canonical・og:url が残るか noindex が無い');
+    } else {
+      const want = `https://maco165.github.io/robrun-jp/${p.path.replace(/index\.html$/, '')}`;
+      if (canonical !== want || ogUrl !== want) fails.push(`${p.path || '/'}: canonical/og:url が ${want} でない (${canonical} / ${ogUrl})`);
+    }
+    const ld = /<script type="application\/ld\+json">([^<]*)<\/script>/.exec(raw)?.[1];
+    if (p.ld) {
+      let type = '';
+      try { type = JSON.parse(ld ?? '')['@type']; } catch { /* 読めない */ }
+      if (type !== p.ld) fails.push(`${p.path || '/'}: JSON-LD の @type が ${p.ld} でない (${type || '読めない'})`);
+    }
     for (const w of WIDTHS) {
       const page = await browser.newPage({ viewport: { width: w, height: 900 } });
       const errors = [];
