@@ -98,6 +98,7 @@ try {
       if (!h1.includes(p.heading)) fails.push(`${p.path || '/'} @${w}: 描いたあとの見出しが「${h1.slice(0, 40)}」`);
       const sw = await page.evaluate(() => document.documentElement.scrollWidth);
       if (sw > w) fails.push(`${p.path || '/'} @${w}: 横にはみ出す (scrollWidth ${sw})`);
+      if (((await page.textContent('footer')) ?? '').includes('AI が作っています')) fails.push(`${p.path || '/'} @${w}: フッターに AI の注記が残っている`);
       if (errors.length) fails.push(`${p.path || '/'} @${w}: ページのエラー ${errors.join(' / ').slice(0, 300)}`);
       if (p.article) {
         const text = await page.textContent('main');
