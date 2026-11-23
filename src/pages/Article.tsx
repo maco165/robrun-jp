@@ -24,7 +24,7 @@ export function Article({ article }: { article: ArticleData }) {
     { label: '公開（UTC）', value: <Text type="supporting" hasTabularNumbers>{utcFull(a.publishedAt)}</Text> },
     { label: '対象の版', value: <Version v={a.gameVersion} /> },
     { label: '原文', value: <Link href={a.url} isExternalLink>{a.title}（{a.source === 'official' ? 'Steam・英語' : '外部サイト'}）</Link> },
-    { label: '要約', value: <Text type="supporting">{a.summarizedBy === 'ai' ? 'AI が作成' : '人が作成'}。{a.reviewed ? '人が確認済み' : '人はまだ確認していない'}</Text> },
+    { label: '要約', value: <Text type="supporting">{a.summarizedBy === 'ai' ? 'AI が作成' : '人が作成'}</Text> },
   ];
   return (
     <Shell current="news">
@@ -45,7 +45,6 @@ export function Article({ article }: { article: ArticleData }) {
               <Heading level={1} style={{ ...DISPLAY, fontSize: 'clamp(28px, 5vw, 44px)', lineHeight: 1.3 }}>{a.summaryJa.headline}</Heading>
               {a.summaryJa.impact ? <Text type="large" color="secondary">{a.summaryJa.impact}</Text> : null}
               <Tags tags={a.tags} />
-              <Text type="supporting" color="placeholder">{a.summarizedBy === 'ai' ? 'AI による要約' : '人による要約'}{a.reviewed ? '' : '・人は未確認'}。正確な内容は原文で確かめてください</Text>
             </VStack>
 
             {a.summaryJa.points.length > 0 ? (

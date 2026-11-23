@@ -4,7 +4,7 @@
 //   1. JS を動かす前の HTML (事前描画) に、そのページの見出しの文字列がある
 //   2. 横にはみ出さない (document.documentElement.scrollWidth が幅以下)
 //   3. ページのエラーと、描画の食い違い (hydration) の警告が無い
-//   4. 記事の画面に「AI による要約」(人が要約した記事は「人による要約」) と原文のリンクがある
+//   4. 記事の画面に情報欄の要約に「AI が作成」(人が要約した記事は「人が作成」) が出て、「人は未確認」の注釈は無い と原文のリンクがある
 //   5. <道>/index.html でも描いたあとの見出しが同じページのもの。題・説明に $& や $$ があっても書き込みが壊れない
 //   6. SEO: og:title が題と同じ、canonical と og:url がある (404 は無く noindex)、JSON-LD が読めて種類が合う、
 //      sitemap.xml に全ページがあり 404 は無い、ファビコン・ホーム画面用の画像・共有の画像が 200
@@ -31,8 +31,8 @@ const PAGES = [
   { path: 'news/index.html', heading: '記事一覧' },
   { path: 'articles/fixture-p032/index.html', heading: '【見本】グランドホテルの戦利品を調整', article: true },
   // 題と説明に $& と $$ がある見本。HTML への書き込みが $ の並びで壊れないこと
-  // 人が要約した記事 (summarizedBy: human) なので「人による要約」と出る
-  { path: 'articles/fixture-dollar/', heading: '【見本】報酬 $$500 と $& の表示', article: true, summary: '人による要約', description: '報酬が $$500 増える' },
+  // 人が要約した記事 (summarizedBy: human) なので「人が作成」と出る
+  { path: 'articles/fixture-dollar/', heading: '【見本】報酬 $$500 と $& の表示', article: true, summary: '人が作成', description: '報酬が $$500 増える' },
   // GitHub Pages は知らない道に 404.html の中身を返す。vite preview は返さないので 404.html を直接開く (どちらの道も 404 の画面になる)
   { path: '404.html', heading: 'ページが見つかりません' },
 ];
@@ -93,8 +93,9 @@ try {
       if (errors.length) fails.push(`${p.path || '/'} @${w}: ページのエラー ${errors.join(' / ').slice(0, 300)}`);
       if (p.article) {
         const text = await page.textContent('main');
-        const summary = p.summary ?? 'AI による要約';
+        const summary = p.summary ?? 'AI が作成';
         if (!text?.includes(summary)) fails.push(`${p.path} @${w}: 「${summary}」が無い`);
+        if (text?.includes('未確認') || text?.includes('まだ確認していない')) fails.push(`${p.path} @${w}: 人の確認の注釈が出ている`);
         // 版 (R-14): 対象の版が出て、いまの版より古い記事にだけ【古い版の情報】が出る
         if (p.version && !text?.includes(p.version)) fails.push(`${p.path} @${w}: 版「${p.version}」が無い`);
         if (p.old !== undefined && (text?.includes('古い版の情報') ?? false) !== p.old) fails.push(`${p.path} @${w}: 【古い版の情報】が${p.old ? '無い' : '出ている'}`);
