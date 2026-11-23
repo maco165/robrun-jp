@@ -3,6 +3,7 @@ import { Home } from './pages/Home';
 import { News } from './pages/News';
 import { Article } from './pages/Article';
 import { NotFound } from './pages/NotFound';
+import { Guide } from './pages/Guide';
 import { ARTICLES, findArticle } from './lib/data';
 import { versionLabel } from './lib/versions';
 
@@ -41,6 +42,14 @@ const NEWS: Page = {
   ogType: 'website',
 };
 
+const GUIDE_PAGE: Page = {
+  path: 'guide/',
+  title: `攻略: いまわかっている仕組み | ${SITE}`,
+  description: 'ROB RUN の換金・悪名・拠点・地区・警察・ワイプなど、いまわかっている仕組みを公式のお知らせと公式ヘルプを中心にまとめた攻略ページ。元のアップデート情報へのリンクつき。',
+  element: <Guide />,
+  ogType: 'website',
+};
+
 export const NOT_FOUND: Page = {
   path: '404.html',
   title: `ページが見つかりません | ${SITE}`,
@@ -54,6 +63,7 @@ export function sitePages(): Page[] {
   return [
     TOP,
     NEWS,
+    GUIDE_PAGE,
     ...ARTICLES.map((a) => ({
       path: `articles/${a.id}/`,
       title: `${a.summaryJa.headline} | ${SITE}`,
@@ -84,6 +94,7 @@ export function resolve(path: string): Page {
   const p = path.replace(/^\/+/, '').replace(/(^|\/)index\.html$/, '$1');
   if (p === '' || p === 'index.html') return TOP;
   if (p === 'news/' || p === 'news') return NEWS;
+  if (p === 'guide/' || p === 'guide') return GUIDE_PAGE;
   const m = /^articles\/([A-Za-z0-9_-]+)\/?$/.exec(p);
   if (m) {
     const a = findArticle(m[1]);

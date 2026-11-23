@@ -2,6 +2,8 @@
 import news from '@news';
 import schedule from '../../data/schedule.json';
 import versions from '../../data/versions.json';
+import guide from '../../data/guide.json';
+import type { Guide } from './guide';
 import { isOlder, latestVersion, type Version } from './versions';
 import type { Article, Schedule } from './types';
 
@@ -9,6 +11,8 @@ import type { Article, Schedule } from './types';
 export const ARTICLES: Article[] = [...(news as Article[])].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 export const SCHEDULE = schedule as Schedule;
 export const VERSIONS = versions.versions as Version[];
+/** 攻略ページの中身 (正本は data/guide.json) */
+export const GUIDE = guide as Guide;
 /** いまの (最新の) 版 */
 export const LATEST_VERSION = latestVersion(VERSIONS);
 

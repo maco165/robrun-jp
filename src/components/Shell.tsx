@@ -10,11 +10,12 @@ import { robrunTheme } from '../themes/robrun/robrun.js';
 import { DISPLAY } from './parts';
 import { url } from '../lib/url';
 
-export type NavKey = 'top' | 'news' | null;
+export type NavKey = 'top' | 'news' | 'guide' | null;
 
 const NAV: { key: Exclude<NavKey, null>; label: string; path: string }[] = [
   { key: 'top', label: '最新', path: '' },
   { key: 'news', label: '記事一覧', path: 'news/' },
+  { key: 'guide', label: '攻略', path: 'guide/' },
 ];
 
 const FRAME = { marginInline: 'auto', boxSizing: 'border-box' } as const;

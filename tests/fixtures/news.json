@@ -157,5 +157,31 @@
     },
     "summarizedBy": "human",
     "reviewed": true
+  },
+  {
+    "id": "1848557880479055",
+    "source": "official",
+    "title": "ROB RUN: First Changes & Server Schedule",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1848557880479055",
+    "publishedAt": "2026-11-04T09:00:00Z",
+    "gameVersion": "playtest",
+    "summaryJa": {
+      "headline": "【見本】発売に向けた最初の変更点",
+      "impact": "",
+      "points": []
+    },
+    "tags": [
+      "金策"
+    ],
+    "changeTypes": [
+      "change"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": true,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
   }
 ]
