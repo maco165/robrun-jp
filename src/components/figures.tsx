@@ -66,25 +66,60 @@ function Pyramid({ tiers }: { tiers: { title: string; note: string }[] }) {
 }
 
 /** 1 系列の横棒。値は棒の右に文字で書く (色だけで読ませない) */
-function Bars({ bars, unit }: { bars: { label: string; value: number }[]; unit: string }) {
+function Bars({ bars, unit, plus }: { bars: { label: string; value: number; note?: string }[]; unit: string; plus?: boolean }) {
   const max = Math.max(...bars.map((b) => b.value), 1);
+  const fmt = (v: number) => `${plus ? '+' : ''}${v.toLocaleString('en-US')}${unit}`;
   return (
-    <VStack gap={2} role="img" aria-label={bars.map((b) => `${b.label} ${b.value}${unit}`).join('、')}>
+    <VStack gap={2} role="img" aria-label={bars.map((b) => `${b.label} ${fmt(b.value)}`).join('、')}>
       {bars.map((b) => (
         <HStack key={b.label} gap={3} vAlign="center">
-          <StackItem style={{ width: 64, flexShrink: 0 }}><Text type="supporting" color="secondary">{b.label}</Text></StackItem>
+          <StackItem style={{ width: 120, flexShrink: 0 }}><Text type="supporting" color="secondary">{b.label}</Text></StackItem>
           <StackItem size="fill" style={{ minWidth: 0 }}>
             <HStack gap={2} vAlign="center">
               {b.value > 0 ? (
-                <span title={`${b.label}: +${b.value}${unit}`} style={{ display: 'block', height: 16, width: `${(b.value / max) * 85}%`, background: 'var(--color-accent)', borderRadius: '0 4px 4px 0' }} />
+                <span title={`${b.label}: ${fmt(b.value)}`} style={{ display: 'block', height: 16, width: `${(b.value / max) * 85}%`, background: 'var(--color-accent)', borderRadius: '0 4px 4px 0' }} />
               ) : (
                 <span style={{ display: 'block', height: 16, width: 2, background: 'var(--color-border-emphasized)' }} />
               )}
-              <Text type="supporting" hasTabularNumbers weight="medium">+{b.value}{unit}</Text>
+              <Text type="supporting" hasTabularNumbers weight="medium">{fmt(b.value)}</Text>
+              {b.note ? <Text type="supporting" color="placeholder">{b.note}</Text> : null}
             </HStack>
           </StackItem>
         </HStack>
       ))}
+    </VStack>
+  );
+}
+
+/** 模式図の地図。縮尺も正確な形も無く、区域どうしのおおよその位置だけを示す */
+function MapFig({ cols, rows, zones }: { cols: number; rows: number; zones: { label: string; note?: string; col: number; row: number; colSpan?: number; rowSpan?: number; tone?: 'center' | 'normal' | 'muted' }[] }) {
+  return (
+    <VStack gap={1}>
+      <span role="img" aria-label={`模式図: ${zones.map((z) => z.label).join('、')}`} style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, gridTemplateRows: `repeat(${rows}, minmax(56px, auto))`, gap: 4 }}>
+        {zones.map((z) => (
+          <span
+            key={z.label}
+            style={{
+              gridColumn: `${z.col} / span ${z.colSpan ?? 1}`,
+              gridRow: `${z.row} / span ${z.rowSpan ?? 1}`,
+              border: `1px ${z.tone === 'muted' ? 'dashed' : 'solid'} ${z.tone === 'center' ? 'var(--color-accent)' : 'var(--color-border-emphasized)'}`,
+              borderRadius: 6,
+              padding: 6,
+              minWidth: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              overflowWrap: 'anywhere',
+            }}
+          >
+            <Text type="supporting" weight="bold" color={z.tone === 'center' ? 'accent' : 'primary'}>{z.label}</Text>
+            {z.note ? <Text type="supporting" size="2xs" color="secondary">{z.note}</Text> : null}
+          </span>
+        ))}
+      </span>
+      <Text type="supporting" size="2xs" color="placeholder">模式図です。縮尺と形は正確ではありません</Text>
     </VStack>
   );
 }
@@ -134,7 +169,8 @@ export function Figure({ f, numberOf }: { f: GuideFigure; numberOf: (r: GuideRef
       </HStack>
       {f.type === 'flow' ? <Flow steps={f.steps} /> : null}
       {f.type === 'pyramid' ? <Pyramid tiers={f.tiers} /> : null}
-      {f.type === 'bars' ? <Bars bars={f.bars} unit={f.unit} /> : null}
+      {f.type === 'bars' ? <Bars bars={f.bars} unit={f.unit} plus={f.plus} /> : null}
+      {f.type === 'map' ? <MapFig cols={f.cols} rows={f.rows} zones={f.zones} /> : null}
       {f.type === 'split' ? <Split columns={f.columns} /> : null}
       {f.type === 'table' ? <FigTable columns={f.columns} rows={f.rows} /> : null}
       {f.note ? <Text as="p" type="supporting" color="placeholder">{f.note}</Text> : null}

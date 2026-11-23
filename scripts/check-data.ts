@@ -3,7 +3,7 @@
 //   攻略 (data/guide.json): 節の id・項目の出典と出所の種類 (公式か攻略サイトか)・本文の長さ・基にした版 (src/lib/guide.ts)
 //   記事 (data/news.json): id の重複・版 (gameVersion) の有無・一覧に無い版・公式の記事の版が公開の時点の版と合うか
 // 使い方: tsx scripts/check-data.ts [--news <記事の JSON>] (既定は data/news.json)
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { checkGuide, type Guide } from '../src/lib/guide.ts';
 import { PLAYTEST, newVersionId, sortVersions, versionAt, type Version } from '../src/lib/versions.ts';
@@ -72,6 +72,10 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const versions = (JSON.parse(readFileSync('data/versions.json', 'utf8')) as { versions: Version[] }).versions;
   const guide = JSON.parse(readFileSync('data/guide.json', 'utf8')) as Guide;
   const ng = [...checkData(news, versions), ...checkGuide(guide, new Set([PLAYTEST, ...versions.map((v) => v.id)]))];
+  // 攻略のジャンルごとのイメージ画像 (npm run images:guide で描いてコミットする)。ジャンルを足して描き忘れると落とす
+  for (const sec of guide.sections) {
+    for (const f of [`public/img/guide-${sec.id}.png`, `public/img/og-guide-${sec.id}.png`]) if (!existsSync(f)) ng.push(`guide の ${sec.id}: ${f} が無い (npm run images:guide で描く)`);
+  }
   for (const l of ng) console.log(`NG ${l}`);
   if (ng.length) process.exit(1);
   console.log(`check-data: OK (版 ${versions.length} 件・記事 ${news.length} 件・攻略 ${guide.sections.length} 節、${newsPath})`);

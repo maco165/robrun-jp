@@ -18,12 +18,20 @@ export type Page = {
   element: ReactElement;
   /** OGP の og:type */
   ogType: 'website' | 'article';
+  /** 共有の画像 (og:image)。base からの道と代替文字。無ければ全体の og.png */
+  image?: { path: string; alt: string };
   /** 構造化データ (JSON-LD)。無ければ書かない */
   jsonLd?: Record<string, unknown>;
 };
 
 const SITE_URL = `${ORIGIN}/robrun-jp/`;
 const PUBLISHER = { '@type': 'Organization', name: SITE, url: SITE_URL };
+
+/** パンくず (ホーム > 攻略 > ジャンル) の構造化データ */
+const crumbs = (list: { name: string; path: string }[]) => ({
+  '@type': 'BreadcrumbList',
+  itemListElement: list.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: `${SITE_URL}${c.path}` })),
+});
 
 const TOP: Page = {
   path: '',
@@ -48,6 +56,14 @@ const GUIDE_PAGE: Page = {
   description: 'ROB RUN の換金・悪名・拠点・地区・警察・ワイプなど、いまわかっている仕組みを公式のお知らせと公式ヘルプを中心に、ジャンルごとに図と表でまとめた攻略ページ。元のアップデート情報へのリンクつき。',
   element: <GuideIndex />,
   ogType: 'website',
+  image: { path: 'img/og-guide.png', alt: 'ROB RUN 攻略: いまわかっている仕組みをジャンル別に図と表で' },
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'CollectionPage', name: 'ROB RUN 攻略', url: `${SITE_URL}guide/`, inLanguage: 'ja', isPartOf: { '@type': 'WebSite', name: SITE, url: SITE_URL } },
+      crumbs([{ name: 'ホーム', path: '' }, { name: '攻略', path: 'guide/' }]),
+    ],
+  },
 };
 
 export const NOT_FOUND: Page = {
@@ -66,10 +82,29 @@ export function sitePages(): Page[] {
     GUIDE_PAGE,
     ...GUIDE.sections.map((g) => ({
       path: `guide/${g.id}/`,
-      title: `${g.title} | 攻略 | ${SITE}`,
+      title: `ROB RUN 攻略: ${g.title} | ${SITE}`,
       description: `ROB RUN の攻略: ${g.title}。${g.summary}。公式のお知らせと公式ヘルプを中心に、図と表でまとめています。`,
       element: <GuideGenre section={g} />,
-      ogType: 'website' as const,
+      ogType: 'article' as const,
+      image: { path: `img/og-guide-${g.id}.png`, alt: `ROB RUN 攻略「${g.title}」: ${g.summary}` },
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Article',
+            headline: `ROB RUN 攻略: ${g.title}`,
+            description: g.summary,
+            inLanguage: 'ja',
+            dateModified: `${GUIDE.updatedAt}T00:00:00+09:00`,
+            mainEntityOfPage: `${SITE_URL}guide/${g.id}/`,
+            image: `${SITE_URL}img/og-guide-${g.id}.png`,
+            author: PUBLISHER,
+            publisher: PUBLISHER,
+            about: { '@type': 'VideoGame', name: 'ROB RUN', url: 'https://store.steampowered.com/app/4262460/' },
+          },
+          crumbs([{ name: 'ホーム', path: '' }, { name: '攻略', path: 'guide/' }, { name: g.title, path: `guide/${g.id}/` }]),
+        ],
+      },
     })),
     ...ARTICLES.map((a) => ({
       path: `articles/${a.id}/`,

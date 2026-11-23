@@ -84,6 +84,18 @@ try {
       if (canonical !== want || ogUrl !== want) fails.push(`${p.path || '/'}: canonical/og:url が ${want} でない (${canonical} / ${ogUrl})`);
     }
     const ld = /<script type="application\/ld\+json">([^<]*)<\/script>/.exec(raw)?.[1];
+    // 攻略のジャンル: 共有の画像がジャンルのもので開け、構造化データに記事とパンくずがある
+    if (p.genre) {
+      const og = /<meta property="og:image" content="([^"]*)"/.exec(raw)?.[1] ?? '';
+      if (!og.endsWith(`/img/og-guide-${p.genre.id}.png`)) fails.push(`${p.path}: og:image がジャンルの画像でない (${og})`);
+      for (const img of [`img/og-guide-${p.genre.id}.png`, `img/guide-${p.genre.id}.png`]) {
+        const res = await fetch(BASE + img);
+        if (!res.ok) fails.push(`${p.path}: ${img} が ${res.status}`);
+      }
+      let types = [];
+      try { types = JSON.parse(ld ?? '')['@graph'].map((x) => x['@type']); } catch { /* 読めない */ }
+      if (!types.includes('Article') || !types.includes('BreadcrumbList')) fails.push(`${p.path}: JSON-LD に Article と BreadcrumbList が無い (${types.join(',') || '読めない'})`);
+    }
     if (p.ld) {
       let type = '';
       try { type = JSON.parse(ld ?? '')['@type']; } catch { /* 読めない */ }
@@ -133,7 +145,7 @@ try {
           const fig = figs.nth(k);
           const ft = (await fig.textContent()) ?? '';
           const words = f.type === 'flow' ? f.steps.map((x) => x.title) : f.type === 'pyramid' ? f.tiers.map((x) => x.title)
-            : f.type === 'table' ? f.rows.map((r) => r[0]) : f.type === 'bars' ? f.bars.map((b) => b.label) : f.columns.flatMap((c) => c.items);
+            : f.type === 'table' ? f.rows.map((r) => r[0]) : f.type === 'bars' ? f.bars.map((b) => b.label) : f.type === 'map' ? f.zones.map((z) => z.label) : f.columns.flatMap((c) => c.items);
           for (const x of [f.title, ...words]) if (!ft.includes(x)) fails.push(`${p.path} @${w}: 図「${f.title}」に「${x}」が無い`);
           if ((await fig.locator('a[href^="#src-"]').count()) === 0) fails.push(`${p.path} @${w}: 図「${f.title}」に出典の番号が無い`);
           if (f.kind === 'site' && !ft.includes('攻略サイトの情報')) fails.push(`${p.path} @${w}: 図「${f.title}」に攻略サイトの印が無い`);

@@ -425,7 +425,8 @@
               "label": "悪名 5",
               "value": 50
             }
-          ]
+          ],
+          "plus": true
         },
         {
           "kind": "site",

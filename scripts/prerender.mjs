@@ -29,7 +29,10 @@ function fill(template, page, body, origin) {
     .replace(/<meta property="og:type" content="[^"]*" \/>/, () => `<meta property="og:type" content="${page.ogType}" />`)
     .replace(/<meta property="og:title" content="[^"]*" \/>/, () => `<meta property="og:title" content="${esc(page.title)}" />`)
     .replace(/<meta property="og:description" content="[^"]*" \/>/, () => `<meta property="og:description" content="${esc(page.description)}" />`)
-    .replace(/<meta property="og:url" content="[^"]*" \/>/, () => (notFound ? '' : `<meta property="og:url" content="${esc(url)}" />`));
+    .replace(/<meta property="og:url" content="[^"]*" \/>/, () => (notFound ? '' : `<meta property="og:url" content="${esc(url)}" />`))
+    // ページごとの共有の画像 (攻略のジャンルなど)。無ければ index.html の og.png のまま
+    .replace(/<meta property="og:image" content="[^"]*" \/>/, (m) => (page.image ? `<meta property="og:image" content="${esc(`${origin}${BASE}${page.image.path}`)}" />` : m))
+    .replace(/<meta property="og:image:alt" content="[^"]*" \/>/, (m) => (page.image ? `<meta property="og:image:alt" content="${esc(page.image.alt)}" />` : m));
   if (page.jsonLd) out = out.replace('</head>', () => `  <script type="application/ld+json">${jsonLdText(page.jsonLd)}</script>\n  </head>`);
   out = out
     .replace(/<div id="root"><!--ssr-start-->[\s\S]*?<!--ssr-end--><\/div>/, () => `<div id="root" data-ssr="1">${body}</div>`);
