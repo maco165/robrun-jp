@@ -39,6 +39,10 @@ flowchart LR
 | `/robrun-jp/` | 新サーバーの開放までの残り時間 (EU・East US、日本時間)、最新のお知らせ、これまでのお知らせ |
 | `/robrun-jp/news/` | 記事の一覧。タグ・変更の種類・キーワードで絞り込む |
 | `/robrun-jp/articles/<id>/` | 記事。日本語の要約・変更点・対象の版・原文へのリンク |
+| `/robrun-jp/guide/` | 攻略の入口。ジャンルのカードとアップデートの履歴 |
+| `/robrun-jp/guide/<ジャンル>/` | 攻略のジャンル (世界観・基本・地図・ワイプ後の動き・換金・値打ちのある品・武器・お金・警察・拠点・権力・車・ワイプ)。図・表・グラフ、くわしく、末尾にまとめた出典 |
+| `/robrun-jp/tools/sensitivity/` | 感度変換。ほかのゲームの感度を、同じ振り向き (cm/360) になる ROB RUN の感度に変換する |
+| `/robrun-jp/links/` | リンク集。公式・攻略・データ・YouTube を、何が強いかと更新日つきで |
 
 どのページも、作るときに HTML を書き出す (事前描画) ので、JavaScript を動かさない読み手にも中身が届きます。
 道は `src/routes.tsx` の 1 か所で決め、画面の振り分けと書き出し (`scripts/prerender.mjs`) の両方がそこを読みます。
@@ -46,7 +50,8 @@ flowchart LR
 ## 検索と共有
 
 - ページごとに題・説明・canonical・OGP (共有したときのカード) を書き出します。Twitter (X) のカードの形 (summary_large_image) は全ページ共通で、題・説明・画像は OGP から読まれます。共有の画像は `public/og.png` (1200×630) です
-- 構造化データ (JSON-LD): トップは WebSite、記事は NewsArticle (公開日・原文を `isBasedOn` で指す)
+- 構造化データ (JSON-LD): トップは WebSite、記事は NewsArticle (公開日・原文を `isBasedOn` で指す)、攻略のジャンルは Article とパンくず (BreadcrumbList)、攻略の入口とリンク集は CollectionPage、感度変換は WebApplication
+- 攻略のジャンルごとに共有の画像 (`public/img/og-guide-<id>.png`) と見出しの帯 (`public/img/guide-<id>.png`) を自前で描きます (`npm run images:guide`)。公式の画像は使いません
 - `sitemap.xml` は検索に載せるページだけを載せ、作るたびの日付は付けません。404 は検索に載せません (noindex)
 - 検索エンジンが読む `robots.txt` はドメインの直下 (`maco165.github.io` のリポジトリ) にあり、そこに robrun-jp の Sitemap の行を置きます。`public/robots.txt` はその写しです
 - ファビコンは日本時間のカウントダウンを表すストップウォッチの印で、公式のロゴは使いません。`npm run images` で `public/apple-touch-icon.png` と `public/og.png` を描き直せます
@@ -60,6 +65,9 @@ flowchart LR
 | `data/versions.json` | 版の一覧 (発売とパッチノート。日時と元のお知らせ) | 人、のちに取得の仕組み |
 | `data/skipped.json` | 要約できなかった記事の gid・状態・回数・最後の理由 (本文は入れない)。断られた記事は 1 回、それ以外は 3 回で取らなくなる | 毎時の更新の仕組み |
 | `data/schedule.json` | 新サーバーの開放の時刻のきまりと、その出典・更新日 | 人 (公式のお知らせを確かめて) |
+| `data/guide.json` | 攻略のジャンル・図・項目。どれも出所の種類 (公式か攻略サイトか) と出典を持つ。基にした版 (`basedOn`) | 人 (調べて) |
+| `data/links.json` | リンク集の各サイト (説明・言語・更新日・フィード) | 人 (調べて) |
+| `data/sensitivity.json` | 感度変換の係数 (各ゲームの yaw) と出典、ROB RUN の設定の範囲、測り方 | 人 (調べて) |
 | `tests/fixtures/news.json` | 画面の検査だけに使う見本の記事。題に【見本】が付く | 人 |
 
 ### 版の決め方
@@ -113,10 +121,11 @@ npm run fetch:news  # Steam の公式ニュースを取り、まだ要約して�
 npm run summarize   # .cache/inbox.json の記事を Claude Haiku で日本語に要約して data/news.json に足す (既定は claude の CLI。--mock で見本の要約)
 npm run check:news  # data/news.json の様式の検査 (タグ・変更の種類・原文の URL・要約の主体・人の確認)
 npm run e2e     # 見本の記事で dist-e2e/ に組み、1280px と 390px で各ページを開いて確かめる
+npm run images:guide  # 攻略のジャンルごとのイメージ画像を public/img/ に描く (ジャンルを足したら走らせてコミット)
 ```
 
 `npm run e2e` は、事前描画の HTML に見出しがあること、横にはみ出さないこと、ページのエラーが無いこと、
-記事に「AI による要約」と原文のリンクがあることを確かめます。CI (`.github/workflows/deploy.yml`) でも PR ごとに走ります。
+記事の情報欄に要約の主体と原文のリンクがあること、攻略の図・出典の番号・まとめた出典、リンク集のサイト、感度変換の計算を確かめます。CI (`.github/workflows/deploy.yml`) でも PR ごとに走ります。
 
 ## 方針
 
@@ -124,7 +133,9 @@ npm run e2e     # 見本の記事で dist-e2e/ に組み、1280px と 390px で�
 - 他のサイトから自動で取得 (スクレイピング) しない
 - 公式のロゴやアートワークは、開発元の方針を確かめるまで使わない
 - 日本語化 MOD は配らず、案内もしない (アンチチートによる BAN の危険があるため)
-- 要約には「AI による要約」と書き、人が確かめたかどうかを記事ごとに持つ
+- 記事の情報欄に要約の主体 (AI か人か) を書く。人が確かめたかどうかはデータに持つ
+- ゲーム内通貨・アイテムの販売、代行、チートの販売をしているサイトは、リンク集にも出典にも載せない (`src/lib/links.ts` の `BLOCKED_HOSTS`、`check:data` が落とす)
+- 公式が出していない数値 (ゲームのファイルから集めた可能性があるもの) は、攻略サイトの情報として印を付け、出典と注記を添える
 
 ## ライセンス
 
