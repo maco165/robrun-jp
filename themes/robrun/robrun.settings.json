@@ -1,0 +1,58 @@
+{
+  "name": "robrun",
+  "like": "neutral",
+  "mode": "dark-only",
+  "settings": [
+    {
+      "thing": "font",
+      "value": "jetbrains-mono",
+      "source": "dial",
+      "on": "code"
+    },
+    {
+      "thing": "accent",
+      "value": "#f2b33d",
+      "source": "dial"
+    },
+    {
+      "thing": "neutral",
+      "value": "#5b6478",
+      "source": "dial"
+    },
+    {
+      "thing": "vibrancy",
+      "value": "65",
+      "source": "dial"
+    },
+    {
+      "thing": "headings",
+      "value": "bold",
+      "source": "dial",
+      "axis": "weight"
+    },
+    {
+      "thing": "corners",
+      "value": "small",
+      "source": "dial"
+    },
+    {
+      "thing": "surfaces",
+      "value": "flat",
+      "source": "dial"
+    },
+    {
+      "thing": "font",
+      "value": "'Noto Sans JP Variable', 'Noto Sans JP', system-ui, sans-serif",
+      "source": "dial",
+      "on": "body"
+    },
+    {
+      "thing": "font",
+      "value": "'Noto Sans JP Variable', 'Noto Sans JP', system-ui, sans-serif",
+      "source": "dial",
+      "on": "heading"
+    }
+  ],
+  "lifted": [],
+  "palette": "4b94a1534ca7b895e26f4d4a98e4d0ec2e07cf389796cece37d8cd42e7e62065"
+}

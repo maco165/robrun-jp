@@ -1,0 +1,5 @@
+/* ページの地をテーマの背景色で塗る (Theme は変数を定義するだけで、html と body は塗らない) */
+html {
+  background: var(--color-background-body);
+  color-scheme: dark;
+}

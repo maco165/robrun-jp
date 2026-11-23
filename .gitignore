@@ -7,3 +7,8 @@ vite.config.ts.timestamp-*
 .env
 .env.*
 !.env.example
+
+# テーマエディタの見本 (書体を埋め込んだ大きな生成物。公開しない)
+themes/*/preview.html
+themes/*/*.png
+themes/*/*.pictures.json
