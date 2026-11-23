@@ -1,6 +1,7 @@
 // vite build (画面) と vite build --ssr (事前描画の入口) のあとに、ページごとの HTML を書き出す (npm run build の最後の段)。
 // GitHub Pages は <道>/index.html を返すので、# の無い URL (/robrun-jp/news/ など) がそのまま開ける。
 // 検索エンジンと SNS が JS を動かさなくても、題・説明・canonical・本文を読めるようにする。知らない道は 404.html。
+import { execFileSync } from 'node:child_process';
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -45,5 +46,9 @@ for (const page of pages) {
   await writeFile(path.join(dir, 'index.html'), fill(template, page, render(page.path), ORIGIN));
 }
 await writeFile(path.join(OUT, '404.html'), fill(template, NOT_FOUND, render('404.html'), ORIGIN));
+// 公開の確かめの印: どのコミットから組んだか (更新の workflow が、公開まで届いたかをこれで見る)
+let commit = 'unknown';
+try { commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim(); } catch { /* git の外で組んだ */ }
+await writeFile(path.join(OUT, 'build.json'), JSON.stringify({ commit, builtAt: new Date().toISOString() }) + '\n');
 await rm(SSR, { recursive: true, force: true });
 console.log(`prerender: ${pages.length} ページと 404.html を書きました (${path.relative(ROOT, OUT)})`);

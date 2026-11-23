@@ -28,6 +28,8 @@
     "tests",
     "scripts/check-data.ts",
     "scripts/fetch-news.ts",
+    "scripts/summarize.ts",
+    "scripts/check-news.ts",
     "vite.config.ts"
   ]
 }

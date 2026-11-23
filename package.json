@@ -10,11 +10,15 @@
     "build": "tsc --noEmit && vite build && vite build --ssr src/entry-server.tsx --outDir ${ROBRUN_OUT:-dist}/.ssr --emptyOutDir && node scripts/prerender.mjs",
     "preview": "vite preview",
     "e2e": "node scripts/e2e.mjs",
-    "test": "node --import tsx --test tests/*.test.ts",
+    "test": "node --import tsx --test --test-timeout=180000 tests/*.test.ts",
     "check:data": "tsx scripts/check-data.ts",
-    "fetch:news": "tsx scripts/fetch-news.ts"
+    "fetch:news": "tsx scripts/fetch-news.ts",
+    "check:repo": "node scripts/check-repo.mjs",
+    "summarize": "tsx scripts/summarize.ts",
+    "check:news": "tsx scripts/check-news.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "1.12.0",
     "@astryxdesign/core": "0.7.17",
     "@astryxdesign/theme-neutral": "0.7.17",
     "@fontsource-variable/noto-sans-jp": "5.3.1",
@@ -23,7 +27,8 @@
     "@stylexjs/stylex": "0.19.1",
     "lucide-react": "1.77.0",
     "react": "19.1.10",
-    "react-dom": "19.1.10"
+    "react-dom": "19.1.10",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@astryxdesign/cli": "0.7.17",
