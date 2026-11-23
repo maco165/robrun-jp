@@ -47,7 +47,7 @@ flowchart LR
 
 | ファイル | 中身 | 誰が書くか |
 |---|---|---|
-| `data/news.json` | 記事 (原文の情報・日本語の要約・タグ・変更の種類・対象の版・人が確かめたか) | 毎時の更新の仕組み |
+| `data/news.json` | 記事 (原文の情報・日本語の要約・タグ・変更の種類・対象の版・人が確かめたか) | NucBox5 の毎時の更新 |
 | `data/steam.json` | ROB RUN の Steam の appid (4262460) と、確かめた日と方法 | 人 |
 | `data/versions.json` | 版の一覧 (発売とパッチノート。日時と元のお知らせ) | 人、のちに取得の仕組み |
 | `data/skipped.json` | 要約できなかった記事の gid・状態・回数・最後の理由 (本文は入れない)。断られた記事は 1 回、それ以外は 3 回で取らなくなる | 毎時の更新の仕組み |
@@ -65,17 +65,17 @@ ROB RUN の公式はパッチに版の番号を付けません (2026-11-23 時�
 
 ## 1 時間ごとの更新
 
-`.github/workflows/update.yml` が毎時 (23 分) と手動で、取得 → 要約 → 検査 → 記事のコミット → ビルド → 公開 を行います。
-記事を作ってビルドする job と、公開する job を分け、書き込みの権限をそれぞれに必要なものだけにしています。
-人のマージの公開 (`deploy.yml`) と同じ並びで走るので、両方が重なって古いコードで上書きすることはありません。
-記事 (`data/news.json`) を人が PR で直すときは、毎時 23 分の前後を避けてください。重なるとその回の要約は main に載せられず、次の回にやり直しになります (料金はその 1 回分)。
-取得した本文は `.cache/` (コミットしない) にだけ置き、同じ回の中で要約まで済ませます。
-公開まで届いたかは、公開した `build.json` のコミットが記事のコミットと同じかで確かめます。
-`ANTHROPIC_API_KEY` が Secrets に無い間は、要約を飛ばして警告だけ出します。手動の回で「見本の入力」を選ぶと、見本で取得と要約を通し、コミットと公開はしません。
+NucBox5 の cron が毎時、`scripts/nucbox-update.sh` を走らせます (専用のクローン `~/robrun-jp-cron`)。
+main の最新に合わせ → 取得 → 要約 → 検査 → 記事のコミット → main に push し、公開は GitHub の `deploy.yml` が main への push で行います。
+要約は NucBox5 の Claude Code (`claude -p`) で作るので、API の鍵は要りません (ログインしたアカウントの使える量から使う)。
+NucBox5 が止まっている間は記事が増えないだけで、サイトの公開はそのまま続きます。
+止めるには `~/.local/state/robrun-jp/_off` を作ります。ログは同じフォルダにあります。
+`bash scripts/nucbox-update.sh --fixture` で、見本の応答と偽の claude を使って通しで確かめられます (data/ を書き換えず、コミットも push もしない)。
+記事 (`data/news.json`) を人が PR で直すときは、毎時の回 (13 分) の前後を避けてください。重なるとその回の要約は push に失敗し、次の回にやり直しになります。
 
 ## 要約の仕方
 
-要約は Claude Haiku (`claude-haiku-5-5`) が、`prompts/summarize.md` のきまりで作ります。
+要約は Claude Haiku (`claude-haiku-5-5`) が、`prompts/summarize.md` のきまりで作ります。既定は NucBox5 の Claude Code の CLI (ツールなし・設定と MCP を読まない) で、`--engine api` なら Anthropic の API (要 `ANTHROPIC_API_KEY`) で作ります。
 出力の形 (見出し・影響・要点・タグ・お知らせの区分) は `src/lib/summary.ts` の型で決め、その形に合わない出力は受け取りません。
 タグと変更の種類は `src/lib/tags.ts` の決めたリストからだけ選びます。全文は訳さず、自分の言葉で短くまとめ、原文へのリンクと「AI による要約」を必ず付けます。
 新しいパッチノートを要約すると、版の一覧に版が 1 つ増えます。
@@ -102,7 +102,7 @@ npm run build   # dist/ に書き出す (画面・事前描画の入口・ペー
 npm test        # 単体テスト (版の決め方・データの検査)
 npm run check:data  # data/ の検査 (版の一覧と記事の版)
 npm run fetch:news  # Steam の公式ニュースを取り、まだ要約していない記事を .cache/inbox.json に足す (本文はコミットしない)
-npm run summarize   # .cache/inbox.json の記事を Claude Haiku で日本語に要約して data/news.json に足す (ANTHROPIC_API_KEY が要る。--mock で見本の要約)
+npm run summarize   # .cache/inbox.json の記事を Claude Haiku で日本語に要約して data/news.json に足す (既定は claude の CLI。--mock で見本の要約)
 npm run check:news  # data/news.json の様式の検査 (タグ・変更の種類・原文の URL・要約の主体・人の確認)
 npm run e2e     # 見本の記事で dist-e2e/ に組み、1280px と 390px で各ページを開いて確かめる
 ```

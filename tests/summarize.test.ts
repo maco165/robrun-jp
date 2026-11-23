@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, writeFileSync, copyFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, writeFileSync, copyFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { SummarySchema, buildArticle, isPatchNote, plainText, toJst, type Summary } from '../src/lib/summary.ts';
@@ -85,7 +85,9 @@ function setup(items: InboxItem[]) {
   copyFileSync('data/versions.json', p.versions);
   return p;
 }
-const run = (p: ReturnType<typeof setup>, extra: string[], env: NodeJS.ProcessEnv = process.env) =>
+// 本物の claude を呼ばないよう、既定で偽の CLI (tests/fixtures/fake-claude.mjs) を指す
+const FAKE_ENV = { ...process.env, CLAUDE_BIN: path.resolve('tests/fixtures/fake-claude.mjs') };
+const run = (p: ReturnType<typeof setup>, extra: string[], env: NodeJS.ProcessEnv = FAKE_ENV) =>
   spawnSync('npx', ['tsx', 'scripts/summarize.ts', '--inbox', p.inbox, '--news', p.news, '--versions', p.versions, '--skipped', p.skipped, ...extra], { encoding: 'utf8', env });
 
 test('CLI (見本の要約): 記事を足し、新しいパッチノートで版を足し、inbox を空にする', () => {
@@ -175,8 +177,51 @@ test('CLI: API キーが無ければ何もせずに終了コード 1', () => {
   const env = { ...process.env };
   delete env.ANTHROPIC_API_KEY;
   delete env.ANTHROPIC_AUTH_TOKEN;
-  const r = run(p, [], env);
+  const r = run(p, ['--engine', 'api'], env);
   assert.equal(r.status, 1);
   assert.match(r.stderr, /ANTHROPIC_API_KEY がありません/);
   assert.equal(readFileSync(p.news, 'utf8'), '[]');
+});
+
+test('CLI の道: 偽の claude の structured_output を記事にする', () => {
+  const p = setup([NEW_PATCH]);
+  const r = run(p, [], { ...FAKE_ENV, FAKE_CLAUDE: 'ok' });
+  assert.equal(r.status, 0, r.stdout + r.stderr);
+  const news = JSON.parse(readFileSync(p.news, 'utf8'));
+  assert.equal(news.length, 1);
+  assert.equal(news[0].summaryJa.headline, '偽の要約');
+  assert.equal(JSON.parse(readFileSync(p.versions, 'utf8')).versions.length, VERSIONS.length + 1);
+});
+
+test('CLI の道: 断られた・形が合わない・JSON でない出力は失敗に数える', () => {
+  for (const [mode, status, re] of [['refusal', 'refused', /断られました/], ['badshape', 'failing', /形に合いませんでした/], ['garbage', 'failing', /JSON でない/]] as const) {
+    const p = setup([NEW_PATCH]);
+    const r = run(p, [], { ...FAKE_ENV, FAKE_CLAUDE: mode });
+    assert.equal(r.status, 1, mode);
+    assert.match(r.stdout, re);
+    assert.deepEqual(JSON.parse(readFileSync(p.news, 'utf8')), []);
+    assert.equal(JSON.parse(readFileSync(p.skipped, 'utf8'))[0].status, status);
+  }
+});
+
+test('CLI の道: claude の CLI が無ければ、何もせずに終了コード 1 (失敗の回数を増やさない)', () => {
+  const p = setup([NEW_PATCH]);
+  const r = run(p, [], { ...process.env, CLAUDE_BIN: '/nonexistent/claude' });
+  assert.equal(r.status, 1);
+  assert.match(r.stderr, /claude の CLI がありません/);
+  assert.equal(existsSync(p.skipped), false);
+});
+
+test('CLI の道: 渡す引数は、ツールなし・設定と MCP を読まない・出力の形つき', () => {
+  const p = setup([NEW_PATCH]);
+  const argsFile = path.join(p.dir, 'args.json');
+  run(p, [], { ...FAKE_ENV, FAKE_CLAUDE: 'ok', FAKE_CLAUDE_ARGS: argsFile });
+  const args: string[] = JSON.parse(readFileSync(argsFile, 'utf8'));
+  for (const a of ['-p', '--restricted', '--strict-mcp-config', '--no-session-persistence']) assert.ok(args.includes(a), a);
+  assert.equal(args[args.indexOf('--tools') + 1], '');
+  assert.equal(args[args.indexOf('--model') + 1], 'claude-haiku-5-5');
+  const schema = JSON.parse(args[args.indexOf('--json-schema') + 1]);
+  assert.equal(schema.properties.points.maxItems, 12);
+  // claude の CLI は "$schema" (draft 2020-12) を読めずに止まるので、渡さない
+  assert.equal('$schema' in schema, false);
 });

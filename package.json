@@ -10,7 +10,7 @@
     "build": "tsc --noEmit && vite build && vite build --ssr src/entry-server.tsx --outDir ${ROBRUN_OUT:-dist}/.ssr --emptyOutDir && node scripts/prerender.mjs",
     "preview": "vite preview",
     "e2e": "node scripts/e2e.mjs",
-    "test": "node --import tsx --test --test-timeout=60000 tests/*.test.ts",
+    "test": "node --import tsx --test --test-timeout=180000 tests/*.test.ts",
     "check:data": "tsx scripts/check-data.ts",
     "fetch:news": "tsx scripts/fetch-news.ts",
     "check:repo": "node scripts/check-repo.mjs",

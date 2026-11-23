@@ -1,10 +1,19 @@
 // .cache/inbox.json の公式の記事を Claude Haiku で日本語に要約し、data/news.json に足す (npm run summarize。PJ-030 の R-4)。
 //   新しいパッチノートなら data/versions.json に版を 1 行足す。要約できた記事は inbox から外す
-//   断られた (refusal)・形が合わない記事は inbox に残し、NG 行を出して最後に終了コード 1 (要約できた分は書く)
-//   ANTHROPIC_API_KEY (か ANTHROPIC_AUTH_TOKEN) が無ければ、何もせずに理由を出して終了コード 1
-// 使い方: tsx scripts/summarize.ts [--inbox <inbox.json>] [--news <news.json>] [--versions <versions.json>] [--skipped <skipped.json>] [--mock <見本の要約の JSON>]
-//   --mock: API を呼ばず、見本の要約 (gid → 要約) を使う (単体テストと workflow の見本の回のため)
+//   要約できなかった記事は data/skipped.json に回数を残し、NG 行を出して最後に終了コード 1 (要約できた分は書く)
+// 要約の仕方 (--engine):
+//   claude-cli (既定): NucBox5 の Claude Code の CLI (claude -p) を、ツールなし・設定と MCP を読まない形で呼ぶ。
+//     API の鍵は使わず、Claude Code にログインしたアカウントの使える量から使う。CLI が無ければ理由を出して終了コード 1
+//   api: Anthropic の API (ANTHROPIC_API_KEY が要る。無ければ理由を出して終了コード 1)
+// 使い方: tsx scripts/summarize.ts [--engine claude-cli|api] [--inbox <inbox.json>] [--news <news.json>] [--versions <versions.json>]
+//                                  [--skipped <skipped.json>] [--mock <見本の要約の JSON>]
+//   --mock: Claude を呼ばず、見本の要約 (gid → 要約) を使う (単体テストと見本の回のため)
+//   CLAUDE_BIN: claude の CLI の場所 (既定は ~/.local/bin/claude、無ければ PATH の claude)
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { homedir } from 'node:os';
+import path from 'node:path';
+import { z } from 'zod';
 import Anthropic from '@anthropic-ai/sdk';
 import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
 import { SummarySchema, buildArticle, plainText, type Summary } from '../src/lib/summary.ts';
@@ -23,10 +32,55 @@ const inboxPath = arg('--inbox', '.cache/inbox.json');
 const newsPath = arg('--news', 'data/news.json');
 const versionsPath = arg('--versions', 'data/versions.json');
 const mockPath = process.argv.includes('--mock') ? arg('--mock', '') : null;
+const engine = arg('--engine', 'claude-cli');
 // 断られた記事の gid を覚える場所。次の回から取らない (毎時、同じ記事で料金をかけ続けないため)
 const skippedPath = arg('--skipped', 'data/skipped.json');
 
 class Refused extends Error {}
+
+/** 要約に渡す 1 件の本文 (API と CLI で同じ) */
+function userContent(item: InboxItem): string {
+  return `題: ${item.title}\n公開: ${item.publishedAt}\n\n本文:\n${plainText(item.contents)}`;
+}
+
+function claudeBin(): string | null {
+  const env = process.env.CLAUDE_BIN;
+  if (env) return existsSync(env) ? env : null;
+  const local = path.join(homedir(), '.local/bin/claude');
+  if (existsSync(local)) return local;
+  const which = spawnSync('sh', ['-c', 'command -v claude'], { encoding: 'utf8' });
+  return which.status === 0 ? which.stdout.trim() : null;
+}
+
+/**
+ * Claude Code の CLI で 1 件を要約する。ツールは持たせず (--tools "")、設定ファイル・MCP・セッションの保存を使わない。
+ * 出力の形は --json-schema (要約の Zod の型から作る) で決め、受け取った structured_output をもう一度 Zod で確かめる
+ */
+export function summarizeWithCli(bin: string, system: string, item: InboxItem): Summary {
+  // Zod は先頭に "$schema" (draft 2020-12) を付けるが、claude の CLI の --json-schema はそれを読めずに止まる (2026-11-23 に本物で確認)。外して渡す
+  const { $schema: _drop, ...jsonSchema } = z.toJSONSchema(SummarySchema) as Record<string, unknown>;
+  void _drop;
+  const schema = JSON.stringify(jsonSchema);
+  const r = spawnSync(
+    bin,
+    ['-p', '--output-format', 'json', '--model', MODEL, '--tools', '', '--permission-mode', 'dontAsk', '--restricted',
+      '--strict-mcp-config', '--no-session-persistence', '--max-turns', '3', '--system-prompt', system, '--json-schema', schema],
+    // cron の回でこのリポジトリの hook (題の付け直し・テスト) を走らせない
+    { input: userContent(item), encoding: 'utf8', timeout: 120_000, env: { ...process.env, SESSION_TITLE_SKIP: '1', STOP_TESTS_SKIP: '1' } },
+  );
+  if (r.error) throw new Error(`claude の CLI を呼べません (${(r.error as Error).message})`);
+  let out: { is_error?: boolean; subtype?: string; stop_reason?: string; structured_output?: unknown; result?: string };
+  try {
+    out = JSON.parse(r.stdout);
+  } catch {
+    throw new Error(`claude の CLI の出力が JSON でない (終了コード ${r.status}): ${(r.stderr || r.stdout).slice(0, 200)}`);
+  }
+  if (out.stop_reason === 'refusal') throw new Refused('断られました (claude の CLI)');
+  if (out.is_error || out.subtype !== 'success') throw new Error(`claude の CLI が失敗しました (${out.subtype ?? '不明'}): ${String(out.result ?? '').slice(0, 200)}`);
+  const parsed = SummarySchema.safeParse(out.structured_output);
+  if (!parsed.success) throw new Error('出力が決めた形に合いませんでした (claude の CLI)');
+  return parsed.data;
+}
 
 async function summarizeWithClaude(client: Anthropic, system: string, item: InboxItem): Promise<Summary> {
   const response = await client.messages.parse({
@@ -34,7 +88,7 @@ async function summarizeWithClaude(client: Anthropic, system: string, item: Inbo
     max_tokens: 8000,
     system,
     output_config: { effort: 'medium', format: zodOutputFormat(SummarySchema) },
-    messages: [{ role: 'user', content: `題: ${item.title}\n公開: ${item.publishedAt}\n\n本文:\n${plainText(item.contents)}` }],
+    messages: [{ role: 'user', content: userContent(item) }],
   });
   // Haiku には断られたときの自動の代わりのモデルが無い。断られた記事は要約しない
   if (response.stop_reason === 'refusal') throw new Refused(`断られました (${response.stop_details?.category ?? '理由の分類なし'})`);
@@ -59,7 +113,15 @@ async function main() {
       if (m.refusal) throw new Refused(`断られました (${m.refusal})`);
       return SummarySchema.parse(m);
     };
-  } else {
+  } else if (engine === 'claude-cli') {
+    const bin = claudeBin();
+    if (!bin) {
+      console.error('summarize: claude の CLI がありません (CLAUDE_BIN か ~/.local/bin/claude)。要約しません');
+      return 1;
+    }
+    const system = readFileSync('prompts/summarize.md', 'utf8');
+    get = async (item) => summarizeWithCli(bin, system, item);
+  } else if (engine === 'api') {
     if (!process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_AUTH_TOKEN) {
       console.error('summarize: ANTHROPIC_API_KEY がありません (GitHub Actions では Secrets に登録する)。要約しません');
       return 1;
@@ -68,6 +130,9 @@ async function main() {
     const client = new Anthropic({ timeout: 60_000, maxRetries: 1 });
     const system = readFileSync('prompts/summarize.md', 'utf8');
     get = (item) => summarizeWithClaude(client, system, item);
+  } else {
+    console.error(`summarize: --engine は claude-cli か api (${engine})`);
+    return 1;
   }
 
   const news = JSON.parse(readFileSync(newsPath, 'utf8')) as { id: string }[];
