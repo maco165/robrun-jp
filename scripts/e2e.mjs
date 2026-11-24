@@ -34,6 +34,7 @@ const PAGES = [
   { path: 'news/', heading: '記事一覧' },
   // 攻略: 出典ごとに Steam の原文のリンクがあり、アップデートの履歴に版の数だけ原文のリンクがある
   { path: 'guide/', heading: 'いまわかっている ROB RUN の仕組み', guide: true },
+  { path: 'articles/1848557880479055/', heading: '【見本】発売に向けた最初の変更点', related: true },
   // リンク集: data/links.json のサイトがすべて外部リンクで並ぶ
   { path: 'links/', heading: 'ROB RUN の役に立つサイト', links: true },
   // 感度変換: 既定 (CS2 1・800 DPI) で 0.213 が出て、感度を 2 にすると 0.427 になる
@@ -137,6 +138,11 @@ try {
         await page.waitForTimeout(300);
         if (!(await orig.isVisible())) fails.push(`${p.path} @${w}: 「出典」を開いても原文が見えない`);
       }
+      // 見出しの段を飛ばさない (h1 の次に h3 など)
+      const levels = await page.$$eval('h1,h2,h3,h4', (hs) => hs.map((h) => Number(h.tagName[1])));
+      if (levels.some((l, k) => k > 0 && l - levels[k - 1] > 1)) fails.push(`${p.path || '/'} @${w}: 見出しの段が飛ぶ (${levels.join(',')})`);
+      // 攻略の出典になっている記事から、その攻略へ飛べる
+      if (p.related && (await page.locator('main a[href*="/guide/"]').count()) === 0) fails.push(`${p.path} @${w}: 関連する攻略のリンクが無い`);
       if (p.guide) {
         // 入口: ジャンルがすべて並び、それぞれのページへ飛べる。履歴に版の数だけ Steam の原文
         const text = (await page.textContent('main')) ?? '';

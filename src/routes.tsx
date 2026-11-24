@@ -37,7 +37,7 @@ const crumbs = (list: { name: string; path: string }[]) => ({
 
 const TOP: Page = {
   path: '',
-  title: SITE,
+  title: `${SITE} | パッチノート要約と攻略`,
   description: 'ROB RUN の公式アップデートを日本語と日本時間でまとめる非公式のファンサイト。パッチノートの要約と新サーバーの開放時刻を、対象の版つきで整理します。',
   element: <Home />,
   ogType: 'website',

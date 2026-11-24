@@ -21,7 +21,7 @@ export function RefMarks({ refs, numberOf }: { refs: GuideRef[]; numberOf: (r: G
   return (
     <Text type="supporting" size="xsm" color="placeholder" hasTabularNumbers>
       {nums.map((n) => (
-        <a key={n} href={`#src-${n}`} style={{ color: 'inherit', textDecoration: 'none', marginInlineStart: 2 }} aria-label={`出典 ${n}`}>
+        <a key={n} href={`#src-${n}`} style={{ color: 'inherit', textDecoration: 'none', marginInlineStart: 2, display: 'inline-block', padding: '4px 3px' }} aria-label={`出典 ${n}`}>
           [{n}]
         </a>
       ))}
@@ -171,7 +171,7 @@ export function Figure({ f, numberOf }: { f: GuideFigure; numberOf: (r: GuideRef
   return (
     <VStack as="figure" gap={3} style={{ margin: 0 }}>
       <HStack gap={2} wrap="wrap" vAlign="center">
-        <Heading level={3}>{f.title}</Heading>
+        <Heading level={2}>{f.title}</Heading>
         {f.kind === 'site' ? <Kicker>攻略サイトの情報</Kicker> : null}
         <RefMarks refs={f.refs} numberOf={numberOf} />
       </HStack>

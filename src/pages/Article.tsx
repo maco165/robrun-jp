@@ -5,6 +5,7 @@ import { StackItem } from '@astryxdesign/core/Stack';
 import { Heading } from '@astryxdesign/core/Heading';
 import { Text } from '@astryxdesign/core/Text';
 import { Link } from '@astryxdesign/core/Link';
+import { GUIDE } from '../lib/data';
 import { Divider } from '@astryxdesign/core/Divider';
 import { Collapsible } from '@astryxdesign/core/Collapsible';
 import { List, ListItem } from '@astryxdesign/core/List';
@@ -20,6 +21,8 @@ export function Article({ article }: { article: ArticleData }) {
   const flag = flagLabel(a);
   const i = ARTICLES.findIndex((x) => x.id === a.id);
   const older = ARTICLES[i + 1];
+  // この記事を出典にしている攻略のジャンル (内部リンク)
+  const guides = GUIDE.sections.filter((s) => [...s.figures, ...s.items].some((x) => x.refs.some((r) => 'news' in r && r.news === a.id)));
   const meta: { label: string; value: ReactNode }[] = [
     { label: '公開（日本時間）', value: <Jst>{jstFull(a.publishedAt)}</Jst> },
     { label: '公開（UTC）', value: <Text type="supporting" hasTabularNumbers>{utcFull(a.publishedAt)}</Text> },
@@ -70,6 +73,15 @@ export function Article({ article }: { article: ArticleData }) {
                     />
                   ))}
                 </List>
+              </VStack>
+            ) : null}
+
+            {guides.length > 0 ? (
+              <VStack gap={2}>
+                <Heading level={2}>関連する攻略</Heading>
+                <HStack gap={4} wrap="wrap">
+                  {guides.map((g) => <Link key={g.id} href={url(`guide/${g.id}/`)}>{g.title}</Link>)}
+                </HStack>
               </VStack>
             ) : null}
 

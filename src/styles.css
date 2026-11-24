@@ -76,3 +76,5 @@ html {
 
 /* 上のメニューが残るので、出典の番号で飛んだ先がメニューの下に隠れないよう余白を取る */
 [id^='src-'] { scroll-margin-top: 128px; }
+
+@media (max-width: 760px) { .rr-departure-time { flex-basis: 100%; } }
