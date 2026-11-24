@@ -3,3 +3,76 @@ html {
   background: var(--color-background-body);
   color-scheme: dark;
 }
+
+/* 上のメニュー (src/components/Shell.tsx)。色はテーマの変数から取る */
+.rr-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--color-background-body);
+  border-bottom: 1px solid var(--color-border-emphasized);
+}
+.rr-header-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 64px;
+}
+.rr-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-size: 18px;
+  white-space: nowrap;
+}
+.rr-brand-note { font-size: 12px; color: var(--color-text-secondary); }
+.rr-nav { display: flex; align-items: stretch; gap: 4px; }
+.rr-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-inline: 12px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 120ms ease, background-color 120ms ease;
+}
+.rr-nav-item:hover { color: var(--color-text-primary); background: var(--color-overlay-hover); }
+.rr-nav-item:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+/* 今いるページ: 文字をアクセントの色にし、下に太い線を引く */
+.rr-nav-item[aria-current='page'] { color: var(--color-text-accent); }
+.rr-nav-item[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: -1px;
+  height: 3px;
+  border-radius: 2px 2px 0 0;
+  background: var(--color-accent);
+}
+.rr-nav-short { display: none; }
+
+/* 狭い幅: 名前の行の下に、5 等分のタブ (アイコンの下に短い名前) を 1 行で並べる */
+@media (max-width: 760px) {
+  .rr-header-inner { flex-direction: column; gap: 0; padding-inline: 0; min-height: 0; }
+  .rr-brand { padding: 12px 16px 8px; font-size: 16px; }
+  .rr-nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; }
+  .rr-nav-item { flex-direction: column; justify-content: center; gap: 2px; padding: 8px 2px 10px; min-height: 52px; font-size: 12px; }
+  .rr-nav-label { display: none; }
+  .rr-nav-short { display: inline; }
+  .rr-nav-item[aria-current='page']::after { left: 20%; right: 20%; }
+}
+@media (prefers-reduced-motion: reduce) { .rr-nav-item { transition: none; } }
+
+/* 上のメニューが残るので、出典の番号で飛んだ先がメニューの下に隠れないよう余白を取る */
+[id^='src-'] { scroll-margin-top: 128px; }
