@@ -143,6 +143,12 @@ try {
       }
       if (p.sens) {
         const main = page.locator('main');
+        // 係数と出典は閉じてあり、開くと見える
+        const src = page.locator('main a[href*="robrunstash"]');
+        if (await src.isVisible()) fails.push(`${p.path} @${w}: 係数と出典が最初から見えている`);
+        await page.getByText('使っている係数と出典').click();
+        await page.waitForTimeout(300);
+        if (!(await src.isVisible())) fails.push(`${p.path} @${w}: 「使っている係数と出典」を開いても出典が見えない`);
         if (!((await main.textContent()) ?? '').includes('0.213')) fails.push(`${p.path} @${w}: 既定の変換結果 0.213 が無い`);
         const input = page.getByLabel('Counter-Strike 2 / CS:GO の感度');
         await input.fill('2');
