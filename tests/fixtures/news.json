@@ -183,5 +183,57 @@
     },
     "summarizedBy": "ai",
     "reviewed": false
+  },
+  {
+    "id": "fixture-after",
+    "source": "official",
+    "title": "Patch Notes",
+    "url": "https://store.steampowered.com/news/app/4262460/view/fixture-after",
+    "publishedAt": "2030-01-01T00:00:00Z",
+    "gameVersion": "2026-11-20",
+    "summaryJa": {
+      "headline": "【見本】攻略のあとに出たお知らせ",
+      "impact": "強盗で稼ぐ人は収入が少し減る。デコーダーを多く使う人は出費が減る",
+      "points": [
+        {
+          "type": "nerf",
+          "target": "Grand Hotel",
+          "text": "強盗で手に入る戦利品の量を減らした",
+          "field": "戦利品の量",
+          "before": "[変更前]",
+          "after": "[変更後]"
+        },
+        {
+          "type": "buff",
+          "target": "Uncommon Decoder",
+          "text": "店での価格を引き下げ",
+          "field": "価格",
+          "before": "[変更前]",
+          "after": "[変更後]"
+        },
+        {
+          "type": "fix",
+          "target": "Vehicles",
+          "text": "建物に埋まって動けなくなる不具合を直した"
+        }
+      ]
+    },
+    "tags": [
+      "金策",
+      "強盗",
+      "拠点"
+    ],
+    "changeTypes": [
+      "nerf",
+      "buff",
+      "fix"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
   }
 ]

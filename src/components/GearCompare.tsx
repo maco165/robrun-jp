@@ -11,7 +11,7 @@ import { Selector } from '@astryxdesign/core/Selector';
 import { Collapsible } from '@astryxdesign/core/Collapsible';
 import { SegmentedControl, SegmentedControlItem } from '@astryxdesign/core/SegmentedControl';
 import { Kicker } from './parts';
-import { GEAR } from '../lib/data';
+import { GEAR } from '../lib/gearData';
 import { dps, firstCost, gains, withLand, type Mark } from '../lib/gear';
 
 const EDGE = { border: '1px solid var(--color-border-emphasized)' } as const;

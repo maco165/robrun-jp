@@ -16,8 +16,9 @@ import { Figure, RefMarks } from '../components/figures';
 import { GearCompare } from '../components/GearCompare';
 import { guideIcon } from '../components/guideIcons';
 import { Icon } from '@astryxdesign/core/Icon';
-import { GUIDE, VERSIONS, findArticle } from '../lib/data';
-import { refLinks, sourceList, type GuideItem, type GuidePart, type GuideRef, type GuideSection } from '../lib/guide';
+import { ARTICLES, VERSIONS, findArticle } from '../lib/data';
+import { GUIDE } from '../lib/guideData';
+import { newerThanGuide, refLinks, sourceList, type GuideItem, type GuidePart, type GuideRef, type GuideSection } from '../lib/guide';
 import { newsUrl } from '../lib/steamNews';
 import { jstDate } from '../lib/time';
 import { url } from '../lib/url';
@@ -52,6 +53,21 @@ function SourceRow({ n, r }: { n: number; r: GuideRef }) {
   );
 }
 
+const NEWER = newerThanGuide(ARTICLES, GUIDE.updatedAt);
+
+/** 攻略を確かめた日より後のお知らせ。あるときだけ出す (記事が増えると自動で並ぶ) */
+function Newer() {
+  if (NEWER.length === 0) return null;
+  return (
+    <VStack gap={1} className="rr-newer">
+      <Text type="body" weight="bold">この攻略のあとに出たお知らせ（まだ反映していない可能性があります）</Text>
+      {NEWER.slice(0, 5).map((a) => (
+        <HStack key={a.id} gap={3} wrap="wrap"><Text type="supporting" color="placeholder" hasTabularNumbers>{jstDate(a.publishedAt)}</Text><Link href={url(`articles/${a.id}/`)}>{a.summaryJa.headline}</Link></HStack>
+      ))}
+    </VStack>
+  );
+}
+
 function Header({ kicker, title, lead }: { kicker: string; title: string; lead: string }) {
   return (
     <VStack gap={3}>
@@ -62,6 +78,7 @@ function Header({ kicker, title, lead }: { kicker: string; title: string; lead: 
       </HStack>
       <Heading level={1} style={{ ...DISPLAY, fontSize: 'clamp(28px, 5vw, 44px)', lineHeight: 1.3 }}>{title}</Heading>
       <Text type="large" color="secondary">{lead}</Text>
+      <Newer />
     </VStack>
   );
 }

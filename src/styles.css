@@ -88,3 +88,5 @@ html {
 .rr-meter-text { color: var(--color-text-primary); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
 .rr-gain { color: var(--color-icon-success); font-size: 14px; font-variant-numeric: tabular-nums; }
 .rr-loss { color: var(--color-icon-error); font-size: 14px; font-variant-numeric: tabular-nums; }
+
+.rr-newer { border: 1px solid var(--color-accent); border-radius: 8px; padding: 12px 16px; }

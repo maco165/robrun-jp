@@ -5,7 +5,7 @@ import { StackItem } from '@astryxdesign/core/Stack';
 import { Heading } from '@astryxdesign/core/Heading';
 import { Text } from '@astryxdesign/core/Text';
 import { Link } from '@astryxdesign/core/Link';
-import { GUIDE } from '../lib/data';
+import { GUIDE } from '../lib/guideData';
 import { Divider } from '@astryxdesign/core/Divider';
 import { Collapsible } from '@astryxdesign/core/Collapsible';
 import { List, ListItem } from '@astryxdesign/core/List';

@@ -31,7 +31,7 @@ if (built.status !== 0) {
 }
 
 const PAGES = [
-  { path: '', heading: '【見本】グランドホテルの戦利品を調整', ld: 'WebSite' },
+  { path: '', heading: '【見本】攻略のあとに出たお知らせ', ld: 'WebSite' },
   { path: 'news/', heading: '記事一覧' },
   // 攻略: 出典ごとに Steam の原文のリンクがあり、アップデートの履歴に版の数だけ原文のリンクがある
   { path: 'guide/', heading: 'いまわかっている ROB RUN の仕組み', guide: true },
@@ -204,6 +204,8 @@ try {
           if ((await page.locator(`main a[href="${e.url}"]`).count()) === 0) fails.push(`${p.path} @${w}: ${e.name} のリンクが無い`);
         }
       }
+      // 攻略より新しいお知らせが、入口と各ページに並ぶ
+      if ((p.guide || p.genre) && (await page.locator('main .rr-newer a[href$="/articles/fixture-after/"]').count()) !== 1) fails.push(`${p.path} @${w}: 攻略のあとに出たお知らせが並ばない`);
       if (p.genre) {
         const sec = { ...p.genre, figures: p.genre.parts.flatMap((x) => x.figures), items: p.genre.parts.flatMap((x) => x.items) };
         // ページの中の見出し: すべてあり、目次から飛べる

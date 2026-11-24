@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { checkGuide, refLinks, sourceList, GUIDE_CELL_MAX, GUIDE_TEXT_MAX, type Guide, type GuidePart } from '../src/lib/guide.ts';
+import { checkGuide, newerThanGuide, refLinks, sourceList, GUIDE_CELL_MAX, GUIDE_TEXT_MAX, type Guide, type GuidePart } from '../src/lib/guide.ts';
 
 const VERSION_IDS = new Set(['playtest', ...JSON.parse(readFileSync(new URL('../data/versions.json', import.meta.url), 'utf8')).versions.map((v: { id: string }) => v.id)]);
 const GUIDE: Guide = JSON.parse(readFileSync(new URL('../data/guide.json', import.meta.url), 'utf8'));
@@ -103,4 +103,10 @@ test('転送: 行き先の見出しが無い・今のページと同じ id な�
 
 test('公開していた 11 の古いページは、すべて転送がある', () => {
   assert.deepEqual(Object.keys(GUIDE.moved ?? {}).sort(), ['base', 'basics', 'loot', 'map', 'police', 'pyramid', 'sell', 'story', 'vehicle', 'weapons', 'wipe-plan']);
+});
+
+test('攻略のあとに出た記事: 確かめた日の 0 時 (日本時間) 以後だけを、新しい順に返す', () => {
+  const at = (publishedAt: string) => ({ publishedAt });
+  const a = [at('2026-11-23T14:59:59Z'), at('2026-11-23T15:00:00Z'), at('2026-11-25T00:00:00+09:00')];
+  assert.deepEqual(newerThanGuide(a, '2026-11-24'), [a[2], a[1]]);
 });
