@@ -35,15 +35,15 @@ function Cost({ unlock, total, price, tier, jail }: { unlock: number | null; tot
   return (
     <VStack gap={0.5}>
       <Text type="body" weight="bold" color="accent" hasTabularNumbers>{first === null ? '闇市では買えない' : `初めて手にするまで ${money(first)}（土地を除く）`}</Text>
-      {first !== null ? <Text type="supporting" color="secondary" hasTabularNumbers>この段の解放 {money(unlock)}／前提込みの累計 {money(total)}／購入 {money(price)}</Text> : <Text type="supporting" color="secondary">闇市では解放できない（探索や武器庫で手に入れる）</Text>}
+      {first !== null ? <Text type="supporting" color="secondary" hasTabularNumbers>この Mk・段の解放 {money(unlock)}／前提込みの累計 {money(total)}／購入 {money(price)}</Text> : <Text type="supporting" color="secondary">闇市では解放できない（探索や武器庫で手に入れる）</Text>}
       {jail ? <Text type="supporting" color="secondary" hasTabularNumbers>刑期の累計 {jail} 年が要る</Text> : null}
-      {tier ? <Text type="supporting" color="placeholder" hasTabularNumbers>T{tier} の土地込み {money((first ?? 0) + GEAR.land[tier])}（土地 {money(GEAR.land[tier])}、家賃は別{tier === 1 ? '。土地が要るかは出典で分かれる' : ''}）</Text> : null}
+      {tier ? <Text type="supporting" color="placeholder" hasTabularNumbers>T{tier} の土地込み {money((first ?? 0) + GEAR.land[tier])}（土地は Lv1 から順に上げて {money(GEAR.land[tier])}、家賃は別{tier === 2 ? '。Lv1 を飛ばせるかは未確認' : ''}{tier === 1 ? '。土地が要るかは出典で分かれる' : ''}）</Text> : null}
     </VStack>
   );
 }
 
 const max = (f: (m: Mark) => number) => Math.max(...GEAR.weapons.flatMap((w) => w.marks.map(f)));
-const MAX = { dps: Math.max(...GEAR.weapons.map(dps)), mag: max((m) => m.mag), range: max((m) => m.range), aim: max((m) => m.aim), cost: Math.max(...GEAR.weapons.flatMap((w) => w.marks.map((m) => withLand(m, GEAR.land) ?? 0))) };
+const MAX = { dps: Math.max(...GEAR.weapons.map(dps)), mag: max((m) => m.mag), range: max((m) => m.range), aim: max((m) => m.aim) };
 
 type Sort = 'dps' | 'cost' | 'range' | 'mag';
 
@@ -58,6 +58,8 @@ export function GearCompare() {
     .flatMap((w) => w.marks.map((m) => ({ w, m, first: withLand(m, GEAR.land) })))
     .filter((r) => (tier === 'all' ? true : tier === 'loot' ? r.m.tier === null : r.m.tier === Number(tier)))
     .sort((a, b) => (sort === 'dps' ? dps(b.w) - dps(a.w) : sort === 'range' ? b.m.range - a.m.range : sort === 'mag' ? b.m.mag - a.m.mag : (a.first ?? Infinity) - (b.first ?? Infinity)) || a.w.name.localeCompare(b.w.name) || a.m.mk - b.m.mk);
+  // 棒の上限は、いま並んでいる中の最大 (T3 に合わせると T1 の差が見えない)
+  const costMax = Math.max(1, ...rows.map((r) => r.first ?? 0));
   const weapon = GEAR.weapons.find((w) => w.name === pick)!;
   return (
     <VStack gap={8}>
@@ -94,7 +96,7 @@ export function GearCompare() {
                 <Meter label="秒間ダメージ" value={dps(w)} max={MAX.dps} text={String(dps(w))} />
                 <Meter label="射程" value={m.range} max={MAX.range} text={`${m.range} m`} />
                 <Meter label="装弾数" value={m.mag} max={MAX.mag} text={String(m.mag)} />
-                <Meter label="土地込みの額" value={first ?? 0} max={MAX.cost} text={first === null ? '—' : money(first)} />
+                <Meter label="土地込みの額" value={first ?? 0} max={costMax} text={first === null ? '—' : money(first)} />
                 <Cost {...m} />
               </VStack>
             </Card>

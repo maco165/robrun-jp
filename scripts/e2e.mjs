@@ -170,6 +170,7 @@ try {
       const cur = page.locator('header nav a[aria-current="page"]');
       const curText = (await cur.count()) === 1 ? ((await cur.textContent()) ?? '') : '';
       if (want ? !curText.includes(want) : (await cur.count()) !== 0) fails.push(`${p.path || '/'} @${w}: 今いるページの印が「${curText || 'なし'}」(${want ?? 'なし'} のはず)`);
+      for (const n of ['ホーム', '記事一覧', '攻略', '感度変換', 'リンク集']) if ((await page.locator('header nav').getByRole('link', { name: n, exact: true }).count()) !== 1) fails.push(`${p.path || '/'} @${w}: メニューの「${n}」に読み上げ名が無い`);
       const navBox = await page.locator('header nav').boundingBox();
       if (!navBox || navBox.height > 64) fails.push(`${p.path || '/'} @${w}: メニューが 1 行に収まらない (高さ ${navBox?.height})`);
       await page.mouse.wheel(0, 1500);
@@ -281,6 +282,7 @@ try {
         await page.locator('main a[href="#src-1"]').first().click();
         await page.waitForTimeout(400);
         if (!(await row1.isVisible())) fails.push(`${p.path} @${w}: [1] を押しても出典が開かない`);
+        if ((await page.evaluate(() => document.activeElement?.id)) !== 'src-1') fails.push(`${p.path} @${w}: [1] を押しても焦点が出典へ移らない`);
         // 本文と図に出典の番号が付く
         const marks = await page.locator('main a[href^="#src-"]').count();
         if (marks < sec.items.length + sec.figures.length) fails.push(`${p.path} @${w}: 出典の番号が ${marks} 個 (項目と図の数より少ない)`);

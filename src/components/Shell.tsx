@@ -38,7 +38,7 @@ export function Shell({ current, children }: { current: NavKey; children: ReactN
                 const Icon = n.icon;
                 const on = n.key === current;
                 return (
-                  <a key={n.key} className="rr-nav-item" href={url(n.path)} aria-current={on ? 'page' : undefined}>
+                  <a key={n.key} className="rr-nav-item" href={url(n.path)} aria-label={n.label} aria-current={on ? 'page' : undefined}>
                     <Icon size={18} strokeWidth={1.75} aria-hidden="true" />
                     <span className="rr-nav-label">{n.label}</span>
                     <span className="rr-nav-short" aria-hidden="true">{n.short}</span>

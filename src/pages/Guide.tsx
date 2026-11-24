@@ -207,7 +207,9 @@ export function GuideGenre({ section: s }: { section: GuideSection }) {
   useEffect(() => {
     if (!srcOpen || !jump) return;
     const t = window.setTimeout(() => {
-      document.getElementById(jump)?.scrollIntoView({ block: 'start' });
+      const row = document.getElementById(jump);
+      row?.scrollIntoView({ block: 'start' });
+      row?.focus({ preventScroll: true });
       setJump(null);
     }, 50);
     return () => window.clearTimeout(t);
@@ -251,7 +253,7 @@ export function GuideGenre({ section: s }: { section: GuideSection }) {
         <Collapsible isOpen={srcOpen} onOpenChange={setSrcOpen} trigger={<Heading level={2}>出典 ({refs.length} 件)</Heading>}>
           <VStack gap={3} paddingBlock={2}>
             {refs.map((r, k) => (
-              <VStack key={k} id={`src-${k + 1}`}>
+              <VStack key={k} id={`src-${k + 1}`} tabIndex={-1}>
                 <SourceRow n={k + 1} r={r} />
               </VStack>
             ))}

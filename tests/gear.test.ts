@@ -41,3 +41,14 @@ test('防具と土地の検査: 壊した値を落とす', () => {
   const ng = checkGear(b).join();
   for (const x of [/防げる量/, /累計が前の段/, /値段が前の段/, /土地の費用/]) assert.match(ng, x);
 });
+
+test('金額の桁落ち・購入額の欠け・前提の食い違い・負の額を落とす', () => {
+  const mut = (f: (g: Gear) => void) => { const b: Gear = JSON.parse(JSON.stringify(G)); f(b); return checkGear(b).join(); };
+  const find = (g: Gear, n: string) => g.weapons.find((x) => x.name === n)!.marks;
+  assert.match(mut((g) => { const m = find(g, 'AP Scalar'); m[0].total = 57500; m[1].total = 857500; m[2].total = 2457500; }), /前提/);
+  assert.match(mut((g) => { find(g, 'STAR-H')[0].price = null; }), /全部あるか/);
+  assert.match(mut((g) => { find(g, 'KL-545')[0].price = -1; }), /0 以上/);
+  assert.match(mut((g) => { find(g, 'RC 5.56')[0].prereq = 'ない銃 Mk1'; }), /前提/);
+  assert.match(mut((g) => { find(g, 'DP-9')[0].mag = 0; }), /装弾/);
+  assert.match(mut((g) => { g.armor[1].name = g.armor[0].name; }), /重複/);
+});
