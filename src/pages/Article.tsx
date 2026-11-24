@@ -6,6 +6,7 @@ import { Heading } from '@astryxdesign/core/Heading';
 import { Text } from '@astryxdesign/core/Text';
 import { Link } from '@astryxdesign/core/Link';
 import { Divider } from '@astryxdesign/core/Divider';
+import { Collapsible } from '@astryxdesign/core/Collapsible';
 import { List, ListItem } from '@astryxdesign/core/List';
 import { Shell } from '../components/Shell';
 import { ChangeLabel, DISPLAY, Jst, Kicker, Tags, Version } from '../components/parts';
@@ -23,8 +24,6 @@ export function Article({ article }: { article: ArticleData }) {
     { label: '公開（日本時間）', value: <Jst>{jstFull(a.publishedAt)}</Jst> },
     { label: '公開（UTC）', value: <Text type="supporting" hasTabularNumbers>{utcFull(a.publishedAt)}</Text> },
     { label: '対象の版', value: <Version v={a.gameVersion} /> },
-    { label: '原文', value: <Link href={a.url} isExternalLink>{a.title}（{a.source === 'official' ? 'Steam・英語' : '外部サイト'}）</Link> },
-    { label: '要約', value: <Text type="supporting">{a.summarizedBy === 'ai' ? 'AI が作成' : '人が作成'}</Text> },
   ];
   return (
     <Shell current="news">
@@ -93,6 +92,20 @@ export function Article({ article }: { article: ArticleData }) {
                 <ListItem key={m.label} label={<VStack gap={0.5}><Text type="supporting" color="placeholder">{m.label}</Text>{m.value}</VStack>} />
               ))}
             </List>
+            {/* 出典 (原文) と要約の主体は常には見せず、開いたときだけ出す (本人の指示) */}
+            <Divider />
+            <Collapsible defaultIsOpen={false} trigger={<Text type="body" weight="bold">出典</Text>}>
+              <VStack gap={2} paddingBlock={2}>
+                <VStack gap={0.5}>
+                  <Text type="supporting" color="placeholder">原文</Text>
+                  <Link href={a.url} isExternalLink>{a.title}（{a.source === 'official' ? 'Steam・英語' : '外部サイト'}）</Link>
+                </VStack>
+                <VStack gap={0.5}>
+                  <Text type="supporting" color="placeholder">要約</Text>
+                  <Text type="supporting">{a.summarizedBy === 'ai' ? 'AI が作成' : '人が作成'}</Text>
+                </VStack>
+              </VStack>
+            </Collapsible>
           </VStack>
         </StackItem>
       </HStack>
