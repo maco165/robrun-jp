@@ -16,6 +16,7 @@ import { chromium } from 'playwright';
 import { readFileSync } from 'node:fs';
 
 const guide = JSON.parse(readFileSync('data/guide.json', 'utf8'));
+const gear = JSON.parse(readFileSync('data/gear.json', 'utf8'));
 const links = JSON.parse(readFileSync('data/links.json', 'utf8'));
 const versions = JSON.parse(readFileSync('data/versions.json', 'utf8')).versions;
 const OUT = 'dist-e2e';
@@ -211,6 +212,17 @@ try {
           if (sec.parts.length > 1 && (await page.locator(`main nav a[href="#${x.id}"]`).count()) !== 1) fails.push(`${p.path} @${w}: 目次に ${x.id} が無い`);
         }
         const text = (await page.textContent('main')) ?? '';
+        if (sec.id === 'gear') {
+          const cards = page.locator('main [data-gear]');
+          const count = (t) => gear.weapons.flatMap((x) => x.marks).filter((m) => m.tier === t).length;
+          if ((await cards.count()) !== count(1)) fails.push(`${p.path} @${w}: T1 の武器が ${await cards.count()} 件 (${count(1)} 件のはず)`);
+          await page.getByRole('radio', { name: 'T2' }).click();
+          await page.waitForTimeout(200);
+          if ((await cards.count()) !== count(2)) fails.push(`${p.path} @${w}: T2 に替えると ${await cards.count()} 件 (${count(2)} 件のはず)`);
+          const mk3 = (await page.locator('main [data-mk="3"]').textContent()) ?? '';
+          for (const x of ['30 → 45発', '$181,000', '$175,000']) if (!mk3.includes(x)) fails.push(`${p.path} @${w}: KL-545 Mk3 に「${x}」が無い`);
+          if ((await page.locator('main [data-armor]').count()) !== gear.armor.length) fails.push(`${p.path} @${w}: 防具の数が違う`);
+        }
         // 図: 数が合い、図ごとに題・中身の文字・出典の番号がその図の中にあり、攻略サイトの図には印がある
         const figs = page.locator('main figure');
         if ((await figs.count()) !== sec.figures.length) fails.push(`${p.path} @${w}: 図が ${await figs.count()} 個 (${sec.figures.length} 個のはず)`);
@@ -230,7 +242,7 @@ try {
         if (rows !== keys.length) fails.push(`${p.path} @${w}: 出典の一覧が ${rows} 行 (出典 ${keys.length} 件と違う)`);
         for (const r of all) {
           const href = r.news ? `https://store.steampowered.com/news/app/4262460/view/${r.news}` : r.help ?? r.site;
-          const n = await page.locator(`main a[href="${href}"]`).count();
+          const n = await page.locator(`main [id^="src-"] a[href="${href}"]`).count();
           if (n !== 1) fails.push(`${p.path} @${w}: 出典 ${href} のリンクが ${n} 本 (まとめて 1 本のはず)`);
         }
         // 見本に記事がある公式のお知らせ (1848557880479055) は、サイト内の要約にも飛ぶ

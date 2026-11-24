@@ -13,6 +13,7 @@ import { Collapsible } from '@astryxdesign/core/Collapsible';
 import { Shell } from '../components/Shell';
 import { DISPLAY, Kicker, Version } from '../components/parts';
 import { Figure, RefMarks } from '../components/figures';
+import { GearCompare } from '../components/GearCompare';
 import { guideIcon } from '../components/guideIcons';
 import { Icon } from '@astryxdesign/core/Icon';
 import { GUIDE, VERSIONS, findArticle } from '../lib/data';
@@ -213,12 +214,18 @@ export function GuideGenre({ section: s }: { section: GuideSection }) {
         style={{ width: '100%', height: 'auto', borderRadius: 8, display: 'block' }}
       />
 
+      {s.id === 'gear' ? (
+        <HStack as="nav" gap={4} wrap="wrap" aria-label="このページの見出し">
+          <Link href="#gear-tier">段で比べる</Link><Link href="#gear-mk">Mk で比べる</Link><Link href="#gear-armor">防具</Link><Link href="#weapons">きまり</Link>
+        </HStack>
+      ) : null}
       {s.parts.length > 1 ? (
         <HStack as="nav" gap={4} wrap="wrap" aria-label="このページの見出し">
           {s.parts.map((p) => <Link key={p.id} href={`#${p.id}`}>{p.title}</Link>)}
         </HStack>
       ) : null}
 
+      {s.id === 'gear' ? <GearCompare /> : null}
       {s.parts.map((p) => <Part key={p.id} p={p} numberOf={numberOf} />)}
 
       {/* 出典は常には見せず、開いたときだけ出す (本人の指示)。本文と図の [n] を押すと開いてその行へ移る */}
