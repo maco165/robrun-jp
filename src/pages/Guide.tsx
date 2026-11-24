@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { VStack } from '@astryxdesign/core/VStack';
 import { HStack } from '@astryxdesign/core/HStack';
 import { StackItem } from '@astryxdesign/core/Stack';
@@ -8,6 +9,7 @@ import { Text } from '@astryxdesign/core/Text';
 import { Link } from '@astryxdesign/core/Link';
 import { Divider } from '@astryxdesign/core/Divider';
 import { List, ListItem } from '@astryxdesign/core/List';
+import { Collapsible } from '@astryxdesign/core/Collapsible';
 import { Shell } from '../components/Shell';
 import { DISPLAY, Kicker, Version } from '../components/parts';
 import { Figure, RefMarks } from '../components/figures';
@@ -130,6 +132,41 @@ export function GuideIndex() {
 /** guide/<ジャンル>/ : 図・本文・出典の一覧 (出典は末尾に 1 回ずつ、本文と図は番号だけ) */
 export function GuideGenre({ section: s }: { section: GuideSection }) {
   const { refs, numberOf } = sourceList(s);
+  const [srcOpen, setSrcOpen] = useState(false);
+  const [jump, setJump] = useState<string | null>(null);
+  // [n] (href="#src-n") を押したとき・その URL で開いたときは、出典を開いてから行へ移る
+  useEffect(() => {
+    const fromHash = () => {
+      if (location.hash.startsWith('#src-')) {
+        setSrcOpen(true);
+        setJump(location.hash.slice(1));
+      }
+    };
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as Element | null)?.closest?.('a[href^="#src-"]');
+      if (!a) return;
+      e.preventDefault();
+      const id = a.getAttribute('href')!.slice(1);
+      history.replaceState(null, '', `#${id}`);
+      setSrcOpen(true);
+      setJump(id);
+    };
+    fromHash();
+    window.addEventListener('hashchange', fromHash);
+    document.addEventListener('click', onClick);
+    return () => {
+      window.removeEventListener('hashchange', fromHash);
+      document.removeEventListener('click', onClick);
+    };
+  }, []);
+  useEffect(() => {
+    if (!srcOpen || !jump) return;
+    const t = window.setTimeout(() => {
+      document.getElementById(jump)?.scrollIntoView({ block: 'start' });
+      setJump(null);
+    }, 50);
+    return () => window.clearTimeout(t);
+  }, [srcOpen, jump]);
   const i = GUIDE.sections.findIndex((x) => x.id === s.id);
   const prev = GUIDE.sections[i - 1];
   const next = GUIDE.sections[i + 1];
@@ -170,16 +207,18 @@ export function GuideGenre({ section: s }: { section: GuideSection }) {
         ) : null}
       </VStack>
 
+      {/* 出典は常には見せず、開いたときだけ出す (本人の指示)。本文と図の [n] を押すと開いてその行へ移る */}
       <VStack as="section" gap={2}>
-        <Heading level={2}>出典</Heading>
         <Divider variant="strong" />
-        <VStack gap={3}>
-          {refs.map((r, k) => (
-            <VStack key={k} id={`src-${k + 1}`}>
-              <SourceRow n={k + 1} r={r} />
-            </VStack>
-          ))}
-        </VStack>
+        <Collapsible isOpen={srcOpen} onOpenChange={setSrcOpen} trigger={<Heading level={2}>出典 ({refs.length} 件)</Heading>}>
+          <VStack gap={3} paddingBlock={2}>
+            {refs.map((r, k) => (
+              <VStack key={k} id={`src-${k + 1}`}>
+                <SourceRow n={k + 1} r={r} />
+              </VStack>
+            ))}
+          </VStack>
+        </Collapsible>
       </VStack>
 
       <HStack gap={4} wrap="wrap">

@@ -130,6 +130,12 @@ try {
         if (p.old !== undefined && (text?.includes('古い版の情報') ?? false) !== p.old) fails.push(`${p.path} @${w}: 【古い版の情報】が${p.old ? '無い' : '出ている'}`);
         const src = await page.locator('a[href^="https://store.steampowered.com/"]').count();
         if (src === 0) fails.push(`${p.path} @${w}: 原文のリンクが無い`);
+        // 出典 (原文) は閉じてあり、「出典」を開くと見える
+        const orig = page.locator('main a[href^="https://store.steampowered.com/"]').first();
+        if (await orig.isVisible()) fails.push(`${p.path} @${w}: 出典 (原文) が最初から見えている`);
+        await page.locator('main').getByText('出典', { exact: true }).click();
+        await page.waitForTimeout(300);
+        if (!(await orig.isVisible())) fails.push(`${p.path} @${w}: 「出典」を開いても原文が見えない`);
       }
       if (p.guide) {
         // 入口: ジャンルがすべて並び、それぞれのページへ飛べる。履歴に版の数だけ Steam の原文
@@ -194,6 +200,12 @@ try {
         // 攻略サイトの情報は印を付けて分ける
         const hasSite = sec.items.some((it) => it.kind === 'site') || sec.figures.some((f) => f.kind === 'site');
         if (hasSite && !text.includes('攻略サイトの情報')) fails.push(`${p.path} @${w}: 「攻略サイトの情報」の印が無い`);
+        // 出典は閉じてあり、本文か図の [1] を押すと開いて 1 行目が見える
+        const row1 = page.locator('main #src-1');
+        if (await row1.isVisible()) fails.push(`${p.path} @${w}: 出典が最初から見えている`);
+        await page.locator('main a[href="#src-1"]').first().click();
+        await page.waitForTimeout(400);
+        if (!(await row1.isVisible())) fails.push(`${p.path} @${w}: [1] を押しても出典が開かない`);
         // 本文と図に出典の番号が付く
         const marks = await page.locator('main a[href^="#src-"]').count();
         if (marks < sec.items.length + sec.figures.length) fails.push(`${p.path} @${w}: 出典の番号が ${marks} 個 (項目と図の数より少ない)`);
