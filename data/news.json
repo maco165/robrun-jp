@@ -1138,5 +1138,31 @@
     },
     "summarizedBy": "ai",
     "reviewed": false
+  },
+  {
+    "id": "1849827110446112",
+    "source": "official",
+    "title": "STEAM AWARDS",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1849827110446112",
+    "publishedAt": "2026-11-24T13:08:46.000Z",
+    "gameVersion": "2026-11-20",
+    "summaryJa": {
+      "headline": "Steam AwardsでROB RUNに投票を（11月30日10:00 PSTまで）",
+      "impact": "ゲーム内容の変更はありません。Steam Awardsの2部門にROB RUNをノミネートして応援できます。投票締切は11月30日 10:00 AM PST です。",
+      "points": []
+    },
+    "tags": [
+      "イベント"
+    ],
+    "changeTypes": [
+      "change"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
   }
 ]
