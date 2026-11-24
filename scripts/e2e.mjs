@@ -141,6 +141,20 @@ try {
         const steamLinks = await page.locator('main a[href^="https://store.steampowered.com/news/app/4262460/view/"]').count();
         if (steamLinks < versions.length) fails.push(`${p.path} @${w}: 履歴の Steam の原文のリンクが ${steamLinks} 件 (版 ${versions.length} 件より少ない)`);
       }
+      // 上のメニュー: 5 項目があり、今いるページの項目だけに aria-current。メニューは 1 行 (高さ 64px 以下) で、スクロールしても上に残る
+      const navItems = page.locator('header nav a');
+      if ((await navItems.count()) !== 5) fails.push(`${p.path || '/'} @${w}: メニューの項目が ${await navItems.count()} 個`);
+      const want = p.path === '404.html' ? null : p.path === '' ? 'ホーム' : /^(news|articles)\//.test(p.path) ? '記事' : p.path.startsWith('guide/') ? '攻略' : p.path.startsWith('tools/') ? '感度' : p.path.startsWith('links/') ? 'リンク' : null;
+      const cur = page.locator('header nav a[aria-current="page"]');
+      const curText = (await cur.count()) === 1 ? ((await cur.textContent()) ?? '') : '';
+      if (want ? !curText.includes(want) : (await cur.count()) !== 0) fails.push(`${p.path || '/'} @${w}: 今いるページの印が「${curText || 'なし'}」(${want ?? 'なし'} のはず)`);
+      const navBox = await page.locator('header nav').boundingBox();
+      if (!navBox || navBox.height > 64) fails.push(`${p.path || '/'} @${w}: メニューが 1 行に収まらない (高さ ${navBox?.height})`);
+      await page.mouse.wheel(0, 1500);
+      await page.waitForTimeout(150);
+      const headTop = (await page.locator('header').boundingBox())?.y ?? -1;
+      if (headTop !== 0 && (await page.evaluate(() => document.documentElement.scrollHeight > innerHeight + 100))) fails.push(`${p.path || '/'} @${w}: スクロールするとメニューが上に残らない (y=${headTop})`);
+      await page.mouse.wheel(0, -100000);
       if (p.sens) {
         const main = page.locator('main');
         if (!((await main.textContent()) ?? '').includes('0.213')) fails.push(`${p.path} @${w}: 既定の変換結果 0.213 が無い`);
