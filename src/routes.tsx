@@ -79,8 +79,8 @@ const LINKS_PAGE: Page = {
 
 const SENS_PAGE: Page = {
   path: 'tools/sensitivity/',
-  title: `ROB RUN 感度変換: CS2・VALORANT・Apex などから | ${SITE}`,
-  description: 'CS2・VALORANT・Apex・Overwatch 2・Fortnite などの感度を、同じ振り向き (cm/360) になる ROB RUN の感度に変換するツール。係数の出典と自分で測る方法つき。',
+  title: `ROB RUN 感度変換: CS2・VALORANT・Rust などから | ${SITE}`,
+  description: 'CS2・VALORANT・Apex・Overwatch 2・Fortnite・Rust などの感度を、同じ振り向き (cm/360) になる ROB RUN の感度に変換するツール。係数の出典と自分で測る方法つき。',
   element: <Sensitivity />,
   ogType: 'website',
   jsonLd: {

@@ -64,3 +64,11 @@ test('係数の表の検査: 載せないサイト (代行など) の出典を�
   bad.robrun.sources.push({ url: 'https://xboosty.com/blog/x', title: 'x' });
   assert.match(checkSens(bad).join(), /載せないサイト/);
 });
+
+test('Rust (yaw 0.1125) の感度 0.293 は CS2 1.5 とほぼ同じ振り向き (csdb の例)。ROB RUN にも変換できる', () => {
+  const rust = DATA.games.find((g) => g.id === 'rust')!;
+  assert.equal(rust.yaw, 0.1125);
+  assert.ok(Math.abs(cm360(rust.yaw, 0.293, 800) - cm360(0.022, 1.5, 800)) < 0.1);
+  close(sensForCm(cm360(rust.yaw, 0.293, 800), DATA.robrun.yaw, 800), (0.1125 * 0.293) / 0.1031);
+  assert.equal(DATA.unsupported.some((u) => u.name === 'Rust'), false);
+});
