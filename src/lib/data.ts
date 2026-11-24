@@ -2,14 +2,6 @@
 import news from '@news';
 import schedule from '../../data/schedule.json';
 import versions from '../../data/versions.json';
-import guide from '../../data/guide.json';
-import gear from '../../data/gear.json';
-import type { Gear } from './gear';
-import links from '../../data/links.json';
-import sensitivity from '../../data/sensitivity.json';
-import type { SensData } from './sensitivity';
-import type { Links } from './links';
-import type { Guide } from './guide';
 import { isOlder, latestVersion, type Version } from './versions';
 import type { Article, Schedule } from './types';
 
@@ -17,14 +9,6 @@ import type { Article, Schedule } from './types';
 export const ARTICLES: Article[] = [...(news as Article[])].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 export const SCHEDULE = schedule as Schedule;
 export const VERSIONS = versions.versions as Version[];
-/** 攻略ページの中身 (正本は data/guide.json) */
-export const GUIDE = guide as Guide;
-/** 武器と防具の比較 (正本は data/gear.json) */
-export const GEAR = gear as Gear;
-/** リンク集 (正本は data/links.json) */
-export const LINKS = links as Links;
-/** 感度変換の係数 (正本は data/sensitivity.json) */
-export const SENS = sensitivity as SensData;
 /** いまの (最新の) 版 */
 export const LATEST_VERSION = latestVersion(VERSIONS);
 

@@ -8,7 +8,7 @@ import { Divider } from '@astryxdesign/core/Divider';
 import { List, ListItem } from '@astryxdesign/core/List';
 import { Shell } from '../components/Shell';
 import { DISPLAY, Kicker } from '../components/parts';
-import { LINKS } from '../lib/data';
+import { LINKS } from '../lib/linksData';
 
 /** links/ : 役に立つサイトの紹介 (正本は data/links.json) */
 export function LinksPage() {

@@ -43,6 +43,20 @@ export function checkGear(g: Gear): string[] {
       if (p && p.total !== null && m.unlock !== null && p.total + m.unlock !== m.total) ng.push(`gear の ${w.name} Mk${m.mk}: 累計が前の Mk の累計 + 解放費と違う`);
     });
   }
+  const totals = new Map<string, number | null>(g.weapons.flatMap((w) => w.marks.map((m) => [`${w.name} Mk${m.mk}`, m.total] as const)));
+  for (const w of g.weapons) for (const m of w.marks) {
+    const at = `gear の ${w.name} Mk${m.mk}`;
+    const money = [m.tier, m.unlock, m.total, m.price];
+    if (money.some((x) => x === null) && money.some((x) => x !== null)) ng.push(`${at}: 段・解放費・累計・購入額は全部あるか全部無いか`);
+    if (money.some((x) => x !== null && (!Number.isFinite(x) || x < 0))) ng.push(`${at}: 金額が 0 以上の数でない`);
+    if (m.total !== null && m.unlock !== null) {
+      const base = m.prereq === null ? 0 : totals.get(m.prereq);
+      if (base == null || base + m.unlock !== m.total) ng.push(`${at}: 累計が前提 (${m.prereq ?? 'なし'}) の累計 + 解放費と違う`);
+    }
+    if (![m.mag, m.range, m.aim, m.d60].every((x) => Number.isFinite(x) && x > 0)) ng.push(`${at}: 装弾・射程・構え・60 m の値がおかしい`);
+  }
+  if (new Set(g.armor.map((a) => a.name)).size !== g.armor.length) ng.push('gear: 防具の名前が重複');
+  if (g.land[0] !== 0) ng.push('gear: T0 の土地は 0');
   g.armor.forEach((a, i) => {
     const p = g.armor[i - 1];
     if (a.tier !== null && ![0, 1, 2, 3].includes(a.tier)) ng.push(`gear の ${a.name}: tier は 0〜3`);

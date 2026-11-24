@@ -21,7 +21,7 @@ export function RefMarks({ refs, numberOf }: { refs: GuideRef[]; numberOf: (r: G
   return (
     <Text type="supporting" size="xsm" color="placeholder" hasTabularNumbers>
       {nums.map((n) => (
-        <a key={n} href={`#src-${n}`} style={{ color: 'inherit', textDecoration: 'none', marginInlineStart: 2, display: 'inline-block', padding: '4px 3px' }} aria-label={`出典 ${n}`}>
+        <a key={n} href={`#src-${n}`} style={{ color: 'inherit', textDecoration: 'none', marginInlineStart: 2, display: 'inline-block', padding: '4px 3px', minWidth: 24, textAlign: 'center', boxSizing: 'border-box' }} aria-label={`出典 ${n}`}>
           [{n}]
         </a>
       ))}

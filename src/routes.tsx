@@ -6,7 +6,9 @@ import { NotFound } from './pages/NotFound';
 import { GuideGenre, GuideIndex } from './pages/Guide';
 import { LinksPage } from './pages/Links';
 import { Sensitivity } from './pages/Sensitivity';
-import { ARTICLES, GUIDE, findArticle } from './lib/data';
+import { ARTICLES, findArticle } from './lib/data';
+import { GUIDE } from './lib/guideData';
+import { routeOf } from './lib/route';
 import { versionLabel } from './lib/versions';
 
 export const SITE = 'ROB RUN 日本語アップデート';
@@ -163,19 +165,15 @@ export function sitePages(): Page[] {
 
 /** base を除いた道からページを選ぶ。知らない道は 404 */
 export function resolve(path: string): Page {
-  // GitHub Pages は <道>/index.html にも同じ HTML を返すので、末尾の index.html を落としてから振り分ける
-  const p = path.replace(/^\/+/, '').replace(/(^|\/)index\.html$/, '$1');
-  if (p === '' || p === 'index.html') return TOP;
-  if (p === 'news/' || p === 'news') return NEWS;
-  if (p === 'guide/' || p === 'guide') return GUIDE_PAGE;
-  if (p === 'links/' || p === 'links') return LINKS_PAGE;
-  if (p === 'tools/sensitivity/' || p === 'tools/sensitivity') return SENS_PAGE;
-  const gm = /^guide\/([a-z0-9-]+)\/?$/.exec(p);
-  if (gm && GUIDE.sections.some((g) => g.id === gm[1])) return sitePages().find((x) => x.path === `guide/${gm[1]}/`)!;
-  const m = /^articles\/([A-Za-z0-9_-]+)\/?$/.exec(p);
-  if (m) {
-    const a = findArticle(m[1]);
-    if (a) return sitePages().find((x) => x.path === `articles/${a.id}/`)!;
+  const r = routeOf(path);
+  switch (r.kind) {
+    case 'top': return TOP;
+    case 'news': return NEWS;
+    case 'guide': return GUIDE_PAGE;
+    case 'links': return LINKS_PAGE;
+    case 'sens': return SENS_PAGE;
+    case 'genre': return (GUIDE.sections.some((g) => g.id === r.id) && sitePages().find((x) => x.path === `guide/${r.id}/`)) || NOT_FOUND;
+    case 'article': return (findArticle(r.id) && sitePages().find((x) => x.path === `articles/${r.id}/`)) || NOT_FOUND;
+    default: return NOT_FOUND;
   }
-  return NOT_FOUND;
 }

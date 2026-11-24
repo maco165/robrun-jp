@@ -14,7 +14,7 @@ import { NumberInput } from '@astryxdesign/core/NumberInput';
 import { Collapsible } from '@astryxdesign/core/Collapsible';
 import { Shell } from '../components/Shell';
 import { DISPLAY, Kicker } from '../components/parts';
-import { SENS } from '../lib/data';
+import { SENS } from '../lib/sensData';
 import { cm360, positive, sensForCm, yawFromMeasure } from '../lib/sensitivity';
 
 const CM = 'cm360';

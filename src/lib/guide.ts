@@ -189,3 +189,9 @@ export function sourceList(s: Pick<GuidePart, 'figures' | 'items'>): { refs: Gui
   }
   return { refs, numberOf: (r) => index.get(refKey(r)) ?? 0 };
 }
+
+/** 攻略を確かめた日 (日本時間の 0 時) 以後に出た記事。攻略に反映していない可能性があるものとして攻略ページに並べる */
+export function newerThanGuide<T extends { publishedAt: string }>(articles: T[], updatedAt: string): T[] {
+  const from = Date.parse(`${updatedAt}T00:00:00+09:00`);
+  return articles.filter((a) => Date.parse(a.publishedAt) >= from).sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt));
+}
