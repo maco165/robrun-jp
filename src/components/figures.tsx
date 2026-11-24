@@ -171,7 +171,7 @@ export function Figure({ f, numberOf }: { f: GuideFigure; numberOf: (r: GuideRef
   return (
     <VStack as="figure" gap={3} style={{ margin: 0 }}>
       <HStack gap={2} wrap="wrap" vAlign="center">
-        <Heading level={2}>{f.title}</Heading>
+        <Heading level={3}>{f.title}</Heading>
         {f.kind === 'site' ? <Kicker>攻略サイトの情報</Kicker> : null}
         <RefMarks refs={f.refs} numberOf={numberOf} />
       </HStack>

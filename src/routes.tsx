@@ -68,10 +68,13 @@ const GUIDE_PAGE: Page = {
   },
 };
 
+/** 以前の攻略のページ (まとめ直す前の URL) → いまの場所。scripts/prerender.mjs が転送のページを書く */
+export const MOVED: Record<string, string> = Object.fromEntries(Object.entries(GUIDE.moved ?? {}).map(([old, to]) => [`guide/${old}/`, `guide/${to}`]));
+
 const LINKS_PAGE: Page = {
   path: 'links/',
-  title: `ROB RUN のリンク集: 攻略 wiki・データ・YouTube | ${SITE}`,
-  description: 'ROB RUN の公式の窓口と、攻略 wiki・データサイト・YouTube を、何が強いかと更新日つきで紹介するリンク集。',
+  title: `ROB RUN のリンク集: 公式・SteamDB・人数の確認 | ${SITE}`,
+  description: 'ROB RUN の公式の窓口と、SteamDB、同時接続数やサーバーのワイプ時刻を確かめられるサイトのリンク集。',
   element: <LinksPage />,
   ogType: 'website',
   jsonLd: { '@context': 'https://schema.org', '@graph': [{ '@type': 'CollectionPage', name: 'ROB RUN のリンク集', url: `${SITE_URL}links/`, inLanguage: 'ja' }, crumbs([{ name: 'ホーム', path: '' }, { name: 'リンク集', path: 'links/' }])] },

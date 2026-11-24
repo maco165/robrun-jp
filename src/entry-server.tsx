@@ -2,9 +2,9 @@
 import { renderToString } from 'react-dom/server';
 import { StrictMode } from 'react';
 import App from './App';
-import { sitePages, NOT_FOUND, ORIGIN } from './routes';
+import { sitePages, MOVED, NOT_FOUND, ORIGIN } from './routes';
 
-export { sitePages, NOT_FOUND, ORIGIN };
+export { sitePages, MOVED, NOT_FOUND, ORIGIN };
 
 export function render(path: string): string {
   return renderToString(

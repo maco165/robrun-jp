@@ -78,3 +78,5 @@ html {
 [id^='src-'] { scroll-margin-top: 128px; }
 
 @media (max-width: 760px) { .rr-departure-time { flex-basis: 100%; } }
+
+.rr-part { scroll-margin-top: 128px; }

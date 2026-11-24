@@ -16,7 +16,7 @@ import { Figure, RefMarks } from '../components/figures';
 import { guideIcon } from '../components/guideIcons';
 import { Icon } from '@astryxdesign/core/Icon';
 import { GUIDE, VERSIONS, findArticle } from '../lib/data';
-import { refLinks, sourceList, type GuideItem, type GuideRef, type GuideSection } from '../lib/guide';
+import { refLinks, sourceList, type GuideItem, type GuidePart, type GuideRef, type GuideSection } from '../lib/guide';
 import { newsUrl } from '../lib/steamNews';
 import { jstDate } from '../lib/time';
 import { url } from '../lib/url';
@@ -78,6 +78,33 @@ function Items({ list, numberOf }: { list: GuideItem[]; numberOf: (r: GuideRef) 
   );
 }
 
+/** ページの中の見出し 1 つ分: 図・くわしく */
+function Part({ p, numberOf }: { p: GuidePart; numberOf: (r: GuideRef) => number }) {
+  const official = p.items.filter((it) => it.kind === 'official');
+  const site = p.items.filter((it) => it.kind === 'site');
+  return (
+    <VStack as="section" id={p.id} className="rr-part" gap={6}>
+      <VStack gap={2}>
+        <Heading level={2}>{p.title}</Heading>
+        <Divider variant="strong" />
+      </VStack>
+      {p.figures.map((f, k) => <Figure key={k} f={f} numberOf={numberOf} />)}
+      <VStack gap={3}>
+        {official.length > 0 ? <Items list={official} numberOf={numberOf} /> : null}
+        {site.length > 0 ? (
+          <VStack gap={3}>
+            <HStack gap={2} wrap="wrap" vAlign="center">
+              <Kicker>攻略サイトの情報</Kicker>
+              <Text type="supporting" color="placeholder">公式は数字を出していません。サイトによって値が違うことがあります</Text>
+            </HStack>
+            <Items list={site} numberOf={numberOf} />
+          </VStack>
+        ) : null}
+      </VStack>
+    </VStack>
+  );
+}
+
 /** guide/ : ジャンルの入口とアップデートの履歴 */
 export function GuideIndex() {
   return (
@@ -97,7 +124,7 @@ export function GuideIndex() {
               </HStack>
               <Heading level={2}>{s.title}</Heading>
               <Text type="supporting" color="secondary">{s.summary}</Text>
-              <Text type="supporting" color="placeholder" hasTabularNumbers>図 {s.figures.length}・項目 {s.items.length}</Text>
+              <Text type="supporting" color="placeholder" hasTabularNumbers>{s.parts.map((p) => p.title).join('・')}</Text>
             </VStack>
           </ClickableCard>
         ))}
@@ -131,7 +158,7 @@ export function GuideIndex() {
 
 /** guide/<ジャンル>/ : 図・本文・出典の一覧 (出典は末尾に 1 回ずつ、本文と図は番号だけ) */
 export function GuideGenre({ section: s }: { section: GuideSection }) {
-  const { refs, numberOf } = sourceList(s);
+  const { refs, numberOf } = sourceList({ figures: s.parts.flatMap((p) => p.figures), items: s.parts.flatMap((p) => p.items) });
   const [srcOpen, setSrcOpen] = useState(false);
   const [jump, setJump] = useState<string | null>(null);
   // [n] (href="#src-n") を押したとき・その URL で開いたときは、出典を開いてから行へ移る
@@ -170,8 +197,6 @@ export function GuideGenre({ section: s }: { section: GuideSection }) {
   const i = GUIDE.sections.findIndex((x) => x.id === s.id);
   const prev = GUIDE.sections[i - 1];
   const next = GUIDE.sections[i + 1];
-  const official = s.items.filter((it) => it.kind === 'official');
-  const site = s.items.filter((it) => it.kind === 'site');
   return (
     <Shell current="guide">
       <StackItem crossAlignSelf="start">
@@ -188,24 +213,13 @@ export function GuideGenre({ section: s }: { section: GuideSection }) {
         style={{ width: '100%', height: 'auto', borderRadius: 8, display: 'block' }}
       />
 
-      {s.figures.map((f, k) => (
-        <Figure key={k} f={f} numberOf={numberOf} />
-      ))}
+      {s.parts.length > 1 ? (
+        <HStack as="nav" gap={4} wrap="wrap" aria-label="このページの見出し">
+          {s.parts.map((p) => <Link key={p.id} href={`#${p.id}`}>{p.title}</Link>)}
+        </HStack>
+      ) : null}
 
-      <VStack as="section" gap={3}>
-        <Heading level={2}>くわしく</Heading>
-        <Divider variant="strong" />
-        <Items list={official} numberOf={numberOf} />
-        {site.length > 0 ? (
-          <VStack gap={3}>
-            <HStack gap={2} wrap="wrap" vAlign="center">
-              <Kicker>攻略サイトの情報</Kicker>
-              <Text type="supporting" color="placeholder">公式は数字を出していません。サイトによって値が違うことがあります</Text>
-            </HStack>
-            <Items list={site} numberOf={numberOf} />
-          </VStack>
-        ) : null}
-      </VStack>
+      {s.parts.map((p) => <Part key={p.id} p={p} numberOf={numberOf} />)}
 
       {/* 出典は常には見せず、開いたときだけ出す (本人の指示)。本文と図の [n] を押すと開いてその行へ移る */}
       <VStack as="section" gap={2}>

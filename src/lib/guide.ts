@@ -25,13 +25,18 @@ export type GuideFigure = FigureBase &
     | { type: 'split'; columns: { title: string; tone: 'lose' | 'keep'; items: string[] }[] }
   );
 
-export type GuideSection = { id: string; title: string; summary: string; figures: GuideFigure[]; items: GuideItem[] };
+/** ページの中の見出し 1 つ分 */
+export type GuidePart = { id: string; title: string; figures: GuideFigure[]; items: GuideItem[] };
+/** 攻略の 1 ページ */
+export type GuideSection = { id: string; title: string; summary: string; parts: GuidePart[] };
 export type Guide = {
   /** 内容を確かめた日 (日本時間) */
   updatedAt: string;
   /** どの版の時点の情報か (data/versions.json の id か playtest) */
   basedOn: string;
   sections: GuideSection[];
+  /** 以前のページの id → いまの場所 (<ページ>/#<見出し>)。古い URL からの転送に使う */
+  moved?: Record<string, string>;
 };
 
 /** 1 項目の上限。原文の訳にならず、1〜2 文で言い切る長さ */
@@ -48,6 +53,7 @@ export function checkGuide(g: Guide, versionIds: Set<string>): string[] {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(g.updatedAt ?? '')) ng.push('guide: updatedAt は YYYY-MM-DD');
   if (!versionIds.has(g.basedOn)) ng.push(`guide: basedOn ${g.basedOn} が versions.json に無い`);
   const ids = new Set<string>();
+  const partIds = new Set<string>();
   const checkRefs = (at: string, kind: string, refs: GuideRef[] | undefined) => {
     if (!refs?.length) ng.push(`${at}: 出典が無い`);
     const official = (refs ?? []).filter((r) => 'news' in r || 'help' in r).length;
@@ -68,10 +74,16 @@ export function checkGuide(g: Guide, versionIds: Set<string>): string[] {
     if (!SECTION_ID.test(s.id ?? '') || ids.has(s.id)) ng.push(`${at}: 節の id が無いか重複か形が違う (小文字の kebab-case)`);
     ids.add(s.id);
     if (!s.title) ng.push(`${at}: 題が無い`);
-    if (!s.items?.length) ng.push(`${at}: 項目が無い`);
     if (!s.summary || s.summary.length > GUIDE_SUMMARY_MAX) ng.push(`${at}: 入口の一行 (summary) が無いか ${GUIDE_SUMMARY_MAX} 字を超える`);
-    if (!Array.isArray(s.figures)) ng.push(`${at}: figures (図の一覧) が無い。図が無い節は [] と書く`);
-    (s.figures ?? []).forEach((f, i) => {
+    if (!s.parts?.length) ng.push(`${at}: 見出し (parts) が無い`);
+    for (const pt of s.parts ?? []) {
+    const at = `guide の ${s.id}/${pt.id}`;
+    if (!SECTION_ID.test(pt.id ?? '') || partIds.has(pt.id) || ids.has(pt.id)) ng.push(`${at}: 見出しの id が無いか重複か形が違う`);
+    partIds.add(pt.id);
+    if (!pt.title) ng.push(`${at}: 見出しの題が無い`);
+    if (!pt.items?.length) ng.push(`${at}: 項目が無い`);
+    if (!Array.isArray(pt.figures)) ng.push(`${at}: figures (図の一覧) が無い。図が無い節は [] と書く`);
+    (pt.figures ?? []).forEach((f, i) => {
       const fat = `${at} の図 ${i + 1}`;
       if (!f.title) ng.push(`${fat}: 題が無い`);
       checkRefs(fat, f.kind, f.refs);
@@ -119,11 +131,17 @@ export function checkGuide(g: Guide, versionIds: Set<string>): string[] {
       } else ng.push(`${fat}: 図の種類 ${(f as { type: string }).type} を知らない`);
       for (const c of cells) if (!c || c.length > GUIDE_CELL_MAX) ng.push(`${fat}: 図の文字「${(c ?? '').slice(0, 20)}」が空か ${GUIDE_CELL_MAX} 字を超える`);
     });
-    (s.items ?? []).forEach((it, i) => {
+    (pt.items ?? []).forEach((it, i) => {
       const iat = `${at} の ${i + 1} 番目`;
       if (!it.text || it.text.length > GUIDE_TEXT_MAX) ng.push(`${iat}: 本文が無いか ${GUIDE_TEXT_MAX} 字を超える`);
       checkRefs(iat, it.kind, it.refs);
     });
+    }
+  }
+  for (const [old, to] of Object.entries(g.moved ?? {})) {
+    const m = /^([a-z0-9-]+)\/#([a-z0-9-]+)$/.exec(to);
+    const target = m && g.sections.find((s) => s.id === m[1])?.parts.some((x) => x.id === m[2]);
+    if (!target || ids.has(old)) ng.push(`guide の moved: ${old} → ${to} の行き先が無いか、今のページと同じ id`);
   }
   return ng;
 }
@@ -160,7 +178,7 @@ export function refKey(r: GuideRef): string {
  * ジャンルの出典を 1 か所にまとめるための通し番号。図・本文の順に初めて出た順で 1 から振る。
  * 本文と図には番号だけを付け、リンクはページの末尾の出典の一覧に 1 回だけ置く
  */
-export function sourceList(s: Pick<GuideSection, 'figures' | 'items'>): { refs: GuideRef[]; numberOf: (r: GuideRef) => number } {
+export function sourceList(s: Pick<GuidePart, 'figures' | 'items'>): { refs: GuideRef[]; numberOf: (r: GuideRef) => number } {
   const refs: GuideRef[] = [];
   const index = new Map<string, number>();
   for (const r of [...s.figures.flatMap((f) => f.refs), ...s.items.flatMap((it) => it.refs)]) {

@@ -20,7 +20,7 @@ export function LinksPage() {
           <Text type="supporting" color="placeholder" hasTabularNumbers>{LINKS.checkedAt} 時点</Text>
         </HStack>
         <Heading level={1} style={{ ...DISPLAY, fontSize: 'clamp(28px, 5vw, 44px)', lineHeight: 1.3 }}>ROB RUN の役に立つサイト</Heading>
-        <Text type="large" color="secondary">公式の窓口と、攻略・データ・動画のサイトを、何が強いかと最近の更新日つきで紹介します</Text>
+        <Text type="large" color="secondary">公式の窓口と、人数やサーバーを確かめられるサイトです</Text>
         <Text type="supporting" color="placeholder">{LINKS.note}</Text>
       </VStack>
 

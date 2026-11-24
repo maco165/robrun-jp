@@ -22,7 +22,7 @@ export function Article({ article }: { article: ArticleData }) {
   const i = ARTICLES.findIndex((x) => x.id === a.id);
   const older = ARTICLES[i + 1];
   // この記事を出典にしている攻略のジャンル (内部リンク)
-  const guides = GUIDE.sections.filter((s) => [...s.figures, ...s.items].some((x) => x.refs.some((r) => 'news' in r && r.news === a.id)));
+  const guides = GUIDE.sections.filter((s) => s.parts.flatMap((p) => [...p.figures, ...p.items]).some((x) => x.refs.some((r) => 'news' in r && r.news === a.id)));
   const meta: { label: string; value: ReactNode }[] = [
     { label: '公開（日本時間）', value: <Jst>{jstFull(a.publishedAt)}</Jst> },
     { label: '公開（UTC）', value: <Text type="supporting" hasTabularNumbers>{utcFull(a.publishedAt)}</Text> },

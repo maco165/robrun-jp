@@ -64,7 +64,7 @@ try {
   }
   // sitemap とファビコン・画像 (6)
   const sitemap = await (await fetch(BASE + 'sitemap.xml')).text();
-  for (const loc of ['', 'news/', 'guide/', 'links/', 'tools/sensitivity/', 'guide/sell/', 'guide/story/', 'articles/fixture-p032/', 'articles/fixture-dollar/']) {
+  for (const loc of ['', 'news/', 'guide/', 'links/', 'tools/sensitivity/', 'guide/gear/', 'guide/start/', 'articles/fixture-p032/', 'articles/fixture-dollar/']) {
     if (!sitemap.includes(`<loc>https://maco165.github.io/robrun-jp/${loc}</loc>`)) fails.push(`sitemap.xml に ${loc || '/'} が無い`);
   }
   if (sitemap.includes('404')) fails.push('sitemap.xml に 404 がある');
@@ -73,6 +73,15 @@ try {
     if (!res.ok) fails.push(`${f} が ${res.status}`);
   }
   const browser = await chromium.launch();
+  // まとめ直す前の URL (guide/sell/ など) は、いまの見出しへ転送される
+  for (const [old, to] of Object.entries(guide.moved)) {
+    const page = await browser.newPage();
+    await page.goto(`${BASE}guide/${old}/`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(300);
+    if (page.url() !== `${BASE}guide/${to}`) fails.push(`guide/${old}/ の転送先が ${page.url()}`);
+    if (sitemap.includes(`/guide/${old}/<`)) fails.push(`sitemap.xml に転送元 guide/${old}/ がある`);
+    await page.close();
+  }
   for (const p of PAGES) {
     const raw = await (await fetch(BASE + p.path)).text();
     // HTML では & が &amp; に逃がされる
@@ -195,7 +204,12 @@ try {
         }
       }
       if (p.genre) {
-        const sec = p.genre;
+        const sec = { ...p.genre, figures: p.genre.parts.flatMap((x) => x.figures), items: p.genre.parts.flatMap((x) => x.items) };
+        // ページの中の見出し: すべてあり、目次から飛べる
+        for (const x of sec.parts) {
+          if ((await page.locator(`main section#${x.id}`).count()) !== 1) fails.push(`${p.path} @${w}: 見出し ${x.id} が無い`);
+          if (sec.parts.length > 1 && (await page.locator(`main nav a[href="#${x.id}"]`).count()) !== 1) fails.push(`${p.path} @${w}: 目次に ${x.id} が無い`);
+        }
         const text = (await page.textContent('main')) ?? '';
         // 図: 数が合い、図ごとに題・中身の文字・出典の番号がその図の中にあり、攻略サイトの図には印がある
         const figs = page.locator('main figure');

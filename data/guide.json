@@ -3,2837 +3,342 @@
   "basedOn": "2026-11-20",
   "sections": [
     {
-      "id": "story",
-      "title": "世界観とストーリー",
-      "summary": "出所から影の総督まで、1 週間で成り上がる物語",
-      "figures": [
+      "id": "start",
+      "title": "はじめに",
+      "summary": "遊びの流れ、失う物、ゲームの世界観",
+      "parts": [
         {
-          "kind": "official",
-          "type": "flow",
-          "title": "1 週間の物語",
-          "refs": [
+          "id": "basics",
+          "title": "基本の流れ",
+          "figures": [
             {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
+              "kind": "official",
+              "type": "flow",
+              "title": "1 回の強盗の流れ",
+              "refs": [
+                {
+                  "news": "1844115010491502",
+                  "title": "ROB RUN: Gameplay Overview"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1347-how-do-i-pull-off-heists-in-looty-bay/",
+                  "title": "How do I pull off heists in Looty Bay?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1349-how-do-i-sell-my-loot/",
+                  "title": "How do I sell my loot?"
+                }
+              ],
+              "steps": [
+                {
+                  "title": "下見",
+                  "note": "マスクの前は安全に見て回れる"
+                },
+                {
+                  "title": "マスクをかぶる",
+                  "note": "ここから犯罪者"
+                },
+                {
+                  "title": "強盗",
+                  "note": "続けるほど悪名が上がる"
+                },
+                {
+                  "title": "逃げる",
+                  "note": "車で街を出る"
+                },
+                {
+                  "title": "売る・しまう",
+                  "note": "フェンスで売るか拠点へ"
+                }
+              ]
             },
             {
-              "news": "1844115010491502",
-              "title": "ROB RUN: Gameplay Overview"
-            },
-            {
-              "news": "1844751498222037",
-              "title": "ROB RUN: Global Map"
-            },
-            {
-              "news": "1845383656385404",
-              "title": "Frequently Asked Questions"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1346-what-is-the-federal-raid-wipe/",
-              "title": "What is the Federal Raid (Wipe)?"
+              "kind": "official",
+              "type": "table",
+              "title": "死んだとき・捕まったときに失う物",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1344-what-do-i-lose-when-i-die/",
+                  "title": "What do I lose when I die?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1352-why-surrender-to-the-cops/",
+                  "title": "Why surrender to the cops?"
+                },
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                },
+                {
+                  "news": "1844115010491502",
+                  "title": "ROB RUN: Gameplay Overview"
+                }
+              ],
+              "columns": [
+                "場面",
+                "失う物",
+                "残る物"
+              ],
+              "rows": [
+                [
+                  "街の犯罪者が死ぬ",
+                  "持ち物 (装備を守るには降伏)",
+                  "公式の記載なし"
+                ],
+                [
+                  "街の犯罪者が降伏する",
+                  "鞄の中身",
+                  "装備"
+                ],
+                [
+                  "砂漠で死ぬ",
+                  "戦利品のすべて",
+                  "公式の記載なし"
+                ],
+                [
+                  "街の民間人が死ぬ",
+                  "なし",
+                  "鞄と装備"
+                ],
+                [
+                  "警官が死ぬ",
+                  "支給品",
+                  "私物"
+                ]
+              ],
+              "note": "公式ヘルプは、犯罪者は死ぬと持ち物を失い、降伏すれば装備を守れると書く。砂漠での装備の扱いは書かれていない"
             }
           ],
-          "note": "ワイプのあとは、また出所から始まる",
-          "steps": [
+          "items": [
             {
-              "title": "出所",
-              "note": "無一文で Lenny のモーテルへ"
+              "text": "主な舞台は街 Looty Bay。車で街に入り、戦利品を集めて無事に出るのが基本の流れ。パーティーは最大 3 人",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1843481262692060",
+                  "title": "ROB RUN: Your First Look at Looty Bay"
+                },
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ]
             },
             {
-              "title": "稼ぐ",
-              "note": "Looty Bay で強盗と取引"
+              "text": "マスクをかぶると犯罪者になる。かぶる前は安全に下見でき、目当ての建物や逃げ道を確かめられる",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1844115010491502",
+                  "title": "ROB RUN: Gameplay Overview"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1347-how-do-i-pull-off-heists-in-looty-bay/",
+                  "title": "How do I pull off heists in Looty Bay?"
+                }
+              ]
             },
             {
-              "title": "土地を持つ",
-              "note": "砂漠の集落に拠点を作る"
+              "text": "警察も本物のプレイヤー。街に入るたびに犯罪者か警察かを選べる",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1844115010491502",
+                  "title": "ROB RUN: Gameplay Overview"
+                },
+                {
+                  "news": "1845383656385404",
+                  "title": "Frequently Asked Questions"
+                }
+              ]
             },
             {
-              "title": "支配する",
-              "note": "クランで地区を取り、頂点へ"
+              "text": "進め方は自由。強盗・積荷の運搬・拠点での生産・警察・土地の取り合いから選ぶ。操作に迷ったらモーテルの Lenny に聞く",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1342-what-should-i-do-after-the-intro-quests/",
+                  "title": "What should I do after the intro quests?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1354-how-do-i-make-money/",
+                  "title": "How do I make money?"
+                }
+              ]
             },
             {
-              "title": "一斉摘発",
-              "note": "財産が刑期に替わる。稼ぐほど長い"
-            }
-          ]
-        }
-      ],
-      "items": [
-        {
-          "text": "舞台は犯罪が絶えない街 Looty Bay。強盗・取引・装甲車の襲撃・殺人が毎分のように起きている",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1843481262692060",
-              "title": "ROB RUN: Your First Look at Looty Bay"
-            }
-          ]
-        },
-        {
-          "text": "主人公は刑務所を出たばかりで、お金も住む所も無い。まずは Lenny のモーテルに転がり込み、最初の土地を買うお金を集める",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
-            }
-          ]
-        },
-        {
-          "text": "街の警察はひどい人手不足で、身元の確認もせずにだれでも雇うようになった。警官は支給品の装備で働き、押収品の取り分や賄賂で稼ぐ",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1844115010491502",
-              "title": "ROB RUN: Gameplay Overview"
-            }
-          ]
-        },
-        {
-          "text": "拠点を持つまでの戦利品の置き場として、中立の場所「バー」がある。地元の顔役が仕切るので撃たれない。取引をしたり、ルーレットで遊んだりできる",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1843481262692060",
-              "title": "ROB RUN: Your First Look at Looty Bay"
-            }
-          ]
-        },
-        {
-          "text": "街の外は法の届かない砂漠。集落を買って土地を貸し、クランで地区を奪い合う。中央の地区を取ったクランは地図のすべてから税を取る",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1844751498222037",
-              "title": "ROB RUN: Global Map"
+              "text": "武器は街の戦利品のほか、闇市 (Lenny、または拠点のノートパソコン) で買える。発売時に基本のピストルが値下げされた",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1343-where-can-i-find-weapons/",
+                  "title": "Where can I find weapons?"
+                },
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
             },
             {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
-            }
-          ]
-        },
-        {
-          "text": "頂点は中央 Highlands を支配するクランの長、影の総督。ゲームの世界に 1 人しかいない",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
+              "text": "死んだときに失う物は場所で違う。街の犯罪者は持ち物を失い、降伏すれば装備を守れる。砂漠では戦利品のすべて。武器はいま修理できない",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1344-what-do-i-lose-when-i-die/",
+                  "title": "What do I lose when I die?"
+                },
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ]
             }
           ]
         },
         {
-          "text": "7 日ごとに連邦の一斉摘発 (Federal Raid) が来て、拠点・区画・武器・現金がリセットされる。稼いだお金が多いほど刑期が長くなる",
-          "kind": "official",
-          "refs": [
+          "id": "story",
+          "title": "世界観とストーリー",
+          "figures": [
             {
-              "news": "1845383656385404",
-              "title": "Frequently Asked Questions"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1346-what-is-the-federal-raid-wipe/",
-              "title": "What is the Federal Raid (Wipe)?"
-            }
-          ]
-        },
-        {
-          "text": "公式は、無一文から成り上がり、ほかのプレイヤーと競う中で生まれる物語こそが面白さだと説明している",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1845383656385404",
-              "title": "Frequently Asked Questions"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "basics",
-      "title": "基本の流れ",
-      "summary": "強盗の 1 回の流れと、死んだときに失う物",
-      "figures": [
-        {
-          "kind": "official",
-          "type": "flow",
-          "title": "1 回の強盗の流れ",
-          "refs": [
-            {
-              "news": "1844115010491502",
-              "title": "ROB RUN: Gameplay Overview"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1347-how-do-i-pull-off-heists-in-looty-bay/",
-              "title": "How do I pull off heists in Looty Bay?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1349-how-do-i-sell-my-loot/",
-              "title": "How do I sell my loot?"
-            }
-          ],
-          "steps": [
-            {
-              "title": "下見",
-              "note": "マスクの前は安全に見て回れる"
-            },
-            {
-              "title": "マスクをかぶる",
-              "note": "ここから犯罪者"
-            },
-            {
-              "title": "強盗",
-              "note": "続けるほど悪名が上がる"
-            },
-            {
-              "title": "逃げる",
-              "note": "車で街を出る"
-            },
-            {
-              "title": "売る・しまう",
-              "note": "フェンスで売るか拠点へ"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "type": "table",
-          "title": "死んだとき・捕まったときに失う物",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1344-what-do-i-lose-when-i-die/",
-              "title": "What do I lose when I die?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1352-why-surrender-to-the-cops/",
-              "title": "Why surrender to the cops?"
-            },
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            },
-            {
-              "news": "1844115010491502",
-              "title": "ROB RUN: Gameplay Overview"
+              "kind": "official",
+              "type": "flow",
+              "title": "1 週間の物語",
+              "refs": [
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                },
+                {
+                  "news": "1844115010491502",
+                  "title": "ROB RUN: Gameplay Overview"
+                },
+                {
+                  "news": "1844751498222037",
+                  "title": "ROB RUN: Global Map"
+                },
+                {
+                  "news": "1845383656385404",
+                  "title": "Frequently Asked Questions"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1346-what-is-the-federal-raid-wipe/",
+                  "title": "What is the Federal Raid (Wipe)?"
+                }
+              ],
+              "note": "ワイプのあとは、また出所から始まる",
+              "steps": [
+                {
+                  "title": "出所",
+                  "note": "無一文で Lenny のモーテルへ"
+                },
+                {
+                  "title": "稼ぐ",
+                  "note": "Looty Bay で強盗と取引"
+                },
+                {
+                  "title": "土地を持つ",
+                  "note": "砂漠の集落に拠点を作る"
+                },
+                {
+                  "title": "支配する",
+                  "note": "クランで地区を取り、頂点へ"
+                },
+                {
+                  "title": "一斉摘発",
+                  "note": "財産が刑期に替わる。稼ぐほど長い"
+                }
+              ]
             }
           ],
-          "columns": [
-            "場面",
-            "失う物",
-            "残る物"
-          ],
-          "rows": [
-            [
-              "街の犯罪者が死ぬ",
-              "持ち物 (装備を守るには降伏)",
-              "公式の記載なし"
-            ],
-            [
-              "街の犯罪者が降伏する",
-              "鞄の中身",
-              "装備"
-            ],
-            [
-              "砂漠で死ぬ",
-              "戦利品のすべて",
-              "公式の記載なし"
-            ],
-            [
-              "街の民間人が死ぬ",
-              "なし",
-              "鞄と装備"
-            ],
-            [
-              "警官が死ぬ",
-              "支給品",
-              "私物"
-            ]
-          ],
-          "note": "公式ヘルプは、犯罪者は死ぬと持ち物を失い、降伏すれば装備を守れると書く。砂漠での装備の扱いは書かれていない"
-        }
-      ],
-      "items": [
-        {
-          "text": "主な舞台は街 Looty Bay。車で街に入り、戦利品を集めて無事に出るのが基本の流れ。パーティーは最大 3 人",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1843481262692060",
-              "title": "ROB RUN: Your First Look at Looty Bay"
-            },
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ]
-        },
-        {
-          "text": "マスクをかぶると犯罪者になる。かぶる前は安全に下見でき、目当ての建物や逃げ道を確かめられる",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1844115010491502",
-              "title": "ROB RUN: Gameplay Overview"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1347-how-do-i-pull-off-heists-in-looty-bay/",
-              "title": "How do I pull off heists in Looty Bay?"
-            }
-          ]
-        },
-        {
-          "text": "警察も本物のプレイヤー。街に入るたびに犯罪者か警察かを選べる",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1844115010491502",
-              "title": "ROB RUN: Gameplay Overview"
-            },
-            {
-              "news": "1845383656385404",
-              "title": "Frequently Asked Questions"
-            }
-          ]
-        },
-        {
-          "text": "進め方は自由。強盗・積荷の運搬・拠点での生産・警察・土地の取り合いから選ぶ。操作に迷ったらモーテルの Lenny に聞く",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1342-what-should-i-do-after-the-intro-quests/",
-              "title": "What should I do after the intro quests?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1354-how-do-i-make-money/",
-              "title": "How do I make money?"
-            }
-          ]
-        },
-        {
-          "text": "武器は街の戦利品のほか、闇市 (Lenny、または拠点のノートパソコン) で買える。発売時に基本のピストルが値下げされた",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1343-where-can-i-find-weapons/",
-              "title": "Where can I find weapons?"
-            },
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        },
-        {
-          "text": "死んだときに失う物は場所で違う。街の犯罪者は持ち物を失い、降伏すれば装備を守れる。砂漠では戦利品のすべて。武器はいま修理できない",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1344-what-do-i-lose-when-i-die/",
-              "title": "What do I lose when I die?"
-            },
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "map",
-      "title": "地図",
-      "summary": "砂漠の 10 地区の並びと、Looty Bay の強盗の場所",
-      "figures": [
-        {
-          "kind": "site",
-          "type": "map",
-          "title": "砂漠の地区の配置 (模式図)",
-          "refs": [
-            {
-              "site": "https://zap-hosting.com/tools/rob-run/map-guide",
-              "title": "ROB RUN map guide（ZAP-Hosting・英語・発売前の世界地図から）"
-            },
-            {
-              "news": "1844751498222037",
-              "title": "ROB RUN: Global Map"
-            },
-            {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
-            }
-          ],
-          "note": "発売前に Steam のストアに出た世界地図の座標 (ZAP-Hosting が掲載) から並べた。上を北とみなしている。アーリーアクセス中に変わる可能性がある",
-          "cols": 7,
-          "rows": 5,
-          "zones": [
-            {
-              "label": "刑務所",
-              "note": "推定",
-              "col": 1,
-              "row": 1,
-              "tone": "muted"
-            },
-            {
-              "label": "Dustbowl",
-              "note": "Lv1",
-              "col": 3,
-              "row": 1
-            },
-            {
-              "label": "Redstone",
-              "note": "Lv1",
-              "col": 5,
-              "row": 1
-            },
-            {
-              "label": "Rivertown",
-              "note": "Lv2",
-              "col": 4,
-              "row": 2
-            },
-            {
-              "label": "Fairfield",
-              "note": "Lv1",
-              "col": 2,
-              "row": 3
-            },
-            {
-              "label": "Fallrock",
-              "note": "Lv2",
-              "col": 3,
-              "row": 3
-            },
-            {
-              "label": "Highlands",
-              "note": "Lv3・中央",
-              "col": 4,
-              "row": 3,
-              "tone": "center"
-            },
-            {
-              "label": "El Peso",
-              "note": "Lv2",
-              "col": 5,
-              "row": 3
-            },
-            {
-              "label": "Loneford",
-              "note": "Lv1",
-              "col": 6,
-              "row": 3
-            },
-            {
-              "label": "Hub",
-              "note": "ファストトラベル先",
-              "col": 1,
-              "row": 4,
-              "tone": "muted"
-            },
-            {
-              "label": "Looty Bay",
-              "note": "海沿いの街",
-              "col": 7,
-              "row": 4,
-              "rowSpan": 2
-            },
-            {
-              "label": "Rustvale",
-              "note": "Lv1",
-              "col": 2,
-              "row": 5
-            },
-            {
-              "label": "Cascadas",
-              "note": "Lv1",
-              "col": 6,
-              "row": 5
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "bars",
-          "title": "地区のレベルと数",
-          "unit": " 地区",
-          "refs": [
-            {
-              "site": "https://zap-hosting.com/tools/rob-run/map-guide",
-              "title": "ROB RUN map guide（ZAP-Hosting・英語・発売前の世界地図から）"
-            }
-          ],
-          "note": "Lv3 は中央の Highlands だけ。Lv2 が中央を囲み、Lv1 が外周に並ぶ",
-          "bars": [
-            {
-              "label": "Lv1 (外周)",
-              "value": 6
-            },
-            {
-              "label": "Lv2",
-              "value": 3
-            },
-            {
-              "label": "Lv3 (中央)",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "table",
-          "title": "大きな強盗 4 つと必要な道具",
-          "refs": [
-            {
-              "site": "https://wikily.gg/rob-run/heists",
-              "title": "Heists（Wikily・英語・11/17 時点）"
-            },
-            {
-              "site": "https://www.keengamer.com/articles/guides/rob-run-how-to-rob-bank-and-open-safety-deposit-boxes/",
-              "title": "How to Rob Bank and Open Safety Deposit Boxes（KeenGamer・英語・11/17）"
-            },
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ],
-          "note": "Wikily と KeenGamer (11/17 時点) の値。銀行・警察署・Buletti は、作業中や成功のときにサーバー全体へ通知が出る",
-          "columns": [
-            "場所",
-            "必要な道具",
-            "手に入る物"
-          ],
-          "rows": [
-            [
-              "銀行の金庫",
-              "Drill と ID Card",
-              "金の延べ棒 (1 本約 $52,000)"
-            ],
-            [
-              "警察署の武器庫",
-              "ID Card (Evidence 20 と交換)",
-              "押収品の強い武器"
-            ],
-            [
-              "Grand Hotel の展示車",
-              "Jammer (入手法は未確認)",
-              "Buletti (車)"
-            ],
-            [
-              "Art Gallery",
-              "Glass Cutter・Keycard",
-              "展示品とギャラリーの金庫"
-            ]
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "table",
-          "title": "街の主な強盗の場所",
-          "refs": [
-            {
-              "site": "https://wikily.gg/rob-run/interactive-map",
-              "title": "Interactive map（Wikily・英語・11/17 時点）"
-            }
-          ],
-          "note": "Wikily の対話地図 (11/17 時点) の数。金庫・カメラの数は場所ごとの目安",
-          "columns": [
-            "場所",
-            "軒数",
-            "金庫",
-            "カメラ"
-          ],
-          "rows": [
-            [
-              "Convenience Store",
-              "3",
-              "1〜2",
-              "0〜1"
-            ],
-            [
-              "Pharmacy",
-              "2",
-              "2",
-              "1"
-            ],
-            [
-              "Jewelry Store",
-              "2",
-              "0",
-              "4"
-            ],
-            [
-              "Gun Shop",
-              "2",
-              "2",
-              "1"
-            ],
-            [
-              "Gas Station",
-              "1",
-              "4",
-              "1"
-            ],
-            [
-              "Grand Hotel",
-              "1",
-              "2",
-              "5"
-            ],
-            [
-              "Looty Bay Bank",
-              "1",
-              "3 + 金庫",
-              "4"
-            ],
-            [
-              "Police Station",
-              "1",
-              "3",
-              "4"
-            ]
-          ]
-        }
-      ],
-      "items": [
-        {
-          "kind": "official",
-          "text": "砂漠の地図は地区に分かれ、地区は集落から成る。地区のレベルで使える機能と買える品が変わる",
-          "refs": [
-            {
-              "news": "1844751498222037",
-              "title": "ROB RUN: Global Map"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1361-how-do-i-rent-a-plot-for-my-base/",
-              "title": "How do I rent a plot for my base?"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "どの地区にも中央ハブがあり、住人が盗品を売れる。周りの集落に守り・商売のボーナス・割引などを与える特別な建造物もある",
-          "refs": [
-            {
-              "news": "1844751498222037",
-              "title": "ROB RUN: Global Map"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "中央の Highlands を握るクランの長が影の総督になり、地図のほかのクランすべてから税を取る",
-          "refs": [
-            {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
-            },
-            {
-              "news": "1844751498222037",
-              "title": "ROB RUN: Global Map"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "Looty Bay には小さな店や宝石店から、銀行の金庫・警察の武器庫まで強盗の場所がある。装備と鍵と下見で稼ぎが大きく変わる",
-          "refs": [
-            {
-              "news": "1844115010491502",
-              "title": "ROB RUN: Gameplay Overview"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "公式の街の地図は無い。Looty Bay は世界地図の東端の海沿いにあり、銀行は街の北東の Downtown にある",
-          "refs": [
-            {
-              "site": "https://zap-hosting.com/tools/rob-run/map-guide",
-              "title": "ROB RUN map guide（ZAP-Hosting・英語・発売前の世界地図から）"
-            },
-            {
-              "site": "https://www.keengamer.com/articles/guides/rob-run-how-to-rob-bank-and-open-safety-deposit-boxes/",
-              "title": "How to Rob Bank and Open Safety Deposit Boxes（KeenGamer・英語・11/17）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "街にはフェンスのバンが 6 か所、密輸業者のバンが 2 か所、無料で車を借りられる駐車場が 21 か所、ATM が 14 か所ある",
-          "refs": [
-            {
-              "site": "https://wikily.gg/rob-run/interactive-map",
-              "title": "Interactive map（Wikily・英語・11/17 時点）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "Lenny's Motel は街の中ではなく別の地図。家の無い人が泊まり、現金だけを預けられる",
-          "refs": [
-            {
-              "site": "https://wikily.gg/rob-run/interactive-map",
-              "title": "Interactive map（Wikily・英語・11/17 時点）"
-            },
-            {
-              "site": "https://www.keengamer.com/articles/guides/rob-run-beginners-guide-best-tips-for-a-perfect-start/",
-              "title": "Beginners Guide（KeenGamer・英語・11/11）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "地区ごとの集落は 51。Lv2・Lv3 の地区の区画を借りるには、闇市の専用の書類が要る",
-          "refs": [
-            {
-              "site": "https://wikily.gg/rob-run/plots-and-settlements",
-              "title": "Plots and settlements（Wikily・英語・11/17 時点）"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "wipe-plan",
-      "title": "ワイプ後の動き",
-      "summary": "新しいサーバーでの 1 日目の手順と、最初の土地までの目標額",
-      "figures": [
-        {
-          "kind": "site",
-          "type": "flow",
-          "title": "1 日目の手順",
-          "refs": [
-            {
-              "site": "https://powerupgaming.co.uk/2026/11/05/rob-run-beginner-guide-survive-your-first-hour/",
-              "title": "Beginner Guide: Survive Your First Hour（Power Up Gaming・英語・11/05）"
-            },
-            {
-              "site": "https://www.keengamer.com/articles/guides/rob-run-beginners-guide-best-tips-for-a-perfect-start/",
-              "title": "Beginners Guide（KeenGamer・英語・11/11）"
-            },
-            {
-              "site": "https://gamerch.com/rubrun/1029099",
-              "title": "【ROB RUN】序盤の進め方（Gamerch・日本語・11/12）"
-            }
-          ],
-          "note": "3 つの攻略記事 (11/05〜11/12) でおおむね一致している勧め",
-          "steps": [
-            {
-              "title": "仲間とサーバーをそろえる",
-              "note": "土地を買う前に同じ地域・サーバーへ"
-            },
-            {
-              "title": "無料の車を借りる",
-              "note": "駐車場の端末で"
-            },
-            {
-              "title": "マスク無しで下見",
-              "note": "最初の約 20 分は逃げ道とバンを見る"
-            },
-            {
-              "title": "小さな店を短く",
-              "note": "人の少ない店。続けて 2 件目に行かない"
-            },
-            {
-              "title": "売ってすぐ回収",
-              "note": "カウンターの現金を取り、街を出る"
-            },
-            {
-              "title": "Lenny に預ける",
-              "note": "現金だけ預けられる"
-            },
-            {
-              "title": "Lv1 の土地を借りる",
-              "note": "保管・作業台・洗浄机を置く"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "bars",
-          "title": "土地を持つまでの費用 (解禁 + 権利書)",
-          "unit": "",
-          "refs": [
-            {
-              "site": "https://wikily.gg/rob-run/plots-and-settlements",
-              "title": "Plots and settlements（Wikily・英語・11/17 時点）"
-            },
-            {
-              "site": "https://gamerblurb.com/articles/rob-run-how-to-buy-land",
-              "title": "ROB RUN How to Buy Land（gamerblurb・英語・11/12 ごろ）"
-            }
-          ],
-          "note": "Wikily (11/17 時点) と gamerblurb の値。Lv3 の土地には Lv2 以上の地区に住んでいることが要る",
-          "bars": [
-            {
-              "label": "Lv1 の土地",
-              "value": 150000,
-              "note": "最初の目標"
-            },
-            {
-              "label": "Lv2 の土地",
-              "value": 1000000
-            },
-            {
-              "label": "Lv3 の土地",
-              "value": 3000000
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "table",
-          "title": "権利書の値段",
-          "refs": [
-            {
-              "site": "https://wikily.gg/rob-run/plots-and-settlements",
-              "title": "Plots and settlements（Wikily・英語・11/17 時点）"
-            },
-            {
-              "site": "https://gamerblurb.com/articles/rob-run-how-to-buy-land",
-              "title": "ROB RUN How to Buy Land（gamerblurb・英語・11/12 ごろ）"
-            }
-          ],
-          "note": "解禁は Shipments で一度だけ払う。住人は洗浄した金の 5% を集落の持ち主に税として払う (Wikily)",
-          "columns": [
-            "権利書",
-            "解禁",
-            "購入"
-          ],
-          "rows": [
-            [
-              "土地 Lv1",
-              "$50,000",
-              "$100,000"
-            ],
-            [
-              "土地 Lv2",
-              "$200,000",
-              "$800,000"
-            ],
-            [
-              "土地 Lv3",
-              "$1,000,000",
-              "$2,000,000"
-            ],
-            [
-              "集落 Lv1",
-              "$100,000",
-              "$200,000"
-            ],
-            [
-              "集落 Lv2",
-              "$500,000",
-              "$2,000,000"
-            ],
-            [
-              "集落 Lv3",
-              "$2,000,000",
-              "$6,000,000"
-            ]
-          ]
-        }
-      ],
-      "items": [
-        {
-          "kind": "official",
-          "text": "ワイプは 7 日ごと。土地・拠点・武器・現金が刑期と権限に替わる。見た目の品・名前・チュートリアルの進み・設定・刑期の合計は残る",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1346-what-is-the-federal-raid-wipe/",
-              "title": "What is the Federal Raid (Wipe)?"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "新しいサーバーは毎日開く (EU 17:00 UTC・日本時間で翌 2:00、East US 20:00 ET)。開いた直後は巡回の警官がピストルだけで、サーバーが古くなるほど良い装備が開く",
-          "refs": [
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "最初は全員がモーテル暮らしから。土地を借りると拠点と商売、モーテル暮らしには無い出荷、Sales Center での売却が使える",
-          "refs": [
-            {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "最初の段の集落と土地は、現金ではなく書類で借りる。死ぬたびにピストルを配る案は採られず、街で武器を見つけやすくした",
-          "refs": [
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            },
-            {
-              "news": "1847920302245290",
-              "title": "Playtest News"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "ソロは悪名 4 から始まり、売るときと拾うときにボーナスが付く。パーティーは 3 人まで",
-          "refs": [
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "11/17 から刑期に 1 日の上限と全体の上限が付いた。11/23 には、刑期の下限か課金の合計を参加条件にした別のサーバーを先に出す予定と告知された",
-          "refs": [
-            {
-              "news": "1849458702693254",
-              "title": "Patch Notes (11/17)"
-            },
-            {
-              "news": "1849827110441426",
-              "title": "Anti-Cheat Measures and Servers"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "最初の武器と装備は安いもので足りる。games.gg のソロ向けの勧めは DP-9 Mk1・軽い防弾ベスト・安いバッグから始め、後で KL-545 Mk1 に替える",
-          "refs": [
-            {
-              "site": "https://games.gg/rob-run/guides/rob-run-solo-guide/",
-              "title": "ROB RUN Solo Guide（games.gg・英語・11/11）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "高い武器より先に土地を取るのがよいという点で、攻略記事の勧めは一致している",
-          "refs": [
-            {
-              "site": "https://games.gg/rob-run/guides/rob-run-solo-guide/",
-              "title": "ROB RUN Solo Guide（games.gg・英語・11/11）"
-            },
-            {
-              "site": "https://www.keengamer.com/articles/guides/rob-run-beginners-guide-best-tips-for-a-perfect-start/",
-              "title": "Beginners Guide（KeenGamer・英語・11/11）"
-            },
-            {
-              "site": "https://gamerblurb.com/articles/rob-run-how-to-buy-land",
-              "title": "ROB RUN How to Buy Land（gamerblurb・英語・11/12 ごろ）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "ワイプ直前の大きな出費は避ける。ワイプの時点の財産は刑期に替わる",
-          "refs": [
-            {
-              "site": "https://gamerblurb.com/articles/rob-run-how-to-buy-land",
-              "title": "ROB RUN How to Buy Land（gamerblurb・英語・11/12 ごろ）"
-            },
-            {
-              "site": "https://www.keengamer.com/articles/guides/rob-run-beginners-guide-best-tips-for-a-perfect-start/",
-              "title": "Beginners Guide（KeenGamer・英語・11/11）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "パーティーは強盗役と逃走役を分ける。銀行は 3 人 (ドリルの見張り・回収・入口の守り) で分担するのがよいという勧めがある",
-          "refs": [
-            {
-              "site": "https://www.keengamer.com/articles/guides/rob-run-beginners-guide-best-tips-for-a-perfect-start/",
-              "title": "Beginners Guide（KeenGamer・英語・11/11）"
-            },
-            {
-              "site": "https://www.keengamer.com/articles/guides/rob-run-how-to-rob-bank-and-open-safety-deposit-boxes/",
-              "title": "How to Rob Bank and Open Safety Deposit Boxes（KeenGamer・英語・11/17）"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "sell",
-      "title": "換金と悪名",
-      "summary": "売り先の違いと、悪名で上がる買値",
-      "figures": [
-        {
-          "kind": "official",
-          "type": "table",
-          "title": "どこで売るか",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1349-how-do-i-sell-my-loot/",
-              "title": "How do I sell my loot?"
-            },
-            {
-              "news": "1844751498222037",
-              "title": "ROB RUN: Global Map"
-            },
-            {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
-            }
-          ],
-          "columns": [
-            "売り先",
-            "使える人",
-            "特徴"
-          ],
-          "rows": [
-            [
-              "Looty Bay のフェンス",
-              "だれでも",
-              "ドル記号のバン。現金はすぐ受け取る"
-            ],
-            [
-              "地区の中央ハブ",
-              "その地区の住人",
-              "大幅に高いことがあるが危ない"
-            ],
-            [
-              "Sales Center",
-              "区画を借りた住人",
-              "密輸品も安く買える"
-            ]
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "bars",
-          "title": "悪名ごとのフェンスの上乗せ",
-          "unit": "%",
-          "refs": [
-            {
-              "site": "https://games.gg/rob-run/guides/rob-run-notoriety-guide/",
-              "title": "ROB RUN Notoriety Guide（games.gg・英語）"
-            },
-            {
-              "site": "https://robrungg.wiki/guides/notoriety-and-selling/",
-              "title": "Notoriety and Selling（robrungg.wiki・英語）"
-            },
-            {
-              "site": "https://robrun.fyi/selling-loot",
-              "title": "Selling Loot（robrun.fyi・英語）"
-            }
-          ],
-          "note": "攻略サイトの値。積荷を密輸業者に売るときの上乗せは別の表で、悪名 5 で +25%",
-          "bars": [
-            {
-              "label": "悪名 1",
-              "value": 0
-            },
-            {
-              "label": "悪名 2",
-              "value": 10
-            },
-            {
-              "label": "悪名 3",
-              "value": 20
-            },
-            {
-              "label": "悪名 4",
-              "value": 35
-            },
-            {
-              "label": "悪名 5",
-              "value": 50
-            }
-          ],
-          "plus": true
-        },
-        {
-          "kind": "site",
-          "type": "flow",
-          "title": "損をしない売り方",
-          "refs": [
-            {
-              "site": "https://games.gg/rob-run/guides/rob-run-notoriety-guide/",
-              "title": "ROB RUN Notoriety Guide（games.gg・英語）"
-            },
-            {
-              "site": "https://robrungg.wiki/guides/notoriety-and-selling/",
-              "title": "Notoriety and Selling（robrungg.wiki・英語）"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1349-how-do-i-sell-my-loot/",
-              "title": "How do I sell my loot?"
-            },
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ],
-          "steps": [
-            {
-              "title": "悪名を上げる",
-              "note": "1 回の街の滞在で強盗を続ける"
-            },
-            {
-              "title": "使う品を外す",
-              "note": "鍵・宝くじ・妨害装置は売らない"
-            },
-            {
-              "title": "まとめて売る",
-              "note": "悪名が高いうちに最後に"
-            },
-            {
-              "title": "すぐ受け取る",
-              "note": "カウンターの現金を取る"
-            }
-          ]
-        }
-      ],
-      "items": [
-        {
-          "text": "売り先は地図のドル記号のバン (フェンス)。Looty Bay と Sales Center にある。受け取った現金はすぐ取らないと盗まれるか没収される",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1349-how-do-i-sell-my-loot/",
-              "title": "How do I sell my loot?"
-            }
-          ]
-        },
-        {
-          "text": "街に入っている間に強盗を続けると悪名 (Notoriety) が上がる。高いほど戦利品と売値が良くなるが、危険も増える",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1844115010491502",
-              "title": "ROB RUN: Gameplay Overview"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1350-what-is-the-notoriety-level/",
-              "title": "What is the Notoriety level?"
-            }
-          ]
-        },
-        {
-          "text": "ソロは悪名 4 から始まり、売るときと拾うときにボーナスが付く (ヘルプではソロとデュオが高い悪名で始まる)",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1350-what-is-the-notoriety-level/",
-              "title": "What is the Notoriety level?"
-            }
-          ]
-        },
-        {
-          "text": "各地区の中央ハブでも、その地区の住人は戦利品を売れる。Looty Bay より大幅に高く売れることがあるが、人が集まるぶん危ない",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1844751498222037",
-              "title": "ROB RUN: Global Map"
-            }
-          ]
-        },
-        {
-          "text": "区画を借りると Sales Center で品物を売れるようになり、密輸品 (contraband) も安く買える",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
-            }
-          ]
-        },
-        {
-          "text": "積荷 (Shipment) は解体して売ると大きく儲かるよう変わった。代わりに出にくくなり、解体に時間がかかる",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        },
-        {
-          "text": "鍵・宝くじ・妨害装置 (Grand Hotel の Buletti を盗むのに要る) のような使い道のある品を、気づかず売りやすい。公式は誤売却の対策を検討中",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ]
-        },
-        {
-          "text": "フェンスは悪名 1〜5 で 0・10・20・35・50% を上乗せする。積荷を密輸業者に売るときは 0・5・10・15・25% と別の表になる",
-          "kind": "site",
-          "refs": [
-            {
-              "site": "https://games.gg/rob-run/guides/rob-run-notoriety-guide/",
-              "title": "ROB RUN Notoriety Guide（games.gg・英語）"
-            }
-          ]
-        },
-        {
-          "text": "悪名は Looty Bay を出ると戻る。売るのは悪名を上げきった最後にまとめるのが得という説明がある",
-          "kind": "site",
-          "refs": [
-            {
-              "site": "https://games.gg/rob-run/guides/rob-run-notoriety-guide/",
-              "title": "ROB RUN Notoriety Guide（games.gg・英語）"
-            },
-            {
-              "site": "https://robrungg.wiki/guides/notoriety-and-selling/",
-              "title": "Notoriety and Selling（robrungg.wiki・英語）"
-            }
-          ]
-        },
-        {
-          "text": "密輸業者は積荷を開けずに買い取る。発売時の変更のあとは、作業台で開けてから売るほうが高くなりやすいという説明がある",
-          "kind": "site",
-          "refs": [
-            {
-              "site": "https://robrunwiki.com/en/guides/where-to-sell/",
-              "title": "Where to Sell（robrunwiki.com・英語）"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "loot",
-      "title": "値打ちのある品",
-      "summary": "フェンスと密輸業者で高く売れる品の順位と、売らずに使う品",
-      "figures": [
-        {
-          "kind": "site",
-          "type": "bars",
-          "title": "フェンスの基準売値が高い品 (悪名 1)",
-          "unit": "",
-          "refs": [
-            {
-              "site": "https://robrun.info/",
-              "title": "robrun.info（ロシア語の非公式 wiki・ゲームのファイルから集めた値の可能性）"
-            },
-            {
-              "site": "https://games.gg/rob-run/guides/all-legendary-items/",
-              "title": "All Legendary Items（games.gg・英語・11/15）"
-            },
-            {
-              "site": "https://gamerblurb.com/articles/rob-run-lottery-ticket-how-to-get-it-and-what-its-worth",
-              "title": "ROB RUN Lottery Ticket（gamerblurb・英語・11/13）"
-            }
-          ],
-          "note": "基準の値 ($)。robrun.info の品のページで値を確かめられた品だけを並べた (代行業者の一覧だけに載る品は除いた)。ゲーム内での実額は確かめられていない。ヨットの鍵と宝くじの大当たりは robrun.info だけの値",
-          "bars": [
-            {
-              "label": "Yacht Key",
-              "value": 2000000,
-              "note": "出典 1 つ"
-            },
-            {
-              "label": "宝くじ (大当たり)",
-              "value": 1000000,
-              "note": "出典 1 つ"
-            },
-            {
-              "label": "BIG EGG #53",
-              "value": 550000,
-              "note": "Art Gallery"
-            },
-            {
-              "label": "宝くじ (高額)",
-              "value": 250000
-            },
-            {
-              "label": "USB Hacking Tool",
-              "value": 200000,
-              "note": "満タン。売らず Drill に"
-            },
-            {
-              "label": "Diamond in Case",
-              "value": 200000
-            },
-            {
-              "label": "King's Reserve Bottle",
-              "value": 200000
-            },
-            {
-              "label": "Code Tablet",
-              "value": 75000,
-              "note": "満タン。Glass Cutter に"
-            },
-            {
-              "label": "Jammer",
-              "value": 64000,
-              "note": "売らず Buletti に"
-            },
-            {
-              "label": "Gold Bar",
-              "value": 52000,
-              "note": "5 本まで重なる"
-            },
-            {
-              "label": "Drill",
-              "value": 32800,
-              "note": "売らず銀行に"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "bars",
-          "title": "積荷を密輸業者に丸ごと売る値 (悪名 1)",
-          "unit": "",
-          "refs": [
-            {
-              "site": "https://www.keengamer.com/articles/guides/rob-run-cargo-guide-how-to-get-sell-and-open-cargo/",
-              "title": "ROB RUN Cargo Guide（KeenGamer・英語・11/16）"
-            },
-            {
-              "site": "https://gamerch.com/rubrun/1031657",
-              "title": "【ROB RUN】カーゴの入手方法と売値一覧（Gamerch・日本語・11/12）"
-            },
-            {
-              "site": "https://games.gg/rob-run/guides/rob-run-loot-guide/",
-              "title": "ROB RUN Loot Guide（games.gg・英語・11/10）"
-            },
-            {
-              "site": "https://gamerblurb.com/articles/rob-run-best-loot-guide",
-              "title": "ROB RUN Best Loot Guide（gamerblurb・英語・11/09）"
-            }
-          ],
-          "note": "基準の値 ($)。4 つの攻略サイト (11/09〜11/16、発売時の変更の後) で一致。悪名 5 で 1.25 倍",
-          "bars": [
-            {
-              "label": "Unique Collection Crate",
-              "value": 500000
-            },
-            {
-              "label": "Golden Statue",
-              "value": 250000
-            },
-            {
-              "label": "Expensive Safe",
-              "value": 200000
-            },
-            {
-              "label": "Valuable Cargo",
-              "value": 150000
-            },
-            {
-              "label": "Rare Collection Crate",
-              "value": 150000
-            },
-            {
-              "label": "Weapon Parts Box",
-              "value": 120000,
-              "note": "Legendary"
-            },
-            {
-              "label": "Portable Safe",
-              "value": 100000
-            },
-            {
-              "label": "Hard Crystals",
-              "value": 75000,
-              "note": "Legendary"
-            },
-            {
-              "label": "Bank Money Bag",
-              "value": 60000
-            },
-            {
-              "label": "Collection Crate",
-              "value": 50000
-            },
-            {
-              "label": "Premium Cargo",
-              "value": 35000
-            },
-            {
-              "label": "Contraband Cargo",
-              "value": 10000,
-              "note": "詰め替えると上がる"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "table",
-          "title": "悪名ごとの売値の上乗せ",
-          "refs": [
-            {
-              "site": "https://games.gg/rob-run/guides/rob-run-notoriety-guide/",
-              "title": "ROB RUN Notoriety Guide（games.gg・英語・11/16）"
-            },
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ],
-          "note": "フェンスと密輸業者で表が違う。ソロは悪名 4 から始まる (公式)。2 人組は 2、3 人組は 1 から (games.gg)",
-          "columns": [
-            "悪名",
-            "フェンス",
-            "密輸業者 (積荷)"
-          ],
-          "rows": [
-            [
-              "1",
-              "+0%",
-              "+0%"
-            ],
-            [
-              "2",
-              "+10%",
-              "+5%"
-            ],
-            [
-              "3",
-              "+20%",
-              "+10%"
-            ],
-            [
-              "4 (ソロの開始)",
-              "+35%",
-              "+15%"
-            ],
-            [
-              "5",
-              "+50%",
-              "+25%"
-            ]
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "table",
-          "title": "売らずに使う品",
-          "refs": [
-            {
-              "site": "https://robrun.info/",
-              "title": "robrun.info（ロシア語の非公式 wiki・ゲームのファイルから集めた値の可能性）"
-            },
-            {
-              "site": "https://games.gg/rob-run/guides/all-legendary-items/",
-              "title": "All Legendary Items（games.gg・英語・11/15）"
-            },
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ],
-          "note": "売値は基準の値。使い道は robrun.info と games.gg (11/15) の説明。Drill の交換の材料は出典で書き方が違う",
-          "columns": [
-            "品",
-            "売ると",
-            "使い道"
-          ],
-          "rows": [
-            [
-              "Jammer",
-              "$64,000",
-              "Grand Hotel の Buletti を盗む"
-            ],
-            [
-              "Glass Cutter",
-              "$20,000",
-              "Art Gallery の BIG EGG を切り出す"
-            ],
-            [
-              "Code Tablet (満タン)",
-              "$75,000",
-              "3 枚で Glass Cutter と交換"
-            ],
-            [
-              "USB Hacking Tool (満タン)",
-              "$200,000",
-              "Drill の交換の材料"
-            ],
-            [
-              "Drill",
-              "$32,800",
-              "銀行の金庫の扉を開ける"
-            ],
-            [
-              "Deposit Box Keys (満タン)",
-              "$20,000",
-              "ID Card (金の部屋) と交換"
-            ],
-            [
-              "宝くじ",
-              "$40",
-              "当たりの宝くじになりうる"
-            ],
-            [
-              "Decoder",
-              "$1,000",
-              "他人の拠点の守りを下げる"
-            ]
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "table",
-          "title": "積荷を作業台で開ける時間",
-          "refs": [
-            {
-              "site": "https://gamerch.com/rubrun/1031657",
-              "title": "【ROB RUN】カーゴの入手方法と売値一覧（Gamerch・日本語・11/12）"
-            },
-            {
-              "site": "https://gamerblurb.com/articles/rob-run-cargo-workbench-guide",
-              "title": "ROB RUN Cargo Workbench Guide（gamerblurb・英語・11/10）"
-            }
-          ],
-          "note": "開けている間は作業台に置いたままで、拠点を襲われると盗まれうる。中身とその価値はどの出典にも載っていない",
-          "columns": [
-            "積荷",
-            "時間"
-          ],
-          "rows": [
-            [
-              "Hard Crystals",
-              "10 秒"
-            ],
-            [
-              "Golden Statue・Bush",
-              "5 分"
-            ],
-            [
-              "Collection Crate 系",
-              "15 分"
-            ],
-            [
-              "Valuable Cargo・Money Bag ほか",
-              "30 分"
-            ],
-            [
-              "Expensive Safe・Portable Safe",
-              "60 分"
-            ]
-          ]
-        }
-      ],
-      "items": [
-        {
-          "kind": "official",
-          "text": "鍵で金庫が開く・宝くじが大当たりになりうる・Jammer が Buletti を盗むのに要る、など使い道のある品を気づかず売りやすい。公式は誤売却の対策を検討中",
-          "refs": [
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "発売時の変更で、積荷は解体して売ると大きく儲かるようになった。代わりに出にくくなり、解体に時間がかかる。デコーダーや金の延べ棒の重ねられる数も増えた",
-          "refs": [
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "発売時の変更で、Fabergé Egg を破る時間が短くなり、Glass Cutter と交換するのに要るタブレットの数が増えた",
-          "refs": [
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "Art Gallery の BIG EGG #53 は、公式が Fabergé Egg と呼ぶ品。基準の売値は $550,000 で、Glass Cutter が要る",
-          "refs": [
-            {
-              "site": "https://robrun.info/",
-              "title": "robrun.info（ロシア語の非公式 wiki・ゲームのファイルから集めた値の可能性）"
-            },
-            {
-              "site": "https://games.gg/rob-run/guides/all-legendary-items/",
-              "title": "All Legendary Items（games.gg・英語・11/15）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "Contraband Cargo はそのまま売ると $10,000。Contraband Workbench で詰め替えると Premium Cargo ($35,000) や Rarity Cargo ($40,000) になる",
-          "refs": [
-            {
-              "site": "https://www.keengamer.com/articles/guides/rob-run-cargo-guide-how-to-get-sell-and-open-cargo/",
-              "title": "ROB RUN Cargo Guide（KeenGamer・英語・11/16）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "積荷は、すぐ現金が要る・拠点が無い・追われている・ワイプが近いなら丸ごと売り、拠点と時間があれば開けるのがよいという勧めが多い",
-          "refs": [
-            {
-              "site": "https://gamerch.com/rubrun/1031657",
-              "title": "【ROB RUN】カーゴの入手方法と売値一覧（Gamerch・日本語・11/12）"
-            },
-            {
-              "site": "https://gamerblurb.com/articles/rob-run-cargo-workbench-guide",
-              "title": "ROB RUN Cargo Workbench Guide（gamerblurb・英語・11/10）"
-            },
-            {
-              "site": "https://games.gg/rob-run/guides/rob-run-loot-guide/",
-              "title": "ROB RUN Loot Guide（games.gg・英語・11/10）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "Cargo Workbench は解禁 $5,000・購入 $15,000 で、借りた土地 (拠点) が要る。Expensive Safe には Plasma Cargo Cutter が要る",
-          "refs": [
-            {
-              "site": "https://www.keengamer.com/articles/guides/rob-run-cargo-guide-how-to-get-sell-and-open-cargo/",
-              "title": "ROB RUN Cargo Guide（KeenGamer・英語・11/16）"
-            },
-            {
-              "site": "https://gamerblurb.com/articles/rob-run-cargo-workbench-guide",
-              "title": "ROB RUN Cargo Workbench Guide（gamerblurb・英語・11/10）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "普通の宝くじは売ると $40 しかない。バトルパスの無料報酬と、金庫や棚から手に入る",
-          "refs": [
-            {
-              "site": "https://gamerblurb.com/articles/rob-run-lottery-ticket-how-to-get-it-and-what-its-worth",
-              "title": "ROB RUN Lottery Ticket（gamerblurb・英語・11/13）"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "weapons",
-      "title": "武器",
-      "summary": "17 系統の強さ・値段・解放の条件と、警官のバッジ・防具",
-      "figures": [
-        {
-          "kind": "site",
-          "type": "table",
-          "title": "武器の性能 (Mk1 の基本値)",
-          "refs": [
-            {
-              "site": "https://gamingpromax.com/rob-run-all-weapons-list/",
-              "title": "ROB RUN All Weapons List（gamingpromax・英語・11/16）"
-            },
-            {
-              "site": "https://tposegaming.com/?p=24527",
-              "title": "ROB RUN Guns: How to Get Them & All Weapon Stats（tposegaming・英語・11/08）"
-            },
-            {
-              "site": "https://gamerch.com/rubrun/1031392",
-              "title": "【ROB RUN】最強武器ランキング（Gamerch・日本語・11/11）"
-            },
-            {
-              "site": "https://grindnstrat.com/?p=9899",
-              "title": "ROB RUN Weapons Guide（grindnstrat・英語・11/06）"
-            }
-          ],
-          "note": "ダメージは胴 1 発 (ショットガンは 1 粒 × 粒数)、頭は 1.5 倍。装弾数は Mk1 / Mk3。射程は全ダメージが出る距離。値段は闇市。* は出典で食い違い (値段を載せるサイトもある)。2026-11-05 版の値で、11/17・11/20 のパッチで武器の変更は無い",
-          "columns": [
-            "武器",
-            "種類",
-            "レア度",
-            "ダメージ",
-            "連射 (RPM)",
-            "装弾数",
-            "射程",
-            "闇市の値段"
-          ],
-          "rows": [
-            [
-              "DP-9",
-              "ピストル",
-              "Uncommon",
-              "18",
-              "333",
-              "14",
-              "20 m",
-              "300"
-            ],
-            [
-              "LBR-44",
-              "ピストル",
-              "Epic",
-              "34",
-              "200",
-              "6",
-              "35 m",
-              "20,000"
-            ],
-            [
-              "Vulture 50",
-              "ピストル",
-              "Legendary",
-              "36",
-              "240",
-              "7",
-              "40 m",
-              "50,000"
-            ],
-            [
-              "MC-10",
-              "SMG",
-              "Uncommon",
-              "12",
-              "667",
-              "20 / 40",
-              "25 m",
-              "3,500"
-            ],
-            [
-              "CB45",
-              "SMG",
-              "Uncommon",
-              "14",
-              "545",
-              "25 / 40",
-              "34 m",
-              "3,780"
-            ],
-            [
-              "JP-7",
-              "SMG",
-              "Epic",
-              "15",
-              "750",
-              "25 / 40",
-              "27 m",
-              "29,000"
-            ],
-            [
-              "PDW90",
-              "SMG",
-              "Epic",
-              "13",
-              "857",
-              "50 / 50",
-              "31 m",
-              "戦利品のみ*"
-            ],
-            [
-              "AP Scalar",
-              "SMG",
-              "Legendary",
-              "14",
-              "1000",
-              "25 / 45",
-              "30 m",
-              "115,000"
-            ],
-            [
-              "Harris 500",
-              "ショットガン",
-              "Uncommon",
-              "9×8",
-              "120",
-              "5 / 7",
-              "7 m",
-              "3,500"
-            ],
-            [
-              "ORDR-12",
-              "ショットガン",
-              "Epic",
-              "9×8",
-              "171",
-              "6 / 8",
-              "7 m",
-              "28,000"
-            ],
-            [
-              "TAG-12K",
-              "ショットガン",
-              "Legendary",
-              "9×8",
-              "240",
-              "5 / 8",
-              "8 m",
-              "110,000"
-            ],
-            [
-              "KL-545",
-              "アサルトライフル",
-              "Uncommon",
-              "15",
-              "600",
-              "30 / 45",
-              "45 m",
-              "6,000"
-            ],
-            [
-              "RC 5.56",
-              "アサルトライフル",
-              "Epic",
-              "16",
-              "667",
-              "30 / 50",
-              "55 m",
-              "32,000"
-            ],
-            [
-              "STAR-H",
-              "アサルトライフル",
-              "Epic",
-              "21",
-              "500",
-              "20 / 40",
-              "50 m",
-              "27,500"
-            ],
-            [
-              "SR Reaper",
-              "アサルトライフル",
-              "Legendary",
-              "17",
-              "750",
-              "20 / 40",
-              "65 m",
-              "120,000"
-            ],
-            [
-              "DRM-14",
-              "精密ライフル",
-              "Legendary",
-              "34",
-              "240",
-              "10 / 20",
-              "95 m",
-              "103,500"
-            ],
-            [
-              "LM 249 Mk2",
-              "LMG",
-              "Exotic",
-              "18",
-              "706",
-              "200",
-              "75 m",
-              "戦利品のみ*"
-            ]
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "bars",
-          "title": "胴を撃ち続けたときの秒間ダメージ (計算値)",
-          "unit": "",
-          "refs": [
-            {
-              "site": "https://gamingpromax.com/rob-run-all-weapons-list/",
-              "title": "ROB RUN All Weapons List（gamingpromax・英語・11/16）"
-            },
-            {
-              "site": "https://tposegaming.com/?p=24527",
-              "title": "ROB RUN Guns: How to Get Them & All Weapon Stats（tposegaming・英語・11/08）"
-            },
-            {
-              "site": "https://gamerch.com/rubrun/1031392",
-              "title": "【ROB RUN】最強武器ランキング（Gamerch・日本語・11/11）"
-            }
-          ],
-          "note": "ダメージ × 粒数 × 連射 ÷ 60 で計算した理論値 (小数は四捨五入)。命中率・距離による減衰・リロードを含まない。ショットガンは全粒が当たった場合",
-          "bars": [
-            {
-              "label": "TAG-12K",
-              "value": 288
-            },
-            {
-              "label": "AP Scalar",
-              "value": 233
-            },
-            {
-              "label": "SR Reaper",
-              "value": 213
-            },
-            {
-              "label": "LM 249 Mk2",
-              "value": 212
-            },
-            {
-              "label": "ORDR-12",
-              "value": 205
-            },
-            {
-              "label": "JP-7",
-              "value": 188
-            },
-            {
-              "label": "PDW90",
-              "value": 186
-            },
-            {
-              "label": "RC 5.56",
-              "value": 178
-            },
-            {
-              "label": "STAR-H",
-              "value": 175
-            },
-            {
-              "label": "KL-545",
-              "value": 150
-            },
-            {
-              "label": "Vulture 50",
-              "value": 144
-            },
-            {
-              "label": "Harris 500",
-              "value": 144
-            },
-            {
-              "label": "DRM-14",
-              "value": 136
-            },
-            {
-              "label": "MC-10",
-              "value": 133
-            },
-            {
-              "label": "CB45",
-              "value": 127
-            },
-            {
-              "label": "LBR-44",
-              "value": 113
-            },
-            {
-              "label": "DP-9",
-              "value": 100
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "table",
-          "title": "解放 (研究) の費用と条件",
-          "refs": [
-            {
-              "site": "https://gamerch.com/rubrun/1031392",
-              "title": "【ROB RUN】最強武器ランキング（Gamerch・日本語・11/11）"
-            },
-            {
-              "site": "https://gamingpromax.com/rob-run-all-weapons-list/",
-              "title": "ROB RUN All Weapons List（gamingpromax・英語・11/16）"
-            },
-            {
-              "site": "https://grindnstrat.com/?p=9899",
-              "title": "ROB RUN Weapons Guide（grindnstrat・英語・11/06）"
-            }
-          ],
-          "note": "闇市で買うには先に Shipments で解放が要る。地区レベルは Gamerch だけ、DRM-14 の刑期は grindnstrat だけの値",
-          "columns": [
-            "武器",
-            "Mk1 の解放費",
-            "前提",
-            "条件"
-          ],
-          "rows": [
-            [
-              "DP-9",
-              "無料",
-              "—",
-              "—"
-            ],
-            [
-              "MC-10 / Harris 500",
-              "15,000",
-              "—",
-              "—"
-            ],
-            [
-              "KL-545",
-              "25,000",
-              "—",
-              "Mk3 は地区 Lv2"
-            ],
-            [
-              "STAR-H",
-              "100,000",
-              "KL-545 Mk1",
-              "刑期 (Mk3 は 200 年)"
-            ],
-            [
-              "RC 5.56",
-              "200,000",
-              "KL-545 Mk1",
-              "Mk3 は地区 Lv3"
-            ],
-            [
-              "DRM-14",
-              "200,000",
-              "—",
-              "刑期 950 年・地区 Lv3"
-            ],
-            [
-              "AP Scalar",
-              "400,000",
-              "JP-7 Mk1",
-              "地区 Lv3"
-            ],
-            [
-              "TAG-12K",
-              "400,000",
-              "ORDR-12 Mk1",
-              "地区 Lv3"
-            ],
-            [
-              "SR Reaper",
-              "400,000",
-              "RC 5.56 Mk1",
-              "地区 Lv3"
-            ],
-            [
-              "PDW90 / LM 249",
-              "解放できない",
-              "—",
-              "戦利品のみ"
-            ]
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "table",
-          "title": "警官のバッジ",
-          "refs": [
-            {
-              "site": "https://gamerch.com/rubrun/1031631",
-              "title": "【ROB RUN】警察のなり方と稼ぎ方・バッジ（Gamerch・日本語・11/12）"
-            },
-            {
-              "site": "https://games.gg/rob-run/guides/rob-run-police-badges-guide/",
-              "title": "ROB RUN Police Badges Guide（games.gg・英語・11/11）"
-            }
-          ],
-          "note": "1 回の勤務で 1 枚使う。バッジ無しでも基本の装備で勤務できる。値段を 1 桁小さく書く出典もあり、食い違いがある",
-          "columns": [
-            "バッジ",
-            "値段",
-            "解放費",
-            "住む地区"
-          ],
-          "rows": [
-            [
-              "Sergeant",
-              "8,000",
-              "30,000",
-              "I"
-            ],
-            [
-              "Lieutenant",
-              "40,000",
-              "200,000",
-              "II"
-            ],
-            [
-              "Captain",
-              "100,000",
-              "500,000",
-              "III"
-            ]
-          ]
-        },
-        {
-          "kind": "site",
-          "type": "table",
-          "title": "防弾ベスト",
-          "refs": [
-            {
-              "site": "https://gamingpromax.com/rob-run-all-equipment-list/",
-              "title": "ROB RUN All Equipment List（gamingpromax・英語・11/17）"
-            }
-          ],
-          "note": "鋼板 (Steel Plate) で区切りを回復する。守り方を体力への上乗せと書く出典もあり、食い違いがある",
-          "columns": [
-            "ベスト",
-            "レア度",
-            "区切り",
-            "値段"
-          ],
-          "rows": [
-            [
-              "Light",
-              "Common",
-              "1",
-              "4,000"
-            ],
-            [
-              "Medium",
-              "Uncommon",
-              "2",
-              "15,000"
-            ],
-            [
-              "Assault",
-              "Epic",
-              "3",
-              "70,000"
-            ],
-            [
-              "Heavy",
-              "Legendary",
-              "4",
-              "140,000"
-            ],
-            [
-              "Bastion",
-              "Exotic",
-              "4",
-              "通常は買えない"
-            ]
-          ]
-        }
-      ],
-      "items": [
-        {
-          "kind": "official",
-          "text": "武器は街の戦利品として出るほか、闇市 (Lenny から直接か、拠点のノートパソコン) で買える",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1343-where-can-i-find-weapons/",
-              "title": "Where can I find weapons?"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "買える品は Shipments (H キー) で解禁する。11/17 から Lenny のメニューにも Shipments が出る。解禁には拠点の集落のレベルか刑期の合計が要る",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1365-how-do-i-unlock-new-goods/",
-              "title": "How do I unlock new goods?"
-            },
-            {
-              "news": "1849458702693254",
-              "title": "Patch Notes (11/17)"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "発売時に基本のピストルが値下げされ、街で最初の武器が見つかる場所が増えた。死ぬたびにピストルを配る案は採らなかった",
-          "refs": [
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "装備は死ぬたびに耐久が減り、いまは修理できない。武器の修理は今後の更新で予定されている",
-          "refs": [
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "text": "警官は新しいサーバーではピストルだけで、サーバーが古くなるほど良い装備が開く。バッジは買えるようになり、選べるバッジは住む地区で決まる",
-          "refs": [
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "公式は武器の数値を出していない。攻略サイトの数値はコミュニティが集めた値で、3 つのサイト (11/08〜11/16) でダメージ・連射・装弾数が一致している",
-          "refs": [
-            {
-              "site": "https://games.gg/rob-run/guides/best-rob-run-weapons-early-access-tier-list/",
-              "title": "Best ROB RUN Weapons Tier List（games.gg・英語・11/09）"
-            },
-            {
-              "site": "https://gamingpromax.com/rob-run-all-weapons-list/",
-              "title": "ROB RUN All Weapons List（gamingpromax・英語・11/16）"
-            },
-            {
-              "site": "https://tposegaming.com/?p=24527",
-              "title": "ROB RUN Guns: How to Get Them & All Weapon Stats（tposegaming・英語・11/08）"
-            },
-            {
-              "site": "https://gamerch.com/rubrun/1031392",
-              "title": "【ROB RUN】最強武器ランキング（Gamerch・日本語・11/11）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "Mk を上げると装弾数・構えの速さ・射程が伸び、1 発のダメージは変わらない",
-          "refs": [
-            {
-              "site": "https://grindnstrat.com/?p=9899",
-              "title": "ROB RUN Weapons Guide（grindnstrat・英語・11/06）"
-            },
-            {
-              "site": "https://gamingpromax.com/rob-run-all-weapons-list/",
-              "title": "ROB RUN All Weapons List（gamingpromax・英語・11/16）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "ティア表はサイトで違う。Gamerch は AP Scalar・SR Reaper・RC 5.56・TAG-12K・LM 249 を最上位に置く。DRM-14 は Gamerch で A、games.gg で C と評価が分かれる",
-          "refs": [
-            {
-              "site": "https://games.gg/rob-run/guides/best-rob-run-weapons-early-access-tier-list/",
-              "title": "Best ROB RUN Weapons Tier List（games.gg・英語・11/09）"
-            },
-            {
-              "site": "https://gamerch.com/rubrun/1031392",
-              "title": "【ROB RUN】最強武器ランキング（Gamerch・日本語・11/11）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "闇市以外の売り手 (街の Arms Dealer など) は闇市のおよそ 3 倍の値段で、全種類は置いていない",
-          "refs": [
-            {
-              "site": "https://games.gg/rob-run/guides/best-rob-run-weapons-early-access-tier-list/",
-              "title": "Best ROB RUN Weapons Tier List（games.gg・英語・11/09）"
-            },
-            {
-              "site": "https://tposegaming.com/?p=24527",
-              "title": "ROB RUN Guns: How to Get Them & All Weapon Stats（tposegaming・英語・11/08）"
-            }
-          ]
-        },
-        {
-          "kind": "site",
-          "text": "死ぬと失いやすいので、games.gg は安くて買い直しやすい DP-9 Mk1 を上位 (A) に置いている",
-          "refs": [
-            {
-              "site": "https://games.gg/rob-run/guides/best-rob-run-weapons-early-access-tier-list/",
-              "title": "Best ROB RUN Weapons Tier List（games.gg・英語・11/09）"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "money",
-      "title": "お金の守り方",
-      "summary": "盗まれるお金と、守られるお金",
-      "figures": [
-        {
-          "kind": "official",
-          "type": "flow",
-          "title": "お金を守る順番",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1356-can-my-money-be-stolen/",
-              "title": "Can my money be stolen?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1348-where-should-i-stash-stolen-loot/",
-              "title": "Where should I stash stolen loot?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1355-how-do-i-open-a-bank-account-and-why-launder-money/",
-              "title": "How do I open a bank account and why launder money?"
-            }
-          ],
-          "steps": [
-            {
-              "title": "手持ちの現金",
-              "note": "盗まれる・没収される"
-            },
-            {
-              "title": "Lenny's に預ける",
-              "note": "預けられるのは現金だけ"
-            },
-            {
-              "title": "銀行に口座を開く",
-              "note": "Looty Bay で民間人として"
-            },
-            {
-              "title": "洗浄机で洗浄",
-              "note": "時間がかかる"
-            },
-            {
-              "title": "洗浄済み",
-              "note": "次のワイプまで盗まれない"
-            }
-          ]
-        }
-      ],
-      "items": [
-        {
-          "text": "手持ちの現金は盗まれたり没収されたりする。Lenny's には現金だけを預けられる",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1356-can-my-money-be-stolen/",
-              "title": "Can my money be stolen?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1348-where-should-i-stash-stolen-loot/",
-              "title": "Where should I stash stolen loot?"
-            }
-          ]
-        },
-        {
-          "text": "Looty Bay の銀行で民間人として口座を開き、拠点の洗浄机 (Laundering Desk) で洗浄する。時間はかかるが、洗浄したお金は次のワイプまで盗まれない",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1355-how-do-i-open-a-bank-account-and-why-launder-money/",
-              "title": "How do I open a bank account and why launder money?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1356-can-my-money-be-stolen/",
-              "title": "Can my money be stolen?"
-            },
-            {
-              "news": "1845383656385404",
-              "title": "Frequently Asked Questions"
-            }
-          ]
-        },
-        {
-          "text": "発売時の変更で、洗浄机に入れられる現金が大幅に増えた",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        },
-        {
-          "text": "拠点の商売 (農場・ラボ・密輸など) の稼ぎは発売時に大幅に増えた。ゴミ箱で見つかる現金も増えた",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "police",
-      "title": "警察と降伏",
-      "summary": "捕まりそうなときの選び方と、警官の仕事",
-      "figures": [
-        {
-          "kind": "official",
-          "type": "table",
-          "title": "捕まりそうなときの結果",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1352-why-surrender-to-the-cops/",
-              "title": "Why surrender to the cops?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1353-why-pay-a-bribe/",
-              "title": "Why pay a bribe?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1344-what-do-i-lose-when-i-die/",
-              "title": "What do I lose when I die?"
-            },
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            },
-            {
-              "news": "1844115010491502",
-              "title": "ROB RUN: Gameplay Overview"
-            }
-          ],
-          "columns": [
-            "選ぶ行動",
-            "鞄の中身",
-            "装備"
-          ],
-          "rows": [
-            [
-              "降伏する",
-              "没収される",
-              "残る"
-            ],
-            [
-              "賄賂を渡す (受け取られたら)",
-              "残る",
-              "残る"
-            ],
-            [
-              "撃ち合って死ぬ",
-              "失う",
-              "守れるとの記載なし"
-            ]
-          ]
-        }
-      ],
-      "items": [
-        {
-          "text": "警察には Looty Bay の警察署で、空きがあればなれる。装備と車は支給され、押収品の価値の一部が稼ぎになる",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1351-how-do-i-become-a-cop/",
-              "title": "How do I become a cop?"
-            },
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ]
-        },
-        {
-          "text": "サイレンを鳴らして投降を求めて逮捕すると追加のボーナスが付く。稼ぎは犯罪者より少ないが、危険も少ない",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ]
-        },
-        {
-          "text": "警察はバッジで上の装備を開ける。発売時からバッジは買えるようになり、拾える数と給料での数は減った",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1844115010491502",
-              "title": "ROB RUN: Gameplay Overview"
-            },
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        },
-        {
-          "text": "新しいサーバーでは巡回の警官はピストルだけ。サーバーが古くなるほど良い装備が開く。警官は続けて死ぬほど復活までの時間が延びる",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        },
-        {
-          "text": "捕まったら降伏できる。没収されるのは鞄の中身だけで、身に着けた装備は残る",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1844115010491502",
-              "title": "ROB RUN: Gameplay Overview"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1352-why-surrender-to-the-cops/",
-              "title": "Why surrender to the cops?"
-            }
-          ]
-        },
-        {
-          "text": "銀行にお金があれば警官に賄賂を渡せる。受け取ってもらえれば鞄の中身は残る",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1353-why-pay-a-bribe/",
-              "title": "Why pay a bribe?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1352-why-surrender-to-the-cops/",
-              "title": "Why surrender to the cops?"
-            }
-          ]
-        },
-        {
-          "text": "ソロでも、下見・逃走車を隠す・警報を切る・NPC を脅すで撃ち合いを避けられる。犯罪者の車は警察車より小回りが利く",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "base",
-      "title": "拠点と出荷",
-      "summary": "拠点を持つまでの手順",
-      "figures": [
-        {
-          "kind": "official",
-          "type": "flow",
-          "title": "拠点を持つまで",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1361-how-do-i-rent-a-plot-for-my-base/",
-              "title": "How do I rent a plot for my base?"
-            },
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            },
-            {
-              "news": "1846651706680688",
-              "title": "ROB RUN: Base Management"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1363-how-do-i-protect-my-base-from-raids/",
-              "title": "How do I protect my base from raids?"
-            }
-          ],
-          "steps": [
-            {
-              "title": "集落を探す",
-              "note": "持ち主のいる集落だけ"
-            },
-            {
-              "title": "区画を借りる",
-              "note": "看板で家賃。最初は書類で払う"
-            },
-            {
-              "title": "建てる",
-              "note": "建物も家具もアイテムで置く"
-            },
-            {
-              "title": "稼ぐ",
-              "note": "農場・ラボ・洗浄"
-            },
-            {
-              "title": "守る",
-              "note": "ヒューズと防衛モジュール"
-            }
-          ]
-        }
-      ],
-      "items": [
-        {
-          "text": "拠点は砂漠の、持ち主のいる集落の区画を借りて作る。空き区画の看板で家賃を払う。地区のレベル 2・3 の区画には闇市の特別な書類が要る",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1361-how-do-i-rent-a-plot-for-my-base/",
-              "title": "How do I rent a plot for my base?"
-            },
-            {
-              "news": "1844751498222037",
-              "title": "ROB RUN: Global Map"
-            }
-          ]
-        },
-        {
-          "text": "最初の段の集落と区画の借り賃は、現金ではなく書類で払うよう変わった",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        },
-        {
-          "text": "建物も家具もアイテムとして置く。買うか、戦利品や他人の鞄から手に入れる。死んだときは拠点からも復活できる",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1846651706680688",
-              "title": "ROB RUN: Base Management"
-            }
-          ]
-        },
-        {
-          "text": "拠点は中身ごといつでも移せる。仲間の近くへ移ったり、敵の隣を避けたりできる",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1846651706680688",
-              "title": "ROB RUN: Base Management"
-            }
-          ]
-        },
-        {
-          "text": "守りは警備装置にヒューズを入れ、防衛モジュールで味方に知らせる。他人の拠点にはデコーダーで一時的に入れる",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1363-how-do-i-protect-my-base-from-raids/",
-              "title": "How do I protect my base from raids?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1364-how-do-i-raid-other-players-bases/",
-              "title": "How do I raid other players' bases?"
-            }
-          ]
-        },
-        {
-          "text": "買える品 (出荷) は H キーかサイドメニューで開き、11/17 から Lenny のメニューにも出る。拠点の集落のレベルか、刑務所にいた時間の合計で解禁される",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1365-how-do-i-unlock-new-goods/",
-              "title": "How do I unlock new goods?"
-            },
-            {
-              "news": "1849458702693254",
-              "title": "Patch Notes (11/17)"
-            }
-          ]
-        },
-        {
-          "text": "拠点を丸ごと消すには、戦利品でしか出ないとても珍しい品が要る",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1845383656385404",
-              "title": "Frequently Asked Questions"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "pyramid",
-      "title": "土地・クラン・権力",
-      "summary": "権力の 5 段と、税の流れ",
-      "figures": [
-        {
-          "kind": "official",
-          "type": "pyramid",
-          "title": "権力の 5 段",
-          "refs": [
-            {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
-            }
-          ],
-          "tiers": [
-            {
-              "title": "影の総督",
-              "note": "中央 Highlands のクランの長"
-            },
-            {
-              "title": "地区の持ち主 (クラン)",
-              "note": "持ち主から税、洗浄が速い"
-            },
-            {
-              "title": "集落の持ち主",
-              "note": "住人の洗浄と買い物に課税"
-            },
-            {
-              "title": "集落の住人",
-              "note": "区画を借り、Sales Center を使える"
-            },
-            {
-              "title": "浮浪者",
-              "note": "モーテル暮らし。全員ここから"
-            }
-          ]
-        },
-        {
-          "kind": "official",
-          "type": "flow",
-          "title": "税の流れ",
-          "refs": [
-            {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
-            },
-            {
-              "news": "1844751498222037",
-              "title": "ROB RUN: Global Map"
-            }
-          ],
-          "steps": [
-            {
-              "title": "住人",
-              "note": "洗浄と闇市の買い物"
-            },
-            {
-              "title": "集落の持ち主",
-              "note": "住人から税を取る"
-            },
-            {
-              "title": "地区のクラン",
-              "note": "持ち主から取り分"
-            },
-            {
-              "title": "影の総督のクラン",
-              "note": "ほかの全クランから"
-            }
-          ]
-        }
-      ],
-      "items": [
-        {
-          "text": "権力は 5 段。モーテル暮らしから、区画を借りる住人、集落の持ち主、地区を持つクラン、中央の Highlands を持つクランの長 (影の総督) まで",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
-            }
-          ]
-        },
-        {
-          "text": "集落の持ち主は、住人の洗浄と闇市の買い物に税をかけられる。取り分は直接会って集める",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1362-how-do-i-become-a-settlement-owner-and-earn-income/",
-              "title": "How do I become a settlement owner and earn income?"
-            }
-          ]
-        },
-        {
-          "text": "地区を持つクランは、その地区の集落の持ち主から税を取り、洗浄が速くなる。地区のレベルが高いほど速い",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1847920302231404",
-              "title": "ROB RUN's Power Pyramid"
-            }
-          ]
-        },
-        {
-          "text": "クランは最大 100 人 (発売前の公式 FAQ) で、選んだサーバーの中だけ。作るには銀行に洗浄済みのお金が要る。クランはワイプの周期の途中でも替えられる",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1845383656385404",
-              "title": "Frequently Asked Questions"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1345-how-do-i-join-or-create-a-clan/",
-              "title": "How do I join or create a clan?"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "vehicle",
-      "title": "車とヘリ",
-      "summary": "車とヘリの手に入れ方",
-      "figures": [
-        {
-          "kind": "official",
-          "type": "table",
-          "title": "乗り物の手に入れ方",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1357-how-do-i-get-a-car/",
-              "title": "How do I get a car?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1358-how-do-i-get-and-upgrade-my-own-car/",
-              "title": "How do I get and upgrade my own car?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1359-how-do-i-get-a-helicopter/",
-              "title": "How do I get a helicopter?"
-            }
-          ],
-          "columns": [
-            "乗り物",
-            "手に入れ方",
-            "条件"
-          ],
-          "rows": [
-            [
-              "レンタル車",
-              "駐車場の端末で借りる",
-              "無料"
-            ],
-            [
-              "自分の車",
-              "買う",
-              "家か車庫付きの土地"
-            ],
-            [
-              "ヘリ",
-              "買う・まれに戦利品",
-              "中央の地区に拠点"
-            ]
-          ]
-        }
-      ],
-      "items": [
-        {
-          "text": "車が無ければ駐車場の端末で無料で借りられる。自分の車は家か車庫付きの土地を買ってから。鍵はキーロッカーに入れる",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1357-how-do-i-get-a-car/",
-              "title": "How do I get a car?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1358-how-do-i-get-and-upgrade-my-own-car/",
-              "title": "How do I get and upgrade my own car?"
-            }
-          ]
-        },
-        {
-          "text": "車はボンネット・トランク・車体の下にモジュールを付けて強くする。他人の車のトランクは闇市の道具でこじ開けられる",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1358-how-do-i-get-and-upgrade-my-own-car/",
-              "title": "How do I get and upgrade my own car?"
-            },
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1360-how-do-i-lockpick-a-trunk/",
-              "title": "How do I lockpick a trunk?"
-            }
-          ]
-        },
-        {
-          "text": "ヘリは中央の地区に拠点がある人だけが買える。戦利品でまれに見つかることもある",
-          "kind": "official",
-          "refs": [
-            {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1359-how-do-i-get-a-helicopter/",
-              "title": "How do I get a helicopter?"
-            }
-          ]
-        },
-        {
-          "text": "Buletti では積荷を運べなくなった",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
+          "items": [
+            {
+              "text": "舞台は犯罪が絶えない街 Looty Bay。強盗・取引・装甲車の襲撃・殺人が毎分のように起きている",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1843481262692060",
+                  "title": "ROB RUN: Your First Look at Looty Bay"
+                }
+              ]
+            },
+            {
+              "text": "主人公は刑務所を出たばかりで、お金も住む所も無い。まずは Lenny のモーテルに転がり込み、最初の土地を買うお金を集める",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                }
+              ]
+            },
+            {
+              "text": "街の警察はひどい人手不足で、身元の確認もせずにだれでも雇うようになった。警官は支給品の装備で働き、押収品の取り分や賄賂で稼ぐ",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1844115010491502",
+                  "title": "ROB RUN: Gameplay Overview"
+                }
+              ]
+            },
+            {
+              "text": "拠点を持つまでの戦利品の置き場として、中立の場所「バー」がある。地元の顔役が仕切るので撃たれない。取引をしたり、ルーレットで遊んだりできる",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1843481262692060",
+                  "title": "ROB RUN: Your First Look at Looty Bay"
+                }
+              ]
+            },
+            {
+              "text": "街の外は法の届かない砂漠。集落を買って土地を貸し、クランで地区を奪い合う。中央の地区を取ったクランは地図のすべてから税を取る",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1844751498222037",
+                  "title": "ROB RUN: Global Map"
+                },
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                }
+              ]
+            },
+            {
+              "text": "頂点は中央 Highlands を支配するクランの長、影の総督。ゲームの世界に 1 人しかいない",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                }
+              ]
+            },
+            {
+              "text": "7 日ごとに連邦の一斉摘発 (Federal Raid) が来て、拠点・区画・武器・現金がリセットされる。稼いだお金が多いほど刑期が長くなる",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1845383656385404",
+                  "title": "Frequently Asked Questions"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1346-what-is-the-federal-raid-wipe/",
+                  "title": "What is the Federal Raid (Wipe)?"
+                }
+              ]
+            },
+            {
+              "text": "公式は、無一文から成り上がり、ほかのプレイヤーと競う中で生まれる物語こそが面白さだと説明している",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1845383656385404",
+                  "title": "Frequently Asked Questions"
+                }
+              ]
             }
           ]
         }
@@ -2841,143 +346,2599 @@
     },
     {
       "id": "wipe",
-      "title": "ワイプとサーバー",
-      "summary": "ワイプで消える物と、サーバーの開く時刻",
-      "figures": [
+      "title": "ワイプと最初の動き",
+      "summary": "新しいサーバーの 1 日目と、ワイプで残る物",
+      "parts": [
         {
-          "kind": "official",
-          "type": "split",
-          "title": "7 日ごとのワイプで",
-          "refs": [
+          "id": "wipe-plan",
+          "title": "ワイプ後の動き",
+          "figures": [
             {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1346-what-is-the-federal-raid-wipe/",
-              "title": "What is the Federal Raid (Wipe)?"
-            }
-          ],
-          "columns": [
-            {
-              "title": "消える",
-              "tone": "lose",
-              "items": [
-                "拠点",
-                "区画",
-                "武器",
-                "現金"
+              "kind": "site",
+              "type": "flow",
+              "title": "1 日目の手順",
+              "refs": [
+                {
+                  "site": "https://powerupgaming.co.uk/2026/11/05/rob-run-beginner-guide-survive-your-first-hour/",
+                  "title": "Beginner Guide: Survive Your First Hour（Power Up Gaming・英語・11/05）"
+                },
+                {
+                  "site": "https://www.keengamer.com/articles/guides/rob-run-beginners-guide-best-tips-for-a-perfect-start/",
+                  "title": "Beginners Guide（KeenGamer・英語・11/11）"
+                },
+                {
+                  "site": "https://gamerch.com/rubrun/1029099",
+                  "title": "【ROB RUN】序盤の進め方（Gamerch・日本語・11/12）"
+                }
+              ],
+              "note": "3 つの攻略記事 (11/05〜11/12) でおおむね一致している勧め",
+              "steps": [
+                {
+                  "title": "仲間とサーバーをそろえる",
+                  "note": "土地を買う前に同じ地域・サーバーへ"
+                },
+                {
+                  "title": "無料の車を借りる",
+                  "note": "駐車場の端末で"
+                },
+                {
+                  "title": "マスク無しで下見",
+                  "note": "最初の約 20 分は逃げ道とバンを見る"
+                },
+                {
+                  "title": "小さな店を短く",
+                  "note": "人の少ない店。続けて 2 件目に行かない"
+                },
+                {
+                  "title": "売ってすぐ回収",
+                  "note": "カウンターの現金を取り、街を出る"
+                },
+                {
+                  "title": "Lenny に預ける",
+                  "note": "現金だけ預けられる"
+                },
+                {
+                  "title": "Lv1 の土地を借りる",
+                  "note": "保管・作業台・洗浄机を置く"
+                }
               ]
             },
             {
-              "title": "残る",
-              "tone": "keep",
-              "items": [
-                "見た目の品",
-                "プレイヤー名",
-                "チュートリアルの進み",
-                "設定",
-                "刑期の合計"
+              "kind": "site",
+              "type": "bars",
+              "title": "土地を持つまでの費用 (解禁 + 権利書)",
+              "unit": "",
+              "refs": [
+                {
+                  "site": "https://wikily.gg/rob-run/plots-and-settlements",
+                  "title": "Plots and settlements（Wikily・英語・11/17 時点）"
+                },
+                {
+                  "site": "https://gamerblurb.com/articles/rob-run-how-to-buy-land",
+                  "title": "ROB RUN How to Buy Land（gamerblurb・英語・11/12 ごろ）"
+                }
+              ],
+              "note": "Wikily (11/17 時点) と gamerblurb の値。Lv3 の土地には Lv2 以上の地区に住んでいることが要る",
+              "bars": [
+                {
+                  "label": "Lv1 の土地",
+                  "value": 150000,
+                  "note": "最初の目標"
+                },
+                {
+                  "label": "Lv2 の土地",
+                  "value": 1000000
+                },
+                {
+                  "label": "Lv3 の土地",
+                  "value": 3000000
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "type": "table",
+              "title": "権利書の値段",
+              "refs": [
+                {
+                  "site": "https://wikily.gg/rob-run/plots-and-settlements",
+                  "title": "Plots and settlements（Wikily・英語・11/17 時点）"
+                },
+                {
+                  "site": "https://gamerblurb.com/articles/rob-run-how-to-buy-land",
+                  "title": "ROB RUN How to Buy Land（gamerblurb・英語・11/12 ごろ）"
+                }
+              ],
+              "note": "解禁は Shipments で一度だけ払う。住人は洗浄した金の 5% を集落の持ち主に税として払う (Wikily)",
+              "columns": [
+                "権利書",
+                "解禁",
+                "購入"
+              ],
+              "rows": [
+                [
+                  "土地 Lv1",
+                  "$50,000",
+                  "$100,000"
+                ],
+                [
+                  "土地 Lv2",
+                  "$200,000",
+                  "$800,000"
+                ],
+                [
+                  "土地 Lv3",
+                  "$1,000,000",
+                  "$2,000,000"
+                ],
+                [
+                  "集落 Lv1",
+                  "$100,000",
+                  "$200,000"
+                ],
+                [
+                  "集落 Lv2",
+                  "$500,000",
+                  "$2,000,000"
+                ],
+                [
+                  "集落 Lv3",
+                  "$2,000,000",
+                  "$6,000,000"
+                ]
+              ]
+            }
+          ],
+          "items": [
+            {
+              "kind": "official",
+              "text": "新しいサーバーは毎日開く (EU 17:00 UTC・日本時間で翌 2:00、East US 20:00 ET)。開いた直後は巡回の警官がピストルだけで、サーバーが古くなるほど良い装備が開く",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "最初は全員がモーテル暮らしから。土地を借りると拠点と商売、モーテル暮らしには無い出荷、Sales Center での売却が使える",
+              "refs": [
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "最初の段の集落と土地は、現金ではなく書類で借りる。死ぬたびにピストルを配る案は採られず、街で武器を見つけやすくした",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                },
+                {
+                  "news": "1847920302245290",
+                  "title": "Playtest News"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "ソロは悪名 4 から始まり、売るときと拾うときにボーナスが付く。パーティーは 3 人まで",
+              "refs": [
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "11/17 から刑期に 1 日の上限と全体の上限が付いた。11/23 には、刑期の下限か課金の合計を参加条件にした別のサーバーを先に出す予定と告知された",
+              "refs": [
+                {
+                  "news": "1849458702693254",
+                  "title": "Patch Notes (11/17)"
+                },
+                {
+                  "news": "1849827110441426",
+                  "title": "Anti-Cheat Measures and Servers"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "最初の武器と装備は安いもので足りる。games.gg のソロ向けの勧めは DP-9 Mk1・軽い防弾ベスト・安いバッグから始め、後で KL-545 Mk1 に替える",
+              "refs": [
+                {
+                  "site": "https://games.gg/rob-run/guides/rob-run-solo-guide/",
+                  "title": "ROB RUN Solo Guide（games.gg・英語・11/11）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "高い武器より先に土地を取るのがよいという点で、攻略記事の勧めは一致している",
+              "refs": [
+                {
+                  "site": "https://games.gg/rob-run/guides/rob-run-solo-guide/",
+                  "title": "ROB RUN Solo Guide（games.gg・英語・11/11）"
+                },
+                {
+                  "site": "https://www.keengamer.com/articles/guides/rob-run-beginners-guide-best-tips-for-a-perfect-start/",
+                  "title": "Beginners Guide（KeenGamer・英語・11/11）"
+                },
+                {
+                  "site": "https://gamerblurb.com/articles/rob-run-how-to-buy-land",
+                  "title": "ROB RUN How to Buy Land（gamerblurb・英語・11/12 ごろ）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "ワイプ直前の大きな出費は避ける。ワイプの時点の財産は刑期に替わる",
+              "refs": [
+                {
+                  "site": "https://gamerblurb.com/articles/rob-run-how-to-buy-land",
+                  "title": "ROB RUN How to Buy Land（gamerblurb・英語・11/12 ごろ）"
+                },
+                {
+                  "site": "https://www.keengamer.com/articles/guides/rob-run-beginners-guide-best-tips-for-a-perfect-start/",
+                  "title": "Beginners Guide（KeenGamer・英語・11/11）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "パーティーは強盗役と逃走役を分ける。銀行は 3 人 (ドリルの見張り・回収・入口の守り) で分担するのがよいという勧めがある",
+              "refs": [
+                {
+                  "site": "https://www.keengamer.com/articles/guides/rob-run-beginners-guide-best-tips-for-a-perfect-start/",
+                  "title": "Beginners Guide（KeenGamer・英語・11/11）"
+                },
+                {
+                  "site": "https://www.keengamer.com/articles/guides/rob-run-how-to-rob-bank-and-open-safety-deposit-boxes/",
+                  "title": "How to Rob Bank and Open Safety Deposit Boxes（KeenGamer・英語・11/17）"
+                }
               ]
             }
           ]
         },
         {
-          "kind": "official",
-          "type": "table",
-          "title": "新しいサーバーが開く時刻",
-          "refs": [
+          "id": "wipe-rules",
+          "title": "ワイプとサーバー",
+          "figures": [
             {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
+              "kind": "official",
+              "type": "split",
+              "title": "7 日ごとのワイプで",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1346-what-is-the-federal-raid-wipe/",
+                  "title": "What is the Federal Raid (Wipe)?"
+                }
+              ],
+              "columns": [
+                {
+                  "title": "消える",
+                  "tone": "lose",
+                  "items": [
+                    "拠点",
+                    "区画",
+                    "武器",
+                    "現金"
+                  ]
+                },
+                {
+                  "title": "残る",
+                  "tone": "keep",
+                  "items": [
+                    "見た目の品",
+                    "プレイヤー名",
+                    "チュートリアルの進み",
+                    "設定",
+                    "刑期の合計"
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "type": "table",
+              "title": "新しいサーバーが開く時刻",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ],
+              "note": "East US の日本時間は冬時間 (夏時間は 1 時間早い)",
+              "columns": [
+                "地域",
+                "公式の時刻",
+                "日本時間"
+              ],
+              "rows": [
+                [
+                  "EU",
+                  "17:00 UTC",
+                  "翌 2:00"
+                ],
+                [
+                  "East US",
+                  "20:00 ET",
+                  "翌 10:00"
+                ]
+              ]
             }
           ],
-          "note": "East US の日本時間は冬時間 (夏時間は 1 時間早い)",
-          "columns": [
-            "地域",
-            "公式の時刻",
-            "日本時間"
-          ],
-          "rows": [
-            [
-              "EU",
-              "17:00 UTC",
-              "翌 2:00"
-            ],
-            [
-              "East US",
-              "20:00 ET",
-              "翌 10:00"
-            ]
+          "items": [
+            {
+              "text": "7 日ごとのワイプ (Federal Raid) で、拠点・区画・武器・現金が消え、刑期と権限に替わる。見た目の品・名前・設定・刑期の合計は残る",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1346-what-is-the-federal-raid-wipe/",
+                  "title": "What is the Federal Raid (Wipe)?"
+                },
+                {
+                  "news": "1845383656385404",
+                  "title": "Frequently Asked Questions"
+                }
+              ]
+            },
+            {
+              "text": "地域を替えても、進行とバトルパスのポイントは引き継がれる。いまはサーバーを替えるには降伏して刑務所に戻る必要があり、公式は簡単にする予定",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1849458702693254",
+                  "title": "Patch Notes (11/17)"
+                },
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ]
+            },
+            {
+              "text": "サーバーの一覧に、オンラインの友達がいるサーバーが出るようになった",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1849827110432538",
+                  "title": "Patch Notes (11/20)"
+                }
+              ]
+            },
+            {
+              "text": "アジアやオセアニアのサーバーは、早くても今年の終わりまでは無理と公式は答えている",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ]
+            },
+            {
+              "text": "不正対策として、刑務所にいた時間か課金の合計を条件にした別のサーバーを先に出す予定。そこは普通のサーバーと別にマッチする",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1849827110441426",
+                  "title": "Anti-Cheat Measures and Servers"
+                }
+              ]
+            }
           ]
         }
-      ],
-      "items": [
+      ]
+    },
+    {
+      "id": "money",
+      "title": "稼ぐ・売る・守る",
+      "summary": "高く売れる品と売り方、お金の守り方",
+      "parts": [
         {
-          "text": "7 日ごとのワイプ (Federal Raid) で、拠点・区画・武器・現金が消え、刑期と権限に替わる。見た目の品・名前・設定・刑期の合計は残る",
-          "kind": "official",
-          "refs": [
+          "id": "sell",
+          "title": "換金と悪名",
+          "figures": [
             {
-              "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1346-what-is-the-federal-raid-wipe/",
-              "title": "What is the Federal Raid (Wipe)?"
+              "kind": "official",
+              "type": "table",
+              "title": "どこで売るか",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1349-how-do-i-sell-my-loot/",
+                  "title": "How do I sell my loot?"
+                },
+                {
+                  "news": "1844751498222037",
+                  "title": "ROB RUN: Global Map"
+                },
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                }
+              ],
+              "columns": [
+                "売り先",
+                "使える人",
+                "特徴"
+              ],
+              "rows": [
+                [
+                  "Looty Bay のフェンス",
+                  "だれでも",
+                  "ドル記号のバン。現金はすぐ受け取る"
+                ],
+                [
+                  "地区の中央ハブ",
+                  "その地区の住人",
+                  "大幅に高いことがあるが危ない"
+                ],
+                [
+                  "Sales Center",
+                  "区画を借りた住人",
+                  "密輸品も安く買える"
+                ]
+              ]
             },
             {
-              "news": "1845383656385404",
-              "title": "Frequently Asked Questions"
+              "kind": "site",
+              "type": "flow",
+              "title": "損をしない売り方",
+              "refs": [
+                {
+                  "site": "https://games.gg/rob-run/guides/rob-run-notoriety-guide/",
+                  "title": "ROB RUN Notoriety Guide（games.gg・英語）"
+                },
+                {
+                  "site": "https://robrungg.wiki/guides/notoriety-and-selling/",
+                  "title": "Notoriety and Selling（robrungg.wiki・英語）"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1349-how-do-i-sell-my-loot/",
+                  "title": "How do I sell my loot?"
+                },
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ],
+              "steps": [
+                {
+                  "title": "悪名を上げる",
+                  "note": "1 回の街の滞在で強盗を続ける"
+                },
+                {
+                  "title": "使う品を外す",
+                  "note": "鍵・宝くじ・妨害装置は売らない"
+                },
+                {
+                  "title": "まとめて売る",
+                  "note": "悪名が高いうちに最後に"
+                },
+                {
+                  "title": "すぐ受け取る",
+                  "note": "カウンターの現金を取る"
+                }
+              ]
             }
-          ]
-        },
-        {
-          "text": "地域は EU と East US。新しいサーバーは毎日、EU は 17:00 UTC、East US は 20:00 ET に開く予定。混めば時間外にも開く",
-          "kind": "official",
-          "refs": [
+          ],
+          "items": [
             {
-              "news": "1848557880479055",
-              "title": "ROB RUN: First Changes & Server Schedule"
-            }
-          ]
-        },
-        {
-          "text": "地域を替えても、進行とバトルパスのポイントは引き継がれる。いまはサーバーを替えるには降伏して刑務所に戻る必要があり、公式は簡単にする予定",
-          "kind": "official",
-          "refs": [
-            {
-              "news": "1849458702693254",
-              "title": "Patch Notes (11/17)"
+              "text": "売り先は地図のドル記号のバン (フェンス)。Looty Bay と Sales Center にある。受け取った現金はすぐ取らないと盗まれるか没収される",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1349-how-do-i-sell-my-loot/",
+                  "title": "How do I sell my loot?"
+                }
+              ]
             },
             {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+              "text": "街に入っている間に強盗を続けると悪名 (Notoriety) が上がる。高いほど戦利品と売値が良くなるが、危険も増える",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1844115010491502",
+                  "title": "ROB RUN: Gameplay Overview"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1350-what-is-the-notoriety-level/",
+                  "title": "What is the Notoriety level?"
+                }
+              ]
+            },
+            {
+              "text": "ソロは悪名 4 から始まり、売るときと拾うときにボーナスが付く (ヘルプではソロとデュオが高い悪名で始まる)",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1350-what-is-the-notoriety-level/",
+                  "title": "What is the Notoriety level?"
+                }
+              ]
+            },
+            {
+              "text": "各地区の中央ハブでも、その地区の住人は戦利品を売れる。Looty Bay より大幅に高く売れることがあるが、人が集まるぶん危ない",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1844751498222037",
+                  "title": "ROB RUN: Global Map"
+                }
+              ]
+            },
+            {
+              "text": "区画を借りると Sales Center で品物を売れるようになり、密輸品 (contraband) も安く買える",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                }
+              ]
+            },
+            {
+              "text": "積荷 (Shipment) は解体して売ると大きく儲かるよう変わった。代わりに出にくくなり、解体に時間がかかる",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            },
+            {
+              "text": "鍵・宝くじ・妨害装置 (Grand Hotel の Buletti を盗むのに要る) のような使い道のある品を、気づかず売りやすい。公式は誤売却の対策を検討中",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ]
+            },
+            {
+              "text": "悪名は Looty Bay を出ると戻る。売るのは悪名を上げきった最後にまとめるのが得という説明がある",
+              "kind": "site",
+              "refs": [
+                {
+                  "site": "https://games.gg/rob-run/guides/rob-run-notoriety-guide/",
+                  "title": "ROB RUN Notoriety Guide（games.gg・英語）"
+                },
+                {
+                  "site": "https://robrungg.wiki/guides/notoriety-and-selling/",
+                  "title": "Notoriety and Selling（robrungg.wiki・英語）"
+                }
+              ]
+            },
+            {
+              "text": "密輸業者は積荷を開けずに買い取る。発売時の変更のあとは、作業台で開けてから売るほうが高くなりやすいという説明がある",
+              "kind": "site",
+              "refs": [
+                {
+                  "site": "https://robrunwiki.com/en/guides/where-to-sell/",
+                  "title": "Where to Sell（robrunwiki.com・英語）"
+                }
+              ]
             }
           ]
         },
         {
-          "text": "サーバーの一覧に、オンラインの友達がいるサーバーが出るようになった",
-          "kind": "official",
-          "refs": [
+          "id": "loot",
+          "title": "値打ちのある品",
+          "figures": [
             {
-              "news": "1849827110432538",
-              "title": "Patch Notes (11/20)"
+              "kind": "site",
+              "type": "bars",
+              "title": "フェンスの基準売値が高い品 (悪名 1)",
+              "unit": "",
+              "refs": [
+                {
+                  "site": "https://robrun.info/",
+                  "title": "robrun.info（ロシア語の非公式 wiki・ゲームのファイルから集めた値の可能性）"
+                },
+                {
+                  "site": "https://games.gg/rob-run/guides/all-legendary-items/",
+                  "title": "All Legendary Items（games.gg・英語・11/15）"
+                },
+                {
+                  "site": "https://gamerblurb.com/articles/rob-run-lottery-ticket-how-to-get-it-and-what-its-worth",
+                  "title": "ROB RUN Lottery Ticket（gamerblurb・英語・11/13）"
+                }
+              ],
+              "note": "基準の値 ($)。robrun.info の品のページで値を確かめられた品だけを並べた (代行業者の一覧だけに載る品は除いた)。ゲーム内での実額は確かめられていない。ヨットの鍵と宝くじの大当たりは robrun.info だけの値",
+              "bars": [
+                {
+                  "label": "Yacht Key",
+                  "value": 2000000,
+                  "note": "出典 1 つ"
+                },
+                {
+                  "label": "宝くじ (大当たり)",
+                  "value": 1000000,
+                  "note": "出典 1 つ"
+                },
+                {
+                  "label": "BIG EGG #53",
+                  "value": 550000,
+                  "note": "Art Gallery"
+                },
+                {
+                  "label": "宝くじ (高額)",
+                  "value": 250000
+                },
+                {
+                  "label": "USB Hacking Tool",
+                  "value": 200000,
+                  "note": "満タン。売らず Drill に"
+                },
+                {
+                  "label": "Diamond in Case",
+                  "value": 200000
+                },
+                {
+                  "label": "King's Reserve Bottle",
+                  "value": 200000
+                },
+                {
+                  "label": "Code Tablet",
+                  "value": 75000,
+                  "note": "満タン。Glass Cutter に"
+                },
+                {
+                  "label": "Jammer",
+                  "value": 64000,
+                  "note": "売らず Buletti に"
+                },
+                {
+                  "label": "Gold Bar",
+                  "value": 52000,
+                  "note": "5 本まで重なる"
+                },
+                {
+                  "label": "Drill",
+                  "value": 32800,
+                  "note": "売らず銀行に"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "type": "bars",
+              "title": "積荷を密輸業者に丸ごと売る値 (悪名 1)",
+              "unit": "",
+              "refs": [
+                {
+                  "site": "https://www.keengamer.com/articles/guides/rob-run-cargo-guide-how-to-get-sell-and-open-cargo/",
+                  "title": "ROB RUN Cargo Guide（KeenGamer・英語・11/16）"
+                },
+                {
+                  "site": "https://gamerch.com/rubrun/1031657",
+                  "title": "【ROB RUN】カーゴの入手方法と売値一覧（Gamerch・日本語・11/12）"
+                },
+                {
+                  "site": "https://games.gg/rob-run/guides/rob-run-loot-guide/",
+                  "title": "ROB RUN Loot Guide（games.gg・英語・11/10）"
+                },
+                {
+                  "site": "https://gamerblurb.com/articles/rob-run-best-loot-guide",
+                  "title": "ROB RUN Best Loot Guide（gamerblurb・英語・11/09）"
+                }
+              ],
+              "note": "基準の値 ($)。4 つの攻略サイト (11/09〜11/16、発売時の変更の後) で一致。悪名 5 で 1.25 倍",
+              "bars": [
+                {
+                  "label": "Unique Collection Crate",
+                  "value": 500000
+                },
+                {
+                  "label": "Golden Statue",
+                  "value": 250000
+                },
+                {
+                  "label": "Expensive Safe",
+                  "value": 200000
+                },
+                {
+                  "label": "Valuable Cargo",
+                  "value": 150000
+                },
+                {
+                  "label": "Rare Collection Crate",
+                  "value": 150000
+                },
+                {
+                  "label": "Weapon Parts Box",
+                  "value": 120000,
+                  "note": "Legendary"
+                },
+                {
+                  "label": "Portable Safe",
+                  "value": 100000
+                },
+                {
+                  "label": "Hard Crystals",
+                  "value": 75000,
+                  "note": "Legendary"
+                },
+                {
+                  "label": "Bank Money Bag",
+                  "value": 60000
+                },
+                {
+                  "label": "Collection Crate",
+                  "value": 50000
+                },
+                {
+                  "label": "Premium Cargo",
+                  "value": 35000
+                },
+                {
+                  "label": "Contraband Cargo",
+                  "value": 10000,
+                  "note": "詰め替えると上がる"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "type": "table",
+              "title": "悪名ごとの売値の上乗せ",
+              "refs": [
+                {
+                  "site": "https://games.gg/rob-run/guides/rob-run-notoriety-guide/",
+                  "title": "ROB RUN Notoriety Guide（games.gg・英語・11/16）"
+                },
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ],
+              "note": "フェンスと密輸業者で表が違う。ソロは悪名 4 から始まる (公式)。2 人組は 2、3 人組は 1 から (games.gg)",
+              "columns": [
+                "悪名",
+                "フェンス",
+                "密輸業者 (積荷)"
+              ],
+              "rows": [
+                [
+                  "1",
+                  "+0%",
+                  "+0%"
+                ],
+                [
+                  "2",
+                  "+10%",
+                  "+5%"
+                ],
+                [
+                  "3",
+                  "+20%",
+                  "+10%"
+                ],
+                [
+                  "4 (ソロの開始)",
+                  "+35%",
+                  "+15%"
+                ],
+                [
+                  "5",
+                  "+50%",
+                  "+25%"
+                ]
+              ]
+            },
+            {
+              "kind": "site",
+              "type": "table",
+              "title": "売らずに使う品",
+              "refs": [
+                {
+                  "site": "https://robrun.info/",
+                  "title": "robrun.info（ロシア語の非公式 wiki・ゲームのファイルから集めた値の可能性）"
+                },
+                {
+                  "site": "https://games.gg/rob-run/guides/all-legendary-items/",
+                  "title": "All Legendary Items（games.gg・英語・11/15）"
+                },
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ],
+              "note": "売値は基準の値。使い道は robrun.info と games.gg (11/15) の説明。Drill の交換の材料は出典で書き方が違う",
+              "columns": [
+                "品",
+                "売ると",
+                "使い道"
+              ],
+              "rows": [
+                [
+                  "Jammer",
+                  "$64,000",
+                  "Grand Hotel の Buletti を盗む"
+                ],
+                [
+                  "Glass Cutter",
+                  "$20,000",
+                  "Art Gallery の BIG EGG を切り出す"
+                ],
+                [
+                  "Code Tablet (満タン)",
+                  "$75,000",
+                  "3 枚で Glass Cutter と交換"
+                ],
+                [
+                  "USB Hacking Tool (満タン)",
+                  "$200,000",
+                  "Drill の交換の材料"
+                ],
+                [
+                  "Drill",
+                  "$32,800",
+                  "銀行の金庫の扉を開ける"
+                ],
+                [
+                  "Deposit Box Keys (満タン)",
+                  "$20,000",
+                  "ID Card (金の部屋) と交換"
+                ],
+                [
+                  "宝くじ",
+                  "$40",
+                  "当たりの宝くじになりうる"
+                ],
+                [
+                  "Decoder",
+                  "$1,000",
+                  "他人の拠点の守りを下げる"
+                ]
+              ]
+            },
+            {
+              "kind": "site",
+              "type": "table",
+              "title": "積荷を作業台で開ける時間",
+              "refs": [
+                {
+                  "site": "https://gamerch.com/rubrun/1031657",
+                  "title": "【ROB RUN】カーゴの入手方法と売値一覧（Gamerch・日本語・11/12）"
+                },
+                {
+                  "site": "https://gamerblurb.com/articles/rob-run-cargo-workbench-guide",
+                  "title": "ROB RUN Cargo Workbench Guide（gamerblurb・英語・11/10）"
+                }
+              ],
+              "note": "開けている間は作業台に置いたままで、拠点を襲われると盗まれうる。中身とその価値はどの出典にも載っていない",
+              "columns": [
+                "積荷",
+                "時間"
+              ],
+              "rows": [
+                [
+                  "Hard Crystals",
+                  "10 秒"
+                ],
+                [
+                  "Golden Statue・Bush",
+                  "5 分"
+                ],
+                [
+                  "Collection Crate 系",
+                  "15 分"
+                ],
+                [
+                  "Valuable Cargo・Money Bag ほか",
+                  "30 分"
+                ],
+                [
+                  "Expensive Safe・Portable Safe",
+                  "60 分"
+                ]
+              ]
+            }
+          ],
+          "items": [
+            {
+              "kind": "official",
+              "text": "鍵で金庫が開く・宝くじが大当たりになりうる・Jammer が Buletti を盗むのに要る、など使い道のある品を気づかず売りやすい。公式は誤売却の対策を検討中",
+              "refs": [
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "発売時の変更で、積荷は解体して売ると大きく儲かるようになった。代わりに出にくくなり、解体に時間がかかる。デコーダーや金の延べ棒の重ねられる数も増えた",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "発売時の変更で、Fabergé Egg を破る時間が短くなり、Glass Cutter と交換するのに要るタブレットの数が増えた",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "Art Gallery の BIG EGG #53 は、公式が Fabergé Egg と呼ぶ品。基準の売値は $550,000 で、Glass Cutter が要る",
+              "refs": [
+                {
+                  "site": "https://robrun.info/",
+                  "title": "robrun.info（ロシア語の非公式 wiki・ゲームのファイルから集めた値の可能性）"
+                },
+                {
+                  "site": "https://games.gg/rob-run/guides/all-legendary-items/",
+                  "title": "All Legendary Items（games.gg・英語・11/15）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "Contraband Cargo はそのまま売ると $10,000。Contraband Workbench で詰め替えると Premium Cargo ($35,000) や Rarity Cargo ($40,000) になる",
+              "refs": [
+                {
+                  "site": "https://www.keengamer.com/articles/guides/rob-run-cargo-guide-how-to-get-sell-and-open-cargo/",
+                  "title": "ROB RUN Cargo Guide（KeenGamer・英語・11/16）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "積荷は、すぐ現金が要る・拠点が無い・追われている・ワイプが近いなら丸ごと売り、拠点と時間があれば開けるのがよいという勧めが多い",
+              "refs": [
+                {
+                  "site": "https://gamerch.com/rubrun/1031657",
+                  "title": "【ROB RUN】カーゴの入手方法と売値一覧（Gamerch・日本語・11/12）"
+                },
+                {
+                  "site": "https://gamerblurb.com/articles/rob-run-cargo-workbench-guide",
+                  "title": "ROB RUN Cargo Workbench Guide（gamerblurb・英語・11/10）"
+                },
+                {
+                  "site": "https://games.gg/rob-run/guides/rob-run-loot-guide/",
+                  "title": "ROB RUN Loot Guide（games.gg・英語・11/10）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "Cargo Workbench は解禁 $5,000・購入 $15,000 で、借りた土地 (拠点) が要る。Expensive Safe には Plasma Cargo Cutter が要る",
+              "refs": [
+                {
+                  "site": "https://www.keengamer.com/articles/guides/rob-run-cargo-guide-how-to-get-sell-and-open-cargo/",
+                  "title": "ROB RUN Cargo Guide（KeenGamer・英語・11/16）"
+                },
+                {
+                  "site": "https://gamerblurb.com/articles/rob-run-cargo-workbench-guide",
+                  "title": "ROB RUN Cargo Workbench Guide（gamerblurb・英語・11/10）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "普通の宝くじは売ると $40 しかない。バトルパスの無料報酬と、金庫や棚から手に入る",
+              "refs": [
+                {
+                  "site": "https://gamerblurb.com/articles/rob-run-lottery-ticket-how-to-get-it-and-what-its-worth",
+                  "title": "ROB RUN Lottery Ticket（gamerblurb・英語・11/13）"
+                }
+              ]
             }
           ]
         },
         {
-          "text": "アジアやオセアニアのサーバーは、早くても今年の終わりまでは無理と公式は答えている",
-          "kind": "official",
-          "refs": [
+          "id": "money-safe",
+          "title": "お金の守り方",
+          "figures": [
             {
-              "news": "1849192144187218",
-              "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+              "kind": "official",
+              "type": "flow",
+              "title": "お金を守る順番",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1356-can-my-money-be-stolen/",
+                  "title": "Can my money be stolen?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1348-where-should-i-stash-stolen-loot/",
+                  "title": "Where should I stash stolen loot?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1355-how-do-i-open-a-bank-account-and-why-launder-money/",
+                  "title": "How do I open a bank account and why launder money?"
+                }
+              ],
+              "steps": [
+                {
+                  "title": "手持ちの現金",
+                  "note": "盗まれる・没収される"
+                },
+                {
+                  "title": "Lenny's に預ける",
+                  "note": "預けられるのは現金だけ"
+                },
+                {
+                  "title": "銀行に口座を開く",
+                  "note": "Looty Bay で民間人として"
+                },
+                {
+                  "title": "洗浄机で洗浄",
+                  "note": "時間がかかる"
+                },
+                {
+                  "title": "洗浄済み",
+                  "note": "次のワイプまで盗まれない"
+                }
+              ]
+            }
+          ],
+          "items": [
+            {
+              "text": "手持ちの現金は盗まれたり没収されたりする。Lenny's には現金だけを預けられる",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1356-can-my-money-be-stolen/",
+                  "title": "Can my money be stolen?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1348-where-should-i-stash-stolen-loot/",
+                  "title": "Where should I stash stolen loot?"
+                }
+              ]
+            },
+            {
+              "text": "Looty Bay の銀行で民間人として口座を開き、拠点の洗浄机 (Laundering Desk) で洗浄する。時間はかかるが、洗浄したお金は次のワイプまで盗まれない",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1355-how-do-i-open-a-bank-account-and-why-launder-money/",
+                  "title": "How do I open a bank account and why launder money?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1356-can-my-money-be-stolen/",
+                  "title": "Can my money be stolen?"
+                },
+                {
+                  "news": "1845383656385404",
+                  "title": "Frequently Asked Questions"
+                }
+              ]
+            },
+            {
+              "text": "発売時の変更で、洗浄机に入れられる現金が大幅に増えた",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            },
+            {
+              "text": "拠点の商売 (農場・ラボ・密輸など) の稼ぎは発売時に大幅に増えた。ゴミ箱で見つかる現金も増えた",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gear",
+      "title": "武器と防具",
+      "summary": "段と Mk の比較、解放までの費用、強くなる点",
+      "parts": [
+        {
+          "id": "weapons",
+          "title": "武器",
+          "figures": [
+            {
+              "kind": "site",
+              "type": "table",
+              "title": "武器の性能 (Mk1 の基本値)",
+              "refs": [
+                {
+                  "site": "https://gamingpromax.com/rob-run-all-weapons-list/",
+                  "title": "ROB RUN All Weapons List（gamingpromax・英語・11/16）"
+                },
+                {
+                  "site": "https://tposegaming.com/?p=24527",
+                  "title": "ROB RUN Guns: How to Get Them & All Weapon Stats（tposegaming・英語・11/08）"
+                },
+                {
+                  "site": "https://gamerch.com/rubrun/1031392",
+                  "title": "【ROB RUN】最強武器ランキング（Gamerch・日本語・11/11）"
+                },
+                {
+                  "site": "https://grindnstrat.com/?p=9899",
+                  "title": "ROB RUN Weapons Guide（grindnstrat・英語・11/06）"
+                }
+              ],
+              "note": "ダメージは胴 1 発 (ショットガンは 1 粒 × 粒数)、頭は 1.5 倍。装弾数は Mk1 / Mk3。射程は全ダメージが出る距離。値段は闇市。* は出典で食い違い (値段を載せるサイトもある)。2026-11-05 版の値で、11/17・11/20 のパッチで武器の変更は無い",
+              "columns": [
+                "武器",
+                "種類",
+                "レア度",
+                "ダメージ",
+                "連射 (RPM)",
+                "装弾数",
+                "射程",
+                "闇市の値段"
+              ],
+              "rows": [
+                [
+                  "DP-9",
+                  "ピストル",
+                  "Uncommon",
+                  "18",
+                  "333",
+                  "14",
+                  "20 m",
+                  "300"
+                ],
+                [
+                  "LBR-44",
+                  "ピストル",
+                  "Epic",
+                  "34",
+                  "200",
+                  "6",
+                  "35 m",
+                  "20,000"
+                ],
+                [
+                  "Vulture 50",
+                  "ピストル",
+                  "Legendary",
+                  "36",
+                  "240",
+                  "7",
+                  "40 m",
+                  "50,000"
+                ],
+                [
+                  "MC-10",
+                  "SMG",
+                  "Uncommon",
+                  "12",
+                  "667",
+                  "20 / 40",
+                  "25 m",
+                  "3,500"
+                ],
+                [
+                  "CB45",
+                  "SMG",
+                  "Uncommon",
+                  "14",
+                  "545",
+                  "25 / 40",
+                  "34 m",
+                  "3,780"
+                ],
+                [
+                  "JP-7",
+                  "SMG",
+                  "Epic",
+                  "15",
+                  "750",
+                  "25 / 40",
+                  "27 m",
+                  "29,000"
+                ],
+                [
+                  "PDW90",
+                  "SMG",
+                  "Epic",
+                  "13",
+                  "857",
+                  "50 / 50",
+                  "31 m",
+                  "戦利品のみ*"
+                ],
+                [
+                  "AP Scalar",
+                  "SMG",
+                  "Legendary",
+                  "14",
+                  "1000",
+                  "25 / 45",
+                  "30 m",
+                  "115,000"
+                ],
+                [
+                  "Harris 500",
+                  "ショットガン",
+                  "Uncommon",
+                  "9×8",
+                  "120",
+                  "5 / 7",
+                  "7 m",
+                  "3,500"
+                ],
+                [
+                  "ORDR-12",
+                  "ショットガン",
+                  "Epic",
+                  "9×8",
+                  "171",
+                  "6 / 8",
+                  "7 m",
+                  "28,000"
+                ],
+                [
+                  "TAG-12K",
+                  "ショットガン",
+                  "Legendary",
+                  "9×8",
+                  "240",
+                  "5 / 8",
+                  "8 m",
+                  "110,000"
+                ],
+                [
+                  "KL-545",
+                  "アサルトライフル",
+                  "Uncommon",
+                  "15",
+                  "600",
+                  "30 / 45",
+                  "45 m",
+                  "6,000"
+                ],
+                [
+                  "RC 5.56",
+                  "アサルトライフル",
+                  "Epic",
+                  "16",
+                  "667",
+                  "30 / 50",
+                  "55 m",
+                  "32,000"
+                ],
+                [
+                  "STAR-H",
+                  "アサルトライフル",
+                  "Epic",
+                  "21",
+                  "500",
+                  "20 / 40",
+                  "50 m",
+                  "27,500"
+                ],
+                [
+                  "SR Reaper",
+                  "アサルトライフル",
+                  "Legendary",
+                  "17",
+                  "750",
+                  "20 / 40",
+                  "65 m",
+                  "120,000"
+                ],
+                [
+                  "DRM-14",
+                  "精密ライフル",
+                  "Legendary",
+                  "34",
+                  "240",
+                  "10 / 20",
+                  "95 m",
+                  "103,500"
+                ],
+                [
+                  "LM 249 Mk2",
+                  "LMG",
+                  "Exotic",
+                  "18",
+                  "706",
+                  "200",
+                  "75 m",
+                  "戦利品のみ*"
+                ]
+              ]
+            },
+            {
+              "kind": "site",
+              "type": "bars",
+              "title": "胴を撃ち続けたときの秒間ダメージ (計算値)",
+              "unit": "",
+              "refs": [
+                {
+                  "site": "https://gamingpromax.com/rob-run-all-weapons-list/",
+                  "title": "ROB RUN All Weapons List（gamingpromax・英語・11/16）"
+                },
+                {
+                  "site": "https://tposegaming.com/?p=24527",
+                  "title": "ROB RUN Guns: How to Get Them & All Weapon Stats（tposegaming・英語・11/08）"
+                },
+                {
+                  "site": "https://gamerch.com/rubrun/1031392",
+                  "title": "【ROB RUN】最強武器ランキング（Gamerch・日本語・11/11）"
+                }
+              ],
+              "note": "ダメージ × 粒数 × 連射 ÷ 60 で計算した理論値 (小数は四捨五入)。命中率・距離による減衰・リロードを含まない。ショットガンは全粒が当たった場合",
+              "bars": [
+                {
+                  "label": "TAG-12K",
+                  "value": 288
+                },
+                {
+                  "label": "AP Scalar",
+                  "value": 233
+                },
+                {
+                  "label": "SR Reaper",
+                  "value": 213
+                },
+                {
+                  "label": "LM 249 Mk2",
+                  "value": 212
+                },
+                {
+                  "label": "ORDR-12",
+                  "value": 205
+                },
+                {
+                  "label": "JP-7",
+                  "value": 188
+                },
+                {
+                  "label": "PDW90",
+                  "value": 186
+                },
+                {
+                  "label": "RC 5.56",
+                  "value": 178
+                },
+                {
+                  "label": "STAR-H",
+                  "value": 175
+                },
+                {
+                  "label": "KL-545",
+                  "value": 150
+                },
+                {
+                  "label": "Vulture 50",
+                  "value": 144
+                },
+                {
+                  "label": "Harris 500",
+                  "value": 144
+                },
+                {
+                  "label": "DRM-14",
+                  "value": 136
+                },
+                {
+                  "label": "MC-10",
+                  "value": 133
+                },
+                {
+                  "label": "CB45",
+                  "value": 127
+                },
+                {
+                  "label": "LBR-44",
+                  "value": 113
+                },
+                {
+                  "label": "DP-9",
+                  "value": 100
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "type": "table",
+              "title": "解放 (研究) の費用と条件",
+              "refs": [
+                {
+                  "site": "https://gamerch.com/rubrun/1031392",
+                  "title": "【ROB RUN】最強武器ランキング（Gamerch・日本語・11/11）"
+                },
+                {
+                  "site": "https://gamingpromax.com/rob-run-all-weapons-list/",
+                  "title": "ROB RUN All Weapons List（gamingpromax・英語・11/16）"
+                },
+                {
+                  "site": "https://grindnstrat.com/?p=9899",
+                  "title": "ROB RUN Weapons Guide（grindnstrat・英語・11/06）"
+                }
+              ],
+              "note": "闇市で買うには先に Shipments で解放が要る。地区レベルは Gamerch だけ、DRM-14 の刑期は grindnstrat だけの値",
+              "columns": [
+                "武器",
+                "Mk1 の解放費",
+                "前提",
+                "条件"
+              ],
+              "rows": [
+                [
+                  "DP-9",
+                  "無料",
+                  "—",
+                  "—"
+                ],
+                [
+                  "MC-10 / Harris 500",
+                  "15,000",
+                  "—",
+                  "—"
+                ],
+                [
+                  "KL-545",
+                  "25,000",
+                  "—",
+                  "Mk3 は地区 Lv2"
+                ],
+                [
+                  "STAR-H",
+                  "100,000",
+                  "KL-545 Mk1",
+                  "刑期 (Mk3 は 200 年)"
+                ],
+                [
+                  "RC 5.56",
+                  "200,000",
+                  "KL-545 Mk1",
+                  "Mk3 は地区 Lv3"
+                ],
+                [
+                  "DRM-14",
+                  "200,000",
+                  "—",
+                  "刑期 950 年・地区 Lv3"
+                ],
+                [
+                  "AP Scalar",
+                  "400,000",
+                  "JP-7 Mk1",
+                  "地区 Lv3"
+                ],
+                [
+                  "TAG-12K",
+                  "400,000",
+                  "ORDR-12 Mk1",
+                  "地区 Lv3"
+                ],
+                [
+                  "SR Reaper",
+                  "400,000",
+                  "RC 5.56 Mk1",
+                  "地区 Lv3"
+                ],
+                [
+                  "PDW90 / LM 249",
+                  "解放できない",
+                  "—",
+                  "戦利品のみ"
+                ]
+              ]
+            },
+            {
+              "kind": "site",
+              "type": "table",
+              "title": "警官のバッジ",
+              "refs": [
+                {
+                  "site": "https://gamerch.com/rubrun/1031631",
+                  "title": "【ROB RUN】警察のなり方と稼ぎ方・バッジ（Gamerch・日本語・11/12）"
+                },
+                {
+                  "site": "https://games.gg/rob-run/guides/rob-run-police-badges-guide/",
+                  "title": "ROB RUN Police Badges Guide（games.gg・英語・11/11）"
+                }
+              ],
+              "note": "1 回の勤務で 1 枚使う。バッジ無しでも基本の装備で勤務できる。値段を 1 桁小さく書く出典もあり、食い違いがある",
+              "columns": [
+                "バッジ",
+                "値段",
+                "解放費",
+                "住む地区"
+              ],
+              "rows": [
+                [
+                  "Sergeant",
+                  "8,000",
+                  "30,000",
+                  "I"
+                ],
+                [
+                  "Lieutenant",
+                  "40,000",
+                  "200,000",
+                  "II"
+                ],
+                [
+                  "Captain",
+                  "100,000",
+                  "500,000",
+                  "III"
+                ]
+              ]
+            },
+            {
+              "kind": "site",
+              "type": "table",
+              "title": "防弾ベスト",
+              "refs": [
+                {
+                  "site": "https://gamingpromax.com/rob-run-all-equipment-list/",
+                  "title": "ROB RUN All Equipment List（gamingpromax・英語・11/17）"
+                }
+              ],
+              "note": "鋼板 (Steel Plate) で区切りを回復する。守り方を体力への上乗せと書く出典もあり、食い違いがある",
+              "columns": [
+                "ベスト",
+                "レア度",
+                "区切り",
+                "値段"
+              ],
+              "rows": [
+                [
+                  "Light",
+                  "Common",
+                  "1",
+                  "4,000"
+                ],
+                [
+                  "Medium",
+                  "Uncommon",
+                  "2",
+                  "15,000"
+                ],
+                [
+                  "Assault",
+                  "Epic",
+                  "3",
+                  "70,000"
+                ],
+                [
+                  "Heavy",
+                  "Legendary",
+                  "4",
+                  "140,000"
+                ],
+                [
+                  "Bastion",
+                  "Exotic",
+                  "4",
+                  "通常は買えない"
+                ]
+              ]
+            }
+          ],
+          "items": [
+            {
+              "kind": "official",
+              "text": "武器は街の戦利品として出るほか、闇市 (Lenny から直接か、拠点のノートパソコン) で買える",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1343-where-can-i-find-weapons/",
+                  "title": "Where can I find weapons?"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "買える品は Shipments (H キー) で解禁する。11/17 から Lenny のメニューにも Shipments が出る。解禁には拠点の集落のレベルか刑期の合計が要る",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1365-how-do-i-unlock-new-goods/",
+                  "title": "How do I unlock new goods?"
+                },
+                {
+                  "news": "1849458702693254",
+                  "title": "Patch Notes (11/17)"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "発売時に基本のピストルが値下げされ、街で最初の武器が見つかる場所が増えた。死ぬたびにピストルを配る案は採らなかった",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "装備は死ぬたびに耐久が減り、いまは修理できない。武器の修理は今後の更新で予定されている",
+              "refs": [
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "警官は新しいサーバーではピストルだけで、サーバーが古くなるほど良い装備が開く。バッジは買えるようになり、選べるバッジは住む地区で決まる",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "公式は武器の数値を出していない。攻略サイトの数値はコミュニティが集めた値で、3 つのサイト (11/08〜11/16) でダメージ・連射・装弾数が一致している",
+              "refs": [
+                {
+                  "site": "https://games.gg/rob-run/guides/best-rob-run-weapons-early-access-tier-list/",
+                  "title": "Best ROB RUN Weapons Tier List（games.gg・英語・11/09）"
+                },
+                {
+                  "site": "https://gamingpromax.com/rob-run-all-weapons-list/",
+                  "title": "ROB RUN All Weapons List（gamingpromax・英語・11/16）"
+                },
+                {
+                  "site": "https://tposegaming.com/?p=24527",
+                  "title": "ROB RUN Guns: How to Get Them & All Weapon Stats（tposegaming・英語・11/08）"
+                },
+                {
+                  "site": "https://gamerch.com/rubrun/1031392",
+                  "title": "【ROB RUN】最強武器ランキング（Gamerch・日本語・11/11）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "Mk を上げると装弾数・構えの速さ・射程が伸び、1 発のダメージは変わらない",
+              "refs": [
+                {
+                  "site": "https://grindnstrat.com/?p=9899",
+                  "title": "ROB RUN Weapons Guide（grindnstrat・英語・11/06）"
+                },
+                {
+                  "site": "https://gamingpromax.com/rob-run-all-weapons-list/",
+                  "title": "ROB RUN All Weapons List（gamingpromax・英語・11/16）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "ティア表はサイトで違う。Gamerch は AP Scalar・SR Reaper・RC 5.56・TAG-12K・LM 249 を最上位に置く。DRM-14 は Gamerch で A、games.gg で C と評価が分かれる",
+              "refs": [
+                {
+                  "site": "https://games.gg/rob-run/guides/best-rob-run-weapons-early-access-tier-list/",
+                  "title": "Best ROB RUN Weapons Tier List（games.gg・英語・11/09）"
+                },
+                {
+                  "site": "https://gamerch.com/rubrun/1031392",
+                  "title": "【ROB RUN】最強武器ランキング（Gamerch・日本語・11/11）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "闇市以外の売り手 (街の Arms Dealer など) は闇市のおよそ 3 倍の値段で、全種類は置いていない",
+              "refs": [
+                {
+                  "site": "https://games.gg/rob-run/guides/best-rob-run-weapons-early-access-tier-list/",
+                  "title": "Best ROB RUN Weapons Tier List（games.gg・英語・11/09）"
+                },
+                {
+                  "site": "https://tposegaming.com/?p=24527",
+                  "title": "ROB RUN Guns: How to Get Them & All Weapon Stats（tposegaming・英語・11/08）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "死ぬと失いやすいので、games.gg は安くて買い直しやすい DP-9 Mk1 を上位 (A) に置いている",
+              "refs": [
+                {
+                  "site": "https://games.gg/rob-run/guides/best-rob-run-weapons-early-access-tier-list/",
+                  "title": "Best ROB RUN Weapons Tier List（games.gg・英語・11/09）"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "world",
+      "title": "地図・拠点・警察",
+      "summary": "地区と強盗の場所、拠点、権力、車、警察",
+      "parts": [
+        {
+          "id": "map",
+          "title": "地図",
+          "figures": [
+            {
+              "kind": "site",
+              "type": "map",
+              "title": "砂漠の地区の配置 (模式図)",
+              "refs": [
+                {
+                  "site": "https://zap-hosting.com/tools/rob-run/map-guide",
+                  "title": "ROB RUN map guide（ZAP-Hosting・英語・発売前の世界地図から）"
+                },
+                {
+                  "news": "1844751498222037",
+                  "title": "ROB RUN: Global Map"
+                },
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                }
+              ],
+              "note": "発売前に Steam のストアに出た世界地図の座標 (ZAP-Hosting が掲載) から並べた。上を北とみなしている。アーリーアクセス中に変わる可能性がある",
+              "cols": 7,
+              "rows": 5,
+              "zones": [
+                {
+                  "label": "刑務所",
+                  "note": "推定",
+                  "col": 1,
+                  "row": 1,
+                  "tone": "muted"
+                },
+                {
+                  "label": "Dustbowl",
+                  "note": "Lv1",
+                  "col": 3,
+                  "row": 1
+                },
+                {
+                  "label": "Redstone",
+                  "note": "Lv1",
+                  "col": 5,
+                  "row": 1
+                },
+                {
+                  "label": "Rivertown",
+                  "note": "Lv2",
+                  "col": 4,
+                  "row": 2
+                },
+                {
+                  "label": "Fairfield",
+                  "note": "Lv1",
+                  "col": 2,
+                  "row": 3
+                },
+                {
+                  "label": "Fallrock",
+                  "note": "Lv2",
+                  "col": 3,
+                  "row": 3
+                },
+                {
+                  "label": "Highlands",
+                  "note": "Lv3・中央",
+                  "col": 4,
+                  "row": 3,
+                  "tone": "center"
+                },
+                {
+                  "label": "El Peso",
+                  "note": "Lv2",
+                  "col": 5,
+                  "row": 3
+                },
+                {
+                  "label": "Loneford",
+                  "note": "Lv1",
+                  "col": 6,
+                  "row": 3
+                },
+                {
+                  "label": "Hub",
+                  "note": "ファストトラベル先",
+                  "col": 1,
+                  "row": 4,
+                  "tone": "muted"
+                },
+                {
+                  "label": "Looty Bay",
+                  "note": "海沿いの街",
+                  "col": 7,
+                  "row": 4,
+                  "rowSpan": 2
+                },
+                {
+                  "label": "Rustvale",
+                  "note": "Lv1",
+                  "col": 2,
+                  "row": 5
+                },
+                {
+                  "label": "Cascadas",
+                  "note": "Lv1",
+                  "col": 6,
+                  "row": 5
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "type": "bars",
+              "title": "地区のレベルと数",
+              "unit": " 地区",
+              "refs": [
+                {
+                  "site": "https://zap-hosting.com/tools/rob-run/map-guide",
+                  "title": "ROB RUN map guide（ZAP-Hosting・英語・発売前の世界地図から）"
+                }
+              ],
+              "note": "Lv3 は中央の Highlands だけ。Lv2 が中央を囲み、Lv1 が外周に並ぶ",
+              "bars": [
+                {
+                  "label": "Lv1 (外周)",
+                  "value": 6
+                },
+                {
+                  "label": "Lv2",
+                  "value": 3
+                },
+                {
+                  "label": "Lv3 (中央)",
+                  "value": 1
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "type": "table",
+              "title": "大きな強盗 4 つと必要な道具",
+              "refs": [
+                {
+                  "site": "https://wikily.gg/rob-run/heists",
+                  "title": "Heists（Wikily・英語・11/17 時点）"
+                },
+                {
+                  "site": "https://www.keengamer.com/articles/guides/rob-run-how-to-rob-bank-and-open-safety-deposit-boxes/",
+                  "title": "How to Rob Bank and Open Safety Deposit Boxes（KeenGamer・英語・11/17）"
+                },
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ],
+              "note": "Wikily と KeenGamer (11/17 時点) の値。銀行・警察署・Buletti は、作業中や成功のときにサーバー全体へ通知が出る",
+              "columns": [
+                "場所",
+                "必要な道具",
+                "手に入る物"
+              ],
+              "rows": [
+                [
+                  "銀行の金庫",
+                  "Drill と ID Card",
+                  "金の延べ棒 (1 本約 $52,000)"
+                ],
+                [
+                  "警察署の武器庫",
+                  "ID Card (Evidence 20 と交換)",
+                  "押収品の強い武器"
+                ],
+                [
+                  "Grand Hotel の展示車",
+                  "Jammer (入手法は未確認)",
+                  "Buletti (車)"
+                ],
+                [
+                  "Art Gallery",
+                  "Glass Cutter・Keycard",
+                  "展示品とギャラリーの金庫"
+                ]
+              ]
+            },
+            {
+              "kind": "site",
+              "type": "table",
+              "title": "街の主な強盗の場所",
+              "refs": [
+                {
+                  "site": "https://wikily.gg/rob-run/interactive-map",
+                  "title": "Interactive map（Wikily・英語・11/17 時点）"
+                }
+              ],
+              "note": "Wikily の対話地図 (11/17 時点) の数。金庫・カメラの数は場所ごとの目安",
+              "columns": [
+                "場所",
+                "軒数",
+                "金庫",
+                "カメラ"
+              ],
+              "rows": [
+                [
+                  "Convenience Store",
+                  "3",
+                  "1〜2",
+                  "0〜1"
+                ],
+                [
+                  "Pharmacy",
+                  "2",
+                  "2",
+                  "1"
+                ],
+                [
+                  "Jewelry Store",
+                  "2",
+                  "0",
+                  "4"
+                ],
+                [
+                  "Gun Shop",
+                  "2",
+                  "2",
+                  "1"
+                ],
+                [
+                  "Gas Station",
+                  "1",
+                  "4",
+                  "1"
+                ],
+                [
+                  "Grand Hotel",
+                  "1",
+                  "2",
+                  "5"
+                ],
+                [
+                  "Looty Bay Bank",
+                  "1",
+                  "3 + 金庫",
+                  "4"
+                ],
+                [
+                  "Police Station",
+                  "1",
+                  "3",
+                  "4"
+                ]
+              ]
+            }
+          ],
+          "items": [
+            {
+              "kind": "official",
+              "text": "砂漠の地図は地区に分かれ、地区は集落から成る。地区のレベルで使える機能と買える品が変わる",
+              "refs": [
+                {
+                  "news": "1844751498222037",
+                  "title": "ROB RUN: Global Map"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1361-how-do-i-rent-a-plot-for-my-base/",
+                  "title": "How do I rent a plot for my base?"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "どの地区にも中央ハブがあり、住人が盗品を売れる。周りの集落に守り・商売のボーナス・割引などを与える特別な建造物もある",
+              "refs": [
+                {
+                  "news": "1844751498222037",
+                  "title": "ROB RUN: Global Map"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "中央の Highlands を握るクランの長が影の総督になり、地図のほかのクランすべてから税を取る",
+              "refs": [
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                },
+                {
+                  "news": "1844751498222037",
+                  "title": "ROB RUN: Global Map"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "text": "Looty Bay には小さな店や宝石店から、銀行の金庫・警察の武器庫まで強盗の場所がある。装備と鍵と下見で稼ぎが大きく変わる",
+              "refs": [
+                {
+                  "news": "1844115010491502",
+                  "title": "ROB RUN: Gameplay Overview"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "公式の街の地図は無い。Looty Bay は世界地図の東端の海沿いにあり、銀行は街の北東の Downtown にある",
+              "refs": [
+                {
+                  "site": "https://zap-hosting.com/tools/rob-run/map-guide",
+                  "title": "ROB RUN map guide（ZAP-Hosting・英語・発売前の世界地図から）"
+                },
+                {
+                  "site": "https://www.keengamer.com/articles/guides/rob-run-how-to-rob-bank-and-open-safety-deposit-boxes/",
+                  "title": "How to Rob Bank and Open Safety Deposit Boxes（KeenGamer・英語・11/17）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "街にはフェンスのバンが 6 か所、密輸業者のバンが 2 か所、無料で車を借りられる駐車場が 21 か所、ATM が 14 か所ある",
+              "refs": [
+                {
+                  "site": "https://wikily.gg/rob-run/interactive-map",
+                  "title": "Interactive map（Wikily・英語・11/17 時点）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "Lenny's Motel は街の中ではなく別の地図。家の無い人が泊まり、現金だけを預けられる",
+              "refs": [
+                {
+                  "site": "https://wikily.gg/rob-run/interactive-map",
+                  "title": "Interactive map（Wikily・英語・11/17 時点）"
+                },
+                {
+                  "site": "https://www.keengamer.com/articles/guides/rob-run-beginners-guide-best-tips-for-a-perfect-start/",
+                  "title": "Beginners Guide（KeenGamer・英語・11/11）"
+                }
+              ]
+            },
+            {
+              "kind": "site",
+              "text": "地区ごとの集落は 51。Lv2・Lv3 の地区の区画を借りるには、闇市の専用の書類が要る",
+              "refs": [
+                {
+                  "site": "https://wikily.gg/rob-run/plots-and-settlements",
+                  "title": "Plots and settlements（Wikily・英語・11/17 時点）"
+                }
+              ]
             }
           ]
         },
         {
-          "text": "不正対策として、刑務所にいた時間か課金の合計を条件にした別のサーバーを先に出す予定。そこは普通のサーバーと別にマッチする",
-          "kind": "official",
-          "refs": [
+          "id": "base",
+          "title": "拠点と出荷",
+          "figures": [
             {
-              "news": "1849827110441426",
-              "title": "Anti-Cheat Measures and Servers"
+              "kind": "official",
+              "type": "flow",
+              "title": "拠点を持つまで",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1361-how-do-i-rent-a-plot-for-my-base/",
+                  "title": "How do I rent a plot for my base?"
+                },
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                },
+                {
+                  "news": "1846651706680688",
+                  "title": "ROB RUN: Base Management"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1363-how-do-i-protect-my-base-from-raids/",
+                  "title": "How do I protect my base from raids?"
+                }
+              ],
+              "steps": [
+                {
+                  "title": "集落を探す",
+                  "note": "持ち主のいる集落だけ"
+                },
+                {
+                  "title": "区画を借りる",
+                  "note": "看板で家賃。最初は書類で払う"
+                },
+                {
+                  "title": "建てる",
+                  "note": "建物も家具もアイテムで置く"
+                },
+                {
+                  "title": "稼ぐ",
+                  "note": "農場・ラボ・洗浄"
+                },
+                {
+                  "title": "守る",
+                  "note": "ヒューズと防衛モジュール"
+                }
+              ]
+            }
+          ],
+          "items": [
+            {
+              "text": "拠点は砂漠の、持ち主のいる集落の区画を借りて作る。空き区画の看板で家賃を払う。地区のレベル 2・3 の区画には闇市の特別な書類が要る",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1361-how-do-i-rent-a-plot-for-my-base/",
+                  "title": "How do I rent a plot for my base?"
+                },
+                {
+                  "news": "1844751498222037",
+                  "title": "ROB RUN: Global Map"
+                }
+              ]
+            },
+            {
+              "text": "最初の段の集落と区画の借り賃は、現金ではなく書類で払うよう変わった",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            },
+            {
+              "text": "建物も家具もアイテムとして置く。買うか、戦利品や他人の鞄から手に入れる。死んだときは拠点からも復活できる",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1846651706680688",
+                  "title": "ROB RUN: Base Management"
+                }
+              ]
+            },
+            {
+              "text": "拠点は中身ごといつでも移せる。仲間の近くへ移ったり、敵の隣を避けたりできる",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1846651706680688",
+                  "title": "ROB RUN: Base Management"
+                }
+              ]
+            },
+            {
+              "text": "守りは警備装置にヒューズを入れ、防衛モジュールで味方に知らせる。他人の拠点にはデコーダーで一時的に入れる",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1363-how-do-i-protect-my-base-from-raids/",
+                  "title": "How do I protect my base from raids?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1364-how-do-i-raid-other-players-bases/",
+                  "title": "How do I raid other players' bases?"
+                }
+              ]
+            },
+            {
+              "text": "買える品 (出荷) は H キーかサイドメニューで開き、11/17 から Lenny のメニューにも出る。拠点の集落のレベルか、刑務所にいた時間の合計で解禁される",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1365-how-do-i-unlock-new-goods/",
+                  "title": "How do I unlock new goods?"
+                },
+                {
+                  "news": "1849458702693254",
+                  "title": "Patch Notes (11/17)"
+                }
+              ]
+            },
+            {
+              "text": "拠点を丸ごと消すには、戦利品でしか出ないとても珍しい品が要る",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1845383656385404",
+                  "title": "Frequently Asked Questions"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "pyramid",
+          "title": "土地・クラン・権力",
+          "figures": [
+            {
+              "kind": "official",
+              "type": "pyramid",
+              "title": "権力の 5 段",
+              "refs": [
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                }
+              ],
+              "tiers": [
+                {
+                  "title": "影の総督",
+                  "note": "中央 Highlands のクランの長"
+                },
+                {
+                  "title": "地区の持ち主 (クラン)",
+                  "note": "持ち主から税、洗浄が速い"
+                },
+                {
+                  "title": "集落の持ち主",
+                  "note": "住人の洗浄と買い物に課税"
+                },
+                {
+                  "title": "集落の住人",
+                  "note": "区画を借り、Sales Center を使える"
+                },
+                {
+                  "title": "浮浪者",
+                  "note": "モーテル暮らし。全員ここから"
+                }
+              ]
+            },
+            {
+              "kind": "official",
+              "type": "flow",
+              "title": "税の流れ",
+              "refs": [
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                },
+                {
+                  "news": "1844751498222037",
+                  "title": "ROB RUN: Global Map"
+                }
+              ],
+              "steps": [
+                {
+                  "title": "住人",
+                  "note": "洗浄と闇市の買い物"
+                },
+                {
+                  "title": "集落の持ち主",
+                  "note": "住人から税を取る"
+                },
+                {
+                  "title": "地区のクラン",
+                  "note": "持ち主から取り分"
+                },
+                {
+                  "title": "影の総督のクラン",
+                  "note": "ほかの全クランから"
+                }
+              ]
+            }
+          ],
+          "items": [
+            {
+              "text": "権力は 5 段。モーテル暮らしから、区画を借りる住人、集落の持ち主、地区を持つクラン、中央の Highlands を持つクランの長 (影の総督) まで",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                }
+              ]
+            },
+            {
+              "text": "集落の持ち主は、住人の洗浄と闇市の買い物に税をかけられる。取り分は直接会って集める",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1362-how-do-i-become-a-settlement-owner-and-earn-income/",
+                  "title": "How do I become a settlement owner and earn income?"
+                }
+              ]
+            },
+            {
+              "text": "地区を持つクランは、その地区の集落の持ち主から税を取り、洗浄が速くなる。地区のレベルが高いほど速い",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1847920302231404",
+                  "title": "ROB RUN's Power Pyramid"
+                }
+              ]
+            },
+            {
+              "text": "クランは最大 100 人 (発売前の公式 FAQ) で、選んだサーバーの中だけ。作るには銀行に洗浄済みのお金が要る。クランはワイプの周期の途中でも替えられる",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1845383656385404",
+                  "title": "Frequently Asked Questions"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1345-how-do-i-join-or-create-a-clan/",
+                  "title": "How do I join or create a clan?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "vehicle",
+          "title": "車とヘリ",
+          "figures": [
+            {
+              "kind": "official",
+              "type": "table",
+              "title": "乗り物の手に入れ方",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1357-how-do-i-get-a-car/",
+                  "title": "How do I get a car?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1358-how-do-i-get-and-upgrade-my-own-car/",
+                  "title": "How do I get and upgrade my own car?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1359-how-do-i-get-a-helicopter/",
+                  "title": "How do I get a helicopter?"
+                }
+              ],
+              "columns": [
+                "乗り物",
+                "手に入れ方",
+                "条件"
+              ],
+              "rows": [
+                [
+                  "レンタル車",
+                  "駐車場の端末で借りる",
+                  "無料"
+                ],
+                [
+                  "自分の車",
+                  "買う",
+                  "家か車庫付きの土地"
+                ],
+                [
+                  "ヘリ",
+                  "買う・まれに戦利品",
+                  "中央の地区に拠点"
+                ]
+              ]
+            }
+          ],
+          "items": [
+            {
+              "text": "車が無ければ駐車場の端末で無料で借りられる。自分の車は家か車庫付きの土地を買ってから。鍵はキーロッカーに入れる",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1357-how-do-i-get-a-car/",
+                  "title": "How do I get a car?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1358-how-do-i-get-and-upgrade-my-own-car/",
+                  "title": "How do I get and upgrade my own car?"
+                }
+              ]
+            },
+            {
+              "text": "車はボンネット・トランク・車体の下にモジュールを付けて強くする。他人の車のトランクは闇市の道具でこじ開けられる",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1358-how-do-i-get-and-upgrade-my-own-car/",
+                  "title": "How do I get and upgrade my own car?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1360-how-do-i-lockpick-a-trunk/",
+                  "title": "How do I lockpick a trunk?"
+                }
+              ]
+            },
+            {
+              "text": "ヘリは中央の地区に拠点がある人だけが買える。戦利品でまれに見つかることもある",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1359-how-do-i-get-a-helicopter/",
+                  "title": "How do I get a helicopter?"
+                }
+              ]
+            },
+            {
+              "text": "Buletti では積荷を運べなくなった",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "police",
+          "title": "警察と降伏",
+          "figures": [
+            {
+              "kind": "official",
+              "type": "table",
+              "title": "捕まりそうなときの結果",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1352-why-surrender-to-the-cops/",
+                  "title": "Why surrender to the cops?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1353-why-pay-a-bribe/",
+                  "title": "Why pay a bribe?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1344-what-do-i-lose-when-i-die/",
+                  "title": "What do I lose when I die?"
+                },
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                },
+                {
+                  "news": "1844115010491502",
+                  "title": "ROB RUN: Gameplay Overview"
+                }
+              ],
+              "columns": [
+                "選ぶ行動",
+                "鞄の中身",
+                "装備"
+              ],
+              "rows": [
+                [
+                  "降伏する",
+                  "没収される",
+                  "残る"
+                ],
+                [
+                  "賄賂を渡す (受け取られたら)",
+                  "残る",
+                  "残る"
+                ],
+                [
+                  "撃ち合って死ぬ",
+                  "失う",
+                  "守れるとの記載なし"
+                ]
+              ]
+            }
+          ],
+          "items": [
+            {
+              "text": "警察には Looty Bay の警察署で、空きがあればなれる。装備と車は支給され、押収品の価値の一部が稼ぎになる",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1351-how-do-i-become-a-cop/",
+                  "title": "How do I become a cop?"
+                },
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ]
+            },
+            {
+              "text": "サイレンを鳴らして投降を求めて逮捕すると追加のボーナスが付く。稼ぎは犯罪者より少ないが、危険も少ない",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ]
+            },
+            {
+              "text": "警察はバッジで上の装備を開ける。発売時からバッジは買えるようになり、拾える数と給料での数は減った",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1844115010491502",
+                  "title": "ROB RUN: Gameplay Overview"
+                },
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            },
+            {
+              "text": "新しいサーバーでは巡回の警官はピストルだけ。サーバーが古くなるほど良い装備が開く。警官は続けて死ぬほど復活までの時間が延びる",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            },
+            {
+              "text": "捕まったら降伏できる。没収されるのは鞄の中身だけで、身に着けた装備は残る",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1844115010491502",
+                  "title": "ROB RUN: Gameplay Overview"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1352-why-surrender-to-the-cops/",
+                  "title": "Why surrender to the cops?"
+                }
+              ]
+            },
+            {
+              "text": "銀行にお金があれば警官に賄賂を渡せる。受け取ってもらえれば鞄の中身は残る",
+              "kind": "official",
+              "refs": [
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1353-why-pay-a-bribe/",
+                  "title": "Why pay a bribe?"
+                },
+                {
+                  "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1352-why-surrender-to-the-cops/",
+                  "title": "Why surrender to the cops?"
+                }
+              ]
+            },
+            {
+              "text": "ソロでも、下見・逃走車を隠す・警報を切る・NPC を脅すで撃ち合いを避けられる。犯罪者の車は警察車より小回りが利く",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1849192144187218",
+                  "title": "ROB RUN: Answering Your Most Frequently Asked Questions"
+                }
+              ]
             }
           ]
         }
       ]
     }
-  ]
+  ],
+  "moved": {
+    "basics": "start/#basics",
+    "story": "start/#story",
+    "wipe-plan": "wipe/#wipe-plan",
+    "sell": "money/#sell",
+    "loot": "money/#loot",
+    "weapons": "gear/#weapons",
+    "map": "world/#map",
+    "base": "world/#base",
+    "pyramid": "world/#pyramid",
+    "vehicle": "world/#vehicle",
+    "police": "world/#police"
+  }
 }
