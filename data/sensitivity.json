@@ -166,6 +166,30 @@
       ]
     },
     {
+      "id": "rust",
+      "name": "Rust",
+      "yaw": 0.1125,
+      "note": "腰だめ。graphics.fov が既定の 75 の場合。FOV で回る量が変わるという説があり、75 以外では合わない可能性がある",
+      "sources": [
+        {
+          "url": "https://csdb.gg/sensitivity-converter/",
+          "title": "CS2 Sensitivity Converter（csdb.gg）"
+        },
+        {
+          "url": "https://kovaaks.com/kovaaks/sens-converter/rust-to-cs2",
+          "title": "Rust to CS2（KovaaK's）"
+        },
+        {
+          "url": "https://senslab.pro/sensitivity/rust",
+          "title": "Rust sensitivity（senslab・2026-10-21）"
+        },
+        {
+          "url": "https://www.sensgod.com/mouse-sensitivity-converter/cs2/to/rust/",
+          "title": "CS2 to Rust（Sensgod）"
+        }
+      ]
+    },
+    {
       "id": "arc",
       "name": "ARC Raiders",
       "yaw": 0.001361,
@@ -182,10 +206,6 @@
     {
       "name": "PUBG: BATTLEGROUNDS",
       "reason": "スライダーの値と実際の感度が比例せず、式を確かめられない"
-    },
-    {
-      "name": "Rust",
-      "reason": "出典ごとに値が大きく違い、FOV でも変わる"
     },
     {
       "name": "Marvel Rivals",

@@ -1,14 +1,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { checkGuide, refLinks, sourceList, GUIDE_CELL_MAX, GUIDE_TEXT_MAX, type Guide } from '../src/lib/guide.ts';
+import { checkGuide, refLinks, sourceList, GUIDE_CELL_MAX, GUIDE_TEXT_MAX, type Guide, type GuidePart } from '../src/lib/guide.ts';
 
 const VERSION_IDS = new Set(['playtest', ...JSON.parse(readFileSync(new URL('../data/versions.json', import.meta.url), 'utf8')).versions.map((v: { id: string }) => v.id)]);
 const GUIDE: Guide = JSON.parse(readFileSync(new URL('../data/guide.json', import.meta.url), 'utf8'));
 const NEWS = { news: '1848557880479055', title: 'First Changes & Server Schedule' };
 const HELP = { help: 'https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1349-how-do-i-sell-my-loot/?l=en', title: 'How do I sell my loot?' };
 const SITE = { site: 'https://example.com/guide', title: '攻略サイト' };
-const one = (item: Guide['sections'][0]['items'][0]): Guide => ({ updatedAt: '2026-11-24', basedOn: '2026-11-20', sections: [{ id: 'sell', title: '換金', summary: '売り方', figures: [], items: [item] }] });
+const one = (item: GuidePart['items'][0]): Guide => ({ updatedAt: '2026-11-24', basedOn: '2026-11-20', sections: [{ id: 'sell', title: '換金', summary: '売り方', parts: [{ id: 'sell-a', title: '売り先', figures: [], items: [item] }] }] });
 
 test('本番の data/guide.json は NG が無い', () => {
   assert.deepEqual(checkGuide(GUIDE, VERSION_IDS), []);
@@ -57,7 +57,7 @@ test('出典は図・本文の順に初めて出た順で番号を振り、同�
 });
 
 test('図の検査: 種類ごとの中身・文字の長さ・出典のきまり', () => {
-  const withFig = (f: unknown): Guide => ({ ...one({ text: 'a', kind: 'official', refs: [NEWS] }), sections: [{ ...one({ text: 'a', kind: 'official', refs: [NEWS] }).sections[0], figures: [f as Guide['sections'][0]['figures'][0]] }] });
+  const withFig = (f: unknown): Guide => { const b = one({ text: 'a', kind: 'official', refs: [NEWS] }); b.sections[0].parts[0].figures = [f as GuidePart['figures'][0]]; return b; };
   const flow = { type: 'flow', title: '流れ', kind: 'official', refs: [NEWS], steps: [{ title: 'a', note: 'b' }, { title: 'c', note: 'd' }] };
   assert.deepEqual(checkGuide(withFig(flow), VERSION_IDS), []);
   assert.match(checkGuide(withFig({ ...flow, steps: [{ title: 'a', note: 'b' }] }), VERSION_IDS).join(), /2 つ未満/);
@@ -71,8 +71,8 @@ test('図の検査: 種類ごとの中身・文字の長さ・出典のきまり
 test('図の形の崩れは例外ではなく NG にする (figures の欠け・表の列・split の中身・tone・見出し・棒の名前と単位)', () => {
   const base = one({ text: 'a', kind: 'official', refs: [NEWS] });
   const sec = base.sections[0];
-  const withFig = (f: unknown): Guide => ({ ...base, sections: [{ ...sec, figures: [f as Guide['sections'][0]['figures'][0]] }] });
-  const noFigures = { ...base, sections: [{ ...sec, figures: undefined as unknown as [] }] };
+  const withFig = (f: unknown): Guide => { const b = one({ text: 'a', kind: 'official', refs: [NEWS] }); b.sections[0].parts[0].figures = [f as GuidePart['figures'][0]]; return b; };
+  const noFigures = { ...base, sections: [{ ...sec, parts: [{ ...sec.parts[0], figures: undefined as unknown as [] }] }] };
   assert.match(checkGuide(noFigures, VERSION_IDS).join(), /figures/);
   const table = { type: 'table', title: '表', kind: 'official', refs: [NEWS], columns: ['a'], rows: [['x']] };
   assert.match(checkGuide(withFig({ ...table, columns: undefined }), VERSION_IDS).join(), /列か行が無い/);
@@ -92,4 +92,15 @@ test('図の形の崩れは例外ではなく NG にする (figures の欠け・
   assert.match(checkGuide(withFig({ type: 'flow', title: '', kind: 'official', refs: [NEWS], steps: [{ title: 'a', note: 'b' }, { title: 'c', note: 'd' }] }), VERSION_IDS).join(), /題が無い/);
   assert.match(checkGuide({ ...base, sections: [{ ...sec, summary: '' }] }, VERSION_IDS).join(), /summary/);
   assert.match(checkGuide({ ...base, sections: [{ ...sec, summary: 'あ'.repeat(51) }] }, VERSION_IDS).join(), /summary/);
+});
+
+test('転送: 行き先の見出しが無い・今のページと同じ id なら NG', () => {
+  const b = one({ text: 'a', kind: 'official', refs: [NEWS] });
+  assert.deepEqual(checkGuide({ ...b, moved: { old: 'sell/#sell-a' } }, VERSION_IDS), []);
+  assert.match(checkGuide({ ...b, moved: { old: 'sell/#none' } }, VERSION_IDS).join(), /行き先/);
+  assert.match(checkGuide({ ...b, moved: { sell: 'sell/#sell-a' } }, VERSION_IDS).join(), /同じ id/);
+});
+
+test('公開していた 11 の古いページは、すべて転送がある', () => {
+  assert.deepEqual(Object.keys(GUIDE.moved ?? {}).sort(), ['base', 'basics', 'loot', 'map', 'police', 'pyramid', 'sell', 'story', 'vehicle', 'weapons', 'wipe-plan']);
 });

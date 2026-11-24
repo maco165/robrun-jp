@@ -24,7 +24,8 @@ function Departure({ region }: { region: (typeof SCHEDULE.regions)[number] }) {
     <HStack gap={4} vAlign="center" wrap="wrap">
       <StackItem style={{ width: 72 }}><Text type="label" weight="bold">{region.name}</Text></StackItem>
       <Text type="display-2" hasTabularNumbers color="accent">{remaining(target, now)}</Text>
-      <Jst>{jstShort(target)} 開放</Jst>
+      {/* 狭い幅では時刻をいつも次の行に置く。残り時間が入った瞬間に折れて下がずれるのを防ぐ */}
+      <span className="rr-departure-time"><Jst>{jstShort(target)} 開放</Jst></span>
     </HStack>
   );
 }

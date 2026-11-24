@@ -44,7 +44,7 @@ function fill(template, page, body, origin) {
   return out;
 }
 
-const { render, sitePages, NOT_FOUND, ORIGIN } = await import(pathToFileURL(path.join(SSR, 'entry-server.js')).href);
+const { render, sitePages, MOVED, NOT_FOUND, ORIGIN } = await import(pathToFileURL(path.join(SSR, 'entry-server.js')).href);
 const template = await readFile(path.join(OUT, 'index.html'), 'utf8');
 const pages = sitePages();
 /** 検索に載せるページだけ。作るたびの日付 (lastmod) は付けない (正しい更新日でないと検索エンジンが信用しないため) */
@@ -62,6 +62,13 @@ for (const page of pages) {
   const dir = path.join(OUT, page.path);
   await mkdir(dir, { recursive: true });
   await writeFile(path.join(dir, 'index.html'), fill(template, page, render(page.path), ORIGIN));
+}
+// まとめ直す前の URL は、いまの場所へ転送する (sitemap には載せない)
+for (const [from, to] of Object.entries(MOVED)) {
+  if (!/^(?:[A-Za-z0-9_-]+\/)*$/.test(from) || pages.some((p) => p.path === from)) throw new Error(`prerender: 転送元の道が違います (${from})`);
+  const dest = esc(BASE + to);
+  await mkdir(path.join(OUT, from), { recursive: true });
+  await writeFile(path.join(OUT, from, 'index.html'), `<!doctype html>\n<html lang="ja"><head><meta charset="utf-8"><title>移動しました</title><link rel="canonical" href="${esc(`${ORIGIN}${BASE}${to.split('#')[0]}`)}"><meta http-equiv="refresh" content="0; url=${dest}"></head><body><a href="${dest}">新しいページへ</a></body></html>\n`);
 }
 await writeFile(path.join(OUT, '404.html'), fill(template, NOT_FOUND, render('404.html'), ORIGIN));
 await writeFile(path.join(OUT, 'sitemap.xml'), sitemapXml(pages, ORIGIN));

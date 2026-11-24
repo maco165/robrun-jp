@@ -16,6 +16,7 @@ import { chromium } from 'playwright';
 import { readFileSync } from 'node:fs';
 
 const guide = JSON.parse(readFileSync('data/guide.json', 'utf8'));
+const gear = JSON.parse(readFileSync('data/gear.json', 'utf8'));
 const links = JSON.parse(readFileSync('data/links.json', 'utf8'));
 const versions = JSON.parse(readFileSync('data/versions.json', 'utf8')).versions;
 const OUT = 'dist-e2e';
@@ -34,6 +35,7 @@ const PAGES = [
   { path: 'news/', heading: '記事一覧' },
   // 攻略: 出典ごとに Steam の原文のリンクがあり、アップデートの履歴に版の数だけ原文のリンクがある
   { path: 'guide/', heading: 'いまわかっている ROB RUN の仕組み', guide: true },
+  { path: 'articles/1848557880479055/', heading: '【見本】発売に向けた最初の変更点', related: true },
   // リンク集: data/links.json のサイトがすべて外部リンクで並ぶ
   { path: 'links/', heading: 'ROB RUN の役に立つサイト', links: true },
   // 感度変換: 既定 (CS2 1・800 DPI) で 0.213 が出て、感度を 2 にすると 0.427 になる
@@ -63,7 +65,7 @@ try {
   }
   // sitemap とファビコン・画像 (6)
   const sitemap = await (await fetch(BASE + 'sitemap.xml')).text();
-  for (const loc of ['', 'news/', 'guide/', 'links/', 'tools/sensitivity/', 'guide/sell/', 'guide/story/', 'articles/fixture-p032/', 'articles/fixture-dollar/']) {
+  for (const loc of ['', 'news/', 'guide/', 'links/', 'tools/sensitivity/', 'guide/gear/', 'guide/start/', 'articles/fixture-p032/', 'articles/fixture-dollar/']) {
     if (!sitemap.includes(`<loc>https://maco165.github.io/robrun-jp/${loc}</loc>`)) fails.push(`sitemap.xml に ${loc || '/'} が無い`);
   }
   if (sitemap.includes('404')) fails.push('sitemap.xml に 404 がある');
@@ -72,6 +74,15 @@ try {
     if (!res.ok) fails.push(`${f} が ${res.status}`);
   }
   const browser = await chromium.launch();
+  // まとめ直す前の URL (guide/sell/ など) は、いまの見出しへ転送される
+  for (const [old, to] of Object.entries(guide.moved)) {
+    const page = await browser.newPage();
+    await page.goto(`${BASE}guide/${old}/`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(300);
+    if (page.url() !== `${BASE}guide/${to}`) fails.push(`guide/${old}/ の転送先が ${page.url()}`);
+    if (sitemap.includes(`/guide/${old}/<`)) fails.push(`sitemap.xml に転送元 guide/${old}/ がある`);
+    await page.close();
+  }
   for (const p of PAGES) {
     const raw = await (await fetch(BASE + p.path)).text();
     // HTML では & が &amp; に逃がされる
@@ -130,7 +141,18 @@ try {
         if (p.old !== undefined && (text?.includes('古い版の情報') ?? false) !== p.old) fails.push(`${p.path} @${w}: 【古い版の情報】が${p.old ? '無い' : '出ている'}`);
         const src = await page.locator('a[href^="https://store.steampowered.com/"]').count();
         if (src === 0) fails.push(`${p.path} @${w}: 原文のリンクが無い`);
+        // 出典 (原文) は閉じてあり、「出典」を開くと見える
+        const orig = page.locator('main a[href^="https://store.steampowered.com/"]').first();
+        if (await orig.isVisible()) fails.push(`${p.path} @${w}: 出典 (原文) が最初から見えている`);
+        await page.locator('main').getByText('出典', { exact: true }).click();
+        await page.waitForTimeout(300);
+        if (!(await orig.isVisible())) fails.push(`${p.path} @${w}: 「出典」を開いても原文が見えない`);
       }
+      // 見出しの段を飛ばさない (h1 の次に h3 など)
+      const levels = await page.$$eval('h1,h2,h3,h4', (hs) => hs.map((h) => Number(h.tagName[1])));
+      if (levels.some((l, k) => k > 0 && l - levels[k - 1] > 1)) fails.push(`${p.path || '/'} @${w}: 見出しの段が飛ぶ (${levels.join(',')})`);
+      // 攻略の出典になっている記事から、その攻略へ飛べる
+      if (p.related && (await page.locator('main a[href*="/guide/"]').count()) === 0) fails.push(`${p.path} @${w}: 関連する攻略のリンクが無い`);
       if (p.guide) {
         // 入口: ジャンルがすべて並び、それぞれのページへ飛べる。履歴に版の数だけ Steam の原文
         const text = (await page.textContent('main')) ?? '';
@@ -141,8 +163,28 @@ try {
         const steamLinks = await page.locator('main a[href^="https://store.steampowered.com/news/app/4262460/view/"]').count();
         if (steamLinks < versions.length) fails.push(`${p.path} @${w}: 履歴の Steam の原文のリンクが ${steamLinks} 件 (版 ${versions.length} 件より少ない)`);
       }
+      // 上のメニュー: 5 項目があり、今いるページの項目だけに aria-current。メニューは 1 行 (高さ 64px 以下) で、スクロールしても上に残る
+      const navItems = page.locator('header nav a');
+      if ((await navItems.count()) !== 5) fails.push(`${p.path || '/'} @${w}: メニューの項目が ${await navItems.count()} 個`);
+      const want = p.path === '404.html' ? null : p.path === '' ? 'ホーム' : /^(news|articles)\//.test(p.path) ? '記事' : p.path.startsWith('guide/') ? '攻略' : p.path.startsWith('tools/') ? '感度' : p.path.startsWith('links/') ? 'リンク' : null;
+      const cur = page.locator('header nav a[aria-current="page"]');
+      const curText = (await cur.count()) === 1 ? ((await cur.textContent()) ?? '') : '';
+      if (want ? !curText.includes(want) : (await cur.count()) !== 0) fails.push(`${p.path || '/'} @${w}: 今いるページの印が「${curText || 'なし'}」(${want ?? 'なし'} のはず)`);
+      const navBox = await page.locator('header nav').boundingBox();
+      if (!navBox || navBox.height > 64) fails.push(`${p.path || '/'} @${w}: メニューが 1 行に収まらない (高さ ${navBox?.height})`);
+      await page.mouse.wheel(0, 1500);
+      await page.waitForTimeout(150);
+      const headTop = (await page.locator('header').boundingBox())?.y ?? -1;
+      if (headTop !== 0 && (await page.evaluate(() => document.documentElement.scrollHeight > innerHeight + 100))) fails.push(`${p.path || '/'} @${w}: スクロールするとメニューが上に残らない (y=${headTop})`);
+      await page.mouse.wheel(0, -100000);
       if (p.sens) {
         const main = page.locator('main');
+        // 係数と出典は閉じてあり、開くと見える
+        const src = page.locator('main a[href*="robrunstash"]');
+        if (await src.isVisible()) fails.push(`${p.path} @${w}: 係数と出典が最初から見えている`);
+        await page.getByText('使っている係数と出典').click();
+        await page.waitForTimeout(300);
+        if (!(await src.isVisible())) fails.push(`${p.path} @${w}: 「使っている係数と出典」を開いても出典が見えない`);
         if (!((await main.textContent()) ?? '').includes('0.213')) fails.push(`${p.path} @${w}: 既定の変換結果 0.213 が無い`);
         const input = page.getByLabel('Counter-Strike 2 / CS:GO の感度');
         await input.fill('2');
@@ -163,8 +205,45 @@ try {
         }
       }
       if (p.genre) {
-        const sec = p.genre;
+        const sec = { ...p.genre, figures: p.genre.parts.flatMap((x) => x.figures), items: p.genre.parts.flatMap((x) => x.items) };
+        // ページの中の見出し: すべてあり、目次から飛べる
+        for (const x of sec.parts) {
+          if ((await page.locator(`main section#${x.id}`).count()) !== 1) fails.push(`${p.path} @${w}: 見出し ${x.id} が無い`);
+          if (sec.parts.length > 1 && (await page.locator(`main nav a[href="#${x.id}"]`).count()) !== 1) fails.push(`${p.path} @${w}: 目次に ${x.id} が無い`);
+        }
         const text = (await page.textContent('main')) ?? '';
+        if (sec.id === 'gear') {
+          const cards = page.locator('main [data-gear]');
+          const count = (t) => gear.weapons.flatMap((x) => x.marks).filter((m) => m.tier === t).length;
+          if ((await cards.count()) !== count(1)) fails.push(`${p.path} @${w}: T1 の武器が ${await cards.count()} 件 (${count(1)} 件のはず)`);
+          await page.getByRole('radio', { name: 'T2' }).click();
+          await page.waitForTimeout(200);
+          if ((await cards.count()) !== count(2)) fails.push(`${p.path} @${w}: T2 に替えると ${await cards.count()} 件 (${count(2)} 件のはず)`);
+          // ページ内の目次の行き先・並べ替え・種類の絞り込み・探索の段・刑期・武器の選択
+          for (const x of ['gear-tier', 'gear-mk', 'gear-armor']) if ((await page.locator(`main section#${x}`).count()) !== 1) fails.push(`${p.path} @${w}: ${x} が無い`);
+          const marks = gear.weapons.flatMap((x) => x.marks.map((m) => ({ ...m, n: `${x.name} Mk${m.mk}`, type: x.type, dps: Math.round((x.damage * x.pellets * x.rpm) / 60), c: m.total === null ? null : m.total + m.price + gear.land[m.tier] })));
+          const names = () => cards.evaluateAll((els) => els.map((e) => e.getAttribute('data-gear')));
+          await page.getByRole('radio', { name: '全部' }).click();
+          await page.waitForTimeout(200);
+          const byDps = (await names()).map((n) => marks.find((m) => m.n === n).dps);
+          if (byDps.length !== marks.length || byDps.some((x, k) => k > 0 && x > byDps[k - 1])) fails.push(`${p.path} @${w}: 秒間ダメージの順が違う`);
+          const choose = async (label, option) => { await page.getByRole('combobox', { name: label, exact: true }).click(); await page.waitForTimeout(300); await page.getByRole('option', { name: option }).first().evaluate((el) => el.click()); await page.waitForTimeout(250); };
+          await choose('並べ方', '土地込みで安い順');
+          const byCost = (await names()).map((n) => marks.find((m) => m.n === n).c).filter((x) => x !== null);
+          if (byCost.some((x, k) => k > 0 && x < byCost[k - 1])) fails.push(`${p.path} @${w}: 土地込みで安い順が違う`);
+          await choose('種類', 'SMG');
+          if ((await names()).length !== marks.filter((m) => m.type === 'SMG').length) fails.push(`${p.path} @${w}: 種類の絞り込みが効かない`);
+          await choose('種類', 'すべての種類');
+          await page.getByRole('radio', { name: '探索' }).click();
+          await page.waitForTimeout(200);
+          if ((await names()).length !== marks.filter((m) => m.tier === null).length) fails.push(`${p.path} @${w}: 探索の段の件数が違う`);
+          if ((await page.locator('main [data-mk="2"] .rr-gain').count()) === 0) fails.push(`${p.path} @${w}: 良くなる所の色が付かない`);
+          const mk3 = (await page.locator('main [data-mk="3"]').textContent()) ?? '';
+          for (const x of ['30 → 45発', '$181,000', '$175,000']) if (!mk3.includes(x)) fails.push(`${p.path} @${w}: KL-545 Mk3 に「${x}」が無い`);
+          await choose('武器', 'STAR-H');
+          if (!((await page.locator('main [data-mk="3"]').textContent()) ?? '').includes('200 年')) fails.push(`${p.path} @${w}: STAR-H を選んでも刑期 200 年が出ない`);
+          if ((await page.locator('main [data-armor]').count()) !== gear.armor.length) fails.push(`${p.path} @${w}: 防具の数が違う`);
+        }
         // 図: 数が合い、図ごとに題・中身の文字・出典の番号がその図の中にあり、攻略サイトの図には印がある
         const figs = page.locator('main figure');
         if ((await figs.count()) !== sec.figures.length) fails.push(`${p.path} @${w}: 図が ${await figs.count()} 個 (${sec.figures.length} 個のはず)`);
@@ -184,7 +263,7 @@ try {
         if (rows !== keys.length) fails.push(`${p.path} @${w}: 出典の一覧が ${rows} 行 (出典 ${keys.length} 件と違う)`);
         for (const r of all) {
           const href = r.news ? `https://store.steampowered.com/news/app/4262460/view/${r.news}` : r.help ?? r.site;
-          const n = await page.locator(`main a[href="${href}"]`).count();
+          const n = await page.locator(`main [id^="src-"] a[href="${href}"]`).count();
           if (n !== 1) fails.push(`${p.path} @${w}: 出典 ${href} のリンクが ${n} 本 (まとめて 1 本のはず)`);
         }
         // 見本に記事がある公式のお知らせ (1848557880479055) は、サイト内の要約にも飛ぶ
@@ -194,6 +273,12 @@ try {
         // 攻略サイトの情報は印を付けて分ける
         const hasSite = sec.items.some((it) => it.kind === 'site') || sec.figures.some((f) => f.kind === 'site');
         if (hasSite && !text.includes('攻略サイトの情報')) fails.push(`${p.path} @${w}: 「攻略サイトの情報」の印が無い`);
+        // 出典は閉じてあり、本文か図の [1] を押すと開いて 1 行目が見える
+        const row1 = page.locator('main #src-1');
+        if (await row1.isVisible()) fails.push(`${p.path} @${w}: 出典が最初から見えている`);
+        await page.locator('main a[href="#src-1"]').first().click();
+        await page.waitForTimeout(400);
+        if (!(await row1.isVisible())) fails.push(`${p.path} @${w}: [1] を押しても出典が開かない`);
         // 本文と図に出典の番号が付く
         const marks = await page.locator('main a[href^="#src-"]').count();
         if (marks < sec.items.length + sec.figures.length) fails.push(`${p.path} @${w}: 出典の番号が ${marks} 個 (項目と図の数より少ない)`);

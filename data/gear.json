@@ -1,0 +1,871 @@
+{
+ "checkedAt": "2026-11-24",
+ "land": [
+  0,
+  150000,
+  1150000,
+  4150000
+ ],
+ "note": "どの値も攻略サイトのもので、ゲームのファイルから集めた可能性がある。サイトどうしの一致は独立した実測ではない。公式は数値を出していない。反動・防具の重さは出典に無い。リロードは出典で意味が分かれるので載せていない。Mk2・Mk3 の購入額はゲーム画面での確認が無く、Mk1 と同じ基準の値で計算している。60 m のダメージと防げる量は出典が 1 つ。LM 249 はアサルトライフルとする出典もある。防具は守り方を体力への上乗せと書く出典もあり、鋼板 (Steel Plate) で区切りを回復する。11/17・11/20 の公式パッチに武器の変更は無い。頭は胴の 1.5 倍とする出典がある (1 つ)",
+ "sources": [
+  {
+   "url": "https://robrungame.com/intel/tier-1-to-tier-3-home/",
+   "title": "robrungame.com（英語・11/07〜08）"
+  },
+  {
+   "url": "https://robrunwiki.net/database/weapons/",
+   "title": "robrunwiki.net 武器（英語・11/20）"
+  },
+  {
+   "url": "https://robrunwiki.net/database/armor-and-bags/",
+   "title": "robrunwiki.net 防具（英語）"
+  },
+  {
+   "url": "https://robrun.info/",
+   "title": "robrun.info（ロシア語・ゲームのファイル由来の可能性）"
+  },
+  {
+   "url": "https://gamingpromax.com/rob-run-all-weapons-list/",
+   "title": "gamingpromax（英語・11/16）"
+  },
+  {
+   "url": "https://robrungame.com/intel/bastion-vs-heavy-armor/",
+   "title": "robrungame.com Bastion と Heavy（英語）"
+  },
+  {
+   "url": "https://gamingpromax.com/rob-run-all-equipment-list/",
+   "title": "gamingpromax 装備の一覧（英語・11/17）"
+  },
+  {
+   "url": "https://grindnstrat.com/?p=9899",
+   "title": "grindnstrat 武器ガイド（英語・11/06）"
+  }
+ ],
+ "weapons": [
+  {
+   "name": "DP-9",
+   "type": "ピストル",
+   "rarity": "Uncommon",
+   "damage": 18,
+   "pellets": 1,
+   "rpm": 333.3,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 0,
+     "unlock": 0,
+     "total": 0,
+     "price": 300,
+     "jail": 0,
+     "prereq": null,
+     "mag": 14,
+     "range": 20,
+     "aim": 200,
+     "d60": 3
+    },
+    {
+     "mk": 2,
+     "tier": 1,
+     "unlock": 25000,
+     "total": 25000,
+     "price": 300,
+     "jail": 0,
+     "prereq": "DP-9 Mk1",
+     "mag": 14,
+     "range": 20,
+     "aim": 150,
+     "d60": 4
+    }
+   ]
+  },
+  {
+   "name": "LBR-44",
+   "type": "ピストル",
+   "rarity": "Epic",
+   "damage": 34,
+   "pellets": 1,
+   "rpm": 200,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 2,
+     "unlock": 100000,
+     "total": 100000,
+     "price": 20000,
+     "jail": 0,
+     "prereq": "DP-9 Mk1",
+     "mag": 6,
+     "range": 35,
+     "aim": 200,
+     "d60": 22
+    },
+    {
+     "mk": 2,
+     "tier": 2,
+     "unlock": 200000,
+     "total": 300000,
+     "price": 20000,
+     "jail": 0,
+     "prereq": "LBR-44 Mk1",
+     "mag": 6,
+     "range": 35,
+     "aim": 150,
+     "d60": 23
+    }
+   ]
+  },
+  {
+   "name": "Vulture 50",
+   "type": "ピストル",
+   "rarity": "Legendary",
+   "damage": 36,
+   "pellets": 1,
+   "rpm": 240,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 3,
+     "unlock": 300000,
+     "total": 400000,
+     "price": 50000,
+     "jail": 0,
+     "prereq": "LBR-44 Mk1",
+     "mag": 7,
+     "range": 40,
+     "aim": 200,
+     "d60": 29
+    },
+    {
+     "mk": 2,
+     "tier": 3,
+     "unlock": 600000,
+     "total": 1000000,
+     "price": 50000,
+     "jail": 0,
+     "prereq": "Vulture 50 Mk1",
+     "mag": 7,
+     "range": 40,
+     "aim": 150,
+     "d60": 30
+    }
+   ]
+  },
+  {
+   "name": "MC-10",
+   "type": "SMG",
+   "rarity": "Uncommon",
+   "damage": 12,
+   "pellets": 1,
+   "rpm": 666.7,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 0,
+     "unlock": 15000,
+     "total": 15000,
+     "price": 3500,
+     "jail": 0,
+     "prereq": null,
+     "mag": 20,
+     "range": 25,
+     "aim": 250,
+     "d60": 4
+    },
+    {
+     "mk": 2,
+     "tier": 1,
+     "unlock": 30000,
+     "total": 45000,
+     "price": 3500,
+     "jail": 0,
+     "prereq": "MC-10 Mk1",
+     "mag": 20,
+     "range": 25,
+     "aim": 250,
+     "d60": 4
+    },
+    {
+     "mk": 3,
+     "tier": 2,
+     "unlock": 60000,
+     "total": 105000,
+     "price": 3500,
+     "jail": 0,
+     "prereq": "MC-10 Mk2",
+     "mag": 40,
+     "range": 29,
+     "aim": 250,
+     "d60": 5
+    }
+   ]
+  },
+  {
+   "name": "CB45",
+   "type": "SMG",
+   "rarity": "Uncommon",
+   "damage": 14,
+   "pellets": 1,
+   "rpm": 545.5,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 1,
+     "unlock": 15000,
+     "total": 30000,
+     "price": 3780,
+     "jail": 15,
+     "prereq": "MC-10 Mk1",
+     "mag": 25,
+     "range": 34,
+     "aim": 250,
+     "d60": 9
+    },
+    {
+     "mk": 2,
+     "tier": 1,
+     "unlock": 30000,
+     "total": 60000,
+     "price": 3780,
+     "jail": 25,
+     "prereq": "CB45 Mk1",
+     "mag": 25,
+     "range": 34,
+     "aim": 200,
+     "d60": 10
+    },
+    {
+     "mk": 3,
+     "tier": 2,
+     "unlock": 60000,
+     "total": 120000,
+     "price": 3780,
+     "jail": 35,
+     "prereq": "CB45 Mk2",
+     "mag": 40,
+     "range": 40,
+     "aim": 200,
+     "d60": 11
+    }
+   ]
+  },
+  {
+   "name": "JP-7",
+   "type": "SMG",
+   "rarity": "Epic",
+   "damage": 15,
+   "pellets": 1,
+   "rpm": 750,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 2,
+     "unlock": 160000,
+     "total": 175000,
+     "price": 29000,
+     "jail": 0,
+     "prereq": "MC-10 Mk1",
+     "mag": 25,
+     "range": 27,
+     "aim": 250,
+     "d60": 5
+    },
+    {
+     "mk": 2,
+     "tier": 2,
+     "unlock": 320000,
+     "total": 495000,
+     "price": 29000,
+     "jail": 0,
+     "prereq": "JP-7 Mk1",
+     "mag": 25,
+     "range": 27,
+     "aim": 200,
+     "d60": 6
+    },
+    {
+     "mk": 3,
+     "tier": 3,
+     "unlock": 640000,
+     "total": 1135000,
+     "price": 29000,
+     "jail": 0,
+     "prereq": "JP-7 Mk2",
+     "mag": 40,
+     "range": 31,
+     "aim": 200,
+     "d60": 7
+    }
+   ]
+  },
+  {
+   "name": "PDW90",
+   "type": "SMG",
+   "rarity": "Epic",
+   "damage": 13,
+   "pellets": 1,
+   "rpm": 857.1,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": null,
+     "unlock": null,
+     "total": null,
+     "price": null,
+     "jail": null,
+     "prereq": null,
+     "mag": 50,
+     "range": 31,
+     "aim": 250,
+     "d60": 7
+    },
+    {
+     "mk": 2,
+     "tier": null,
+     "unlock": null,
+     "total": null,
+     "price": null,
+     "jail": null,
+     "prereq": null,
+     "mag": 50,
+     "range": 31,
+     "aim": 200,
+     "d60": 8
+    },
+    {
+     "mk": 3,
+     "tier": null,
+     "unlock": null,
+     "total": null,
+     "price": null,
+     "jail": null,
+     "prereq": null,
+     "mag": 50,
+     "range": 35,
+     "aim": 200,
+     "d60": 9
+    }
+   ]
+  },
+  {
+   "name": "AP Scalar",
+   "type": "SMG",
+   "rarity": "Legendary",
+   "damage": 14,
+   "pellets": 1,
+   "rpm": 1000,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 3,
+     "unlock": 400000,
+     "total": 575000,
+     "price": 115000,
+     "jail": 0,
+     "prereq": "JP-7 Mk1",
+     "mag": 25,
+     "range": 30,
+     "aim": 250,
+     "d60": 7
+    },
+    {
+     "mk": 2,
+     "tier": 3,
+     "unlock": 800000,
+     "total": 1375000,
+     "price": 115000,
+     "jail": 0,
+     "prereq": "AP Scalar Mk1",
+     "mag": 25,
+     "range": 30,
+     "aim": 200,
+     "d60": 7
+    },
+    {
+     "mk": 3,
+     "tier": 3,
+     "unlock": 1600000,
+     "total": 2975000,
+     "price": 115000,
+     "jail": 0,
+     "prereq": "AP Scalar Mk2",
+     "mag": 45,
+     "range": 34,
+     "aim": 200,
+     "d60": 8
+    }
+   ]
+  },
+  {
+   "name": "Harris 500",
+   "type": "ショットガン",
+   "rarity": "Uncommon",
+   "damage": 9,
+   "pellets": 8,
+   "rpm": 120,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 0,
+     "unlock": 15000,
+     "total": 15000,
+     "price": 3500,
+     "jail": 0,
+     "prereq": null,
+     "mag": 5,
+     "range": 7,
+     "aim": 250,
+     "d60": 1
+    },
+    {
+     "mk": 2,
+     "tier": 1,
+     "unlock": 30000,
+     "total": 45000,
+     "price": 3500,
+     "jail": 0,
+     "prereq": "Harris 500 Mk1",
+     "mag": 5,
+     "range": 7,
+     "aim": 200,
+     "d60": 1
+    },
+    {
+     "mk": 3,
+     "tier": 2,
+     "unlock": 60000,
+     "total": 105000,
+     "price": 3500,
+     "jail": 0,
+     "prereq": "Harris 500 Mk2",
+     "mag": 7,
+     "range": 9,
+     "aim": 200,
+     "d60": 1
+    }
+   ]
+  },
+  {
+   "name": "ORDR-12",
+   "type": "ショットガン",
+   "rarity": "Epic",
+   "damage": 9,
+   "pellets": 8,
+   "rpm": 171.4,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 2,
+     "unlock": 160000,
+     "total": 175000,
+     "price": 28000,
+     "jail": 0,
+     "prereq": "Harris 500 Mk1",
+     "mag": 6,
+     "range": 7,
+     "aim": 250,
+     "d60": 1
+    },
+    {
+     "mk": 2,
+     "tier": 2,
+     "unlock": 320000,
+     "total": 495000,
+     "price": 28000,
+     "jail": 0,
+     "prereq": "ORDR-12 Mk1",
+     "mag": 6,
+     "range": 7,
+     "aim": 200,
+     "d60": 1
+    },
+    {
+     "mk": 3,
+     "tier": 3,
+     "unlock": 640000,
+     "total": 1135000,
+     "price": 28000,
+     "jail": 0,
+     "prereq": "ORDR-12 Mk2",
+     "mag": 8,
+     "range": 9,
+     "aim": 200,
+     "d60": 1
+    }
+   ]
+  },
+  {
+   "name": "TAG-12K",
+   "type": "ショットガン",
+   "rarity": "Legendary",
+   "damage": 9,
+   "pellets": 8,
+   "rpm": 240,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 3,
+     "unlock": 400000,
+     "total": 575000,
+     "price": 110000,
+     "jail": 0,
+     "prereq": "ORDR-12 Mk1",
+     "mag": 5,
+     "range": 8,
+     "aim": 250,
+     "d60": 1
+    },
+    {
+     "mk": 2,
+     "tier": 3,
+     "unlock": 800000,
+     "total": 1375000,
+     "price": 110000,
+     "jail": 0,
+     "prereq": "TAG-12K Mk1",
+     "mag": 5,
+     "range": 8,
+     "aim": 200,
+     "d60": 1
+    },
+    {
+     "mk": 3,
+     "tier": 3,
+     "unlock": 1600000,
+     "total": 2975000,
+     "price": 110000,
+     "jail": 0,
+     "prereq": "TAG-12K Mk2",
+     "mag": 8,
+     "range": 10,
+     "aim": 200,
+     "d60": 1
+    }
+   ]
+  },
+  {
+   "name": "KL-545",
+   "type": "アサルトライフル",
+   "rarity": "Uncommon",
+   "damage": 15,
+   "pellets": 1,
+   "rpm": 600,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 1,
+     "unlock": 25000,
+     "total": 25000,
+     "price": 6000,
+     "jail": 0,
+     "prereq": null,
+     "mag": 30,
+     "range": 45,
+     "aim": 300,
+     "d60": 12
+    },
+    {
+     "mk": 2,
+     "tier": 1,
+     "unlock": 50000,
+     "total": 75000,
+     "price": 6000,
+     "jail": 0,
+     "prereq": "KL-545 Mk1",
+     "mag": 30,
+     "range": 45,
+     "aim": 250,
+     "d60": 12
+    },
+    {
+     "mk": 3,
+     "tier": 2,
+     "unlock": 100000,
+     "total": 175000,
+     "price": 6000,
+     "jail": 0,
+     "prereq": "KL-545 Mk2",
+     "mag": 45,
+     "range": 50,
+     "aim": 250,
+     "d60": 13
+    }
+   ]
+  },
+  {
+   "name": "RC 5.56",
+   "type": "アサルトライフル",
+   "rarity": "Epic",
+   "damage": 16,
+   "pellets": 1,
+   "rpm": 666.7,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 2,
+     "unlock": 200000,
+     "total": 225000,
+     "price": 32000,
+     "jail": 0,
+     "prereq": "KL-545 Mk1",
+     "mag": 30,
+     "range": 55,
+     "aim": 300,
+     "d60": 15
+    },
+    {
+     "mk": 2,
+     "tier": 2,
+     "unlock": 400000,
+     "total": 625000,
+     "price": 32000,
+     "jail": 0,
+     "prereq": "RC 5.56 Mk1",
+     "mag": 30,
+     "range": 55,
+     "aim": 250,
+     "d60": 15
+    },
+    {
+     "mk": 3,
+     "tier": 3,
+     "unlock": 800000,
+     "total": 1425000,
+     "price": 32000,
+     "jail": 0,
+     "prereq": "RC 5.56 Mk2",
+     "mag": 50,
+     "range": 60,
+     "aim": 250,
+     "d60": 16
+    }
+   ]
+  },
+  {
+   "name": "STAR-H",
+   "type": "アサルトライフル",
+   "rarity": "Epic",
+   "damage": 21,
+   "pellets": 1,
+   "rpm": 500,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 2,
+     "unlock": 100000,
+     "total": 125000,
+     "price": 27500,
+     "jail": 180,
+     "prereq": "KL-545 Mk1",
+     "mag": 20,
+     "range": 50,
+     "aim": 300,
+     "d60": 19
+    },
+    {
+     "mk": 2,
+     "tier": 2,
+     "unlock": 200000,
+     "total": 325000,
+     "price": 27500,
+     "jail": 190,
+     "prereq": "STAR-H Mk1",
+     "mag": 20,
+     "range": 50,
+     "aim": 250,
+     "d60": 19
+    },
+    {
+     "mk": 3,
+     "tier": 3,
+     "unlock": 400000,
+     "total": 725000,
+     "price": 27500,
+     "jail": 200,
+     "prereq": "STAR-H Mk2",
+     "mag": 40,
+     "range": 55,
+     "aim": 250,
+     "d60": 20
+    }
+   ]
+  },
+  {
+   "name": "SR Reaper",
+   "type": "アサルトライフル",
+   "rarity": "Legendary",
+   "damage": 17,
+   "pellets": 1,
+   "rpm": 750,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 3,
+     "unlock": 400000,
+     "total": 625000,
+     "price": 120000,
+     "jail": 0,
+     "prereq": "RC 5.56 Mk1",
+     "mag": 20,
+     "range": 65,
+     "aim": 300,
+     "d60": 17
+    },
+    {
+     "mk": 2,
+     "tier": 3,
+     "unlock": 800000,
+     "total": 1425000,
+     "price": 120000,
+     "jail": 0,
+     "prereq": "SR Reaper Mk1",
+     "mag": 20,
+     "range": 65,
+     "aim": 250,
+     "d60": 17
+    },
+    {
+     "mk": 3,
+     "tier": 3,
+     "unlock": 1600000,
+     "total": 3025000,
+     "price": 120000,
+     "jail": 0,
+     "prereq": "SR Reaper Mk2",
+     "mag": 40,
+     "range": 70,
+     "aim": 250,
+     "d60": 17
+    }
+   ]
+  },
+  {
+   "name": "DRM-14",
+   "type": "精密ライフル",
+   "rarity": "Legendary",
+   "damage": 34,
+   "pellets": 1,
+   "rpm": 240,
+   "marks": [
+    {
+     "mk": 1,
+     "tier": 3,
+     "unlock": 200000,
+     "total": 425000,
+     "price": 103500,
+     "jail": 950,
+     "prereq": "RC 5.56 Mk1",
+     "mag": 10,
+     "range": 95,
+     "aim": 300,
+     "d60": 34
+    },
+    {
+     "mk": 2,
+     "tier": 3,
+     "unlock": 400000,
+     "total": 825000,
+     "price": 103500,
+     "jail": 975,
+     "prereq": "DRM-14 Mk1",
+     "mag": 10,
+     "range": 95,
+     "aim": 250,
+     "d60": 34
+    },
+    {
+     "mk": 3,
+     "tier": 3,
+     "unlock": 800000,
+     "total": 1625000,
+     "price": 103500,
+     "jail": 1000,
+     "prereq": "DRM-14 Mk2",
+     "mag": 20,
+     "range": 100,
+     "aim": 250,
+     "d60": 34
+    }
+   ]
+  },
+  {
+   "name": "LM 249",
+   "type": "LMG",
+   "rarity": "Exotic",
+   "damage": 18,
+   "pellets": 1,
+   "rpm": 705.9,
+   "marks": [
+    {
+     "mk": 2,
+     "tier": null,
+     "unlock": null,
+     "total": null,
+     "price": null,
+     "jail": null,
+     "prereq": null,
+     "mag": 200,
+     "range": 75,
+     "aim": 250,
+     "d60": 18
+    }
+   ]
+  }
+ ],
+ "armor": [
+  {
+   "name": "Light",
+   "rarity": "Common",
+   "tier": 0,
+   "unlock": 5000,
+   "total": 5000,
+   "price": 4000,
+   "armor": 25,
+   "segments": 1,
+   "block": 0
+  },
+  {
+   "name": "Medium",
+   "rarity": "Uncommon",
+   "tier": 1,
+   "unlock": 15000,
+   "total": 20000,
+   "price": 15000,
+   "armor": 50,
+   "segments": 2,
+   "block": 0
+  },
+  {
+   "name": "Assault",
+   "rarity": "Epic",
+   "tier": 2,
+   "unlock": 250000,
+   "total": 270000,
+   "price": 70000,
+   "armor": 75,
+   "segments": 3,
+   "block": 0
+  },
+  {
+   "name": "Heavy",
+   "rarity": "Legendary",
+   "tier": 3,
+   "unlock": 500000,
+   "total": 770000,
+   "price": 140000,
+   "armor": 100,
+   "segments": 4,
+   "block": 0
+  },
+  {
+   "name": "Bastion",
+   "rarity": "Exotic",
+   "tier": null,
+   "unlock": null,
+   "total": null,
+   "price": null,
+   "armor": 100,
+   "segments": 4,
+   "block": 0.25
+  }
+ ]
+}

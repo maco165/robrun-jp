@@ -11,6 +11,7 @@ import { Button } from '@astryxdesign/core/Button';
 import { Divider } from '@astryxdesign/core/Divider';
 import { Selector } from '@astryxdesign/core/Selector';
 import { NumberInput } from '@astryxdesign/core/NumberInput';
+import { Collapsible } from '@astryxdesign/core/Collapsible';
 import { Shell } from '../components/Shell';
 import { DISPLAY, Kicker } from '../components/parts';
 import { SENS } from '../lib/data';
@@ -78,15 +79,16 @@ export function Sensitivity() {
             {Number.isFinite(out) && out < rr.min ? (
               <Text type="supporting" color="secondary">下限 (0.1 とする出典がある) を下回ります。DPI を下げてください</Text>
             ) : null}
-            <Text type="supporting" color="placeholder" hasTabularNumbers>ROB RUN の係数 {fmt(yaw, 4)} 度/カウント{yaw === rr.yaw ? ' (推定値)' : ' (自分で測った値)'}</Text>
+            {yaw !== rr.yaw ? <Text type="supporting" color="placeholder">自分で測った係数で計算しています</Text> : null}
             <Text type="supporting" color="placeholder">照準時 (ADS) の感度は別の設定です。まず General を合わせ、ADS は好みで調整してください</Text>
           </VStack>
         </Card>
       </Grid>
 
-      <VStack as="section" gap={3}>
-        <Heading level={2}>自分で測って係数を確かめる</Heading>
-        <Divider variant="strong" />
+      {/* 係数・出典・測り方は常には見せず、開いたときだけ出す (本人の指示) */}
+      <Divider />
+      <Collapsible defaultIsOpen={false} trigger={<Text type="body" weight="bold">自分で測って係数を差し替える</Text>}>
+      <VStack as="section" gap={3} paddingBlock={2}>
         <Text type="body" color="secondary">{rr.note}</Text>
         <VStack gap={1}>
           {SENS.measure.map((m, i) => (
@@ -107,10 +109,10 @@ export function Sensitivity() {
           <Button label="推定値に戻す" variant="ghost" isDisabled={yaw === rr.yaw} onClick={() => setYaw(rr.yaw)} />
         </HStack>
       </VStack>
-
-      <VStack as="section" gap={2}>
-        <Heading level={2}>使っている係数</Heading>
-        <Divider variant="strong" />
+      </Collapsible>
+      <Divider />
+      <Collapsible defaultIsOpen={false} trigger={<Text type="body" weight="bold">使っている係数と出典</Text>}>
+      <VStack as="section" gap={2} paddingBlock={2}>
         <Text type="supporting" color="secondary">{SENS.formula.text}</Text>
         <VStack gap={2}>
           <HStack gap={3} wrap="wrap" vAlign="start">
@@ -146,6 +148,7 @@ export function Sensitivity() {
           ))}
         </HStack>
       </VStack>
+      </Collapsible>
     </Shell>
   );
 }
