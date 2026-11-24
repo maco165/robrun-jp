@@ -219,8 +219,29 @@ try {
           await page.getByRole('radio', { name: 'T2' }).click();
           await page.waitForTimeout(200);
           if ((await cards.count()) !== count(2)) fails.push(`${p.path} @${w}: T2 に替えると ${await cards.count()} 件 (${count(2)} 件のはず)`);
+          // ページ内の目次の行き先・並べ替え・種類の絞り込み・探索の段・刑期・武器の選択
+          for (const x of ['gear-tier', 'gear-mk', 'gear-armor']) if ((await page.locator(`main section#${x}`).count()) !== 1) fails.push(`${p.path} @${w}: ${x} が無い`);
+          const marks = gear.weapons.flatMap((x) => x.marks.map((m) => ({ ...m, n: `${x.name} Mk${m.mk}`, type: x.type, dps: Math.round((x.damage * x.pellets * x.rpm) / 60), c: m.total === null ? null : m.total + m.price + gear.land[m.tier] })));
+          const names = () => cards.evaluateAll((els) => els.map((e) => e.getAttribute('data-gear')));
+          await page.getByRole('radio', { name: '全部' }).click();
+          await page.waitForTimeout(200);
+          const byDps = (await names()).map((n) => marks.find((m) => m.n === n).dps);
+          if (byDps.length !== marks.length || byDps.some((x, k) => k > 0 && x > byDps[k - 1])) fails.push(`${p.path} @${w}: 秒間ダメージの順が違う`);
+          const choose = async (label, option) => { await page.getByRole('combobox', { name: label, exact: true }).click(); await page.waitForTimeout(300); await page.getByRole('option', { name: option }).first().evaluate((el) => el.click()); await page.waitForTimeout(250); };
+          await choose('並べ方', '土地込みで安い順');
+          const byCost = (await names()).map((n) => marks.find((m) => m.n === n).c).filter((x) => x !== null);
+          if (byCost.some((x, k) => k > 0 && x < byCost[k - 1])) fails.push(`${p.path} @${w}: 土地込みで安い順が違う`);
+          await choose('種類', 'SMG');
+          if ((await names()).length !== marks.filter((m) => m.type === 'SMG').length) fails.push(`${p.path} @${w}: 種類の絞り込みが効かない`);
+          await choose('種類', 'すべての種類');
+          await page.getByRole('radio', { name: '探索' }).click();
+          await page.waitForTimeout(200);
+          if ((await names()).length !== marks.filter((m) => m.tier === null).length) fails.push(`${p.path} @${w}: 探索の段の件数が違う`);
+          if ((await page.locator('main [data-mk="2"] .rr-gain').count()) === 0) fails.push(`${p.path} @${w}: 良くなる所の色が付かない`);
           const mk3 = (await page.locator('main [data-mk="3"]').textContent()) ?? '';
           for (const x of ['30 → 45発', '$181,000', '$175,000']) if (!mk3.includes(x)) fails.push(`${p.path} @${w}: KL-545 Mk3 に「${x}」が無い`);
+          await choose('武器', 'STAR-H');
+          if (!((await page.locator('main [data-mk="3"]').textContent()) ?? '').includes('200 年')) fails.push(`${p.path} @${w}: STAR-H を選んでも刑期 200 年が出ない`);
           if ((await page.locator('main [data-armor]').count()) !== gear.armor.length) fails.push(`${p.path} @${w}: 防具の数が違う`);
         }
         // 図: 数が合い、図ごとに題・中身の文字・出典の番号がその図の中にあり、攻略サイトの図には印がある

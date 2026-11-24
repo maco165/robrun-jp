@@ -140,7 +140,7 @@ export function checkGuide(g: Guide, versionIds: Set<string>): string[] {
   }
   for (const [old, to] of Object.entries(g.moved ?? {})) {
     const m = /^([a-z0-9-]+)\/#([a-z0-9-]+)$/.exec(to);
-    const target = m && g.sections.find((s) => s.id === m[1])?.parts.some((x) => x.id === m[2]);
+    const target = m && (g.sections.find((s) => s.id === m[1])?.parts.some((x) => x.id === m[2]) || to === 'gear/#gear-tier');
     if (!target || ids.has(old)) ng.push(`guide の moved: ${old} → ${to} の行き先が無いか、今のページと同じ id`);
   }
   return ng;

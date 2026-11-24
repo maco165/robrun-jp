@@ -676,6 +676,16 @@
           ],
           "items": [
             {
+              "text": "地域は EU と East US。新しいサーバーは毎日、EU は 17:00 UTC、East US は 20:00 ET に開く予定。混めば時間外にも開く",
+              "kind": "official",
+              "refs": [
+                {
+                  "news": "1848557880479055",
+                  "title": "ROB RUN: First Changes & Server Schedule"
+                }
+              ]
+            },
+            {
               "text": "7 日ごとのワイプ (Federal Raid) で、拠点・区画・武器・現金が消え、刑期と権限に替わる。見た目の品・名前・設定・刑期の合計は残る",
               "kind": "official",
               "refs": [
@@ -1516,7 +1526,7 @@
             },
             {
               "kind": "official",
-              "text": "買える品は Shipments (H キー) で解禁する。11/17 から Lenny のメニューにも Shipments が出る。解禁には拠点の集落のレベルか刑期の合計が要る",
+              "text": "買える品は Shipments (H キー) で解禁する。11/17 から Lenny のメニューにも Shipments が出る。解禁に拠点の集落のレベルか刑期の合計が要る品がある",
               "refs": [
                 {
                   "help": "https://kefirgames.helpshift.com/hc/en/14-rob-run/faq/1365-how-do-i-unlock-new-goods/",
@@ -1560,7 +1570,7 @@
             },
             {
               "kind": "site",
-              "text": "公式は武器の数値を出していない。攻略サイトの数値はコミュニティが集めた値で、3 つのサイト (11/08〜11/16) でダメージ・連射・装弾数が一致している",
+              "text": "公式は武器の数値を出していない。攻略サイトどうしで値は一致するが、同じゲームのファイルから集めた可能性があり、独立した実測ではない",
               "refs": [
                 {
                   "site": "https://games.gg/rob-run/guides/best-rob-run-weapons-early-access-tier-list/",
@@ -1582,7 +1592,7 @@
             },
             {
               "kind": "site",
-              "text": "Mk を上げると装弾数・構えの速さ・射程が伸び、1 発のダメージは変わらない",
+              "text": "Mk2 は主に構えが速くなり (MC-10 は除く)、Mk3 は主に装弾数と射程が伸びる。近距離の 1 発のダメージと連射は変わらない",
               "refs": [
                 {
                   "site": "https://grindnstrat.com/?p=9899",
@@ -2499,7 +2509,7 @@
     "wipe-plan": "wipe/#wipe-plan",
     "sell": "money/#sell",
     "loot": "money/#loot",
-    "weapons": "gear/#weapons",
+    "weapons": "gear/#gear-tier",
     "map": "world/#map",
     "base": "world/#base",
     "pyramid": "world/#pyramid",

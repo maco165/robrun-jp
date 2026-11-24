@@ -100,3 +100,7 @@ test('転送: 行き先の見出しが無い・今のページと同じ id な�
   assert.match(checkGuide({ ...b, moved: { old: 'sell/#none' } }, VERSION_IDS).join(), /行き先/);
   assert.match(checkGuide({ ...b, moved: { sell: 'sell/#sell-a' } }, VERSION_IDS).join(), /同じ id/);
 });
+
+test('公開していた 11 の古いページは、すべて転送がある', () => {
+  assert.deepEqual(Object.keys(GUIDE.moved ?? {}).sort(), ['base', 'basics', 'loot', 'map', 'police', 'pyramid', 'sell', 'story', 'vehicle', 'weapons', 'wipe-plan']);
+});

@@ -12,6 +12,12 @@ export const dps = (w: Weapon) => Math.round((w.damage * w.pellets * w.rpm) / 60
 /** 初めて 1 つ手にするまで = 前提を含む解放の累計 + 購入 1 回 (土地は含まない)。買えない品は null */
 export const firstCost = (x: { total: number | null; price: number | null }) => (x.total === null || x.price === null ? null : x.total + x.price);
 
+/** 土地込み: 初めて手にするまで + その段の土地まで順に上げる費用 (家賃は含まない)。並べ替えと棒はこれを使う */
+export const withLand = (x: { total: number | null; price: number | null; tier: number | null }, land: number[]) => {
+  const f = firstCost(x);
+  return f === null ? null : f + (land[x.tier ?? 0] ?? 0);
+};
+
 export type Gain = { label: string; before: number; after: number; unit: string; better: boolean };
 /** 1 つ前の Mk からの変化だけを返す。構えの時間は短いほど良い */
 export function gains(a: Mark, b: Mark): Gain[] {
@@ -37,6 +43,14 @@ export function checkGear(g: Gear): string[] {
       if (p && p.total !== null && m.unlock !== null && p.total + m.unlock !== m.total) ng.push(`gear の ${w.name} Mk${m.mk}: 累計が前の Mk の累計 + 解放費と違う`);
     });
   }
+  g.armor.forEach((a, i) => {
+    const p = g.armor[i - 1];
+    if (a.tier !== null && ![0, 1, 2, 3].includes(a.tier)) ng.push(`gear の ${a.name}: tier は 0〜3`);
+    if (!(a.segments >= 1 && a.armor === Math.min(100, a.segments * 25) && a.block >= 0 && a.block < 1)) ng.push(`gear の ${a.name}: 区切り・防げる量 (1 区切り 25)・軽減の値がおかしい`);
+    if (p && a.total !== null && a.unlock !== null && p.total !== null && p.total + a.unlock !== a.total) ng.push(`gear の ${a.name}: 累計が前の段の累計 + 解放費と違う`);
+    if (a.price !== null && p?.price != null && a.price <= p.price) ng.push(`gear の ${a.name}: 値段が前の段以下`);
+  });
+  if (g.land.some((x, i) => i > 0 && x <= g.land[i - 1])) ng.push('gear: 土地の費用は段ごとに増える');
   if (g.land.length !== 4) ng.push('gear: 土地の費用 (land) は T0〜T3 の 4 つ');
   for (const s of g.sources) if (!/^https:\/\//.test(s.url) || isBlocked(s.url)) ng.push(`gear: 出典の URL が https でないか、載せないサイト (${s.url})`);
   return ng;

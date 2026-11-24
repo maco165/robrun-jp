@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { checkGear, dps, firstCost, gains, type Gear } from '../src/lib/gear.ts';
+import { checkGear, dps, firstCost, gains, withLand, type Gear } from '../src/lib/gear.ts';
 
 const G: Gear = JSON.parse(readFileSync(new URL('../data/gear.json', import.meta.url), 'utf8'));
 const w = (n: string) => G.weapons.find((x) => x.name === n)!;
@@ -27,4 +27,17 @@ test('検査: 連射の桁落ち・累計の食い違い・載せない出典を
   b.weapons[0].rpm = 1; b.weapons[3].marks[1].total = 1; b.sources[0].url = 'https://timesaver.gg/x';
   const ng = checkGear(b).join();
   assert.match(ng, /連射/); assert.match(ng, /累計/); assert.match(ng, /載せないサイト/);
+});
+
+test('土地込みの順: T3 の Vulture 50 Mk1 は T2 の JP-7 Mk2 より高い (土地を除くと逆)', () => {
+  const v = w('Vulture 50').marks[0], j = w('JP-7').marks[1];
+  assert.ok(firstCost(v)! < firstCost(j)!);
+  assert.deepEqual([withLand(v, G.land), withLand(j, G.land)], [4600000, 1674000]);
+});
+test('防具と土地の検査: 壊した値を落とす', () => {
+  const b: Gear = JSON.parse(JSON.stringify(G));
+  Object.assign(b.armor[3], { price: 1, total: 2, unlock: 7, armor: 5, segments: -1 });
+  b.land[2] = 0;
+  const ng = checkGear(b).join();
+  for (const x of [/防げる量/, /累計が前の段/, /値段が前の段/, /土地の費用/]) assert.match(ng, x);
 });

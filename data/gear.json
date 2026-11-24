@@ -6,7 +6,7 @@
   1150000,
   4150000
  ],
- "note": "どの値も攻略サイトのもので、ゲームのファイルから集めた可能性がある。サイトどうしの一致は独立した実測ではない。公式は数値を出していない。反動・防具の重さは出典に無い。リロードは出典で意味が分かれるので載せていない",
+ "note": "どの値も攻略サイトのもので、ゲームのファイルから集めた可能性がある。サイトどうしの一致は独立した実測ではない。公式は数値を出していない。反動・防具の重さは出典に無い。リロードは出典で意味が分かれるので載せていない。Mk2・Mk3 の購入額はゲーム画面での確認が無く、Mk1 と同じ基準の値で計算している。60 m のダメージと防げる量は出典が 1 つ。LM 249 はアサルトライフルとする出典もある。防具は守り方を体力への上乗せと書く出典もあり、鋼板 (Steel Plate) で区切りを回復する。11/17・11/20 の公式パッチに武器の変更は無い。頭は胴の 1.5 倍とする出典がある (1 つ)",
  "sources": [
   {
    "url": "https://robrungame.com/intel/tier-1-to-tier-3-home/",
@@ -27,6 +27,18 @@
   {
    "url": "https://gamingpromax.com/rob-run-all-weapons-list/",
    "title": "gamingpromax（英語・11/16）"
+  },
+  {
+   "url": "https://robrungame.com/intel/bastion-vs-heavy-armor/",
+   "title": "robrungame.com Bastion と Heavy（英語）"
+  },
+  {
+   "url": "https://gamingpromax.com/rob-run-all-equipment-list/",
+   "title": "gamingpromax 装備の一覧（英語・11/17）"
+  },
+  {
+   "url": "https://grindnstrat.com/?p=9899",
+   "title": "grindnstrat 武器ガイド（英語・11/06）"
   }
  ],
  "weapons": [
