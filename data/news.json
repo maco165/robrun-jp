@@ -1164,5 +1164,47 @@
     },
     "summarizedBy": "ai",
     "reviewed": false
+  },
+  {
+    "id": "1850460852989024",
+    "source": "official",
+    "title": "Steam Awards: 3 Days to Nominate!",
+    "url": "https://store.steampowered.com/news/app/4262460/view/1850460852989024",
+    "publishedAt": "2026-11-27T10:25:14.000Z",
+    "gameVersion": "2026-11-20",
+    "summaryJa": {
+      "headline": "Steam Awards、ROB RUNへのノミネート受付は11月30日まで",
+      "impact": "プレイヤーに直接のゲーム内変更はありません。Steam Awardsの「Defies Description」と「Best Game You Suck At」の2部門でROB RUNに投票できます。",
+      "points": [
+        {
+          "type": "change",
+          "target": "Steam Awards",
+          "text": "ROB RUNを2部門にノミネートできる。受付は11月30日まで"
+        },
+        {
+          "type": "change",
+          "target": "Defies Description",
+          "text": "ノミネート部門の一つ"
+        },
+        {
+          "type": "change",
+          "target": "Best Game You Suck At",
+          "text": "ノミネート部門の一つ"
+        }
+      ]
+    },
+    "tags": [
+      "イベント"
+    ],
+    "changeTypes": [
+      "change"
+    ],
+    "flags": {
+      "wipe": false,
+      "server": false,
+      "maintenance": false
+    },
+    "summarizedBy": "ai",
+    "reviewed": false
   }
 ]
